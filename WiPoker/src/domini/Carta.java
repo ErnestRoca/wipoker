@@ -7,8 +7,8 @@ package domini;
  */
 public class Carta {
 
-    private byte pal;
-    private byte valor;
+    private final byte pal;
+    private final byte valor;
 
     public Carta(byte pal, byte valor) {
         this.pal = pal;
@@ -17,21 +17,13 @@ public class Carta {
 
     public byte getPal() {
         return pal;
-    }
-
-    public void setPal(byte pal) {
-        this.pal = pal;
-    }
+    }    
 
     public byte getValor() {
         return valor;
     }
 
-    public void setValor(byte valor) {
-        this.valor = valor;
-    }
-
-    //Una Carta serà diferent quan el seu pal i el seu valor siguin diferents.
+     //Una Carta serà diferent quan el seu pal i el seu valor siguin diferents.
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -52,11 +44,12 @@ public class Carta {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 31 * hash + this.pal;
-        hash = 31 * hash + this.valor;
+        int hash = 7;
+        hash = 17 * hash + this.pal;
+        hash = 17 * hash + this.valor;
         return hash;
     }
+   
 
     @Override
     public String toString() {
