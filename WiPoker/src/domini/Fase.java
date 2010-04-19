@@ -12,11 +12,7 @@ package domini;
 public class Fase {
 
     //Nom de la fase (pre-flop, flop, turn. river)
-    String nomFase;
-
-    //constructor per defecte
-    public Fase() {
-    }
+    private final String nomFase;
 
     public Fase(String nomFase) {
         this.nomFase = nomFase;
@@ -26,8 +22,26 @@ public class Fase {
         return nomFase;
     }
 
-    public void setNomFase(String nomFase) {
-        this.nomFase = nomFase;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Fase other = (Fase) obj;
+        if ((this.nomFase == null) ? (other.nomFase != null) : !this.nomFase.equals(other.nomFase)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 73 * hash + (this.nomFase != null ? this.nomFase.hashCode() : 0);
+        return hash;
     }
 
     @Override
