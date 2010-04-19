@@ -7,7 +7,7 @@ package domini;
 
 /**
  *
- * @author eva
+ * @author Andrés
  */
 public class Aposta {
     double quantitat;
