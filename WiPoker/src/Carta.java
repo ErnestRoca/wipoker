@@ -1,6 +1,6 @@
 
 /**
- *
+ *hola
  * @author ernest
  */
 public class Carta {
