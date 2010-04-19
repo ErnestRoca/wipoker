@@ -10,10 +10,11 @@ package domini;
  * @author ula
  */
 public class Ronda {
-
+    //Jugador que guanya la ronda
     Jugador jugadorGuanyador;
+    //pot de la ronda
     double pot;
-
+    //Constructor per defecte
     public Ronda() {
     }
 
