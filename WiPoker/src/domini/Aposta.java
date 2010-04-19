@@ -4,16 +4,15 @@ package domini;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Andrés
  */
 public class Aposta {
-    double quantitat;
+
+    private double quantitat;
 
     public Aposta() {
-
     }
 
     public Aposta(double quantitat) {
@@ -32,5 +31,4 @@ public class Aposta {
     public String toString() {
         return String.valueOf(quantitat);
     }
-
 }
