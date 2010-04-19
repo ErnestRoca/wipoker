@@ -1,5 +1,7 @@
 package domini;
 
+import java.util.ArrayList;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -11,16 +13,15 @@ package domini;
  */
 public class Ronda {
     //Jugador que guanya la ronda
-    Jugador jugadorGuanyador;
+    private Jugador jugadorGuanyador;
     //pot de la ronda
-    double pot;
-    //Constructor per defecte
+    private double pot;
+    private ArrayList<Fase> fases = new ArrayList<Fase>(5);
+
     public Ronda() {
     }
 
-    public Ronda(Jugador jugadorGuanyador, double pot) {
-        this.jugadorGuanyador = jugadorGuanyador;
-        this.pot = pot;
+    public Ronda(double pot) {        
     }
 
     public Jugador getJugadorGuanyador() {
@@ -41,6 +42,6 @@ public class Ronda {
 
     @Override
     public String toString() {
-        return ("Pot : " + pot  + ", guanyador: " + jugadorGuanyador.nomComplet);
+        return ("Pot : " + pot  + ", guanyador: " + jugadorGuanyador.getNomComplet());
     }
 }
