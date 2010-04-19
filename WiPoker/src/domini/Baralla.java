@@ -9,13 +9,12 @@ import java.util.ArrayList;
  */
 public class Baralla {
 
-    ArrayList<Carta> Cartes = new ArrayList<Carta>();
-    private final byte maxCartes;         //Nombre total de cartes de que estarà formada la Baralla.
+    private ArrayList<Carta> Cartes = new ArrayList<Carta>();
+    private static final byte maxCartes = 52;         //Nombre total de cartes de que estarà formada la Baralla.
     private byte cartesActuals;     //Nombre de cartes que queden per descartar.
 
-    public Baralla(byte maxCartes, byte cartesActuals) {
-        this.maxCartes = maxCartes;
-        this.cartesActuals = cartesActuals;
+    public Baralla() {
+        this.cartesActuals = maxCartes;
     }
 
     public ArrayList<Carta> getCartes() {
@@ -46,9 +45,6 @@ public class Baralla {
         if (this.Cartes != other.Cartes && (this.Cartes == null || !this.Cartes.equals(other.Cartes))) {
             return false;
         }
-        if (this.maxCartes != other.maxCartes) {
-            return false;
-        }
         if (this.cartesActuals != other.cartesActuals) {
             return false;
         }
@@ -58,11 +54,12 @@ public class Baralla {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + (this.Cartes != null ? this.Cartes.hashCode() : 0);
-        hash = 97 * hash + this.maxCartes;
-        hash = 97 * hash + this.cartesActuals;
+        hash = 41 * hash + (this.Cartes != null ? this.Cartes.hashCode() : 0);
+        hash = 41 * hash + this.cartesActuals;
         return hash;
     }
+
+    
 
     @Override
     public String toString() {
