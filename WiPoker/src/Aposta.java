@@ -18,7 +18,4 @@ public class Aposta {
         this.quantitat = quantitat;
     }
 
-    public void fer() {
-        String r = "";
-    }
 }
