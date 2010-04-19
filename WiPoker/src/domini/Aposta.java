@@ -20,4 +20,12 @@ public class Aposta {
         this.quantitat = quantitat;
     }
 
+    public double getQuantitat() {
+        return quantitat;
+    }
+
+    public void setQuantitat(double quantitat) {
+        this.quantitat = quantitat;
+    }
+
 }
