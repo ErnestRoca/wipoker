@@ -1,6 +1,7 @@
 package domini;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /*
@@ -15,27 +16,19 @@ import java.util.Calendar;
  */
 public class Partida {
     //Jugador que guanya la partida
-    Jugador jugadorGuanyador;
+    private Jugador jugadorGuanyador;
     //Data de la partida
-    Calendar dataPartida;
+    private final Calendar dataPartida;
+    //Arraylist de jugadors
+    private ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
 
-    //Constructor per defecte
-    public Partida() {
-
-    }
-
-    public Partida(Jugador jugadorGuanyador, Calendar dataPartida) {
-        this.jugadorGuanyador = jugadorGuanyador;
+    public Partida(Calendar dataPartida) {        
         this.dataPartida = dataPartida;
     }
 
     public Calendar getDataPartida() {
         return dataPartida;
-    }
-
-    public void setDataPartida(Calendar dataPartida) {
-        this.dataPartida = dataPartida;
-    }
+    }   
 
     public Jugador getJugadorGuanyador() {
         return jugadorGuanyador;
@@ -45,8 +38,16 @@ public class Partida {
         this.jugadorGuanyador = jugadorGuanyador;
     }
 
+    public ArrayList<Jugador> getJugadors() {
+        return jugadors;
+    }
+
+    public void setJugadors(ArrayList<Jugador> jugadors) {
+        this.jugadors = jugadors;
+    }
+    
     @Override
     public String toString() {
-        return ("Partida jugada: " + dataPartida.toString() + ", guanyador: " + jugadorGuanyador.nomComplet);
+        return ("Partida jugada: " + dataPartida.toString() + ", guanyador: " + jugadorGuanyador.getNomComplet());
     }
 }
