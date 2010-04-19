@@ -13,21 +13,18 @@ package domini;
 public class Taula {
 
     //numero de places per a jugar
-    byte places;
+    private final byte places;
     //numero de places que ja no es poden usar
-    byte cadiresOcupades;
+    private byte cadiresOcupades;
     //Objecte tipus baralla.
     //Baralla que empra el dealer
     Baralla baralla;
-
-    //constructor per defecte
-    public Taula() {
-    }
+    private Partida partidaActual;
 
     public Taula(byte places, byte cadiresOcupades, Baralla baralla) {
         this.places = places;
         this.cadiresOcupades = cadiresOcupades;
-        this.baralla = baralla;
+        this.baralla = baralla;        
     }
 
     public Baralla getBaralla() {
@@ -50,10 +47,16 @@ public class Taula {
         return places;
     }
 
-    public void setPlaces(byte places) {
-        this.places = places;
+    public Partida getPartidaActual() {
+        return partidaActual;
     }
 
+    public void setPartidaActual(Partida partidaActual) {
+        this.partidaActual = partidaActual;
+    }
+
+
+    @Override
     public String toString() {
         return "taula de " + places + "que té " + cadiresOcupades + "cadires ocupades";
 
