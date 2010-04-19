@@ -28,4 +28,9 @@ public class Aposta {
         this.quantitat = quantitat;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(quantitat);
+    }
+
 }
