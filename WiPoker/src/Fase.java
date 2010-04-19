@@ -15,4 +15,18 @@ public class Fase {
     public Fase() {
 
     }
+
+    public Fase(String nomFase) {
+        this.nomFase = nomFase;
+    }
+
+    public String getNomFase() {
+        return nomFase;
+    }
+
+    public void setNomFase(String nomFase) {
+        this.nomFase = nomFase;
+    }
+
+    
 }
