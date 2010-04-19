@@ -11,8 +11,10 @@ package domini;
  */
 public class Fase {
 
+    //Nom de la fase (pre-flop, flop, turn. river)
     String nomFase;
 
+    //constructor per defecte
     public Fase() {
     }
 
