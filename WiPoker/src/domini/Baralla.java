@@ -2,6 +2,10 @@ package domini;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  *
@@ -68,9 +72,5 @@ public class Baralla {
             cad += Cartes.get(i);
         }
         return cad;
-    }
-
-    public void barallar() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    }    
 }
