@@ -69,4 +69,8 @@ public class Baralla {
         }
         return cad;
     }
+
+    public void barallar() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
