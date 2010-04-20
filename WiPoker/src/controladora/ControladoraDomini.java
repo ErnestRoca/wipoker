@@ -30,16 +30,28 @@ public class ControladoraDomini {
         partida = new Partida(null);
         jugadors = new ArrayList<Jugador>();
         partida.setJugadors(jugadors);
-
+        taula.setPartidaActual(partida);
     }
 
+    public ArrayList<Jugador> getJugadors() {
+        return jugadors;
+    }
 
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public Taula getTaula() {
+        return taula;
+    }
+
+    
 
     /* Mètode que assigna la data (d'inici de la partida en estar la taula completa
      * Paràmetres: Taula l'objecte taula en que es jugara la partida
      * Retorna: void
      */
-    public void assignarDataPartida(Taula taula) {
+    public void assignarDataPartida() {
         Calendar c = Calendar.getInstance();
         //String data = Calendar.YEAR + "/" + Calendar.MONTH + "/" + Calendar.DAY_OF_MONTH;
         taula.setPartidaActual(new Partida(c));
@@ -57,7 +69,7 @@ public class ControladoraDomini {
      * Paràmetres: Taula l'objecte taula en que es juga la partida
      * Retorna: boolean true si la taula està al complert
      */
-    public boolean taulaIsFull(Taula taula) {
+    public boolean taulaIsFull() {
         boolean completa = taula.getPlaces() - taula.getCadiresOcupades() == 0;
         return completa;
     }
@@ -103,7 +115,7 @@ public class ControladoraDomini {
         taula.getPartidaActual().getJugadors().remove(jugador);
     }
 
-    //Afageix jugador
+        //Afageix jugador
     private void addJugador(Jugador j) {
         partida.getJugadors().add(j);
     }
