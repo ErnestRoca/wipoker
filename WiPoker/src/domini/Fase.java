@@ -13,8 +13,10 @@ public class Fase {
 
     //Nom de la fase (pre-flop, flop, turn. river)
     private final String nomFase;
+    private static byte numFase = 0;
 
     public Fase(String nomFase) {
+        numFase++;
         this.nomFase = nomFase;
     }
 
