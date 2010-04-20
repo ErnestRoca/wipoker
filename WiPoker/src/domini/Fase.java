@@ -14,6 +14,7 @@ public class Fase {
     //Nom de la fase (pre-flop, flop, turn. river)
     private final String nomFase;
     private static byte numFase = 0;
+    private static final String[] fases = {"pre-flop", "flop", "turn", "river"};
 
     public Fase(String nomFase) {
         numFase++;
@@ -23,6 +24,20 @@ public class Fase {
     public String getNomFase() {
         return nomFase;
     }
+
+    public static byte getNumFase() {
+        return numFase;
+    }
+
+    public static String[] getFases() {
+        return fases;
+    }
+
+    public static void setNumFase(byte numFase) {
+        Fase.numFase = numFase;
+    }
+
+    
 
     @Override
     public boolean equals(Object obj) {
