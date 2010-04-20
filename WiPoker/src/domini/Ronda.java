@@ -40,6 +40,16 @@ public class Ronda {
         this.pot = pot;
     }
 
+    public ArrayList<Fase> getFases() {
+        return fases;
+    }
+
+    public void setFases(ArrayList<Fase> fases) {
+        this.fases = fases;
+    }
+
+
+
     @Override
     public String toString() {
         return ("Pot : " + pot  + ", guanyador: " + jugadorGuanyador.getNomComplet());
