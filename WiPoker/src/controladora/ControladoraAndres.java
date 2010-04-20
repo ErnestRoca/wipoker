@@ -24,6 +24,7 @@ public class ControladoraAndres {
     public void assignarDataPartida(Taula taula) {
         Calendar c = Calendar.getInstance();
         String data = Calendar.YEAR + "/" + Calendar.MONTH + "/" + Calendar.DAY_OF_MONTH;
+        
         taula.setPartidaActual(new Partida(c));
     }
 
