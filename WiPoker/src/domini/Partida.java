@@ -22,6 +22,9 @@ public class Partida {
     //Arraylist de jugadors
     private ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
 
+    //ArrayList de rondes
+    private ArrayList<Ronda> rondes = new ArrayList<Ronda>();
+
     public Partida(Calendar dataPartida) {        
         this.dataPartida = dataPartida;
     }
@@ -44,6 +47,14 @@ public class Partida {
 
     public void setJugadors(ArrayList<Jugador> jugadors) {
         this.jugadors = jugadors;
+    }
+
+    public ArrayList<Ronda> getRondes() {
+        return rondes;
+    }
+
+    public void setRondes(ArrayList<Ronda> rondes) {
+        this.rondes = rondes;
     }
     
     @Override
