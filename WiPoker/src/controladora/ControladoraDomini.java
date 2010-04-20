@@ -57,14 +57,7 @@ public class ControladoraDomini {
         taula.setPartidaActual(new Partida(c));
     }
 
-    /* Mètode que remena les cartes de la baralla que s'esta emprant a la partida
-     * Paràmetres: Baralla l'objecte baralla assignat a la taula
-     * Retorna: void no
-     */
-    public void barallar(Baralla b) {
-        b.barallar();
-    }
-
+    
     /* Mètode que controla que quedin places per afegir-se a la partida
      * Paràmetres: Taula l'objecte taula en que es juga la partida
      * Retorna: boolean true si la taula està al complert
@@ -98,7 +91,7 @@ public class ControladoraDomini {
      * Retorna: boolean true si entra a la partida diners apostats
      */
     public boolean entrarPartida(Taula taula, Jugador jugador) {
-        if (!taulaIsFull(taula)) {
+        if (!taulaIsFull()) {
             taula.getPartidaActual().getJugadors().add(jugador);
             return true;
         } else {
