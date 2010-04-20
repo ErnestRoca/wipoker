@@ -15,10 +15,10 @@ public class Taula {
     Baralla baralla;
     private Partida partidaActual;
 
-    public Taula(byte places, byte cadiresOcupades, Baralla baralla) {
+    public Taula(byte places, Baralla baralla) {
         this.places = places;
-        this.cadiresOcupades = cadiresOcupades;
-        this.baralla = baralla;        
+        this.baralla = baralla;
+        cadiresOcupades = 0;
     }
 
     public Baralla getBaralla() {
