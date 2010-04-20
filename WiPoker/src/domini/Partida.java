@@ -31,7 +31,7 @@ public class Partida {
 
     public Calendar getDataPartida() {
         return dataPartida;
-    }   
+    }
 
     public Jugador getJugadorGuanyador() {
         return jugadorGuanyador;
