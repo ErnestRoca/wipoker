@@ -4,6 +4,7 @@
  */
 package controladora;
 
+import domini.Aposta;
 import domini.Baralla;
 import domini.Carta;
 import domini.Fase;
@@ -41,7 +42,7 @@ public class ControladoraPartida {
 
     }
 
-    public void gestionarFase() {
+    public void gestionarFase(Aposta aposta) {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getFases()[Fase.getNumFase()]);
@@ -49,6 +50,9 @@ public class ControladoraPartida {
             aixecarCartes((byte) 3);
         } else if (Fase.getNumFase() > 1) {
             aixecarCartes((byte) 1);
+        } else if (Fase.getNumFase() == 3) {
+            afegirAlPot(aposta.getQuantitat(), novaFase);
+            Fase.setNumFase((byte) 0);
         }
     }
 
@@ -70,5 +74,9 @@ public class ControladoraPartida {
 
     public void barallar() {
         Collections.shuffle(cd.getTaula().getBaralla().getCartes());
+    }
+
+    public void afegirAlPot(double aposta, Fase fase) {
+
     }
 }
