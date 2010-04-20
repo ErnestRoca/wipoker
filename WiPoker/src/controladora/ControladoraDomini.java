@@ -12,6 +12,7 @@ import domini.Jugador;
 import domini.Partida;
 import domini.Ronda;
 import domini.Taula;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -20,7 +21,17 @@ import java.util.Calendar;
  */
 public class ControladoraDomini {
     
+    private Taula taula;
     private Partida partida;
+    private ArrayList<Jugador> jugadors;
+    
+    public ControladoraDomini(byte places, Baralla baralla) {
+        taula = new Taula(places, baralla);
+        partida = new Partida(null);
+        jugadors = new ArrayList<Jugador>();
+        partida.setJugadors(jugadors);
+
+    }
 
 
 
