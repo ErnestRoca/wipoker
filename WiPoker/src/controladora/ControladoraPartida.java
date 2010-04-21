@@ -4,6 +4,7 @@
  */
 package controladora;
 
+import domini.Aposta;
 import domini.Baralla;
 import domini.Carta;
 import domini.Fase;
@@ -72,6 +73,8 @@ public class ControladoraPartida {
         Ronda novaRonda = new Ronda(0);
         novaRonda.setPartida(partida);
         partida.getRondes().add(novaRonda);
+        barallar();
+
         gestionarFase(novaRonda);
     }
 
@@ -82,11 +85,20 @@ public class ControladoraPartida {
         ronda.getFases().add(novaFase);
         novaFase.setRonda(ronda);
         if (Fase.getNumFase() == 1) {
-            repartirCartesComunitaries();
-        } else if (Fase.getNumFase() > 1) {
-            aixecarCartes((byte) 1);
+            repartirCartesPrivades();
+            apostar();
+        } else if (Fase.getNumFase() == 2) {
+            cremarCartes();
+            aixecarCartes((byte) 3);
+            apostar();
         } else if (Fase.getNumFase() == 3) {
-            afegirAlPot(aposta.getQuantitat(), novaFase);
+            cremarCartes();
+            aixecarCartes((byte) 1);
+            apostar();
+        } else if (Fase.getNumFase() == 4) {
+            cremarCartes();
+            aixecarCartes((byte) 1);
+            apostar();
             Fase.setNumFase((byte) 0);
         }
 
@@ -95,7 +107,7 @@ public class ControladoraPartida {
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
-    public void repartirCartesComunitaries() {
+    public void repartirCartesPrivades() {
         
     }
 
