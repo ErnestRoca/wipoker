@@ -74,8 +74,9 @@ public class ControladoraPartida {
         novaRonda.setPartida(partida);
         partida.getRondes().add(novaRonda);
         barallar();
-
-        gestionarFase(novaRonda);
+        for (int i = 0; i < 4; i++) {
+            gestionarFase(novaRonda);
+        }        
     }
 
     public void gestionarFase(Ronda ronda) {
@@ -108,6 +109,10 @@ public class ControladoraPartida {
     }
 
     public void repartirCartesPrivades() {
+        for (Jugador j: jugadors) {
+            j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
+            j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
+        }
         
     }
 
