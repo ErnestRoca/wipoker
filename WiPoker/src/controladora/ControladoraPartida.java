@@ -42,8 +42,8 @@ public class ControladoraPartida {
         rondes.add(novaRonda);
         barallar();
         cremarCartes();
-        
-
+        //gestionarFase();
+        //Afegir potRonda al pot general
     }
 
     public void gestionarFase(Aposta aposta, Fase fase) {
@@ -58,6 +58,8 @@ public class ControladoraPartida {
             afegirAlPot(aposta.getQuantitat(), novaFase);
             Fase.setNumFase((byte) 0);
         }
+
+        //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
     public ArrayList<Carta> aixecarCartes(byte numCartes) {
@@ -81,6 +83,5 @@ public class ControladoraPartida {
     }
 
     public void afegirAlPot(double aposta, Fase fase) {
-
     }
 }
