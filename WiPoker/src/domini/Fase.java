@@ -19,7 +19,7 @@ public class Fase {
     private Ronda ronda;
     private ArrayList<Aposta> apostes;
 
-    public Fase(String nomFase) {        
+    public Fase(String nomFase) {
         this.nomFase = nomFase;
         numFase++;
     }
@@ -80,6 +80,6 @@ public class Fase {
 
     @Override
     public String toString() {
-        return ("Fase: " + nomFase);
+        return ("Fase: " + nomFase + " amb numero: " + numFase);
     }
 }
