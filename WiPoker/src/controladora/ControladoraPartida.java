@@ -19,15 +19,31 @@ import java.util.Collections;
 public class ControladoraPartida {
 
     private ControladoraDomini cd;
-    private ArrayList<Fase> fases = new ArrayList<Fase>();
-    private ArrayList<Ronda> rondes = new ArrayList<Ronda>();
+    
 
-    public ControladoraPartida() {
-        iniciarPartida();
+    public ControladoraPartida(byte maxJugadors) {
+        iniciarPartida(maxJugadors);
     }
 
-    public void iniciarPartida() {
-        cd = new ControladoraDomini((byte) 10, new Baralla());
+    public void iniciarPartida(byte jugadors) {
+        cd = new ControladoraDomini(jugadors, new Baralla());
+    }
+
+    public void crearBaralla() {
+        ArrayList<Carta> cartes = new ArrayList<Carta>();
+        for (byte i = 1; i <=13; i++) {
+            cartes.add(new Carta((byte) 0,i));
+        }
+        for (byte i = 1; i <=13; i++) {
+            cartes.add(new Carta((byte) 1,i));
+        }
+        for (byte i = 1; i <=13; i++) {
+            cartes.add(new Carta((byte) 2,i));
+        }
+        for (byte i = 1; i <=13; i++) {
+            cartes.add(new Carta((byte) 3,i));
+        }
+        cd.getTaula().getBaralla().setCartes(cartes);
     }
 
     public void start() {
@@ -38,8 +54,7 @@ public class ControladoraPartida {
     }
 
     public void gestionarRonda() {
-        Ronda novaRonda = new Ronda();
-        rondes.add(novaRonda);
+        Ronda novaRonda = new Ronda();        
         barallar();
         cremarCartes();
         //gestionarFase();
