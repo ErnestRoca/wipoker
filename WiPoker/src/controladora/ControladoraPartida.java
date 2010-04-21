@@ -4,6 +4,7 @@
  */
 package controladora;
 
+import domini.Aposta;
 import domini.Baralla;
 import domini.Carta;
 import domini.Fase;
@@ -134,6 +135,13 @@ public class ControladoraPartida {
         Collections.shuffle(baralla.getCartes());
     }
 
-    public void afegirAlPot(double aposta, Fase fase) {
+    public void apostar(Jugador jugador, double quantitat) {
+        jugador.setAposta(new Aposta(quantitat));
     }
+
+    public void afegirAlPot(double aposta, Fase fase) {
+    
+    }
+
+
 }
