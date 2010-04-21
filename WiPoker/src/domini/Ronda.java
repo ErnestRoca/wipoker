@@ -12,8 +12,9 @@ import java.util.ArrayList;
  * @author ula
  */
 public class Ronda {
+    private Partida partida;
     //Jugador que guanya la ronda
-    private Jugador jugadorGuanyador;
+    private Jugador jugadorGuanyadorRonda;
     //pot de la ronda
     private double pot;
     private ArrayList<Fase> fases = new ArrayList<Fase>();
@@ -25,11 +26,11 @@ public class Ronda {
     }
 
     public Jugador getJugadorGuanyador() {
-        return jugadorGuanyador;
+        return jugadorGuanyadorRonda;
     }
 
     public void setJugadorGuanyador(Jugador jugadorGuanyador) {
-        this.jugadorGuanyador = jugadorGuanyador;
+        this.jugadorGuanyadorRonda = jugadorGuanyador;
     }
 
     public double getPot() {
@@ -48,10 +49,24 @@ public class Ronda {
         this.fases = fases;
     }
 
+    public Jugador getJugadorGuanyadorRonda() {
+        return jugadorGuanyadorRonda;
+    }
 
+    public void setJugadorGuanyadorRonda(Jugador jugadorGuanyadorRonda) {
+        this.jugadorGuanyadorRonda = jugadorGuanyadorRonda;
+    }
+
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
 
     @Override
     public String toString() {
-        return ("Pot : " + pot  + ", guanyador: " + jugadorGuanyador.getNomComplet());
+        return ("Pot : " + pot  + ", guanyador: " + jugadorGuanyadorRonda.getNomComplet());
     }
 }
