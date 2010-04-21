@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Ma {
 
-    private ArrayList<Carta> Cartes = new ArrayList<Carta>(5);
+    private ArrayList<Carta> Cartes = new ArrayList<Carta>();
 
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;

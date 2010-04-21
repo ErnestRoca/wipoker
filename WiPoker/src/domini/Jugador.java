@@ -21,6 +21,7 @@ public class Jugador {
     private int fitxesInicials;
     private int fitxesActuals;
     private final byte posicioTaula;
+    private Ma maActual;
 
     public Jugador(String dni, String nomComplet, String alias, byte edat, short partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int fitxesActuals, byte posicioTaula) {
         this.dni = dni;
@@ -104,6 +105,15 @@ public class Jugador {
         this.telefon = telefon;
     }
 
+    public Ma getMaActual() {
+        return maActual;
+    }
+
+    public void setMaActual(Ma maActual) {
+        this.maActual = maActual;
+    }
+
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
