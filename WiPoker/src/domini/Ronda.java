@@ -16,7 +16,7 @@ public class Ronda {
     //Jugador que guanya la ronda
     private Jugador jugadorGuanyadorRonda;
     //pot de la ronda
-    private double pot;
+    private int pot;
     private ArrayList<Fase> fases = new ArrayList<Fase>();
 
     public Ronda() {
@@ -33,11 +33,11 @@ public class Ronda {
         this.jugadorGuanyadorRonda = jugadorGuanyador;
     }
 
-    public double getPot() {
+    public int getPot() {
         return pot;
     }
 
-    public void setPot(double pot) {
+    public void setPot(int pot) {
         this.pot = pot;
     }
 
