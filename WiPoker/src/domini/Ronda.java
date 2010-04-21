@@ -24,15 +24,7 @@ public class Ronda {
 
     public Ronda(double pot) {        
     }
-
-    public Jugador getJugadorGuanyador() {
-        return jugadorGuanyadorRonda;
-    }
-
-    public void setJugadorGuanyador(Jugador jugadorGuanyador) {
-        this.jugadorGuanyadorRonda = jugadorGuanyador;
-    }
-
+    
     public int getPot() {
         return pot;
     }

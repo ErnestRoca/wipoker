@@ -11,6 +11,7 @@ public class Ma {
 
     private ArrayList<Carta> Cartes = new ArrayList<Carta>();
     private Fase fase;
+    private byte combinacio;
 
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
@@ -31,6 +32,16 @@ public class Ma {
     public void setFase(Fase fase) {
         this.fase = fase;
     }
+
+    public byte getCombinacio() {
+        return combinacio;
+    }
+
+    public void setCombinacio(byte combinacio) {
+        this.combinacio = combinacio;
+    }
+
+    
 
     @Override
     public boolean equals(Object obj) {
