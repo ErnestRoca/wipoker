@@ -19,9 +19,9 @@ public class Fase {
     private Ronda ronda;
     private ArrayList<Aposta> apostes;
 
-    public Fase(String nomFase) {
-        numFase++;
+    public Fase(String nomFase) {        
         this.nomFase = nomFase;
+        numFase++;
     }
 
     public String getNomFase() {
