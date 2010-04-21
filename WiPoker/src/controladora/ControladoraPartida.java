@@ -11,7 +11,6 @@ import domini.Fase;
 import domini.Ronda;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  *
@@ -20,6 +19,8 @@ import java.util.List;
 public class ControladoraPartida {
 
     private ControladoraDomini cd;
+    private ArrayList<Fase> fases = new ArrayList<Fase>();
+    private ArrayList<Ronda> rondes = new ArrayList<Ronda>();
 
     public ControladoraPartida() {
         iniciarPartida();
@@ -38,11 +39,14 @@ public class ControladoraPartida {
 
     public void gestionarRonda() {
         Ronda novaRonda = new Ronda();
+        rondes.add(novaRonda);
         barallar();
+        cremarCartes();
+        
 
     }
 
-    public void gestionarFase(Aposta aposta) {
+    public void gestionarFase(Aposta aposta, Fase fase) {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getFases()[Fase.getNumFase()]);
