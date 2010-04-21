@@ -88,19 +88,19 @@ public class ControladoraPartida {
         if (Fase.getNumFase() == 1) {
             repartirCartesPrivades();
             determinarCombinacio();
-            apostar();
+            apostar(null, 0, ronda);
         } else if (Fase.getNumFase() == 2) {
             cremarCartes();
             aixecarCartes((byte) 3);
-            apostar();
+            apostar(null, 0, ronda);
         } else if (Fase.getNumFase() == 3) {
             cremarCartes();
             aixecarCartes((byte) 1);
-            apostar();
+            apostar(null, 0, ronda);
         } else if (Fase.getNumFase() == 4) {
             cremarCartes();
             aixecarCartes((byte) 1);
-            apostar();
+            apostar(null, 0, ronda);
             Fase.setNumFase((byte) 0);
         }
 
@@ -135,14 +135,34 @@ public class ControladoraPartida {
         Collections.shuffle(baralla.getCartes());
     }
 
-    public void apostar(Jugador jugador, int quantitat) {
+    public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
         jugador.setAposta(new Aposta(quantitat));
         jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
+        ronda.setPot(ronda.getPot() + quantitat);
     }
 
-    public void afegirAlPot(double aposta, Fase fase) {
-    
+    private void determinarCombinacio() {
+        for (Jugador j: jugadors) {
+            algoritmeMa(j);
+        }
     }
 
+    public void algoritmeMa(Jugador jugador) {
+        int numCartes = jugador.getMaActual().getCartes().size();
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        if ( numCartes == 2) {
+            byte combinacio = (byte) (cartes.get(0).equals(cartes.get(1)) ? 1 : 0);
+            jugador.getMaActual().setCombinacio(combinacio);
+        } else if (numCartes == 5) {
+            boolean mateixColor = true;
+            byte color = cartes.get(0).getPal();
+            for (Carta c: cartes) {
+                if (color != c.getPal()) {
+                    mateixColor = false;
+                    break;
+                }
+            }
+        }
 
+    }
 }
