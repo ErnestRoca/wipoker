@@ -32,7 +32,7 @@ public class Fase {
         return numFase;
     }
 
-    public static String[] getFases() {
+    public static String[] getNomFases() {
         return nomFases;
     }
 
