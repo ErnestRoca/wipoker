@@ -24,6 +24,7 @@ public class ControladoraDomini {
     private Taula taula;
     private Partida partida;
     private ArrayList<Jugador> jugadors;
+
     
     public ControladoraDomini(byte places, Baralla baralla) {
         taula = new Taula(places, baralla);
@@ -44,8 +45,6 @@ public class ControladoraDomini {
     public Taula getTaula() {
         return taula;
     }
-
-    
 
     /* Mètode que assigna la data (d'inici de la partida en estar la taula completa
      * Paràmetres: Taula l'objecte taula en que es jugara la partida
