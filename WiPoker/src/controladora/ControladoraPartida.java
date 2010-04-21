@@ -72,9 +72,11 @@ public class ControladoraPartida {
         Ronda novaRonda = new Ronda(0);
         partida.getRondes().add(novaRonda);
         barallar();
-        cremarCartes(); //preguntar a Oleguer
-        
-        
+        //cremarCartes(); //preguntar a Oleguer
+        //no es crema cap carta, si ho entenc be avanç s'han de donar les cartes
+        //als jugadors, i aqui no es crema cap carta, mireu el gmail.
+
+        //S'ha de fer un metode repartirCartesJugadors() o algu aixi
     }
 
     public void gestionarFase(Ronda ronda) {
