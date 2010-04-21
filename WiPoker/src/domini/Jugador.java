@@ -22,6 +22,7 @@ public class Jugador {
     private int fitxesActuals;
     private final byte posicioTaula;
     private Ma maActual;
+    private Aposta aposta;
 
     public Jugador(String dni, String nomComplet, String alias, byte edat, short partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int fitxesActuals, byte posicioTaula) {
         this.dni = dni;
@@ -111,6 +112,14 @@ public class Jugador {
 
     public void setMaActual(Ma maActual) {
         this.maActual = maActual;
+    }
+
+    public Aposta getAposta() {
+        return aposta;
+    }
+
+    public void setAposta(Aposta aposta) {
+        this.aposta = aposta;
     }
 
     
