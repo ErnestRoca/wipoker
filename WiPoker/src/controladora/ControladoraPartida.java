@@ -135,8 +135,9 @@ public class ControladoraPartida {
         Collections.shuffle(baralla.getCartes());
     }
 
-    public void apostar(Jugador jugador, double quantitat) {
+    public void apostar(Jugador jugador, int quantitat) {
         jugador.setAposta(new Aposta(quantitat));
+        jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
     }
 
     public void afegirAlPot(double aposta, Fase fase) {
