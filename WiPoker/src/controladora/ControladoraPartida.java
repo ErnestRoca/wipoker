@@ -49,19 +49,21 @@ public class ControladoraPartida {
     public void start() {
         if (cd.taulaIsFull() && cd.getPartida().getDataPartida() == null) {
             cd.assignarDataPartida();
-            gestionarRonda();
+            gestionarRonda();            
         }
     }
 
     public void gestionarRonda() {
-        Ronda novaRonda = new Ronda();        
+        Ronda novaRonda = new Ronda();
+        cd.getPartida().getRondes().add(novaRonda);
         barallar();
         cremarCartes();
-        //gestionarFase();
+        double pot = 0;
+        gestionarFase(novaRonda);
         //Afegir potRonda al pot general
     }
 
-    public void gestionarFase(Aposta aposta, Fase fase) {
+    public void gestionarFase(Ronda ronda) {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getFases()[Fase.getNumFase()]);
@@ -73,6 +75,8 @@ public class ControladoraPartida {
             afegirAlPot(aposta.getQuantitat(), novaFase);
             Fase.setNumFase((byte) 0);
         }
+
+        
 
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
