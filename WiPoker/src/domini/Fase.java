@@ -15,7 +15,7 @@ public class Fase {
     //Nom de la fase (pre-flop, flop, turn. river)
     private final String nomFase;
     private static byte numFase = 0;
-    private static final String[] fases = {"pre-flop", "flop", "turn", "river"};
+    private static final String[] nomFases = {"pre-flop", "flop", "turn", "river"};
     private Ronda ronda;
     private ArrayList<Aposta> apostes;
 
@@ -33,7 +33,7 @@ public class Fase {
     }
 
     public static String[] getFases() {
-        return fases;
+        return nomFases;
     }
 
     public static void setNumFase(byte numFase) {
