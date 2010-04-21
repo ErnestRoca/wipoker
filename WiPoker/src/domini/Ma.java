@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Ma {
 
     private ArrayList<Carta> Cartes = new ArrayList<Carta>();
+    private Fase fase;
 
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
@@ -21,6 +22,14 @@ public class Ma {
 
     public void setCartes(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
+    }
+
+    public Fase getFase() {
+        return fase;
+    }
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
     }
 
     @Override
