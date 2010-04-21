@@ -77,6 +77,7 @@ public class ControladoraPartida {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getFases()[Fase.getNumFase()]);
+        ronda.g
         if (Fase.getNumFase() == 1) {
             repartirCartesComunitaries();
         } else if (Fase.getNumFase() > 1) {
