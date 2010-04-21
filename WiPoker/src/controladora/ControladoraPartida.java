@@ -70,13 +70,7 @@ public class ControladoraPartida {
 
     public void iniciarRonda() {
         Ronda novaRonda = new Ronda(0);
-        partida.getRondes().add(novaRonda);
-        barallar();
-        //cremarCartes(); //preguntar a Oleguer
-        //no es crema cap carta, si ho entenc be avanç s'han de donar les cartes
-        //als jugadors, i aqui no es crema cap carta, mireu el gmail.
-
-        //S'ha de fer un metode repartirCartesJugadors() o algu aixi
+        partida.getRondes().add(novaRonda);      
     }
 
     public void gestionarFase(Ronda ronda) {
@@ -84,7 +78,7 @@ public class ControladoraPartida {
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getFases()[Fase.getNumFase()]);
         if (Fase.getNumFase() == 1) {
-            aixecarCartes((byte) 3);
+            repartirCartesComunitaries();
         } else if (Fase.getNumFase() > 1) {
             aixecarCartes((byte) 1);
         } else if (Fase.getNumFase() == 3) {
@@ -95,6 +89,10 @@ public class ControladoraPartida {
         
 
         //Al finalitzar la fase afegir potFase al pot de la ronda
+    }
+
+    public void repartirCartesComunitaries() {
+        
     }
 
     public ArrayList<Carta> aixecarCartes(byte numCartes) {
