@@ -87,6 +87,7 @@ public class ControladoraPartida {
         novaFase.setRonda(ronda);
         if (Fase.getNumFase() == 1) {
             repartirCartesPrivades();
+            determinarCombinacio();
             apostar();
         } else if (Fase.getNumFase() == 2) {
             cremarCartes();
@@ -117,10 +118,9 @@ public class ControladoraPartida {
     }
 
     public ArrayList<Carta> aixecarCartes(byte numCartes) {
-        cremarCartes();
         ArrayList<Carta> cartesRetornades = new ArrayList<Carta>();
-        ArrayList<Carta> cartesBaralla = cd.getTaula().getBaralla().getCartes();
-        for (int i = cartesBaralla.size(); cartesRetornades.size() < numCartes; i--) {
+        
+        for (int i = baralla.size(); numCartes < numCartes; i--) {
             cartesRetornades.add(cartesBaralla.get(i));
             cartesBaralla.remove(i);
         }
