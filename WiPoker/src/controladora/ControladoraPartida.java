@@ -4,7 +4,6 @@
  */
 package controladora;
 
-import domini.Aposta;
 import domini.Baralla;
 import domini.Carta;
 import domini.Fase;
@@ -112,28 +111,27 @@ public class ControladoraPartida {
     public void repartirCartesPrivades() {
         for (Jugador j: jugadors) {
             j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
+            baralla.setCartesActuals((byte)(baralla.getCartesActuals() - 1));
             j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-        }
-        
+            baralla.setCartesActuals((byte)(baralla.getCartesActuals() - 1));
+        }        
     }
 
-    public ArrayList<Carta> aixecarCartes(byte numCartes) {
-        ArrayList<Carta> cartesRetornades = new ArrayList<Carta>();
-        
-        for (int i = baralla.size(); numCartes < numCartes; i--) {
-            cartesRetornades.add(cartesBaralla.get(i));
-            cartesBaralla.remove(i);
-        }
-        return cartesRetornades;
+    public void aixecarCartes(byte numCartes) {
+        for (int i = 0; i < numCartes; i++) {
+            for (Jugador j: jugadors) {
+                j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
+                baralla.setCartesActuals((byte)(baralla.getCartesActuals() - 1));
+            }
+        }        
     }
 
     public void cremarCartes() {
-        ArrayList<Carta> cartes = cd.getTaula().getBaralla().getCartes();
-        cartes.remove(cartes.size());
+        baralla.getCartes().remove(baralla.getCartes().size());
     }
 
     public void barallar() {
-        Collections.shuffle(cd.getTaula().getBaralla().getCartes());
+        Collections.shuffle(baralla.getCartes());
     }
 
     public void afegirAlPot(double aposta, Fase fase) {
