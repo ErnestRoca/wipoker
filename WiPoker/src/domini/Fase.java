@@ -1,10 +1,11 @@
 package domini;
 
+import java.util.ArrayList;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ula
@@ -15,6 +16,8 @@ public class Fase {
     private final String nomFase;
     private static byte numFase = 0;
     private static final String[] fases = {"pre-flop", "flop", "turn", "river"};
+    private Ronda ronda;
+    private ArrayList<Aposta> apostes;
 
     public Fase(String nomFase) {
         numFase++;
@@ -37,7 +40,21 @@ public class Fase {
         Fase.numFase = numFase;
     }
 
-    
+    public Ronda getRonda() {
+        return ronda;
+    }
+
+    public void setRonda(Ronda ronda) {
+        this.ronda = ronda;
+    }
+
+    public ArrayList<Aposta> getApostes() {
+        return apostes;
+    }
+
+    public void setApostes(ArrayList<Aposta> apostes) {
+        this.apostes = apostes;
+    }
 
     @Override
     public boolean equals(Object obj) {

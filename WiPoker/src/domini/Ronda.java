@@ -16,7 +16,7 @@ public class Ronda {
     private Jugador jugadorGuanyador;
     //pot de la ronda
     private double pot;
-    private ArrayList<Fase> fases = new ArrayList<Fase>(5);
+    private ArrayList<Fase> fases = new ArrayList<Fase>();
 
     public Ronda() {
     }
