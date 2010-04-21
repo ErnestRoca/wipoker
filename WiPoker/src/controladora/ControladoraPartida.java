@@ -4,12 +4,15 @@
  */
 package controladora;
 
-import domini.Aposta;
 import domini.Baralla;
 import domini.Carta;
 import domini.Fase;
+import domini.Jugador;
+import domini.Partida;
 import domini.Ronda;
+import domini.Taula;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 
 /**
@@ -18,17 +21,23 @@ import java.util.Collections;
  */
 public class ControladoraPartida {
 
-    private ControladoraDomini cd;
+    private Taula taula;
+    private Baralla baralla;
+    private Partida partida;
+    private ArrayList<Jugador> jugadors;
+    
     
 
     public ControladoraPartida(byte maxJugadors) {
-        iniciarPartida(maxJugadors);
+        baralla = new Baralla();
+        crearBaralla();
+        taula = new Taula(maxJugadors, baralla);
+        partida = new Partida(Calendar.getInstance());
+        taula.setPartidaActual(partida);
+        jugadors = partida.getJugadors();
     }
 
-    public void iniciarPartida(byte jugadors) {
-        cd = new ControladoraDomini(jugadors, new Baralla());
-    }
-
+      
     public void crearBaralla() {
         ArrayList<Carta> cartes = new ArrayList<Carta>();
         for (byte i = 1; i <=13; i++) {
@@ -42,25 +51,30 @@ public class ControladoraPartida {
         }
         for (byte i = 1; i <=13; i++) {
             cartes.add(new Carta((byte) 3,i));
-        }
-        cd.getTaula().getBaralla().setCartes(cartes);
+        }        
     }
 
-    public void start() {
-        if (cd.taulaIsFull() && cd.getPartida().getDataPartida() == null) {
-            cd.assignarDataPartida();
-            gestionarRonda();            
-        }
+    public boolean taulaIsFull() {
+        boolean completa = taula.getPlaces() - taula.getCadiresOcupades() == 0;
+        return completa;
     }
 
-    public void gestionarRonda() {
-        Ronda novaRonda = new Ronda();
-        cd.getPartida().getRondes().add(novaRonda);
+    public void afegirJugador(Jugador nouJugador) {
+        if (!taulaIsFull()) {
+            jugadors.add(nouJugador);
+            taula.setCadiresOcupades((byte) (taula.getCadiresOcupades() + 1));
+        } else {
+            //implementar metodo no quedanPlazas
+        }
+    }    
+
+    public void iniciarRonda() {
+        Ronda novaRonda = new Ronda(0);
+        partida.getRondes().add(novaRonda);
         barallar();
-        cremarCartes();
-        double pot = 0;
-        gestionarFase(novaRonda);
-        //Afegir potRonda al pot general
+        cremarCartes(); //preguntar a Oleguer
+        
+        
     }
 
     public void gestionarFase(Ronda ronda) {
