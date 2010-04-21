@@ -70,7 +70,9 @@ public class ControladoraPartida {
 
     public void iniciarRonda() {
         Ronda novaRonda = new Ronda(0);
-        partida.getRondes().add(novaRonda);      
+        novaRonda.setPartida(partida);
+        partida.getRondes().add(novaRonda);
+        gestionarFase(novaRonda);
     }
 
     public void gestionarFase(Ronda ronda) {
@@ -78,6 +80,7 @@ public class ControladoraPartida {
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()]);
         ronda.getFases().add(novaFase);
+        novaFase.setRonda(ronda);
         if (Fase.getNumFase() == 1) {
             repartirCartesComunitaries();
         } else if (Fase.getNumFase() > 1) {
