@@ -61,10 +61,7 @@ public class ControladoraDomini {
      * Paràmetres: Taula l'objecte taula en que es juga la partida
      * Retorna: boolean true si la taula està al complert
      */
-    public boolean taulaIsFull() {
-        boolean completa = taula.getPlaces() - taula.getCadiresOcupades() == 0;
-        return completa;
-    }
+    
 
     /* Mètode que controla les repercussions d'un jugador que fa fold
      * Paràmetres: Jugador: El jugador que fa fold
