@@ -77,6 +77,7 @@ public class ControladoraPartida {
             gestionarFase(novaRonda);
         }
         novaRonda.setJugadorGuanyadorRonda(determinarGuanyador());
+        novaRonda.getJugadorGuanyadorRonda().setFitxesActuals(novaRonda.getPot());
         Fase.setNumFase((byte) 0);
     }
 
