@@ -247,18 +247,23 @@ public class ControladoraPartida {
     }
 
     private boolean esDobleParella(ArrayList<Carta> cartes) {
-        boolean esDobleParella = true;
-        int condicioNoEsDobleParella = 0;
-        int diferents = 0;
-        if (cartes.size() == 5) {
-            condicioNoEsTrio = 3;
-        } else if (cartes.size() == 6) {
-            condicioNoEsTrio = 4;
-        } else if (cartes.size() == 7) {
-            condicioNoEsTrio = 5;
+        boolean hiHaParella = esParella(cartes);
+        if (!hiHaParella) {
+            return false;
         }
+        int numParelles = 0;
         int indexCarta = 0;
-        
+        int valorParella = -1;
+        for (Carta carta : cartes) {
+            indexCarta = cartes.indexOf(carta);
+            for (int i = 0; i < cartes.size(); i++) {
+                if (carta.equals(cartes.get(i)) && (i != indexCarta) && carta.getValor() != valorParella) {
+                    numParelles++;
+                } 
+            }
+        }
+
+        boolean esDobleParella = numParelles == 2;
         return esDobleParella;
     }
 
@@ -287,5 +292,28 @@ public class ControladoraPartida {
             }
         }
         return esParella;
+    }
+    
+    public byte cartaMesAlta(ArrayList<Carta> cartes) {
+        byte num = 0;
+        for (Carta carta: cartes) {
+            if (carta.getValor() > num) {
+                num = carta.getValor();
+            }            
+        }
+        return num;
+    }
+
+    public Jugador desempat() {
+        Jugador jugadorAux = jugadors.get(0);
+        byte puntuacioMesAlta = cartaMesAlta(jugadorAux.getMaActual().getCartes());
+        for (Jugador jugador: jugadors) {
+            byte puntuacio = cartaMesAlta(jugador.getMaActual().getCartes());
+            if (puntuacio > puntuacioMesAlta) {
+                puntuacioMesAlta = puntuacio;
+                jugadorAux = jugador;
+            }
+        }
+        return jugadorAux;
     }
 }
