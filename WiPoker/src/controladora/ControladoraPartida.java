@@ -218,4 +218,31 @@ public class ControladoraPartida {
         }
         return esPoker;
     }
+
+    private boolean esTrio(ArrayList<Carta> cartes) {
+        boolean esTrio = true;
+        int condicioNoEsTrio = 0;
+        int diferents = 0;
+        if (cartes.size() == 5) {
+            condicioNoEsTrio = 3;
+        } else if (cartes.size() == 6) {
+            condicioNoEsTrio = 4;
+        } else if (cartes.size() == 7) {
+            condicioNoEsTrio = 5;
+        }
+        int indexCarta = 0;
+        for (Carta carta : cartes) {
+            indexCarta = cartes.indexOf(carta);
+            for (int i = 0; i < cartes.size(); i++) {
+                if (!carta.equals(cartes.get(i)) && (i != indexCarta)) {
+                    diferents++;
+                    if (diferents == condicioNoEsTrio) {
+                        esTrio = false;
+                        break;
+                    }
+                }
+            }
+        }
+        return esTrio;
+    }
 }
