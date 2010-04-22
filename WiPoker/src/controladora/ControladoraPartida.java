@@ -15,6 +15,7 @@ import domini.Taula;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -74,6 +75,8 @@ public class ControladoraPartida {
         for (int i = 0; i < 4; i++) {
             gestionarFase(novaRonda);
         }
+        determinarGuanyador();
+        Fase.setNumFase((byte) 0);
     }
 
     public void gestionarFase(Ronda ronda) {
@@ -106,8 +109,6 @@ public class ControladoraPartida {
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
             }
-            Fase.setNumFase((byte) 0);
-            determinarGuanyador();
         }
 
         //Al finalitzar la fase afegir potFase al pot de la ronda
@@ -140,9 +141,13 @@ public class ControladoraPartida {
     }
 
     public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
-        jugador.setAposta(new Aposta(jugador, quantitat));
-        jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
-        ronda.setPot(ronda.getPot() + quantitat);
+        //modificar cuando este hecha gui
+        int fase = ronda.getFases().size();
+        if (quantitat > ronda.getFases().get(fase).getApostes().get(ronda.getFases().size()).getQuantitat()) {
+            jugador.setAposta(new Aposta(jugador, quantitat));
+            jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
+            ronda.setPot(ronda.getPot() + quantitat);
+        }
     }
 
     private void determinarCombinacioPreFlop() {
@@ -324,5 +329,21 @@ public class ControladoraPartida {
             }
         }
         return jugadorAux;
+    }
+
+    private void determinarGuanyador() {
+        ArrayList<Jugador> jugadorsOrdenats = jugadors;
+        Comparator c = new Comparator() {
+
+            @Override
+            public int compare(Object o1, Object o2) {
+                Jugador j1 = (Jugador) o1;
+                Jugador j2 = (Jugador) o2;
+                return j1.getMaActual().getCombinacio() - j2.getMaActual().getCombinacio();
+            }
+        };
+
+        Collections.sort(jugadorsOrdenats, c);
+
     }
 }
