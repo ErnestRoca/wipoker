@@ -152,7 +152,7 @@ public class ControladoraPartida {
         boolean escala = true;
         for (Jugador j : jugadors) {
             ArrayList<Carta> cartes = j.getMaActual().getCartes();
-            
+
         }
 
     }
@@ -171,7 +171,7 @@ public class ControladoraPartida {
 
     private boolean esEscala(ArrayList<Carta> cartes) {
         boolean esEscala = true;
-        for (int i = 0; i < cartes.size() -1; i++) {
+        for (int i = 0; i < cartes.size() - 1; i++) {
             if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
                 esEscala = false;
                 break;
@@ -179,7 +179,7 @@ public class ControladoraPartida {
         }
         return esEscala;
     }
-    
+
     private boolean esEscalaReial(ArrayList<Carta> cartes) {
         boolean esEscala = true;
         for (int i = 10; i <= 13; i++) {
@@ -188,48 +188,64 @@ public class ControladoraPartida {
                 break;
             }
         }
-        esEscala = esEscala && (cartes.get(cartes.size() -1).getValor() == 13);
+        esEscala = esEscala && (cartes.get(cartes.size() - 1).getValor() == 13);
         return esEscala;
     }
 
     private boolean esPoker(ArrayList<Carta> cartes) {
         boolean esPoker = true;
-        int iguals = 0;
-        for (Carta carta: cartes) {
-            for (int i = 0; i < cartes.size(); i++) {
-                if (carta.equals(cartes.get(i))) {
-                    
-                }
+        int condicioNoEsPoker = 0;
+        int diferents = 0;
+        if (cartes.size() == 5) {
+            condicioNoEsPoker = 2;
+        } else if (cartes.size() == 6) {
+            condicioNoEsPoker = 3;
+        } else if (cartes.size() == 7) {
+            condicioNoEsPoker = 4;
         }
-        
-
-
-    }
-
-
-
-    public void algoritmeMa(Jugador jugador) {
-
-
-
-
-        
-        for (int i = 10; i < 13; i++) {
-            if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
-                reial = false;
-                break;
+        int indexCarta = 0;
+        for (Carta carta : cartes) {
+            indexCarta = cartes.indexOf(carta);
+            for (int i = 0; i < cartes.size(); i++) {
+                if (!carta.equals(cartes.get(i)) && (i != indexCarta)) {
+                    diferents++;
+                    if (diferents == condicioNoEsPoker) {
+                        esPoker = false;
+                        break;
+                    }
+                }
             }
         }
-        if (escala && mateixColor && reial) {
-            jugador.getMaActual().setCombinacio((byte) 10);
-        } else if (escala && mateixColor) {
-            jugador.getMaActual().setCombinacio((byte) 9);
-        }
-
+        return esPoker;
     }
-}
 
-public  void
+
+
+
+
+
+
+
+
+
+
+            for (int i = 10; i < 13; i++) {
+                if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
+                    reial = false;
+                    break;
+                }
+            }
+            if (escala && mateixColor && reial) {
+                jugador.getMaActual().setCombinacio((byte) 10);
+            } else if (escala && mateixColor) {
+                jugador.getMaActual().setCombinacio((byte) 9);
+            }
+
+        }
+    }
+
+    public  void
+
 
 public void
 ordenar() {
