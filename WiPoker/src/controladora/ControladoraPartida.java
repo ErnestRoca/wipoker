@@ -218,37 +218,4 @@ public class ControladoraPartida {
         }
         return esPoker;
     }
-
-
-
-
-
-
-
-
-
-
-
-            for (int i = 10; i < 13; i++) {
-                if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
-                    reial = false;
-                    break;
-                }
-            }
-            if (escala && mateixColor && reial) {
-                jugador.getMaActual().setCombinacio((byte) 10);
-            } else if (escala && mateixColor) {
-                jugador.getMaActual().setCombinacio((byte) 9);
-            }
-
-        }
-    }
-
-    public  void
-
-
-public void
-ordenar() {
-
-    }
 }
