@@ -99,6 +99,7 @@ public class ControladoraPartida {
             aixecarCartes((byte) 1);
             apostar(null, 0, ronda);
             Fase.setNumFase((byte) 0);
+            determinarGuanyador();
         }
 
 
@@ -107,12 +108,13 @@ public class ControladoraPartida {
     }
 
     public void repartirCartesPrivades() {
-        for (Jugador j : jugadors) {
-            j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-            baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
-            j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-            baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
+        for (int i = 0; i <= 1; i++) {
+            for (Jugador j : jugadors) {
+                j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
+                baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
+            }
         }
+
     }
 
     public void aixecarCartes(byte numCartes) {
@@ -133,7 +135,7 @@ public class ControladoraPartida {
     }
 
     public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
-        jugador.setAposta(new Aposta(quantitat));
+        jugador.setAposta(new Aposta(jugador, quantitat));
         jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
         ronda.setPot(ronda.getPot() + quantitat);
     }
@@ -152,6 +154,9 @@ public class ControladoraPartida {
         boolean escala = true;
         for (Jugador j : jugadors) {
             ArrayList<Carta> cartes = j.getMaActual().getCartes();
+            if (esEscalaReial(cartes)) {
+
+            }
 
         }
 
@@ -259,11 +264,11 @@ public class ControladoraPartida {
             for (int i = 0; i < cartes.size(); i++) {
                 if (carta.equals(cartes.get(i)) && (i != indexCarta) && carta.getValor() != valorParella) {
                     numParelles++;
-                } 
+                }
             }
         }
 
-        boolean esDobleParella = numParelles == 2;
+        boolean esDobleParella = numParelles >= 2;
         return esDobleParella;
     }
 
@@ -293,13 +298,13 @@ public class ControladoraPartida {
         }
         return esParella;
     }
-    
+
     public byte cartaMesAlta(ArrayList<Carta> cartes) {
         byte num = 0;
-        for (Carta carta: cartes) {
+        for (Carta carta : cartes) {
             if (carta.getValor() > num) {
                 num = carta.getValor();
-            }            
+            }
         }
         return num;
     }
@@ -307,7 +312,7 @@ public class ControladoraPartida {
     public Jugador desempat() {
         Jugador jugadorAux = jugadors.get(0);
         byte puntuacioMesAlta = cartaMesAlta(jugadorAux.getMaActual().getCartes());
-        for (Jugador jugador: jugadors) {
+        for (Jugador jugador : jugadors) {
             byte puntuacio = cartaMesAlta(jugador.getMaActual().getCartes());
             if (puntuacio > puntuacioMesAlta) {
                 puntuacioMesAlta = puntuacio;
