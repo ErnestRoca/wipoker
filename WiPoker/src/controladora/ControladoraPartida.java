@@ -245,4 +245,47 @@ public class ControladoraPartida {
         }
         return esTrio;
     }
+
+    private boolean esDobleParella(ArrayList<Carta> cartes) {
+        boolean esDobleParella = true;
+        int condicioNoEsDobleParella = 0;
+        int diferents = 0;
+        if (cartes.size() == 5) {
+            condicioNoEsTrio = 3;
+        } else if (cartes.size() == 6) {
+            condicioNoEsTrio = 4;
+        } else if (cartes.size() == 7) {
+            condicioNoEsTrio = 5;
+        }
+        int indexCarta = 0;
+        
+        return esDobleParella;
+    }
+
+    private boolean esParella(ArrayList<Carta> cartes) {
+        boolean esParella = true;
+        int condicioNoEsParella = 0;
+        int diferents = 0;
+        if (cartes.size() == 5) {
+            condicioNoEsParella = 4;
+        } else if (cartes.size() == 6) {
+            condicioNoEsParella = 5;
+        } else if (cartes.size() == 7) {
+            condicioNoEsParella = 6;
+        }
+        int indexCarta = 0;
+        for (Carta carta : cartes) {
+            indexCarta = cartes.indexOf(carta);
+            for (int i = 0; i < cartes.size(); i++) {
+                if (!carta.equals(cartes.get(i)) && (i != indexCarta)) {
+                    diferents++;
+                    if (diferents == condicioNoEsParella) {
+                        esParella = false;
+                        break;
+                    }
+                }
+            }
+        }
+        return esParella;
+    }
 }
