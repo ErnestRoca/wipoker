@@ -12,6 +12,7 @@ public class Ma {
     private ArrayList<Carta> Cartes = new ArrayList<Carta>();
     private Fase fase;
     private byte combinacio;
+    private byte valorMesAlt;
 
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
@@ -39,6 +40,14 @@ public class Ma {
 
     public void setCombinacio(byte combinacio) {
         this.combinacio = combinacio;
+    }
+
+    public byte getValorMesAlt() {
+        return valorMesAlt;
+    }
+
+    public void setValorMesAlt(byte valorMesAlt) {
+        this.valorMesAlt = valorMesAlt;
     }
 
     
