@@ -76,7 +76,7 @@ public class ControladoraPartida {
         for (int i = 0; i < 4; i++) {
             gestionarFase(novaRonda);
         }
-        determinarGuanyador();
+        novaRonda.setJugadorGuanyadorRonda(determinarGuanyador());
         Fase.setNumFase((byte) 0);
     }
 
@@ -332,7 +332,7 @@ public class ControladoraPartida {
         return jugadorAux;
     }
 
-    private void determinarGuanyador() {
+    private Jugador determinarGuanyador() {
         ArrayList<Jugador> jugadorsOrdenats = jugadors;
         Comparator c = new Comparator() {
 
@@ -344,6 +344,6 @@ public class ControladoraPartida {
             }
         };
         Collections.sort(jugadorsOrdenats, c);
-        
+        return jugadorsOrdenats.get(0);
     }
 }
