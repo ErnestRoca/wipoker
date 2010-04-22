@@ -12,7 +12,7 @@ public class Ma {
     private ArrayList<Carta> Cartes = new ArrayList<Carta>();
     private Fase fase;
     private byte combinacio;
-    private byte valorMesAlt;
+    private byte valorMesAlt = 0;
 
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
