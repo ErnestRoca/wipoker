@@ -9,13 +9,14 @@ package domini;
  * @author Andrés
  */
 public class Aposta {
-
+    private Jugador jugador;
     private double quantitat;
 
     public Aposta() {
     }
 
-    public Aposta(double quantitat) {
+    public Aposta(Jugador jugador, double quantitat) {
+        this.jugador = jugador;
         this.quantitat = quantitat;
     }
 
@@ -25,6 +26,14 @@ public class Aposta {
 
     public void setQuantitat(double quantitat) {
         this.quantitat = quantitat;
+    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 
     @Override
