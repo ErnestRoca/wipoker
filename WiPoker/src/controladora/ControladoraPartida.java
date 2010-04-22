@@ -342,8 +342,7 @@ public class ControladoraPartida {
                 return j1.getMaActual().getCombinacio() - j2.getMaActual().getCombinacio();
             }
         };
-
         Collections.sort(jugadorsOrdenats, c);
-
+        
     }
 }
