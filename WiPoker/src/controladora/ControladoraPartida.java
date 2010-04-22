@@ -154,15 +154,39 @@ public class ControladoraPartida {
             byte combinacio = (byte) (cartes.get(0).equals(cartes.get(1)) ? 1 : 0);
             jugador.getMaActual().setCombinacio(combinacio);
         } else if (numCartes == 5) {
+            boolean reial = true;
             boolean mateixColor = true;
+            boolean escala = true;
             byte color = cartes.get(0).getPal();
             for (Carta c: cartes) {
                 if (color != c.getPal()) {
                     mateixColor = false;
                     break;
                 }
+            }            
+            for (int i = 0; i < cartes.size(); i++) {
+                if (!(cartes.get(i).getValor() < cartes.get(i+1).getValor())) {
+                    escala = false;
+                    break;
+                }
             }
+            for (int i = 10; i < 13; i++) {
+                if (!(cartes.get(i).getValor() < cartes.get(i+1).getValor())) {
+                    reial = false;
+                    break;
+                }
+            }
+            if (escala && mateixColor && reial) {
+                jugador.getMaActual().setCombinacio((byte)10);
+            } else if (escala && mateixColor) {
+                jugador.getMaActual().setCombinacio((byte)9);
+            }
+
         }
+
+    }
+
+    public void ordenar() {
 
     }
 }
