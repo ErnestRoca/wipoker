@@ -171,7 +171,7 @@ public class ControladoraPartida {
 
     private boolean esEscala(ArrayList<Carta> cartes) {
         boolean esEscala = true;
-        for (int i = 0; i < cartes.size(); i++) {
+        for (int i = 0; i < cartes.size() -1; i++) {
             if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
                 esEscala = false;
                 break;
@@ -179,6 +179,34 @@ public class ControladoraPartida {
         }
         return esEscala;
     }
+    
+    private boolean esEscalaReial(ArrayList<Carta> cartes) {
+        boolean esEscala = true;
+        for (int i = 10; i <= 13; i++) {
+            if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
+                esEscala = false;
+                break;
+            }
+        }
+        esEscala = esEscala && (cartes.get(cartes.size() -1).getValor() == 13);
+        return esEscala;
+    }
+
+    private boolean esPoker(ArrayList<Carta> cartes) {
+        boolean esPoker = true;
+        int iguals = 0;
+        for (Carta carta: cartes) {
+            for (int i = 0; i < cartes.size(); i++) {
+                if (carta.equals(cartes.get(i))) {
+                    
+                }
+        }
+        
+
+
+    }
+
+
 
     public void algoritmeMa(Jugador jugador) {
 
