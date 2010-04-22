@@ -79,6 +79,9 @@ public class ControladoraPartida {
         novaRonda.setJugadorGuanyadorRonda(determinarGuanyador());
         novaRonda.getJugadorGuanyadorRonda().setFitxesActuals(novaRonda.getPot());
         Fase.setNumFase((byte) 0);
+        determinarJugadorsEliminats();
+        novaRonda.getFases().clear();
+        partida.getRondes().clear();
     }
 
     public void gestionarFase(Ronda ronda) {
@@ -346,5 +349,13 @@ public class ControladoraPartida {
         };
         Collections.sort(jugadorsOrdenats, c);
         return jugadorsOrdenats.get(0);
+    }
+
+    private void determinarJugadorsEliminats() {
+        for (Jugador j: jugadors) {
+            if (j.getFitxesActuals() <= 0) {
+                jugadors.remove(j);
+            }
+        }
     }
 }
