@@ -85,24 +85,30 @@ public class ControladoraPartida {
         if (Fase.getNumFase() == 1) {
             repartirCartesPrivades();
             determinarCombinacioPreFlop();
-            apostar(null, 0, ronda);
+            for (Jugador j : jugadors) {
+                apostar(j, 0, ronda);
+            }
         } else if (Fase.getNumFase() == 2) {
             cremarCartes();
             aixecarCartes((byte) 3);
-            apostar(null, 0, ronda);
+            for (Jugador j : jugadors) {
+                apostar(j, 0, ronda);
+            }
         } else if (Fase.getNumFase() == 3) {
             cremarCartes();
             aixecarCartes((byte) 1);
-            apostar(null, 0, ronda);
+            for (Jugador j : jugadors) {
+                apostar(j, 0, ronda);
+            }
         } else if (Fase.getNumFase() == 4) {
             cremarCartes();
             aixecarCartes((byte) 1);
-            apostar(null, 0, ronda);
+            for (Jugador j : jugadors) {
+                apostar(j, 0, ronda);
+            }
             Fase.setNumFase((byte) 0);
             determinarGuanyador();
         }
-
-
 
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
@@ -114,7 +120,6 @@ public class ControladoraPartida {
                 baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
             }
         }
-
     }
 
     public void aixecarCartes(byte numCartes) {
@@ -155,7 +160,6 @@ public class ControladoraPartida {
         for (Jugador j : jugadors) {
             ArrayList<Carta> cartes = j.getMaActual().getCartes();
             if (esEscalaReial(cartes)) {
-
             }
 
         }
