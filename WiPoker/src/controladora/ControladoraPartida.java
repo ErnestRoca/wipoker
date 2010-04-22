@@ -26,8 +26,6 @@ public class ControladoraPartida {
     private Baralla baralla;
     private Partida partida;
     private ArrayList<Jugador> jugadors;
-    
-    
 
     public ControladoraPartida(byte maxJugadors) {
         baralla = new Baralla();
@@ -38,21 +36,20 @@ public class ControladoraPartida {
         jugadors = partida.getJugadors();
     }
 
-      
     public void crearBaralla() {
         ArrayList<Carta> cartes = new ArrayList<Carta>();
-        for (byte i = 1; i <=13; i++) {
-            cartes.add(new Carta((byte) 0,i));
+        for (byte i = 1; i <= 13; i++) {
+            cartes.add(new Carta((byte) 0, i));
         }
-        for (byte i = 1; i <=13; i++) {
-            cartes.add(new Carta((byte) 1,i));
+        for (byte i = 1; i <= 13; i++) {
+            cartes.add(new Carta((byte) 1, i));
         }
-        for (byte i = 1; i <=13; i++) {
-            cartes.add(new Carta((byte) 2,i));
+        for (byte i = 1; i <= 13; i++) {
+            cartes.add(new Carta((byte) 2, i));
         }
-        for (byte i = 1; i <=13; i++) {
-            cartes.add(new Carta((byte) 3,i));
-        }        
+        for (byte i = 1; i <= 13; i++) {
+            cartes.add(new Carta((byte) 3, i));
+        }
     }
 
     public boolean taulaIsFull() {
@@ -67,7 +64,7 @@ public class ControladoraPartida {
         } else {
             //implementar metodo no quedanPlazas
         }
-    }    
+    }
 
     public void iniciarRonda() {
         Ronda novaRonda = new Ronda(0);
@@ -76,7 +73,7 @@ public class ControladoraPartida {
         barallar();
         for (int i = 0; i < 4; i++) {
             gestionarFase(novaRonda);
-        }        
+        }
     }
 
     public void gestionarFase(Ronda ronda) {
@@ -87,7 +84,7 @@ public class ControladoraPartida {
         novaFase.setRonda(ronda);
         if (Fase.getNumFase() == 1) {
             repartirCartesPrivades();
-            determinarCombinacio();
+            determinarCombinacioPreFlop();
             apostar(null, 0, ronda);
         } else if (Fase.getNumFase() == 2) {
             cremarCartes();
@@ -104,27 +101,27 @@ public class ControladoraPartida {
             Fase.setNumFase((byte) 0);
         }
 
-        
+
 
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
     public void repartirCartesPrivades() {
-        for (Jugador j: jugadors) {
+        for (Jugador j : jugadors) {
             j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-            baralla.setCartesActuals((byte)(baralla.getCartesActuals() - 1));
+            baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
             j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-            baralla.setCartesActuals((byte)(baralla.getCartesActuals() - 1));
-        }        
+            baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
+        }
     }
 
     public void aixecarCartes(byte numCartes) {
         for (int i = 0; i < numCartes; i++) {
-            for (Jugador j: jugadors) {
+            for (Jugador j : jugadors) {
                 j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-                baralla.setCartesActuals((byte)(baralla.getCartesActuals() - 1));
+                baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
             }
-        }        
+        }
     }
 
     public void cremarCartes() {
@@ -141,52 +138,73 @@ public class ControladoraPartida {
         ronda.setPot(ronda.getPot() + quantitat);
     }
 
-    private void determinarCombinacio() {
-        for (Jugador j: jugadors) {
-            algoritmeMa(j);
+    private void determinarCombinacioPreFlop() {
+        for (Jugador j : jugadors) {
+            ArrayList<Carta> cartes = j.getMaActual().getCartes();
+            byte combinacio = (byte) (cartes.get(0).equals(cartes.get(1)) ? 1 : 0);
+            j.getMaActual().setCombinacio(combinacio);
         }
+    }
+
+    private void determinarCombinacioFlop() {
+        boolean reial = true;
+        boolean mateixColor = true;
+        boolean escala = true;
+        for (Jugador j : jugadors) {
+            ArrayList<Carta> cartes = j.getMaActual().getCartes();
+            
+        }
+
+    }
+
+    private boolean sonMateixColor(ArrayList<Carta> cartes) {
+        boolean mateixColor = true;
+        byte color = cartes.get(0).getPal();
+        for (Carta c : cartes) {
+            if (color != c.getPal()) {
+                mateixColor = false;
+                break;
+            }
+        }
+        return mateixColor;
+    }
+
+    private boolean esEscala(ArrayList<Carta> cartes) {
+        boolean esEscala = true;
+        for (int i = 0; i < cartes.size(); i++) {
+            if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
+                esEscala = false;
+                break;
+            }
+        }
+        return esEscala;
     }
 
     public void algoritmeMa(Jugador jugador) {
-        int numCartes = jugador.getMaActual().getCartes().size();
-        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        if ( numCartes == 2) {
-            byte combinacio = (byte) (cartes.get(0).equals(cartes.get(1)) ? 1 : 0);
-            jugador.getMaActual().setCombinacio(combinacio);
-        } else if (numCartes == 5) {
-            boolean reial = true;
-            boolean mateixColor = true;
-            boolean escala = true;
-            byte color = cartes.get(0).getPal();
-            for (Carta c: cartes) {
-                if (color != c.getPal()) {
-                    mateixColor = false;
-                    break;
-                }
-            }            
-            for (int i = 0; i < cartes.size(); i++) {
-                if (!(cartes.get(i).getValor() < cartes.get(i+1).getValor())) {
-                    escala = false;
-                    break;
-                }
-            }
-            for (int i = 10; i < 13; i++) {
-                if (!(cartes.get(i).getValor() < cartes.get(i+1).getValor())) {
-                    reial = false;
-                    break;
-                }
-            }
-            if (escala && mateixColor && reial) {
-                jugador.getMaActual().setCombinacio((byte)10);
-            } else if (escala && mateixColor) {
-                jugador.getMaActual().setCombinacio((byte)9);
-            }
 
+
+
+
+        
+        for (int i = 10; i < 13; i++) {
+            if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
+                reial = false;
+                break;
+            }
+        }
+        if (escala && mateixColor && reial) {
+            jugador.getMaActual().setCombinacio((byte) 10);
+        } else if (escala && mateixColor) {
+            jugador.getMaActual().setCombinacio((byte) 9);
         }
 
     }
+}
 
-    public void ordenar() {
+public  void
+
+public void
+ordenar() {
 
     }
 }
