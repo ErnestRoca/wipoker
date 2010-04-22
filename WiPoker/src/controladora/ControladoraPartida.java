@@ -51,6 +51,7 @@ public class ControladoraPartida {
         for (byte i = 1; i <= 13; i++) {
             cartes.add(new Carta((byte) 3, i));
         }
+        baralla.setCartes(cartes);
     }
 
     public boolean taulaIsFull() {
