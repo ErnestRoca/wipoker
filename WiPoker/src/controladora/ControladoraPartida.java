@@ -170,10 +170,27 @@ public class ControladoraPartida {
         for (Jugador j : jugadors) {
             ArrayList<Carta> cartes = j.getMaActual().getCartes();
             if (esEscalaReial(cartes)) {
+                j.getMaActual().setCombinacio((byte) 10);
+            } else if (esEscala(cartes) && sonMateixColor(cartes)) {
+                j.getMaActual().setCombinacio((byte) 9);
+            } else if(esPoker(cartes)) {
+                j.getMaActual().setCombinacio((byte) 8);
+            } else if(esParella(cartes) && esTrio(cartes)) {
+                j.getMaActual().setCombinacio((byte) 7);
+            } else if (sonMateixColor(cartes)) {
+                j.getMaActual().setCombinacio((byte) 6);
+            } else if (esEscala(cartes)) {
+                j.getMaActual().setCombinacio((byte) 5);
+            } else if (esTrio(cartes)) {
+                j.getMaActual().setCombinacio((byte) 4);
+            } else if (esDobleParella(cartes)) {
+                j.getMaActual().setCombinacio((byte) 3);
+            } else if (esParella(cartes)) {
+                j.getMaActual().setCombinacio((byte) 2);
+            } else {
+                j.getMaActual().setCombinacio((byte) 1);
             }
-
         }
-
     }
 
     private boolean sonMateixColor(ArrayList<Carta> cartes) {
@@ -315,9 +332,9 @@ public class ControladoraPartida {
 
     public byte cartaMesAlta(ArrayList<Carta> cartes) {
         byte num = 0;
-        for (Carta carta : cartes) {
-            if (carta.getValor() > num) {
-                num = carta.getValor();
+        for (int i = 1; i <= 2; i++) {
+            if (cartes.get(i).getValor() > num) {
+                num = cartes.get(i).getValor();
             }
         }
         return num;
