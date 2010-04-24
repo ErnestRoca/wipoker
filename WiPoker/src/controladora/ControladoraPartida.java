@@ -99,18 +99,21 @@ public class ControladoraPartida {
         } else if (Fase.getNumFase() == 2) {
             cremarCartes();
             aixecarCartes((byte) 3);
+            determinarCombinacio();
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
             }
         } else if (Fase.getNumFase() == 3) {
             cremarCartes();
             aixecarCartes((byte) 1);
+            determinarCombinacio();
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
             }
         } else if (Fase.getNumFase() == 4) {
             cremarCartes();
             aixecarCartes((byte) 1);
+            determinarCombinacio();
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
             }
@@ -163,19 +166,16 @@ public class ControladoraPartida {
         }
     }
 
-    private void determinarCombinacioFlop() {
-        boolean reial = true;
-        boolean mateixColor = true;
-        boolean escala = true;
+    private void determinarCombinacio() {
         for (Jugador j : jugadors) {
             ArrayList<Carta> cartes = j.getMaActual().getCartes();
             if (esEscalaReial(cartes)) {
                 j.getMaActual().setCombinacio((byte) 10);
             } else if (esEscala(cartes) && sonMateixColor(cartes)) {
                 j.getMaActual().setCombinacio((byte) 9);
-            } else if(esPoker(cartes)) {
+            } else if (esPoker(cartes)) {
                 j.getMaActual().setCombinacio((byte) 8);
-            } else if(esParella(cartes) && esTrio(cartes)) {
+            } else if (esParella(cartes) && esTrio(cartes)) {
                 j.getMaActual().setCombinacio((byte) 7);
             } else if (sonMateixColor(cartes)) {
                 j.getMaActual().setCombinacio((byte) 6);
@@ -369,7 +369,7 @@ public class ControladoraPartida {
     }
 
     private void determinarJugadorsEliminats() {
-        for (Jugador j: jugadors) {
+        for (Jugador j : jugadors) {
             if (j.getFitxesActuals() <= 0) {
                 jugadors.remove(j);
             }
