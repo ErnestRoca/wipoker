@@ -49,7 +49,6 @@ public class Taula {
         this.partidaActual = partidaActual;
     }
 
-
     @Override
     public String toString() {
         return "taula de " + places + "que té " + cadiresOcupades + "cadires ocupades";

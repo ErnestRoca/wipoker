@@ -1,6 +1,5 @@
 package domini;
 
-
 import java.util.ArrayList;
 
 /**
@@ -59,8 +58,6 @@ public class Baralla {
         return hash;
     }
 
-    
-
     @Override
     public String toString() {
         String cad = "Baralla de " + maxCartes + " cartes, formada per : \n";
@@ -68,5 +65,5 @@ public class Baralla {
             cad += Cartes.get(i);
         }
         return cad;
-    }    
+    }
 }

@@ -1,6 +1,5 @@
 package domini;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -8,24 +7,22 @@ import java.util.Calendar;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author ula
  */
 public class Partida {
     //Jugador que guanya la partida
+
     private Jugador jugadorGuanyador;
     //Data de la partida
     private final Calendar dataPartida;
     //Arraylist de jugadors
     private ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
-
     //ArrayList de rondes
     private ArrayList<Ronda> rondes = new ArrayList<Ronda>();
 
-    public Partida(Calendar dataPartida) {        
+    public Partida(Calendar dataPartida) {
         this.dataPartida = dataPartida;
     }
 
@@ -56,7 +53,7 @@ public class Partida {
     public void setRondes(ArrayList<Ronda> rondes) {
         this.rondes = rondes;
     }
-    
+
     @Override
     public String toString() {
         return ("Partida jugada: " + dataPartida.toString() + ", guanyador: " + jugadorGuanyador.getNomComplet());

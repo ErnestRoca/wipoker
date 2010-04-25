@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controladora;
 
 import domini.Aposta;
@@ -20,12 +19,11 @@ import java.util.Calendar;
  * @author wida45787385
  */
 public class ControladoraDomini {
-    
+
     private Taula taula;
     private Partida partida;
     private ArrayList<Jugador> jugadors;
 
-    
     public ControladoraDomini(byte places, Baralla baralla) {
         taula = new Taula(places, baralla);
         partida = new Partida(null);
@@ -56,13 +54,10 @@ public class ControladoraDomini {
         taula.setPartidaActual(new Partida(c));
     }
 
-    
     /* Mètode que controla que quedin places per afegir-se a la partida
      * Paràmetres: Taula l'objecte taula en que es juga la partida
      * Retorna: boolean true si la taula està al complert
      */
-    
-
     /* Mètode que controla les repercussions d'un jugador que fa fold
      * Paràmetres: Jugador: El jugador que fa fold
      * Retorna: void
@@ -104,7 +99,7 @@ public class ControladoraDomini {
         taula.getPartidaActual().getJugadors().remove(jugador);
     }
 
-        //Afageix jugador
+    //Afageix jugador
     private void addJugador(Jugador j) {
         partida.getJugadors().add(j);
     }
@@ -130,7 +125,6 @@ public class ControladoraDomini {
     }
 
     //private void estableixDataPartida(Calendar c)   No se si cal posar-ho
-
     //Afageix fase
     private void addFase(Fase f, byte numRonda) {
         partida.getRondes().get(numRonda).getFases().add(f);
@@ -150,7 +144,5 @@ public class ControladoraDomini {
     private void estabelixPotRonda(double pot, byte numRonda) {
         partida.getRondes().get(numRonda).setPot(pot);
     }
-
-
 }
 

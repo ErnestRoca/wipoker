@@ -1,6 +1,5 @@
 package domini;
 
-
 /**
  *
  * @author ernest
@@ -17,13 +16,13 @@ public class Carta {
 
     public byte getPal() {
         return pal;
-    }    
+    }
 
     public byte getValor() {
         return valor;
     }
 
-     //Una Carta serà diferent quan el seu pal i el seu valor siguin diferents.
+    //Una Carta serà diferent quan el seu pal i el seu valor siguin diferents.
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -49,7 +48,6 @@ public class Carta {
         hash = 17 * hash + this.valor;
         return hash;
     }
-   
 
     @Override
     public String toString() {

@@ -1,6 +1,5 @@
 package domini;
 
-
 import java.util.ArrayList;
 
 /**
@@ -49,8 +48,6 @@ public class Ma {
     public void setValorMesAlt(byte valorMesAlt) {
         this.valorMesAlt = valorMesAlt;
     }
-
-    
 
     @Override
     public boolean equals(Object obj) {

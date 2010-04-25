@@ -9,6 +9,7 @@ package domini;
  * @author Andrés
  */
 public class Aposta {
+
     private Jugador jugador;
     private double quantitat;
 
