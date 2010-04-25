@@ -6,12 +6,12 @@ import java.util.ArrayList;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ula
  */
 public class Ronda {
+
     private Partida partida;
     //Jugador que guanya la ronda
     private Jugador jugadorGuanyadorRonda;
@@ -22,9 +22,9 @@ public class Ronda {
     public Ronda() {
     }
 
-    public Ronda(double pot) {        
+    public Ronda(double pot) {
     }
-    
+
     public int getPot() {
         return pot;
     }
@@ -59,6 +59,6 @@ public class Ronda {
 
     @Override
     public String toString() {
-        return ("Pot : " + pot  + ", guanyador: " + jugadorGuanyadorRonda.getNomComplet());
+        return ("Pot : " + pot + ", guanyador: " + jugadorGuanyadorRonda.getNomComplet());
     }
 }

@@ -4,7 +4,6 @@ package domini;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Andrés
@@ -49,14 +48,14 @@ public class Jugador {
     public String getAlias() {
         return alias;
     }
-    
+
     public String getDni() {
         return dni;
     }
 
     public byte getEdat() {
         return edat;
-    }    
+    }
 
     public int getFitxesActuals() {
         return fitxesActuals;
@@ -77,7 +76,7 @@ public class Jugador {
     public String getNomComplet() {
         return nomComplet;
     }
-    
+
     public short getPartidesGuanyades() {
         return partidesGuanyades;
     }
@@ -88,7 +87,7 @@ public class Jugador {
 
     public byte getPosicioTaula() {
         return posicioTaula;
-    }    
+    }
 
     public int getPuntuacio() {
         return puntuacio;
@@ -122,7 +121,6 @@ public class Jugador {
         this.aposta = aposta;
     }
 
-    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -144,10 +142,10 @@ public class Jugador {
         hash = 31 * hash + (this.dni != null ? this.dni.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
-    public String toString () {
-        String str = nomComplet + " amb " + edat + " anys i puntuació "  + puntuacio + "punts";
+    public String toString() {
+        String str = nomComplet + " amb " + edat + " anys i puntuació " + puntuacio + "punts";
         return str;
     }
 }
