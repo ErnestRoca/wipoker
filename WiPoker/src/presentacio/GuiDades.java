@@ -23,7 +23,7 @@ public class GuiDades {
     private JPanel jpFons;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
-    private JButton jbAfegir;    
+    private JButton jbAfegir;
     private JButton jbEditar;
     private JButton jbEliminar;
 
@@ -62,19 +62,19 @@ public class GuiDades {
         jbAfegir = new JButton("Afegir");
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
-        jbAfegir.setLayout(null);               
+        jbAfegir.setLayout(null);
         jbAfegir.setBounds(80, 135, 180, 40);
         jbAfegir.setIconTextGap(-182);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jpFons.add(jbAfegir);
 
-        jbEditar = new JButton("Editar dades", new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbEditar = new JButton("Editar dades");
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEditar.setBorder(null);
         jbEditar.setLayout(null);
         jbEditar.setBounds(80, 180, 180, 40);
-        //jbEditar.setIconTextGap(-182);
-        //jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbEditar.setIconTextGap(-185);
+        jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jpFons.add(jbEditar);
 
         jFrame.setVisible(true);
@@ -83,6 +83,7 @@ public class GuiDades {
     }
 
     public static void main(String[] args) {
+
         new GuiDades();
     }
 }
