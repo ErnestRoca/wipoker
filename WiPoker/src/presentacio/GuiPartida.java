@@ -42,6 +42,7 @@ public class GuiPartida {
 //    private Controlador c; // Referència a un objecte Controlador
     private JButton jbExecutar;
     private JCheckBox jckbVeure;
+    private JPanel jPanelFitxes;
 
     /** Constructor. */
     private GuiPartida() {
@@ -78,8 +79,8 @@ public class GuiPartida {
 
         @Override
         public void paintComponent(Graphics g) {
-            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taula.gif"));
-            g.drawImage(imatgeFons.getImage(), 0, 0, 950, 500, null);
+            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taula.png"));
+            g.drawImage(imatgeFons.getImage(), 100, 70, 800, 450, null);
             setOpaque(true);
         }
     }
@@ -87,7 +88,7 @@ public class GuiPartida {
     private void crearJPanels() {
 
         jPanelGlobal = new jPanelGlobal();
-        jPanelGlobal.setBackground(Color.WHITE);
+        jPanelGlobal.setBackground(Color.BLACK);
         jPanelGlobal.setLayout(null);
         jFrame.add(jPanelGlobal);
 
@@ -97,12 +98,25 @@ public class GuiPartida {
         jPanelCartesTaula.setLayout(null);
         jPanelCartesTaula.setBorder(null);
         final int x1 = 310;
-        final int y1 = 210;
+        final int y1 = 250;
         final int w1 = 375;
         final int h1 = 97;
         jPanelCartesTaula.setBounds(x1, y1, w1, h1);
         jPanelCartesTaula.setLayout(null);
         jPanelGlobal.add(jPanelCartesTaula);
+
+        jPanelFitxes = new JPanel();
+        jPanelFitxes.setOpaque(false);
+        jPanelFitxes.setBackground(Color.white);
+        jPanelFitxes.setLayout(null);
+        jPanelFitxes.setBorder(null);
+        final int x2 = 310;
+        final int y2 = 250;
+        final int w2 = 375;
+        final int h2 = 97;
+        jPanelFitxes.setBounds(x1, y1, w1, h1);
+        jPanelFitxes.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes);
 
     }
 
@@ -115,7 +129,7 @@ public class GuiPartida {
 
         jlCarta01 = new JLabel();
         jlCarta01.setBackground(new Color(204, 204, 255));
-        jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
+        jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")) );
         jlCarta01.setBorder(null);
         jlCarta01.setOpaque(true);
         final int x1 = 0;
