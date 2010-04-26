@@ -7,13 +7,11 @@ package presentacio;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.font.TextLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -62,14 +60,22 @@ public class GuiDades {
         jpFons.add(jlImatgeFons);
 
         jbAfegir = new JButton("Afegir");
-        //jbAfegir.setFont(Font.BOLD);
+        jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
-        jbAfegir.setLayout(null);       
-        jbAfegir.setIconTextGap(-80);
-        jbAfegir.setBounds(0, 124, 300, 50);
+        jbAfegir.setLayout(null);               
+        jbAfegir.setBounds(80, 135, 180, 40);
+        jbAfegir.setIconTextGap(-182);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jpFons.add(jbAfegir);
-        
+
+        jbEditar = new JButton("Editar dades", new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbEditar.setBorder(null);
+        jbEditar.setLayout(null);
+        jbEditar.setBounds(80, 180, 180, 40);
+        //jbEditar.setIconTextGap(-182);
+        //jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jpFons.add(jbEditar);
 
         jFrame.setVisible(true);
 
