@@ -72,18 +72,21 @@ public class GuiDades {
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEditar.setBorder(null);
         jbEditar.setLayout(null);
-        jbEditar.setBounds(80, 180, 180, 40);
-        jbEditar.setIconTextGap(-185);
+        jbEditar.setBounds(80, 190, 180, 40);
+        jbEditar.setIconTextGap(-182);
         jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jpFons.add(jbEditar);
 
-        jFrame.setVisible(true);
+        
 
 
     }
 
     public static void main(String[] args) {
-
-        new GuiDades();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GuiDades().jFrame.setVisible(true);
+            }
+        });
     }
 }
