@@ -35,7 +35,7 @@ public class GuiDades {
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle("Wipoker");
+        jFrame.setTitle("Dades del jugador");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +43,7 @@ public class GuiDades {
 
         jpFons = new JPanel();
         jpFons.setLayout(null);
-        jpFons.setOpaque(true);
+        jpFons.setOpaque(false);
         jpFons.setBounds(0, 0, 340, 950);
         jFrame.add(jpFons);
 
@@ -59,7 +59,18 @@ public class GuiDades {
         jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setVerticalAlignment(SwingConstants.BOTTOM);
-        jpFons.add(jlImatgeFons);        
+        jpFons.add(jlImatgeFons);
+
+        jbAfegir = new JButton("Afegir un jugador");
+        jbAfegir.setLayout(null);
+        jbAfegir.setHorizontalAlignment(SwingConstants.CENTER);
+        jbAfegir.setVerticalAlignment(SwingConstants.TOP);
+        jbAfegir.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
+        jbAfegir.setBounds(140, 124, 30, 20);
+        jpFons.add(jbAfegir);
+
+
         jFrame.setVisible(true);
 
 
