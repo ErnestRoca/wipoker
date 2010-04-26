@@ -26,7 +26,16 @@ public class GuiPartida {
     private JFrame jFrame;
     private JPanel jPanelGlobal;
     private JPanel jPanelCartesTaula;
-    private JPanel jPanel02;
+    private JPanel jPanelFitxes01;
+    private JPanel jPanelFitxes02;
+    private JPanel jPanelFitxes03;
+    private JPanel jPanelFitxes04;
+    private JPanel jPanelFitxes05;
+    private JPanel jPanelFitxes06;
+    private JPanel jPanelFitxes07;
+    private JPanel jPanelFitxes08;
+    private JPanel jPanelFitxes09;
+    private JPanel jPanelCrupier;
     private JLabel jlCarta01;
     private JLabel jlCarta02;
     private JLabel jlCarta03;
@@ -42,7 +51,6 @@ public class GuiPartida {
 //    private Controlador c; // Referència a un objecte Controlador
     private JButton jbExecutar;
     private JCheckBox jckbVeure;
-    private JPanel jPanelFitxes;
 
     /** Constructor. */
     private GuiPartida() {
@@ -97,40 +105,165 @@ public class GuiPartida {
         jPanelCartesTaula.setBackground(Color.white);
         jPanelCartesTaula.setLayout(null);
         jPanelCartesTaula.setBorder(null);
-        final int x1 = 310;
-        final int y1 = 250;
-        final int w1 = 375;
-        final int h1 = 97;
-        jPanelCartesTaula.setBounds(x1, y1, w1, h1);
+        final int xCartes = 310;
+        final int yCartes = 250;
+        final int wCartes = 375;
+        final int hCartes = 97;
+        jPanelCartesTaula.setBounds(xCartes, yCartes, wCartes, hCartes);
         jPanelCartesTaula.setLayout(null);
         jPanelGlobal.add(jPanelCartesTaula);
 
-        jPanelFitxes = new JPanel();
-        jPanelFitxes.setOpaque(false);
-        jPanelFitxes.setBackground(Color.white);
-        jPanelFitxes.setLayout(null);
-        jPanelFitxes.setBorder(null);
+        jPanelFitxes01 = new JPanel();
+        jPanelFitxes01.setOpaque(false);
+        jPanelFitxes01.setBackground(Color.white);
+        jPanelFitxes01.setLayout(null);
+        jPanelFitxes01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x1 = 620;
+        final int y1 = 150;
+        final int w1 = 73;
+        final int h1 = 73;
+        jPanelFitxes01.setBounds(x1, y1, w1, h1);
+        jPanelFitxes01.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes01);
+
+        jPanelFitxes02 = new JPanel();
+        jPanelFitxes02.setOpaque(false);
+        jPanelFitxes02.setBackground(Color.white);
+        jPanelFitxes02.setLayout(null);
+        jPanelFitxes02.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x2 = 310;
         final int y2 = 250;
-        final int w2 = 375;
-        final int h2 = 97;
-        jPanelFitxes.setBounds(x1, y1, w1, h1);
-        jPanelFitxes.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes);
+        final int w2 = w1;
+        final int h2 = w1;
+        jPanelFitxes02.setBounds(x2, y2, w2, h2);
+        jPanelFitxes02.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes02);
+
+        jPanelFitxes03 = new JPanel();
+        jPanelFitxes03.setOpaque(false);
+        jPanelFitxes03.setBackground(Color.white);
+        jPanelFitxes03.setLayout(null);
+        jPanelFitxes03.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x3 = 310;
+        final int y3 = 250;
+        final int w3 = w1;
+        final int h3 = w1;
+        jPanelFitxes03.setBounds(x3, y3, w3, h3);
+        jPanelFitxes03.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes03);
+
+        jPanelFitxes04 = new JPanel();
+        jPanelFitxes04.setOpaque(false);
+        jPanelFitxes04.setBackground(Color.white);
+        jPanelFitxes04.setLayout(null);
+        jPanelFitxes04.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x4 = 310;
+        final int y4 = 250;
+        final int w4 = w1;
+        final int h4 = w1;
+        jPanelFitxes04.setBounds(x4, y4, w4, h4);
+        jPanelFitxes04.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes04);
+
+        jPanelFitxes05 = new JPanel();
+        jPanelFitxes05.setOpaque(false);
+        jPanelFitxes05.setBackground(Color.white);
+        jPanelFitxes05.setLayout(null);
+        jPanelFitxes05.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x5 = 310;
+        final int y5 = 250;
+        final int w5 = w1;
+        final int h5 = w1;
+        jPanelFitxes05.setBounds(x5, y5, w5, h5);
+        jPanelFitxes05.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes05);
+
+        jPanelFitxes06 = new JPanel();
+        jPanelFitxes06.setOpaque(false);
+        jPanelFitxes06.setBackground(Color.white);
+        jPanelFitxes06.setLayout(null);
+        jPanelFitxes06.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x6 = 310;
+        final int y6 = 250;
+        final int w6 = w1;
+        final int h6 = w1;
+        jPanelFitxes06.setBounds(x6, y6, w6, h6);
+        jPanelFitxes06.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes06);
+
+        jPanelFitxes07 = new JPanel();
+        jPanelFitxes07.setOpaque(false);
+        jPanelFitxes07.setBackground(Color.white);
+        jPanelFitxes07.setLayout(null);
+        jPanelFitxes07.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x7 = 310;
+        final int y7 = 250;
+        final int w7 = w1;
+        final int h7 = w1;
+        jPanelFitxes07.setBounds(x7, y7, w7, h7);
+        jPanelFitxes07.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes07);
+
+        jPanelFitxes08 = new JPanel();
+        jPanelFitxes08.setOpaque(false);
+        jPanelFitxes08.setBackground(Color.white);
+        jPanelFitxes08.setLayout(null);
+        jPanelFitxes08.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x8 = 310;
+        final int y8 = 250;
+        final int w8 = w1;
+        final int h8 = w1;
+        jPanelFitxes08.setBounds(x8, y8, w8, h8);
+        jPanelFitxes08.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes08);
+
+        jPanelFitxes09 = new JPanel();
+        jPanelFitxes09.setOpaque(false);
+        jPanelFitxes09.setBackground(Color.white);
+        jPanelFitxes09.setLayout(null);
+        jPanelFitxes09.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x9 = 310;
+        final int y9 = 150;
+        final int w9 = w1;
+        final int h9 = w1;
+        jPanelFitxes09.setBounds(x9, y9, w9, h9);
+        jPanelFitxes09.setLayout(null);
+        jPanelGlobal.add(jPanelFitxes09);
+
+        jPanelCrupier = new JPanel();
+        jPanelCrupier.setOpaque(false);
+        jPanelCrupier.setBackground(Color.white);
+        jPanelCrupier.setLayout(null);
+        jPanelCrupier.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        final int x10 = 310;
+        final int y10 = 250;
+        final int w10 = w1;
+        final int h10 = w1;
+        jPanelCrupier.setBounds(x10, y10, w10, h10);
+        jPanelCrupier.setLayout(null);
+        jPanelGlobal.add(jPanelCrupier);
 
     }
 
     private void crearControls() {
-        crearControlsJPanel01();
-        crearControlsJPanel02();
+        crearControlsJPanelCartesTaula();
+        crearControlsJPanelFitxes01();
+        crearControlsJPanelFitxes02();
+        crearControlsJPanelFitxes03();
+        crearControlsJPanelFitxes04();
+        crearControlsJPanelFitxes05();
+        crearControlsJPanelFitxes06();
+        crearControlsJPanelFitxes07();
+        crearControlsJPanelFitxes08();
+        crearControlsJPanelFitxes09();
+        crearControlsJPanelFitxes10();
     }
 
-    private void crearControlsJPanel01() {
+    private void crearControlsJPanelCartesTaula() {
 
         jlCarta01 = new JLabel();
         jlCarta01.setBackground(new Color(204, 204, 255));
-        jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")) );
-        jlCarta01.setBorder(null);
+        jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
         jlCarta01.setOpaque(true);
         final int x1 = 0;
         final int y1 = 0;
@@ -142,7 +275,6 @@ public class GuiPartida {
         jlCarta02 = new JLabel();
         jlCarta02.setBackground(new Color(204, 204, 255));
         jlCarta02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/2h.gif")));
-        jlCarta02.setBorder(null);
         jlCarta02.setOpaque(true);
         final int sh12 = 2;
         final int x2 = x1 + w1 + sh12;
@@ -155,7 +287,6 @@ public class GuiPartida {
         jlCarta03 = new JLabel();
         jlCarta03.setBackground(new Color(204, 204, 255));
         jlCarta03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/3c.gif")));
-        jlCarta03.setBorder(null);
         jlCarta03.setOpaque(true);
         final int sh23 = sh12;
         final int x3 = x2 + w2 + sh23;
@@ -168,7 +299,6 @@ public class GuiPartida {
         jlCarta04 = new JLabel();
         jlCarta04.setBackground(new Color(204, 204, 255));
         jlCarta04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/kc.gif")));
-        jlCarta04.setBorder(null);
         jlCarta04.setOpaque(true);
         final int sh34 = sh12;
         final int x4 = x3 + w3 + sh34;
@@ -181,7 +311,6 @@ public class GuiPartida {
         jlCarta05 = new JLabel();
         jlCarta05.setBackground(new Color(204, 204, 255));
         jlCarta05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
-        jlCarta05.setBorder(null);
         jlCarta05.setOpaque(true);
         final int sh45 = sh12;
         final int x5 = x4 + w4 + sh45;
@@ -192,7 +321,34 @@ public class GuiPartida {
         jPanelCartesTaula.add(jlCarta05);
     }
 
-    private void crearControlsJPanel02() {
+    private void crearControlsJPanelFitxes01() {
+    }
+
+    private void crearControlsJPanelFitxes02() {
+    }
+
+    private void crearControlsJPanelFitxes03() {
+    }
+
+    private void crearControlsJPanelFitxes04() {
+    }
+
+    private void crearControlsJPanelFitxes05() {
+    }
+
+    private void crearControlsJPanelFitxes06() {
+    }
+
+    private void crearControlsJPanelFitxes07() {
+    }
+
+    private void crearControlsJPanelFitxes08() {
+    }
+
+    private void crearControlsJPanelFitxes09() {
+    }
+
+    private void crearControlsJPanelFitxes10() {
     }
 
     private void crearEscoltadors() {
