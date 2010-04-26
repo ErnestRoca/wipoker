@@ -6,6 +6,7 @@ package presentacio;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.font.TextLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -60,13 +61,15 @@ public class GuiDades {
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jpFons.add(jlImatgeFons);
 
-        jbAfegir = new JButton("Afegir");        
-        jbAfegir.setLayout(null);
+        jbAfegir = new JButton("Afegir");
+        //jbAfegir.setFont(Font.BOLD);
+        jbAfegir.setBorder(null);
+        jbAfegir.setLayout(null);       
+        jbAfegir.setIconTextGap(-150);
+        jbAfegir.setBounds(0, 124, 320, 50);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbAfegir.setBounds(140, 124, 80, 20);
-        jbAfegir.setIconTextGap(50);
-        jbAfegir.setText("Afegir un jugador");        
         jpFons.add(jbAfegir);
+        
 
         jFrame.setVisible(true);
 
