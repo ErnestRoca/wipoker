@@ -33,7 +33,7 @@ public class GuiDades {
 
     public void iniciarComponents() {
         jFrame = new JFrame();
-        jFrame.setSize(new Dimension(340, 490));
+        jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("Wipoker");
         jFrame.setLayout(null);
@@ -44,7 +44,7 @@ public class GuiDades {
         jpFons = new JPanel();
         jpFons.setLayout(null);
         jpFons.setOpaque(true);
-        jpFons.setBounds(0, 0, 340, 490);
+        jpFons.setBounds(0, 0, 340, 950);
         jFrame.add(jpFons);
 
         jlTitol = new JLabel();
@@ -55,12 +55,11 @@ public class GuiDades {
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
-        jlImatgeFons.setBounds(0, 104, 333, 499);
-        jlTitol.setLayout(null);
-        
-        jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jlTitol.setVerticalAlignment(SwingConstants.BOTTOM);
-        //jpFons.add(jlImatgeFons);
+        jlImatgeFons.setBounds(0, 104, 340, 499);
+        jlImatgeFons.setLayout(null);
+        jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
+        jlImatgeFons.setVerticalAlignment(SwingConstants.BOTTOM);
+        jpFons.add(jlImatgeFons);        
         jFrame.setVisible(true);
 
 
