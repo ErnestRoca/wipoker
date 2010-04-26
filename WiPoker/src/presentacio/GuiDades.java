@@ -65,8 +65,8 @@ public class GuiDades {
         //jbAfegir.setFont(Font.BOLD);
         jbAfegir.setBorder(null);
         jbAfegir.setLayout(null);       
-        jbAfegir.setIconTextGap(-150);
-        jbAfegir.setBounds(0, 124, 320, 50);
+        jbAfegir.setIconTextGap(-80);
+        jbAfegir.setBounds(0, 124, 300, 50);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jpFons.add(jbAfegir);
         
