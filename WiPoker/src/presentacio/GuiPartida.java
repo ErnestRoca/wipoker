@@ -78,8 +78,8 @@ public class GuiPartida {
 
         @Override
         public void paintComponent(Graphics g) {
-            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taula.jpg"));
-            g.drawImage(imatgeFons.getImage(), -10, -100, 1000, 700, null);
+            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taula.gif"));
+            g.drawImage(imatgeFons.getImage(), 0, 0, 950, 500, null);
             setOpaque(true);
         }
     }
