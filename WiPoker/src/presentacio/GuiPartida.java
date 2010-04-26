@@ -25,30 +25,15 @@ public class GuiPartida {
     /** Pseudoatributs per tenir visibilitat d'atribut. */
     private JFrame jFrame;
     private JPanel jPanelGlobal;
-    private JPanel jPanel01;
+    private JPanel jPanelCartesTaula;
     private JPanel jPanel02;
-    private JPanel jPanel03;
-    private JPanel jPanel04;
-    private JLabel jLabelJPanel01;
+    private JLabel jlCarta01;
+    private JLabel jlCarta02;
     private JLabel jLabelJPanel02;
-    private JLabel jLabelJPanel03;
-    private JLabel jLabelJPanel04;
-    private JLabel jlLimInf;
-    private JLabel jlLimSup;
-    private JLabel jl1;
-    private JLabel jl2;
-    private JLabel jl3;
-    private JLabel jl4;
-    private JLabel jl5;
     private JLabel jl6;
     private JFormattedTextField jftfLimInf;
     private JFormattedTextField jftfLimSup;
     private JFormattedTextField jftf1;
-    private JFormattedTextField jftf2;
-    private JFormattedTextField jftf3;
-    private JFormattedTextField jftf4;
-    private JFormattedTextField jftf5;
-    private JFormattedTextField jftf6;
     private JTextArea jtaTipusE;
     private JButton jbEsborrar;
     private JButton jbSortir;
@@ -104,18 +89,18 @@ public class GuiPartida {
         jPanelGlobal.setLayout(null);
         jFrame.add(jPanelGlobal);
 
-        jPanel01 = new JPanel();
-        jPanel01.setOpaque(false);
-        jPanel01.setBackground(Color.white);
-        jPanel01.setLayout(null);
-        jPanel01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelCartesTaula = new JPanel();
+        jPanelCartesTaula.setOpaque(false);
+        jPanelCartesTaula.setBackground(Color.white);
+        jPanelCartesTaula.setLayout(null);
+        jPanelCartesTaula.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x1 = 310;
         final int y1 = 210;
         final int w1 = 375;
         final int h1 = 97;
-        jPanel01.setBounds(x1, y1, w1, h1);
-        jPanel01.setLayout(null);
-        jPanelGlobal.add(jPanel01);
+        jPanelCartesTaula.setBounds(x1, y1, w1, h1);
+        jPanelCartesTaula.setLayout(null);
+        jPanelGlobal.add(jPanelCartesTaula);
 
     }
 
@@ -126,17 +111,29 @@ public class GuiPartida {
 
     private void crearControlsJPanel01() {
 
-        jLabelJPanel01 = new JLabel();
-        jLabelJPanel01.setBackground(new Color(204, 204, 255));
-        jLabelJPanel01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
-        jLabelJPanel01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        jLabelJPanel01.setOpaque(true);
+        jlCarta01 = new JLabel();
+        jlCarta01.setBackground(new Color(204, 204, 255));
+        jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
+        jlCarta01.setBorder(null);
+        jlCarta01.setOpaque(true);
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 73;
         final int h1 = 97;
-        jLabelJPanel01.setBounds(x1, y1, w1, h1);
-        jPanel01.add(jLabelJPanel01);
+        jlCarta01.setBounds(x1, y1, w1, h1);
+        jPanelCartesTaula.add(jlCarta01);
+
+        jlCarta02 = new JLabel();
+        jlCarta02.setBackground(new Color(204, 204, 255));
+        jlCarta02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
+        jlCarta02.setBorder(null);
+        jlCarta02.setOpaque(true);
+        final int x2 = 0;
+        final int y2 = 0;
+        final int w2 = 73;
+        final int h2 = 97;
+        jlCarta02.setBounds(x1, y1, w1, h1);
+        jPanelCartesTaula.add(jlCarta02);
     }
 
     private void crearControlsJPanel02() {
