@@ -68,7 +68,7 @@ public class GuiPartida {
         jFrame.setTitle("WiPoker");
         jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setResizable(true);
+        jFrame.setResizable(false);
     }
 
     //Mètode per introduir una imatge de fons.
@@ -128,11 +128,12 @@ public class GuiPartida {
         jlCarta02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
         jlCarta02.setBorder(null);
         jlCarta02.setOpaque(true);
-        final int x2 = 0;
+        final int sh12 = 2;
+        final int x2 = x1 + w1 + sh12;
         final int y2 = 0;
         final int w2 = 73;
         final int h2 = 97;
-        jlCarta02.setBounds(x1, y1, w1, h1);
+        jlCarta02.setBounds(x2, y2, w2, h2);
         jPanelCartesTaula.add(jlCarta02);
     }
 
