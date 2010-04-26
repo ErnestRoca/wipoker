@@ -24,6 +24,7 @@ public class GuiDades {
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
     private JButton jbAfegir;
+    private JLabel jlText;
     private JButton jbEditar;
     private JButton jbEliminar;
 
@@ -50,25 +51,26 @@ public class GuiDades {
         jlTitol = new JLabel();
         jlTitol.setBounds(0, 0, 340, 104);
         jlTitol.setLayout(null);
-        jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
-        jlTitol.setVerticalAlignment(SwingConstants.TOP);
+        jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));        
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
         jlImatgeFons.setBounds(0, 104, 340, 499);
         jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jlImatgeFons.setVerticalAlignment(SwingConstants.BOTTOM);
         jpFons.add(jlImatgeFons);
 
-        jbAfegir = new JButton("Afegir un jugador");
-        jbAfegir.setLayout(null);
-        jbAfegir.setHorizontalAlignment(SwingConstants.CENTER);
-        jbAfegir.setVerticalAlignment(SwingConstants.TOP);
-        jbAfegir.setHorizontalTextPosition(SwingConstants.CENTER);
-        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jbAfegir.setBounds(140, 124, 30, 20);
-        jpFons.add(jbAfegir);
+        jbAfegir = new JButton();
+        jbAfegir.setLayout(null);       
+        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbAfegir.setText("Afegir un jugador");
+        jbAfegir.setBounds(140, 124, 80, 20);
+        jlImatgeFons.add(jbAfegir);
+
+        jlText = new JLabel("Afegir un jugador");
+        jlText.setBounds(140, 124, 80, 20);
+        jlText.setLayout(null);
+        jbAfegir.add(jlText);
 
 
         jFrame.setVisible(true);
