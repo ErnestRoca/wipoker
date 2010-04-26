@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -32,7 +33,7 @@ public class GuiDades {
 
     public void iniciarComponents() {
         jFrame = new JFrame();
-        jFrame.setSize(new Dimension(334, 490));
+        jFrame.setSize(new Dimension(340, 490));
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("Wipoker");
         jFrame.setLayout(null);
@@ -41,22 +42,31 @@ public class GuiDades {
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
-        /*jpFons.setBackground(Color.red);
         jpFons.setLayout(null);
         jpFons.setOpaque(true);
-        jpFons.setBounds(0, 0, 334, 490);
+        jpFons.setBounds(0, 0, 340, 490);
         jFrame.add(jpFons);
 
         jlTitol = new JLabel();
+        jlTitol.setBounds(0, 0, 340, 104);
+        jlTitol.setLayout(null);
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
-        /*jlTitol.setBounds(0, 0, 334, 490);
+        jlTitol.setVerticalAlignment(SwingConstants.TOP);
         jpFons.add(jlTitol);
 
+        jlImatgeFons = new JLabel();
+        jlImatgeFons.setBounds(0, 104, 333, 499);
+        jlTitol.setLayout(null);
+        
+        jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
+        jlTitol.setVerticalAlignment(SwingConstants.BOTTOM);
+        //jpFons.add(jlImatgeFons);
+        jFrame.setVisible(true);
 
 
     }
 
     public static void main(String[] args) {
-        new GuiDades().jFrame.setVisible(true);
+        new GuiDades();
     }
 }
