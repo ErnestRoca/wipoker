@@ -29,7 +29,9 @@ public class GuiPartida {
     private JPanel jPanel02;
     private JLabel jlCarta01;
     private JLabel jlCarta02;
-    private JLabel jLabelJPanel02;
+    private JLabel jlCarta03;
+    private JLabel jlCarta04;
+    private JLabel jlCarta05;
     private JLabel jl6;
     private JFormattedTextField jftfLimInf;
     private JFormattedTextField jftfLimSup;
@@ -93,7 +95,7 @@ public class GuiPartida {
         jPanelCartesTaula.setOpaque(false);
         jPanelCartesTaula.setBackground(Color.white);
         jPanelCartesTaula.setLayout(null);
-        jPanelCartesTaula.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelCartesTaula.setBorder(null);
         final int x1 = 310;
         final int y1 = 210;
         final int w1 = 375;
@@ -125,16 +127,55 @@ public class GuiPartida {
 
         jlCarta02 = new JLabel();
         jlCarta02.setBackground(new Color(204, 204, 255));
-        jlCarta02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
+        jlCarta02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/2h.gif")));
         jlCarta02.setBorder(null);
         jlCarta02.setOpaque(true);
         final int sh12 = 2;
         final int x2 = x1 + w1 + sh12;
-        final int y2 = 0;
-        final int w2 = 73;
-        final int h2 = 97;
+        final int y2 = y1;
+        final int w2 = w1;
+        final int h2 = h1;
         jlCarta02.setBounds(x2, y2, w2, h2);
         jPanelCartesTaula.add(jlCarta02);
+
+        jlCarta03 = new JLabel();
+        jlCarta03.setBackground(new Color(204, 204, 255));
+        jlCarta03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/3c.gif")));
+        jlCarta03.setBorder(null);
+        jlCarta03.setOpaque(true);
+        final int sh23 = sh12;
+        final int x3 = x2 + w2 + sh23;
+        final int y3 = y1;
+        final int w3 = w1;
+        final int h3 = h1;
+        jlCarta03.setBounds(x3, y3, w3, h3);
+        jPanelCartesTaula.add(jlCarta03);
+
+        jlCarta04 = new JLabel();
+        jlCarta04.setBackground(new Color(204, 204, 255));
+        jlCarta04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/kc.gif")));
+        jlCarta04.setBorder(null);
+        jlCarta04.setOpaque(true);
+        final int sh34 = sh12;
+        final int x4 = x3 + w3 + sh34;
+        final int y4 = y1;
+        final int w4 = w1;
+        final int h4 = h1;
+        jlCarta04.setBounds(x4, y4, w4, h4);
+        jPanelCartesTaula.add(jlCarta04);
+
+        jlCarta05 = new JLabel();
+        jlCarta05.setBackground(new Color(204, 204, 255));
+        jlCarta05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
+        jlCarta05.setBorder(null);
+        jlCarta05.setOpaque(true);
+        final int sh45 = sh12;
+        final int x5 = x4 + w4 + sh45;
+        final int y5 = y1;
+        final int w5 = w1;
+        final int h5 = h1;
+        jlCarta05.setBounds(x5, y5, w5, h5);
+        jPanelCartesTaula.add(jlCarta05);
     }
 
     private void crearControlsJPanel02() {
