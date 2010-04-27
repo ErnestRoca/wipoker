@@ -60,7 +60,8 @@ public class GuiDades {
         jlImatgeFons.setBounds(0, 104, 340, 499);
         jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jpFons.add(jlImatgeFons);
+        jlImatgeFons.setOpaque(false);
+        
 
         jbAfegir = new JButton("Afegir");
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
@@ -88,6 +89,8 @@ public class GuiDades {
         jbEliminar.setIconTextGap(-184);
         jbEliminar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jpFons.add(jbEliminar);
+
+        jpFons.add(jlImatgeFons);
         
         jFrame.setVisible(true);
 
