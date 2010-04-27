@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -23,12 +24,13 @@ public class GuiDades {
 
     private JFrame jFrame;
     private JPanel jpFons;
-    private JPanel jpMenu;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
     private JButton jbAfegir;
     private JButton jbEditar;
     private JButton jbEliminar;
+    private JButton jbConsultar;
+    private JButton jbTornar;
 
     public GuiDades() throws InterruptedException {
         iniciarComponents();
@@ -61,47 +63,72 @@ public class GuiDades {
         jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
-        
 
-        jbAfegir = new JButton("Afegir");
+
+        jbConsultar = new JButton("Consultar dades jugador");
+        jbConsultar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbConsultar.setBorder(null);
+        jbConsultar.setLayout(null);
+        jbConsultar.setBounds(40, 135, 260, 40);
+        jbConsultar.setIconTextGap(-260);
+        jbConsultar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbConsultar.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbConsultar);
+
+        jbAfegir = new JButton("Afegir nou jugador");
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
         jbAfegir.setLayout(null);
-        jbAfegir.setBounds(80, 135, 180, 40);
-        jbAfegir.setIconTextGap(-182);
-        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));        
+        jbAfegir.setBounds(40, 225, 260, 40);
+        jbAfegir.setIconTextGap(-260);
+        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbAfegir.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbAfegir);
 
-        jbEditar = new JButton("Editar");
+        jbEditar = new JButton("Editar un jugador");
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEditar.setBorder(null);
         jbEditar.setLayout(null);
-        jbEditar.setBounds(80, 200, 180, 40);
-        jbEditar.setIconTextGap(-184);
+        jbEditar.setBounds(40, 315, 260, 40);
+        jbEditar.setIconTextGap(-260);
         jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbEditar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbEditar);
 
-        jbEliminar = new JButton("Eliminar");
+        jbEliminar = new JButton("Eliminir dades jugador");
         jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEliminar.setBorder(null);
         jbEliminar.setLayout(null);
-        jbEliminar.setBounds(80, 265, 180, 40);
-        jbEliminar.setIconTextGap(-184);
+        jbEliminar.setBounds(40, 405, 260, 40);
+        jbEliminar.setIconTextGap(-260);
         jbEliminar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbEliminar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbEliminar);
+        
+        jbTornar = new JButton("Tornar enrere");
+        jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbTornar.setBorder(null);
+        jbTornar.setLayout(null);
+        jbTornar.setBounds(40, 495, 260, 40);
+        jbTornar.setIconTextGap(-260);
+        jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbTornar);
+
+
 
         jpFons.add(jlImatgeFons);
-        
+
         jFrame.setVisible(true);
 
 
 
     }
 
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {                
+            public void run() {
                 try {
                     new GuiDades();
                 } catch (InterruptedException ex) {
