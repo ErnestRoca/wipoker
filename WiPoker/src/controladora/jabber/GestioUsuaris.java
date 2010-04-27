@@ -1,7 +1,3 @@
-
-
-
-
 package controladora.jabber;
 
 import org.jivesoftware.smack.XMPPConnection;
@@ -12,24 +8,15 @@ import org.jivesoftware.smack.XMPPException;
  *
  * @author wida45787385
  */
-public class ControladoraJabber {
+public abstract class GestioUsuaris {
 
-   
-    private XMPPConnection connection;
-    private ConnectionConfiguration config;
+    private ConnectionConfiguration config = new ConnectionConfiguration("", 0);
+    private XMPPConnection connection = new XMPPConnection(config);
 
-    public ControladoraJabber(String servidor, int port) throws XMPPException {
-        prepararCommunicacions(servidor, port);
-    }
-
-    public void prepararCommunicacions(String servidor, int port) throws XMPPException {
-        config = new ConnectionConfiguration(servidor, port);
-        connection = new XMPPConnection(config);
-        connection.connect();
+    public GestioUsuaris() throws XMPPException {
     }
 
     public void crearUsuari(String dni, String nom, String alias, byte edat, String telefon) {
-
     }
 
     public void login(String usuari, String password) throws XMPPException {
@@ -39,5 +26,4 @@ public class ControladoraJabber {
     public void desconnectar() {
         connection.disconnect();
     }
-
 }
