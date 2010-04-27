@@ -36,4 +36,8 @@ public class ControladoraJabber {
         connection.login(usuari, password);
     }
 
+    public void desconnectar() {
+        connection.disconnect();
+    }
+
 }
