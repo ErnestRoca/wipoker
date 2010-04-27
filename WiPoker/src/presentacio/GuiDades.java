@@ -72,6 +72,7 @@ public class GuiDades {
         jbConsultar.setBounds(40, 135, 260, 40);
         jbConsultar.setIconTextGap(-260);
         jbConsultar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbConsultar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbConsultar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbConsultar);
 
@@ -82,6 +83,7 @@ public class GuiDades {
         jbAfegir.setBounds(40, 225, 260, 40);
         jbAfegir.setIconTextGap(-260);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbAfegir.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbAfegir.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbAfegir);
 
@@ -92,6 +94,7 @@ public class GuiDades {
         jbEditar.setBounds(40, 315, 260, 40);
         jbEditar.setIconTextGap(-260);
         jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbEditar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbEditar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbEditar);
 
@@ -102,6 +105,7 @@ public class GuiDades {
         jbEliminar.setBounds(40, 405, 260, 40);
         jbEliminar.setIconTextGap(-260);
         jbEliminar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbEliminar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbEliminar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbEliminar);
         
@@ -112,6 +116,7 @@ public class GuiDades {
         jbTornar.setBounds(40, 495, 260, 40);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
 
