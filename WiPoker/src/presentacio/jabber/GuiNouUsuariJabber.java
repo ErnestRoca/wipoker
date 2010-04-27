@@ -80,12 +80,13 @@ public class GuiNouUsuariJabber {
         jlUsuari.setBounds(40, 135, 120, 40);        
         jpFons.add(jlUsuari);
 
-        jftfUsuari = new JTextField();
-        jftfUsuari.setBorder(BorderFactory.createEtchedBorder());
+        jftfUsuari = new JTextField("Escriu aqui");
+        jftfUsuari.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.lightGray, Color.red));
         jftfUsuari.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jftfUsuari.setForeground(Color.red);
         jftfUsuari.setLayout(null);
         jftfUsuari.setBounds(170, 135, 120, 40);
+        jftfUsuari.setBackground(Color.black);
         jpFons.add(jftfUsuari);
         /*
         jbAfegir = new JButton("Afegir nou jugador");
