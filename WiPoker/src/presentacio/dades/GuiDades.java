@@ -123,9 +123,6 @@ public class GuiDades {
         jpFons.add(jlImatgeFons);
 
         jFrame.setVisible(true);
-
-
-
     }
 
     public static void main(String[] args) {
