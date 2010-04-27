@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package presentacio;
+package presentacio.partida;
 
 import presentacio.dades.GuiDades;
 import java.awt.Color;
