@@ -66,26 +66,39 @@ public class GuiDades {
         jbAfegir.setBounds(80, 135, 180, 40);
         jbAfegir.setIconTextGap(-182);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jpFons.add(jbAfegir);
 
-        jbEditar = new JButton("Editar dades");
+        jbEditar = new JButton("Editar");
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEditar.setBorder(null);
         jbEditar.setLayout(null);
-        jbEditar.setBounds(80, 190, 180, 40);
-        jbEditar.setIconTextGap(-182);
+        jbEditar.setBounds(80, 200, 180, 40);
+        jbEditar.setIconTextGap(-184);
         jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jpFons.add(jbEditar);
-
         
+
+        jbEliminar = new JButton("Eliminar");
+        jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbEliminar.setBorder(null);
+        jbEliminar.setLayout(null);
+        jbEliminar.setBounds(80, 265, 180, 40);
+        jbEliminar.setIconTextGap(-184);
+        jbEliminar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+
+        jpFons.add(jbAfegir);
+        jpFons.add(jbEditar);
+        jpFons.add(jbEliminar);
+        jFrame.setVisible(true);
+
 
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new GuiDades().jFrame.setVisible(true);
+                new GuiDades();
             }
         });
     }
