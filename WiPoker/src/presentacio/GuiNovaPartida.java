@@ -29,7 +29,6 @@ public class GuiNovaPartida {
     private JLabel jlImatgeFons;
     private JButton jbUnirsePartida;
     private JButton jbContraMaquina;
-    private JButton jbEliminar;
     private JButton jbCrearPartida;
     private JButton jbTornar;
 
@@ -96,27 +95,15 @@ public class GuiNovaPartida {
         jbContraMaquina.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbContraMaquina);
 
-        jbEliminar = new JButton("Eliminir dades jugador");
-        jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbEliminar.setBorder(null);
-        jbEliminar.setLayout(null);
-        jbEliminar.setBounds(40, 405, 260, 40);
-        jbEliminar.setIconTextGap(-260);
-        jbEliminar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbEliminar.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbEliminar);
-
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(null);
         jbTornar.setLayout(null);
-        jbTornar.setBounds(40, 495, 260, 40);
+        jbTornar.setBounds(40, 405, 260, 40);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
-
-
 
         jpFons.add(jlImatgeFons);
 
@@ -131,7 +118,7 @@ public class GuiNovaPartida {
 
             public void run() {
                 try {
-                    new GuiDades();
+                    new GuiNovaPartida();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
