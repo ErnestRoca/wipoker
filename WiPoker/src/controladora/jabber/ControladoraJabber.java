@@ -2,7 +2,7 @@
 
 
 
-package controladora;
+package controladora.jabber;
 
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.ConnectionConfiguration;
