@@ -7,6 +7,8 @@ package presentacio;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,11 +29,11 @@ public class GuiDades {
     private JButton jbEditar;
     private JButton jbEliminar;
 
-    public GuiDades() {
+    public GuiDades() throws InterruptedException {
         iniciarComponents();
     }
 
-    public void iniciarComponents() {
+    public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
@@ -66,6 +68,8 @@ public class GuiDades {
         jbAfegir.setBounds(80, 135, 180, 40);
         jbAfegir.setIconTextGap(-182);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbAfegir.setOpaque(true);
+        jpFons.add(jbAfegir);
 
         jbEditar = new JButton("Editar");
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
@@ -74,7 +78,7 @@ public class GuiDades {
         jbEditar.setBounds(80, 200, 180, 40);
         jbEditar.setIconTextGap(-184);
         jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        
+        jpFons.add(jbEditar);
 
         jbEliminar = new JButton("Eliminar");
         jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
@@ -83,10 +87,8 @@ public class GuiDades {
         jbEliminar.setBounds(80, 265, 180, 40);
         jbEliminar.setIconTextGap(-184);
         jbEliminar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-
-        jpFons.add(jbAfegir);
-        jpFons.add(jbEditar);
         jpFons.add(jbEliminar);
+        Thread.sleep(100000);
         jFrame.setVisible(true);
 
 
@@ -98,7 +100,11 @@ public class GuiDades {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new GuiDades();
+                try {
+                    new GuiDades();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
