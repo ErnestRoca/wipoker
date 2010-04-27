@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentacio;
 
 import java.awt.Color;
@@ -72,6 +71,7 @@ public class GuiNovaPartida {
         jbCrearPartida.setBounds(40, 135, 260, 40);
         jbCrearPartida.setIconTextGap(-260);
         jbCrearPartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCrearPartida.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbCrearPartida.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbCrearPartida);
 
@@ -82,6 +82,7 @@ public class GuiNovaPartida {
         jbUnirsePartida.setBounds(40, 225, 260, 40);
         jbUnirsePartida.setIconTextGap(-260);
         jbUnirsePartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbUnirsePartida.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbUnirsePartida.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbUnirsePartida);
 
@@ -92,6 +93,7 @@ public class GuiNovaPartida {
         jbContraMaquina.setBounds(40, 315, 260, 40);
         jbContraMaquina.setIconTextGap(-260);
         jbContraMaquina.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbContraMaquina.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbContraMaquina.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbContraMaquina);
 
@@ -102,6 +104,7 @@ public class GuiNovaPartida {
         jbTornar.setBounds(40, 405, 260, 40);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
 
@@ -125,5 +128,4 @@ public class GuiNovaPartida {
             }
         });
     }
-
 }
