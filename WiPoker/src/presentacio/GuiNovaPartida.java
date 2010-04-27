@@ -4,6 +4,7 @@
  */
 package presentacio;
 
+import presentacio.dades.GuiDades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
