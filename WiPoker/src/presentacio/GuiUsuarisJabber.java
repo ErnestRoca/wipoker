@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
  *
  * @author wida45787385
  */
-public class GuiUsuaris {
+public class GuiUsuarisJabber {
 
     private JFrame jFrame;
     private JPanel jpFons;
@@ -31,7 +31,7 @@ public class GuiUsuaris {
     private JButton jbIniciarSessio;
     private JButton jbTornar;
 
-    public GuiUsuaris() throws InterruptedException {
+    public GuiUsuarisJabber() throws InterruptedException {
         iniciarComponents();
     }
 
@@ -118,7 +118,7 @@ public class GuiUsuaris {
 
             public void run() {
                 try {
-                    new GuiUsuaris();
+                    new GuiUsuarisJabber();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
