@@ -9,12 +9,17 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 
 /**
  *
@@ -26,11 +31,14 @@ public class GuiNouUsuariJabber {
     private JPanel jpFons;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
-    private JButton jbAfegir;
-    private JButton jbEditar;
-    private JButton jbEliminar;
-    private JButton jbConsultar;
-    private JButton jbTornar;
+    private JLabel jlUsuari;
+    private JLabel jlPassword;
+    private JLabel jlPasswordRepeat;
+    private JLabel jlCorreu;
+    private JTextField jftfUsuari;
+    private JTextField jftfPassword;
+    private JTextField jftfPasswordRepeat;
+    private JTextField jftfCorreur;
 
     public GuiNouUsuariJabber() throws InterruptedException {
         iniciarComponents();
@@ -40,9 +48,9 @@ public class GuiNouUsuariJabber {
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle("Dades del jugador");
+        jFrame.setTitle("Crea el teu compte Jabber");
         jFrame.setLayout(null);
-        jFrame.setBackground(Color.WHITE);
+        jFrame.setBackground(Color.black);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setResizable(false);
 
@@ -62,20 +70,24 @@ public class GuiNouUsuariJabber {
         jlImatgeFons.setBounds(0, 104, 340, 499);
         jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jlImatgeFons.setOpaque(false);
+        jlImatgeFons.setOpaque(false);        
 
+        jlUsuari = new JLabel("Nom d'usuari");
+        jlUsuari.setBorder(BorderFactory.createEtchedBorder());
+        jlUsuari.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jlUsuari.setForeground(Color.red);        
+        jlUsuari.setLayout(null);        
+        jlUsuari.setBounds(40, 135, 120, 40);        
+        jpFons.add(jlUsuari);
 
-        jbConsultar = new JButton("Consultar dades jugador");
-        jbConsultar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbConsultar.setBorder(null);
-        jbConsultar.setLayout(null);
-        jbConsultar.setBounds(40, 135, 260, 40);
-        jbConsultar.setIconTextGap(-260);
-        jbConsultar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbConsultar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbConsultar.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbConsultar);
-
+        jftfUsuari = new JTextField();
+        jftfUsuari.setBorder(BorderFactory.createEtchedBorder());
+        jftfUsuari.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jftfUsuari.setForeground(Color.red);
+        jftfUsuari.setLayout(null);
+        jftfUsuari.setBounds(170, 135, 120, 40);
+        jpFons.add(jftfUsuari);
+        /*
         jbAfegir = new JButton("Afegir nou jugador");
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
@@ -119,10 +131,11 @@ public class GuiNouUsuariJabber {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
-
+         */
+        
         jpFons.add(jlImatgeFons);
-
         jFrame.setVisible(true);
+
     }
 
     public static void main(String[] args) {
