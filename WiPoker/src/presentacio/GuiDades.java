@@ -23,6 +23,7 @@ public class GuiDades {
 
     private JFrame jFrame;
     private JPanel jpFons;
+    private JPanel jpMenu;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
     private JButton jbAfegir;
@@ -67,8 +68,7 @@ public class GuiDades {
         jbAfegir.setLayout(null);
         jbAfegir.setBounds(80, 135, 180, 40);
         jbAfegir.setIconTextGap(-182);
-        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbAfegir.setOpaque(true);
+        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));        
         jpFons.add(jbAfegir);
 
         jbEditar = new JButton("Editar");
@@ -88,18 +88,17 @@ public class GuiDades {
         jbEliminar.setIconTextGap(-184);
         jbEliminar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jpFons.add(jbEliminar);
-        Thread.sleep(100000);
+        
         jFrame.setVisible(true);
 
 
 
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        
+    public static void main(String[] args) {        
         java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {
+            public void run() {                
                 try {
                     new GuiDades();
                 } catch (InterruptedException ex) {
