@@ -120,8 +120,6 @@ public class GuiDades {
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
 
-
-
         jpFons.add(jlImatgeFons);
 
         jFrame.setVisible(true);
