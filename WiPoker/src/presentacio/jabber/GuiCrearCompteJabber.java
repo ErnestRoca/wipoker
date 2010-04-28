@@ -148,7 +148,7 @@ public class GuiCrearCompteJabber {
                 try {
                     new GuiCrearCompteJabber();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiCrearCompteJabber.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
