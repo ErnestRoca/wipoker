@@ -149,8 +149,8 @@ public class GuiTaulell {
         jPanelFitxes03.setBackground(Color.white);
         jPanelFitxes03.setLayout(null);
         jPanelFitxes03.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        final int x3 = 850;
-        final int y3 = 350;
+        final int x3 = 750;
+        final int y3 = 300;
         final int w3 = 200;
         final int h3 = 200;
         jPanelFitxes03.setBounds(x3, y3, w3, h3);
@@ -368,8 +368,8 @@ public class GuiTaulell {
         jlAvatar03 = new JLabel();
         jlAvatar03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar03.setOpaque(false);
-        final int x1 = 0;
-        final int y1 = 0;
+        final int x1 = 100;
+        final int y1 = 100;
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar03.setBounds(x1, y1, w1, h1);
@@ -379,7 +379,7 @@ public class GuiTaulell {
         jlFitxes03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes"+2+".png")));
         jlFitxes03.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 100;
+        final int y2 = 0;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes03.setBounds(x2, y2, w2, h2);
@@ -417,7 +417,7 @@ public class GuiTaulell {
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar05.setBounds(x1, y1, w1, h1);
-        jPanelFitxes05.add(jlAvatar03);
+        jPanelFitxes05.add(jlAvatar05);
     }
 
     private void crearControlsJPanelFitxes06() {
