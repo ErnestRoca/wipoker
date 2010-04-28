@@ -121,7 +121,7 @@ public class GuiMenuJabber {
                 try {
                     new GuiMenuJabber();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
