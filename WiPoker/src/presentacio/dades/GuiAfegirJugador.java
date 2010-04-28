@@ -153,6 +153,12 @@ public class GuiAfegirJugador {
         jFrame.setVisible(true);
     }
 
+    public JFrame getjFrame() {
+        return jFrame;
+    }
+
+
+
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
