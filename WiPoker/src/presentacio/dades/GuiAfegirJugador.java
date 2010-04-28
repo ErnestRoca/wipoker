@@ -148,7 +148,7 @@ public class GuiAfegirJugador {
                 try {
                     new GuiAfegirJugador();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

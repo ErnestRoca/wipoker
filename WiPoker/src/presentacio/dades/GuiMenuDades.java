@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
  *
  * @author wida45787385
  */
-public class GuiDades {
+public class GuiMenuDades {
 
     private JFrame jFrame;
     private JPanel jpFons;
@@ -32,7 +32,7 @@ public class GuiDades {
     private JButton jbConsultar;
     private JButton jbTornar;
 
-    public GuiDades() throws InterruptedException {
+    public GuiMenuDades() throws InterruptedException {
         iniciarComponents();
     }
 
@@ -130,9 +130,9 @@ public class GuiDades {
 
             public void run() {
                 try {
-                    new GuiDades();
+                    new GuiMenuDades();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
