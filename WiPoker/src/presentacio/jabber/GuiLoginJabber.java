@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
  *
  * @author wida45787385
  */
-public class GuiNouUsuariJabber {
+public class GuiLoginJabber {
 
     private JFrame jFrame;
     private JPanel jpFons;
@@ -38,7 +38,7 @@ public class GuiNouUsuariJabber {
     private JButton jbTornar;
     private JButton jbAfegir;
 
-    public GuiNouUsuariJabber() throws InterruptedException {
+    public GuiLoginJabber() throws InterruptedException {
         iniciarComponents();
 
     }
@@ -47,7 +47,7 @@ public class GuiNouUsuariJabber {
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle("Crear compte Jabber");
+        jFrame.setTitle("login Jabber");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +73,7 @@ public class GuiNouUsuariJabber {
 
         jlNom = new JLabel();
         jlNom.setBounds(30, 100, 340, 104);
-        jlNom.setText("Nom Complet ");
+        jlNom.setText("Usuari");
         jlNom.setForeground(Color.red);
         jlNom.setLayout(null);
         jpFons.add(jlNom);
@@ -115,7 +115,7 @@ public class GuiNouUsuariJabber {
         jtfCorreu.setBounds(170, 350, 120, 24);
         jpFons.add(jtfCorreu);
 
-        jbAfegir = new JButton("CREAR");
+        jbAfegir = new JButton("LOGIN");
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
         jbAfegir.setLayout(null);
@@ -136,7 +136,7 @@ public class GuiNouUsuariJabber {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
-        
+
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
     }
@@ -146,9 +146,9 @@ public class GuiNouUsuariJabber {
 
             public void run() {
                 try {
-                    new GuiNouUsuariJabber();
+                    new GuiLoginJabber();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiNouUsuariJabber.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiCrearCompteJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
