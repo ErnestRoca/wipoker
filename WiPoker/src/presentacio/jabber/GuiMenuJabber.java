@@ -4,7 +4,6 @@
  */
 package presentacio.jabber;
 
-import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
