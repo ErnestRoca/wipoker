@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import presentacio.GuiMenu;
 
 /**
  *
@@ -38,6 +39,8 @@ public class GuiMenuDades {
     private GuiAfegirJugador afegir;
     private GuiEditarJugador editar;
     private GuiEliminarJugador eliminar;
+
+    private GuiMenu menu;
 
     public GuiMenuDades() throws InterruptedException {
         iniciarComponents();
@@ -137,6 +140,7 @@ public class GuiMenuDades {
                 try {
                     jFrame.setVisible(false);
                     consultar = new GuiConsultarDades();
+                    consultar.getjFrame().setLocation(jFrame.getLocation());
                     consultar.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
@@ -150,6 +154,7 @@ public class GuiMenuDades {
                 try {
                     jFrame.setVisible(false);
                     afegir = new GuiAfegirJugador();
+                    afegir.getjFrame().setLocation(jFrame.getLocation());
                     afegir.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,6 +168,7 @@ public class GuiMenuDades {
                 try {
                     jFrame.setVisible(false);
                     editar = new GuiEditarJugador();
+                    editar.getjFrame().setLocation(jFrame.getLocation());
                     editar.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
@@ -176,7 +182,22 @@ public class GuiMenuDades {
                 try {
                     jFrame.setVisible(false);
                     eliminar = new GuiEliminarJugador();
+                    eliminar.getjFrame().setLocation(jFrame.getLocation());
                     eliminar.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jbTornar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    menu = new GuiMenu();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }

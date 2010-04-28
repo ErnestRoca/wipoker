@@ -41,6 +41,7 @@ public class GuiAfegirJugador {
     private JTextField jtfTelefon;
     private JButton jbAfegir;
     private JButton jbTornar;
+
     private GuiMenuDades menu;
 
     public GuiAfegirJugador() throws InterruptedException {
@@ -50,7 +51,7 @@ public class GuiAfegirJugador {
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(338, 629));
-        jFrame.setLocationRelativeTo(null);
+        //jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("Afegir jugador");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
@@ -161,6 +162,7 @@ public class GuiAfegirJugador {
                 try {
                     jFrame.setVisible(false);
                     menu = new GuiMenuDades();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
