@@ -1,6 +1,7 @@
 package presentacio;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,7 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
+import sun.font.Font2D;
 
 /*
  * To change this template, choose Tools | Templates
@@ -51,6 +54,12 @@ public class GuiTaulell {
 //    private Controlador c; // Referència a un objecte Controlador
     private JButton jbExecutar;
     private JCheckBox jckbVeure;
+    private JLabel jlFitxes01;
+    private JLabel jlFitxes02;
+    private JLabel jlFitxes03;
+    private JLabel jlFitxes04;
+    private JLabel jlCroupier;
+    private JLabel jlNomCroupier;
 
     /** Constructor. */
     private GuiTaulell() {
@@ -88,7 +97,7 @@ public class GuiTaulell {
         @Override
         public void paintComponent(Graphics g) {
             ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taula.png"));
-            g.drawImage(imatgeFons.getImage(), 100, 70, 800, 450, null);
+            g.drawImage(imatgeFons.getImage(), 50, 70, 900, 450, null);
             setOpaque(true);
         }
     }
@@ -120,8 +129,8 @@ public class GuiTaulell {
         jPanelFitxes01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x1 = 620;
         final int y1 = 150;
-        final int w1 = 73;
-        final int h1 = 73;
+        final int w1 = 110;
+        final int h1 = 110;
         jPanelFitxes01.setBounds(x1, y1, w1, h1);
         jPanelFitxes01.setLayout(null);
         jPanelGlobal.add(jPanelFitxes01);
@@ -234,9 +243,8 @@ public class GuiTaulell {
         jPanelCrupier.setOpaque(false);
         jPanelCrupier.setBackground(Color.white);
         jPanelCrupier.setLayout(null);
-        jPanelCrupier.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        final int x10 = 460;
-        final int y10 = 150;
+        final int x10 = 450;
+        final int y10 = 10;
         final int w10 = w1;
         final int h10 = w1;
         jPanelCrupier.setBounds(x10, y10, w10, h10);
@@ -257,12 +265,12 @@ public class GuiTaulell {
         crearControlsJPanelFitxes08();
         crearControlsJPanelFitxes09();
         crearControlsJPanelFitxes10();
+        crearControlsJPanelCrupier();
     }
 
     private void crearControlsJPanelCartesTaula() {
 
         jlCarta01 = new JLabel();
-        jlCarta01.setBackground(new Color(204, 204, 255));
         jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
         jlCarta01.setOpaque(true);
         final int x1 = 0;
@@ -273,7 +281,6 @@ public class GuiTaulell {
         jPanelCartesTaula.add(jlCarta01);
 
         jlCarta02 = new JLabel();
-        jlCarta02.setBackground(new Color(204, 204, 255));
         jlCarta02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/2h.gif")));
         jlCarta02.setOpaque(true);
         final int sh12 = 2;
@@ -285,7 +292,6 @@ public class GuiTaulell {
         jPanelCartesTaula.add(jlCarta02);
 
         jlCarta03 = new JLabel();
-        jlCarta03.setBackground(new Color(204, 204, 255));
         jlCarta03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/3c.gif")));
         jlCarta03.setOpaque(true);
         final int sh23 = sh12;
@@ -297,7 +303,6 @@ public class GuiTaulell {
         jPanelCartesTaula.add(jlCarta03);
 
         jlCarta04 = new JLabel();
-        jlCarta04.setBackground(new Color(204, 204, 255));
         jlCarta04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/kc.gif")));
         jlCarta04.setOpaque(true);
         final int sh34 = sh12;
@@ -309,7 +314,6 @@ public class GuiTaulell {
         jPanelCartesTaula.add(jlCarta04);
 
         jlCarta05 = new JLabel();
-        jlCarta05.setBackground(new Color(204, 204, 255));
         jlCarta05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
         jlCarta05.setOpaque(true);
         final int sh45 = sh12;
@@ -322,15 +326,51 @@ public class GuiTaulell {
     }
 
     private void crearControlsJPanelFitxes01() {
+        jlFitxes01 = new JLabel();
+        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes1.png")));
+        jlFitxes01.setOpaque(false);
+        final int x1 = 0;
+        final int y1 = 0;
+        final int w1 = 107;
+        final int h1 = 80;
+        jlFitxes01.setBounds(x1, y1, w1, h1);
+        jPanelFitxes01.add(jlFitxes01);
     }
 
     private void crearControlsJPanelFitxes02() {
+        jlFitxes02 = new JLabel();
+        jlFitxes02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes2.png")));
+        jlFitxes02.setOpaque(false);
+        final int x1 = 0;
+        final int y1 = 0;
+        final int w1 = 107;
+        final int h1 = 80;
+        jlFitxes02.setBounds(x1, y1, w1, h1);
+        jPanelFitxes02.add(jlFitxes02);
     }
 
     private void crearControlsJPanelFitxes03() {
+        jlFitxes03 = new JLabel();
+        jlFitxes03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes3.png")));
+        jlFitxes03.setOpaque(false);
+        final int x1 = 0;
+        final int y1 = 0;
+        final int w1 = 107;
+        final int h1 = 80;
+        jlFitxes03.setBounds(x1, y1, w1, h1);
+        jPanelFitxes03.add(jlFitxes03);
     }
 
     private void crearControlsJPanelFitxes04() {
+        jlFitxes04 = new JLabel();
+        jlFitxes04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes4.png")));
+        jlFitxes04.setOpaque(false);
+        final int x1 = 0;
+        final int y1 = 0;
+        final int w1 = 107;
+        final int h1 = 80;
+        jlFitxes04.setBounds(x1, y1, w1, h1);
+        jPanelFitxes04.add(jlFitxes04);
     }
 
     private void crearControlsJPanelFitxes05() {
@@ -349,6 +389,23 @@ public class GuiTaulell {
     }
 
     private void crearControlsJPanelFitxes10() {
+    }
+
+    private void crearControlsJPanelCrupier() {
+        jlNomCroupier = new JLabel("Crooupiera");
+        jlNomCroupier.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        jlNomCroupier.setForeground(Color.WHITE);
+        jlNomCroupier.setBounds(20, 100, 100, 10);
+        jlCroupier = new JLabel();
+        jlCroupier.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/jugadora_poker.jpg")));
+        jlCroupier.setOpaque(false);
+        final int x1 = 0;
+        final int y1 = 0;
+        final int w1 = 100;
+        final int h1 = 100;
+        jlCroupier.setBounds(x1, y1, w1, h1);
+        jPanelCrupier.add(jlNomCroupier);
+        jPanelCrupier.add(jlCroupier);
     }
 
     private void crearEscoltadors() {
