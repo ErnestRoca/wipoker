@@ -178,7 +178,7 @@ public class GuiConsultarDades {
                 try {
                     new GuiConsultarDades();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiConsultarDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

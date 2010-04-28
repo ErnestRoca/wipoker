@@ -160,7 +160,7 @@ public class GuiEditarJugador {
                 try {
                     new GuiEditarJugador();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiEditarJugador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

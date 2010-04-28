@@ -135,7 +135,7 @@ public class GuiEliminarJugador {
                 try {
                     new GuiEliminarJugador();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiEliminarJugador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
