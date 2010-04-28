@@ -28,15 +28,14 @@ public class GuiNouUsuariJabber {
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
     private JLabel jlNom;
-    private JLabel jlAlies;
-    private JLabel jlEdat;
+    private JLabel jlPassword;
+    private JLabel jlPassword2;
     private JTextField jtfNom;
-    private JTextField jtfAlies2;
-    private JTextField jtfEdat;
-    private JLabel jlDNI;
-    private JTextField jtfDNI;
-    private JLabel jlTelefon;
-    private JTextField jtfTelefon;
+    private JTextField jtfPassword;
+    private JTextField jtfPassword2;
+    private JLabel jlCorreu;
+    private JTextField jtfCorreu;
+    
     private JButton jbAfegir;
 
     public GuiNouUsuariJabber() throws InterruptedException {
@@ -83,38 +82,38 @@ public class GuiNouUsuariJabber {
         jtfNom.setBounds(170, 140, 120, 24);
         jpFons.add(jtfNom);
 
-        jlAlies = new JLabel();
-        jlAlies.setBounds(115, 170, 340, 104);
-        jlAlies.setText("Alies ");
-        jlAlies.setForeground(Color.red);
-        jlAlies.setLayout(null);
-        jpFons.add(jlAlies);
+        jlPassword = new JLabel();
+        jlPassword.setBounds(115, 170, 340, 104);
+        jlPassword.setText("Alies ");
+        jlPassword.setForeground(Color.red);
+        jlPassword.setLayout(null);
+        jpFons.add(jlPassword);
 
-        jtfAlies2 = new JTextField(20);
-        jtfAlies2.setBounds(170, 210, 120, 24);
-        jpFons.add(jtfAlies2);
+        jtfPassword = new JTextField(20);
+        jtfPassword.setBounds(170, 210, 120, 24);
+        jpFons.add(jtfPassword);
 
-        jlEdat = new JLabel();
-        jlEdat.setBounds(115, 240, 340, 104);
-        jlEdat.setText("Edat ");
-        jlEdat.setForeground(Color.red);
-        jlEdat.setLayout(null);
-        jpFons.add(jlEdat);
+        jlPassword2 = new JLabel();
+        jlPassword2.setBounds(115, 240, 340, 104);
+        jlPassword2.setText("Edat ");
+        jlPassword2.setForeground(Color.red);
+        jlPassword2.setLayout(null);
+        jpFons.add(jlPassword2);
 
-        jtfEdat = new JTextField(20);
-        jtfEdat.setBounds(170, 280, 120, 24);
-        jpFons.add(jtfEdat);
+        jtfPassword2 = new JTextField(20);
+        jtfPassword2.setBounds(170, 280, 120, 24);
+        jpFons.add(jtfPassword2);
 
-        jlDNI = new JLabel();
-        jlDNI.setBounds(120, 310, 340, 104);
-        jlDNI.setText("DNI ");
-        jlDNI.setForeground(Color.red);
-        jlDNI.setLayout(null);
-        jpFons.add(jlDNI);
+        jlCorreu = new JLabel();
+        jlCorreu.setBounds(120, 310, 340, 104);
+        jlCorreu.setText("DNI ");
+        jlCorreu.setForeground(Color.red);
+        jlCorreu.setLayout(null);
+        jpFons.add(jlCorreu);
 
-        jtfDNI = new JTextField(20);
-        jtfDNI.setBounds(170, 350, 120, 24);
-        jpFons.add(jtfDNI);
+        jtfCorreu = new JTextField(20);
+        jtfCorreu.setBounds(170, 350, 120, 24);
+        jpFons.add(jtfCorreu);
 
         jlTelefon = new JLabel();
         jlTelefon.setBounds(100, 380, 340, 104);
