@@ -7,6 +7,8 @@ package presentacio.dades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -31,6 +33,11 @@ public class GuiMenuDades {
     private JButton jbEliminar;
     private JButton jbConsultar;
     private JButton jbTornar;
+
+    private GuiConsultarDades consultar;
+    private GuiAfegirJugador afegir;
+    private GuiEditarJugador editar;
+    private GuiEliminarJugador eliminar;
 
     public GuiMenuDades() throws InterruptedException {
         iniciarComponents();
@@ -123,7 +130,61 @@ public class GuiMenuDades {
         jpFons.add(jlImatgeFons);
 
         jFrame.setVisible(true);
+
+        jbConsultar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    consultar = new GuiConsultarDades();
+                    consultar.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jbAfegir.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    afegir = new GuiAfegirJugador();
+                    afegir.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jbEditar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    editar = new GuiEditarJugador();
+                    editar.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jbEliminar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    eliminar = new GuiEliminarJugador();
+                    eliminar.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
+
+    
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {

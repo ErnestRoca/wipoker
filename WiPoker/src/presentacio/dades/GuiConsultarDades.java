@@ -42,6 +42,8 @@ public class GuiConsultarDades {
     private JTextField jtfPuntuacio;
     private JButton jbTornar;
 
+
+
     public GuiConsultarDades() throws InterruptedException {
         iniciarComponents();
     }
@@ -168,8 +170,15 @@ public class GuiConsultarDades {
         jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
-        jFrame.setVisible(true);
+       
     }
+
+
+    public JFrame getjFrame() {
+        return jFrame;
+    }
+
+
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
