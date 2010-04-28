@@ -35,7 +35,7 @@ public class GuiNouUsuariJabber {
     private JTextField jtfPassword2;
     private JLabel jlCorreu;
     private JTextField jtfCorreu;
-    
+    private JButton jbTornar;
     private JButton jbAfegir;
 
     public GuiNouUsuariJabber() throws InterruptedException {
@@ -72,7 +72,7 @@ public class GuiNouUsuariJabber {
         jlImatgeFons.setOpaque(false);
 
         jlNom = new JLabel();
-        jlNom.setBounds(60, 100, 340, 104);
+        jlNom.setBounds(30, 100, 340, 104);
         jlNom.setText("Nom Complet ");
         jlNom.setForeground(Color.red);
         jlNom.setLayout(null);
@@ -83,8 +83,8 @@ public class GuiNouUsuariJabber {
         jpFons.add(jtfNom);
 
         jlPassword = new JLabel();
-        jlPassword.setBounds(115, 170, 340, 104);
-        jlPassword.setText("Alies ");
+        jlPassword.setBounds(30, 170, 340, 104);
+        jlPassword.setText("Contrasenya");
         jlPassword.setForeground(Color.red);
         jlPassword.setLayout(null);
         jpFons.add(jlPassword);
@@ -94,8 +94,8 @@ public class GuiNouUsuariJabber {
         jpFons.add(jtfPassword);
 
         jlPassword2 = new JLabel();
-        jlPassword2.setBounds(115, 240, 340, 104);
-        jlPassword2.setText("Edat ");
+        jlPassword2.setBounds(30, 240, 340, 104);
+        jlPassword2.setText("Repeteix contrasenya");
         jlPassword2.setForeground(Color.red);
         jlPassword2.setLayout(null);
         jpFons.add(jlPassword2);
@@ -105,8 +105,8 @@ public class GuiNouUsuariJabber {
         jpFons.add(jtfPassword2);
 
         jlCorreu = new JLabel();
-        jlCorreu.setBounds(120, 310, 340, 104);
-        jlCorreu.setText("DNI ");
+        jlCorreu.setBounds(30, 310, 340, 104);
+        jlCorreu.setText("Correu electrónic");
         jlCorreu.setForeground(Color.red);
         jlCorreu.setLayout(null);
         jpFons.add(jlCorreu);
@@ -115,35 +115,36 @@ public class GuiNouUsuariJabber {
         jtfCorreu.setBounds(170, 350, 120, 24);
         jpFons.add(jtfCorreu);
 
-        jlTelefon = new JLabel();
-        jlTelefon.setBounds(100, 380, 340, 104);
-        jlTelefon.setText("Telefon ");
-        jlTelefon.setForeground(Color.red);
-        jlTelefon.setLayout(null);
-        jpFons.add(jlTelefon);
-
-        jtfTelefon = new JTextField(20);
-        jtfTelefon.setBounds(170, 420, 120, 24);
-        jpFons.add(jtfTelefon);
-
         jbAfegir = new JButton("CREAR");
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
         jbAfegir.setLayout(null);
-        jbAfegir.setBounds(100, 500, 120, 24);
+        jbAfegir.setBounds(30, 450, 120, 24);
         jbAfegir.setIconTextGap(-260);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbAfegir.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbAfegir.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbAfegir);
 
+        jbTornar = new JButton("Tornar enrere");
+        jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbTornar.setBorder(null);
+        jbTornar.setLayout(null);
+        jbTornar.setBounds(30, 500, 120, 24);
+        jbTornar.setIconTextGap(-260);
+        jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbTornar);
+        
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {               
+
+            public void run() {
                 try {
                     new GuiNouUsuariJabber();
                 } catch (InterruptedException ex) {
