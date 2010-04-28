@@ -40,6 +40,7 @@ public class GuiConsultarDades {
     private JTextField jtfEdat;
     private JTextField jtfPartides;
     private JTextField jtfPuntuacio;
+    private JButton jbTornar;
 
     public GuiConsultarDades() throws InterruptedException {
         iniciarComponents();
@@ -74,21 +75,21 @@ public class GuiConsultarDades {
         jlImatgeFons.setOpaque(false);
 
         jlBuscador = new JLabel();
-        jlBuscador.setBounds(8, 80, 340, 104);
-        jlBuscador.setText("Introduir Alies: ");
+        jlBuscador.setBounds(53, 80, 340, 104);
+        jlBuscador.setText("Introduir Alies ");
         jlBuscador.setForeground(Color.red);
         jlBuscador.setLayout(null);
         jpFons.add(jlBuscador);
 
         jtfAlies = new JTextField(20);
-        jtfAlies.setBounds(107, 120, 120, 24);
+        jtfAlies.setBounds(170, 120, 120, 24);
         jpFons.add(jtfAlies);
 
         jbBuscar = new JButton("Buscar");
         jbBuscar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbBuscar.setBorder(null);
         jbBuscar.setLayout(null);
-        jbBuscar.setBounds(234, 120, 80, 24);
+        jbBuscar.setBounds(120, 160, 80, 24);
         jbBuscar.setIconTextGap(-260);
         jbBuscar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbBuscar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
@@ -154,6 +155,17 @@ public class GuiConsultarDades {
         jtfPuntuacio.setBounds(170, 490, 120, 24);
         jtfPuntuacio.setEditable(false);
         jpFons.add(jtfPuntuacio);
+
+        jbTornar = new JButton("Tornar enrere");
+        jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbTornar.setBorder(null);
+        jbTornar.setLayout(null);
+        jbTornar.setBounds(100, 540, 120, 24);
+        jbTornar.setIconTextGap(-260);
+        jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
