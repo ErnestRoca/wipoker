@@ -7,6 +7,8 @@ package presentacio.dades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -39,6 +41,8 @@ public class GuiEditarJugador {
     private JTextField jtfTelefon;
     private JButton jbEditar;
     private JButton jbTornar;
+
+    private GuiMenuDades menu;
 
     public GuiEditarJugador() throws InterruptedException {
         iniciarComponents();
@@ -151,6 +155,20 @@ public class GuiEditarJugador {
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
+
+        jbTornar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    menu = new GuiMenuDades();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     public JFrame getjFrame() {

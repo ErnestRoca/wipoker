@@ -7,6 +7,8 @@ package presentacio.dades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -35,6 +37,8 @@ public class GuiEliminarJugador {
     private JButton jbEliminar;
     private JTextArea jlText;
     private JButton jbTornar;
+
+    private GuiMenuDades menu;
 
     public GuiEliminarJugador() throws InterruptedException {
         iniciarComponents();
@@ -123,6 +127,20 @@ public class GuiEliminarJugador {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
+
+        jbTornar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    menu = new GuiMenuDades();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
