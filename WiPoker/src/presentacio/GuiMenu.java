@@ -8,6 +8,8 @@ import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -32,6 +34,8 @@ public class GuiMenu {
     private JButton jbEliminar;
     private JButton jbConsultar;
     private JButton jbTornar;
+
+    private GuiMenuDades dades;
 
     public GuiMenu() throws InterruptedException {
         iniciarComponents();
@@ -114,9 +118,27 @@ public class GuiMenu {
 
         jFrame.setVisible(true);
 
+        jbEditar.addActionListener(new ActionListener() {
 
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    dades = new GuiMenuDades();
+                    dades.getjFrame().setLocation(jFrame.getLocation());
+                    dades.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
     }
+
+    public JFrame getjFrame() {
+        return jFrame;
+    }
+
+
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
