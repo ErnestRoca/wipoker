@@ -4,7 +4,7 @@
  */
 package presentacio;
 
-import presentacio.dades.GuiDades;
+import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -125,7 +125,7 @@ public class GuiMenu {
                 try {
                     new GuiMenu();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
