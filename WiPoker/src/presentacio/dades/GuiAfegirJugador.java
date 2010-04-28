@@ -38,6 +38,7 @@ public class GuiAfegirJugador {
     private JLabel jlTelefon;
     private JTextField jtfTelefon;
     private JButton jbAfegir;
+    private JButton jbTornar;
 
     public GuiAfegirJugador() throws InterruptedException {
         iniciarComponents();
@@ -130,12 +131,23 @@ public class GuiAfegirJugador {
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
         jbAfegir.setLayout(null);
-        jbAfegir.setBounds(100, 500, 120, 24);
+        jbAfegir.setBounds(100, 490, 120, 24);
         jbAfegir.setIconTextGap(-260);
         jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbAfegir.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbAfegir.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbAfegir);
+
+        jbTornar = new JButton("Tornar enrere");
+        jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbTornar.setBorder(null);
+        jbTornar.setLayout(null);
+        jbTornar.setBounds(100, 540, 120, 24);
+        jbTornar.setIconTextGap(-260);
+        jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);

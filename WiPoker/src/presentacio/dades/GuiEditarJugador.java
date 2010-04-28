@@ -38,6 +38,7 @@ public class GuiEditarJugador {
     private JLabel jlTelefon;
     private JTextField jtfTelefon;
     private JButton jbEditar;
+    private JButton jbTornar;
 
     public GuiEditarJugador() throws InterruptedException {
         iniciarComponents();
@@ -130,12 +131,23 @@ public class GuiEditarJugador {
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEditar.setBorder(null);
         jbEditar.setLayout(null);
-        jbEditar.setBounds(100, 500, 120, 24);
+        jbEditar.setBounds(100, 490, 120, 24);
         jbEditar.setIconTextGap(-260);
         jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbEditar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbEditar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbEditar);
+
+        jbTornar = new JButton("Tornar enrere");
+        jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbTornar.setBorder(null);
+        jbTornar.setLayout(null);
+        jbTornar.setBounds(100, 540, 120, 24);
+        jbTornar.setIconTextGap(-260);
+        jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
