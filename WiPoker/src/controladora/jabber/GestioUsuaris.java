@@ -1,29 +1,39 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controladora.jabber;
 
+import org.jivesoftware.smack.SASLAuthentication;
 import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.XMPPException;
 
 /**
  *
  * @author wida45787385
  */
-public abstract class GestioUsuaris {
+public class GestioUsuaris {
 
-    private ConnectionConfiguration config = new ConnectionConfiguration("", 0);
-    private XMPPConnection connection = new XMPPConnection(config);
-
-    public GestioUsuaris() throws XMPPException {
+    protected void ferLogin(XMPPConnection con, String nom, String password) throws XMPPException {
+        if (!con.isConnected()) {
+            con.connect();
+        } else if (!con.isAuthenticated()) {
+            SASLAuthentication.unregisterSASLMechanism("DIGEST-MD5");
+            con.login(nom, password);
+        }
     }
 
-    public void crearUsuari(String dni, String nom, String alias, byte edat, String telefon) {
+    protected void crearCompte(XMPPConnection con, String nom, String password) throws XMPPException {
+        if (!con.isConnected()) {
+            con.connect();
+        } else if (!con.isAuthenticated()) {
+            con.getAccountManager().createAccount(nom, password);
+        }
     }
 
-    public void login(String usuari, String password) throws XMPPException {
-        connection.login(usuari, password);
-    }
-
-    public void desconnectar() {
-        connection.disconnect();
+    protected void tancarSessio(XMPPConnection con) {
+        if (con.isConnected()) {
+            con.disconnect();
+        }
     }
 }
