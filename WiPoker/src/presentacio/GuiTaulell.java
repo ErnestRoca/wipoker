@@ -56,6 +56,10 @@ public class GuiTaulell {
     private JLabel jlAvatar03;
     private JLabel jlAvatar04;
     private JLabel jlAvatar05;
+    private JLabel jlAvatar06;
+    private JLabel jlAvatar07;
+    private JLabel jlAvatar08;
+    private JLabel jlAvatar09;
 
     /** Constructor. */
     private GuiTaulell() {
@@ -401,7 +405,7 @@ public class GuiTaulell {
         jlAvatar04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar04.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 0;
+        final int y2 = 100;
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar04.setBounds(x2, y2, w2, h2);
@@ -413,7 +417,7 @@ public class GuiTaulell {
         jlAvatar05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar05.setOpaque(false);
         final int x1 = 0;
-        final int y1 = 0;
+        final int y1 = 100;
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar05.setBounds(x1, y1, w1, h1);
@@ -421,51 +425,51 @@ public class GuiTaulell {
     }
 
     private void crearControlsJPanelFitxes06() {
-        jlAvatar03 = new JLabel();
-        jlAvatar03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
-        jlAvatar03.setOpaque(false);
+        jlAvatar06 = new JLabel();
+        jlAvatar06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
+        jlAvatar06.setOpaque(false);
         final int x1 = 0;
-        final int y1 = 0;
+        final int y1 = 100;
         final int w1 = 100;
         final int h1 = 100;
-        jlAvatar03.setBounds(x1, y1, w1, h1);
-        jPanelFitxes06.add(jlAvatar03);
+        jlAvatar06.setBounds(x1, y1, w1, h1);
+        jPanelFitxes06.add(jlAvatar06);
     }
 
     private void crearControlsJPanelFitxes07() {
-        jlAvatar03 = new JLabel();
-        jlAvatar03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
-        jlAvatar03.setOpaque(false);
+        jlAvatar07 = new JLabel();
+        jlAvatar07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
+        jlAvatar07.setOpaque(false);
         final int x1 = 0;
-        final int y1 = 0;
+        final int y1 = 100;
         final int w1 = 100;
         final int h1 = 100;
-        jlAvatar03.setBounds(x1, y1, w1, h1);
-        jPanelFitxes07.add(jlAvatar03);
+        jlAvatar07.setBounds(x1, y1, w1, h1);
+        jPanelFitxes07.add(jlAvatar07);
     }
 
     private void crearControlsJPanelFitxes08() {
-        jlAvatar03 = new JLabel();
-        jlAvatar03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
-        jlAvatar03.setOpaque(false);
+        jlAvatar08 = new JLabel();
+        jlAvatar08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
+        jlAvatar08.setOpaque(false);
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 100;
         final int h1 = 100;
-        jlAvatar03.setBounds(x1, y1, w1, h1);
-        jPanelFitxes08.add(jlAvatar03);
+        jlAvatar08.setBounds(x1, y1, w1, h1);
+        jPanelFitxes08.add(jlAvatar08);
     }
 
     private void crearControlsJPanelFitxes09() {
-        jlAvatar03 = new JLabel();
-        jlAvatar03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
-        jlAvatar03.setOpaque(false);
+        jlAvatar09 = new JLabel();
+        jlAvatar09.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
+        jlAvatar09.setOpaque(false);
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 100;
         final int h1 = 100;
-        jlAvatar03.setBounds(x1, y1, w1, h1);
-        jPanelFitxes09.add(jlAvatar03);
+        jlAvatar09.setBounds(x1, y1, w1, h1);
+        jPanelFitxes09.add(jlAvatar09);
     }
 
     private void crearControlsJPanelCrupier() {
