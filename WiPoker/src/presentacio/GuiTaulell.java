@@ -29,22 +29,22 @@ public class GuiTaulell {
     private JFrame jFrame;
     private JPanel jPanelGlobal;
     private JPanel jPanelCartesTaula;
-    private JPanel jPanelFitxes01;
-    private JPanel jPanelFitxes02;
-    private JPanel jPanelFitxes03;
-    private JPanel jPanelFitxes04;
-    private JPanel jPanelFitxes05;
-    private JPanel jPanelFitxes06;
-    private JPanel jPanelFitxes07;
-    private JPanel jPanelFitxes08;
-    private JPanel jPanelFitxes09;
+    private JPanel jPanelJugador01;
+    private JPanel jPanelJugador02;
+    private JPanel jPanelJugador03;
+    private JPanel jPanelJugador04;
+    private JPanel jPanelJugador05;
+    private JPanel jPanelJugador06;
+    private JPanel jPanelJugador07;
+    private JPanel jPanelJugador08;
+    private JPanel jPanelJugador09;
     private JPanel jPanelCrupier;
     private JLabel jlCarta01;
     private JLabel jlCarta02;
     private JLabel jlCarta03;
     private JLabel jlCarta04;
     private JLabel jlCarta05;
-//    private Controlador c; // Referència a un objecte Controlador
+//  private Controlador c; // Referència a un objecte Controlador
     private JLabel jlFitxes01;
     private JLabel jlFitxes02;
     private JLabel jlFitxes03;
@@ -127,122 +127,122 @@ public class GuiTaulell {
         jPanelCartesTaula.setLayout(null);
         jPanelGlobal.add(jPanelCartesTaula);
 
-        jPanelFitxes01 = new JPanel();
-        jPanelFitxes01.setOpaque(false);
-        jPanelFitxes01.setBackground(Color.white);
-        jPanelFitxes01.setLayout(null);
-        jPanelFitxes01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador01 = new JPanel();
+        jPanelJugador01.setOpaque(false);
+        jPanelJugador01.setBackground(Color.white);
+        jPanelJugador01.setLayout(null);
+        jPanelJugador01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x1 = 620;
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 200;
-        jPanelFitxes01.setBounds(x1, y1, w1, h1);
-        jPanelFitxes01.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes01);
+        jPanelJugador01.setBounds(x1, y1, w1, h1);
+        jPanelJugador01.setLayout(null);
+        jPanelGlobal.add(jPanelJugador01);
 
-        jPanelFitxes02 = new JPanel();
-        jPanelFitxes02.setOpaque(false);
-        jPanelFitxes02.setBackground(Color.white);
-        jPanelFitxes02.setLayout(null);
-        jPanelFitxes02.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador02 = new JPanel();
+        jPanelJugador02.setOpaque(false);
+        jPanelJugador02.setBackground(Color.white);
+        jPanelJugador02.setLayout(null);
+        jPanelJugador02.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x2 = 750;
         final int y2 = 50;
         final int w2 = 200;
         final int h2 = 200;
-        jPanelFitxes02.setBounds(x2, y2, w2, h2);
-        jPanelFitxes02.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes02);
+        jPanelJugador02.setBounds(x2, y2, w2, h2);
+        jPanelJugador02.setLayout(null);
+        jPanelGlobal.add(jPanelJugador02);
 
-        jPanelFitxes03 = new JPanel();
-        jPanelFitxes03.setOpaque(false);
-        jPanelFitxes03.setBackground(Color.white);
-        jPanelFitxes03.setLayout(null);
-        jPanelFitxes03.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador03 = new JPanel();
+        jPanelJugador03.setOpaque(false);
+        jPanelJugador03.setBackground(Color.white);
+        jPanelJugador03.setLayout(null);
+        jPanelJugador03.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x3 = 750;
         final int y3 = 300;
         final int w3 = 200;
         final int h3 = 200;
-        jPanelFitxes03.setBounds(x3, y3, w3, h3);
-        jPanelFitxes03.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes03);
+        jPanelJugador03.setBounds(x3, y3, w3, h3);
+        jPanelJugador03.setLayout(null);
+        jPanelGlobal.add(jPanelJugador03);
 
-        jPanelFitxes04 = new JPanel();
-        jPanelFitxes04.setOpaque(false);
-        jPanelFitxes04.setBackground(Color.white);
-        jPanelFitxes04.setLayout(null);
-        jPanelFitxes04.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador04 = new JPanel();
+        jPanelJugador04.setOpaque(false);
+        jPanelJugador04.setBackground(Color.white);
+        jPanelJugador04.setLayout(null);
+        jPanelJugador04.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x4 = 620;
         final int y4 = 400;
         final int w4 = w1;
         final int h4 = h1;
-        jPanelFitxes04.setBounds(x4, y4, w4, h4);
-        jPanelFitxes04.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes04);
+        jPanelJugador04.setBounds(x4, y4, w4, h4);
+        jPanelJugador04.setLayout(null);
+        jPanelGlobal.add(jPanelJugador04);
 
-        jPanelFitxes05 = new JPanel();
-        jPanelFitxes05.setOpaque(false);
-        jPanelFitxes05.setBackground(Color.white);
-        jPanelFitxes05.setLayout(null);
-        jPanelFitxes05.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador05 = new JPanel();
+        jPanelJugador05.setOpaque(false);
+        jPanelJugador05.setBackground(Color.white);
+        jPanelJugador05.setLayout(null);
+        jPanelJugador05.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x5 = 460;
         final int y5 = 400;
         final int w5 = w1;
         final int h5 = h1;
-        jPanelFitxes05.setBounds(x5, y5, w5, h5);
-        jPanelFitxes05.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes05);
+        jPanelJugador05.setBounds(x5, y5, w5, h5);
+        jPanelJugador05.setLayout(null);
+        jPanelGlobal.add(jPanelJugador05);
 
-        jPanelFitxes06 = new JPanel();
-        jPanelFitxes06.setOpaque(false);
-        jPanelFitxes06.setBackground(Color.white);
-        jPanelFitxes06.setLayout(null);
-        jPanelFitxes06.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador06 = new JPanel();
+        jPanelJugador06.setOpaque(false);
+        jPanelJugador06.setBackground(Color.white);
+        jPanelJugador06.setLayout(null);
+        jPanelJugador06.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x6 = 310;
         final int y6 = 400;
         final int w6 = w1;
         final int h6 = h1;
-        jPanelFitxes06.setBounds(x6, y6, w6, h6);
-        jPanelFitxes06.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes06);
+        jPanelJugador06.setBounds(x6, y6, w6, h6);
+        jPanelJugador06.setLayout(null);
+        jPanelGlobal.add(jPanelJugador06);
 
-        jPanelFitxes07 = new JPanel();
-        jPanelFitxes07.setOpaque(false);
-        jPanelFitxes07.setBackground(Color.white);
-        jPanelFitxes07.setLayout(null);
-        jPanelFitxes07.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador07 = new JPanel();
+        jPanelJugador07.setOpaque(false);
+        jPanelJugador07.setBackground(Color.white);
+        jPanelJugador07.setLayout(null);
+        jPanelJugador07.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x7 = 100;
         final int y7 = 350;
         final int w7 = 200;
         final int h7 = h1;
-        jPanelFitxes07.setBounds(x7, y7, w7, h7);
-        jPanelFitxes07.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes07);
+        jPanelJugador07.setBounds(x7, y7, w7, h7);
+        jPanelJugador07.setLayout(null);
+        jPanelGlobal.add(jPanelJugador07);
 
-        jPanelFitxes08 = new JPanel();
-        jPanelFitxes08.setOpaque(false);
-        jPanelFitxes08.setBackground(Color.white);
-        jPanelFitxes08.setLayout(null);
-        jPanelFitxes08.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador08 = new JPanel();
+        jPanelJugador08.setOpaque(false);
+        jPanelJugador08.setBackground(Color.white);
+        jPanelJugador08.setLayout(null);
+        jPanelJugador08.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x8 = 100;
         final int y8 = 100;
         final int w8 = 200;
         final int h8 = h1;
-        jPanelFitxes08.setBounds(x8, y8, w8, h8);
-        jPanelFitxes08.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes08);
+        jPanelJugador08.setBounds(x8, y8, w8, h8);
+        jPanelJugador08.setLayout(null);
+        jPanelGlobal.add(jPanelJugador08);
 
-        jPanelFitxes09 = new JPanel();
-        jPanelFitxes09.setOpaque(false);
-        jPanelFitxes09.setBackground(Color.white);
-        jPanelFitxes09.setLayout(null);
-        jPanelFitxes09.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelJugador09 = new JPanel();
+        jPanelJugador09.setOpaque(false);
+        jPanelJugador09.setBackground(Color.white);
+        jPanelJugador09.setLayout(null);
+        jPanelJugador09.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x9 = 310;
         final int y9 = 0;
         final int w9 = w1;
         final int h9 = h1;
-        jPanelFitxes09.setBounds(x9, y9, w9, h9);
-        jPanelFitxes09.setLayout(null);
-        jPanelGlobal.add(jPanelFitxes09);
+        jPanelJugador09.setBounds(x9, y9, w9, h9);
+        jPanelJugador09.setLayout(null);
+        jPanelGlobal.add(jPanelJugador09);
 
         jPanelCrupier = new JPanel();
         jPanelCrupier.setOpaque(false);
@@ -338,17 +338,17 @@ public class GuiTaulell {
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar01.setBounds(x1, y1, w1, h1);
-        jPanelFitxes01.add(jlAvatar01);
+        jPanelJugador01.add(jlAvatar01);
 
         jlFitxes01 = new JLabel();
-        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 2 + ".png")));
+        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x2 = 0;
-        final int y2 = jPanelFitxes01.getHeight() - 80;
+        final int y2 = jPanelJugador01.getHeight() - 80;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes01.setBounds(x2, y2, w2, h2);
-        jPanelFitxes01.add(jlFitxes01);
+        jPanelJugador01.add(jlFitxes01);
     }
 
     private void crearControlsJPanelFitxes02() {
@@ -360,17 +360,17 @@ public class GuiTaulell {
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar02.setBounds(x1, y1, w1, h1);
-        jPanelFitxes02.add(jlAvatar02);
+        jPanelJugador02.add(jlAvatar02);
 
         jlFitxes02 = new JLabel();
         jlFitxes02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes02.setOpaque(false);
         final int x2 = 0;
-        final int y2 = jPanelFitxes01.getHeight() - 80;
+        final int y2 = jPanelJugador01.getHeight() - 80;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes02.setBounds(x2, y2, w2, h2);
-        jPanelFitxes02.add(jlFitxes02);
+        jPanelJugador02.add(jlFitxes02);
     }
 
     private void crearControlsJPanelFitxes03() {
@@ -382,29 +382,29 @@ public class GuiTaulell {
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar03.setBounds(x1, y1, w1, h1);
-        jPanelFitxes03.add(jlAvatar03);
+        jPanelJugador03.add(jlAvatar03);
 
         jlFitxes03 = new JLabel();
-        jlFitxes03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 2 + ".png")));
+        jlFitxes03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes03.setOpaque(false);
         final int x2 = 0;
         final int y2 = 0;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes03.setBounds(x2, y2, w2, h2);
-        jPanelFitxes03.add(jlFitxes03);
+        jPanelJugador03.add(jlFitxes03);
     }
 
     private void crearControlsJPanelFitxes04() {
         jlFitxes04 = new JLabel();
-        jlFitxes04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
+        jlFitxes04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes04.setOpaque(false);
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 80;
         jlFitxes04.setBounds(x1, y1, w1, h1);
-        jPanelFitxes04.add(jlFitxes04);
+        jPanelJugador04.add(jlFitxes04);
 
         jlAvatar04 = new JLabel();
         jlAvatar04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -414,19 +414,19 @@ public class GuiTaulell {
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar04.setBounds(x2, y2, w2, h2);
-        jPanelFitxes04.add(jlAvatar04);
+        jPanelJugador04.add(jlAvatar04);
     }
 
     private void crearControlsJPanelFitxes05() {
         jlFitxes05 = new JLabel();
-        jlFitxes05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
+        jlFitxes05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes05.setOpaque(false);
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 80;
         jlFitxes05.setBounds(x1, y1, w1, h1);
-        jPanelFitxes05.add(jlFitxes05);
+        jPanelJugador05.add(jlFitxes05);
 
         jlAvatar05 = new JLabel();
         jlAvatar05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -436,19 +436,19 @@ public class GuiTaulell {
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar05.setBounds(x2, y2, w2, h2);
-        jPanelFitxes05.add(jlAvatar05);
+        jPanelJugador05.add(jlAvatar05);
     }
 
     private void crearControlsJPanelFitxes06() {
         jlFitxes06 = new JLabel();
-        jlFitxes06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
+        jlFitxes06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes06.setOpaque(false);
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 80;
         jlFitxes06.setBounds(x1, y1, w1, h1);
-        jPanelFitxes06.add(jlFitxes06);
+        jPanelJugador06.add(jlFitxes06);
 
         jlAvatar06 = new JLabel();
         jlAvatar06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -458,19 +458,19 @@ public class GuiTaulell {
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar06.setBounds(x2, y2, w2, h2);
-        jPanelFitxes06.add(jlAvatar06);
+        jPanelJugador06.add(jlAvatar06);
     }
 
     private void crearControlsJPanelFitxes07() {
         jlFitxes07 = new JLabel();
-        jlFitxes07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
+        jlFitxes07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes07.setOpaque(false);
         final int x1 = 100;
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 80;
         jlFitxes07.setBounds(x1, y1, w1, h1);
-        jPanelFitxes07.add(jlFitxes07);
+        jPanelJugador07.add(jlFitxes07);
 
         jlAvatar07 = new JLabel();
         jlAvatar07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -480,19 +480,19 @@ public class GuiTaulell {
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar07.setBounds(x2, y2, w2, h2);
-        jPanelFitxes07.add(jlAvatar07);
+        jPanelJugador07.add(jlAvatar07);
     }
 
     private void crearControlsJPanelFitxes08() {
         jlFitxes08 = new JLabel();
-        jlFitxes08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
+        jlFitxes08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes08.setOpaque(false);
         final int x1 = 100;
         final int y1 = 100;
         final int w1 = 107;
         final int h1 = 80;
         jlFitxes08.setBounds(x1, y1, w1, h1);
-        jPanelFitxes08.add(jlFitxes08);
+        jPanelJugador08.add(jlFitxes08);
 
         jlAvatar08 = new JLabel();
         jlAvatar08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -502,7 +502,7 @@ public class GuiTaulell {
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar08.setBounds(x2, y2, w2, h2);
-        jPanelFitxes08.add(jlAvatar08);
+        jPanelJugador08.add(jlAvatar08);
     }
 
     private void crearControlsJPanelFitxes09() {
@@ -514,17 +514,17 @@ public class GuiTaulell {
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar09.setBounds(x1, y1, w1, h1);
-        jPanelFitxes09.add(jlAvatar09);
+        jPanelJugador09.add(jlAvatar09);
 
         jlFitxes09 = new JLabel();
-        jlFitxes09.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 2 + ".png")));
+        jlFitxes09.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes09.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x2 = 0;
-        final int y2 = jPanelFitxes09.getHeight() - 80;
+        final int y2 = jPanelJugador09.getHeight() - 80;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes09.setBounds(x2, y2, w2, h2);
-        jPanelFitxes09.add(jlFitxes09);
+        jPanelJugador09.add(jlFitxes09);
     }
 
     private void crearControlsJPanelCrupier() {
