@@ -465,7 +465,7 @@ public class GuiTaulell {
         jlFitxes07 = new JLabel();
         jlFitxes07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
         jlFitxes07.setOpaque(false);
-        final int x1 = 0;
+        final int x1 = 100;
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 80;
