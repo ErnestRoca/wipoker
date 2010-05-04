@@ -573,7 +573,7 @@ public class GuiTaulell {
         jbCheck.setText("Rise");
         jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbCheck.setCursor(cursor);
-        jbCheck.setToolTipText("Fa chek :)");
+        jbCheck.setToolTipText("Fa rise :)");
         final int x2 = 0;
         final int y2 = 2;
         final int w2 = 200;
