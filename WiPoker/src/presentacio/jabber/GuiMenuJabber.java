@@ -7,6 +7,8 @@ package presentacio.jabber;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -15,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import presentacio.GuiMenu;
 
 /**
  *
@@ -30,6 +33,10 @@ public class GuiMenuJabber {
     private JButton jbTancarSessio;
     private JButton jbIniciarSessio;
     private JButton jbTornar;
+
+    private GuiMenu menu;
+    private GuiLoginJabber iniciar;
+    private GuiCrearCompteJabber crear;
 
     public GuiMenuJabber() throws InterruptedException {
         iniciarComponents();
@@ -111,7 +118,56 @@ public class GuiMenuJabber {
         jpFons.add(jlImatgeFons);
 
         jFrame.setVisible(true);
+
+        jbIniciarSessio.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    iniciar = new GuiLoginJabber();
+                    iniciar.getjFrame().setLocation(jFrame.getLocation());
+                    iniciar.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jbCrearCompte.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    crear = new GuiCrearCompteJabber();
+                    crear.getjFrame().setLocation(jFrame.getLocation());
+                    crear.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jbTornar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    menu = new GuiMenu();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
     }
+
+    public JFrame getjFrame() {
+        return jFrame;
+    }
+
+
 
      public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
