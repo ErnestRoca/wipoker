@@ -18,6 +18,7 @@ public class Ronda {
     //pot de la ronda
     private int pot;
     private ArrayList<Fase> fases = new ArrayList<Fase>();
+    private int bigBlind;
 
     public Ronda() {
     }
@@ -56,6 +57,16 @@ public class Ronda {
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
+
+    public int getBigBlind() {
+        return bigBlind;
+    }
+
+    public void setBigBlind(int bigBlind) {
+        this.bigBlind = bigBlind;
+    }
+
+
 
     @Override
     public String toString() {
