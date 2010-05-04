@@ -13,29 +13,31 @@ public class IA {
     public IA() {
     }
 
-    public double calcularAposta(int valorMa) {
+    public double calcularAposta(Bot jugador) {
+        double aposta = 0.0;
+        double valorMa = jugador.getMaActual().getValorMesAlt();
         if (valorMa == 10) {
-            //Escala reial
+            aposta = jugador.getFitxesActuals();
         } else if (valorMa == 9) {
-            //Escala color
+            aposta = jugador.getFitxesActuals();
         } else if (valorMa == 8) {
-            //Poker
+            aposta = jugador.getFitxesActuals();
         } else if (valorMa == 7) {
-            //full
+            aposta = jugador.getFitxesActuals();
         } else if (valorMa == 6) {
-            //color
+            aposta = jugador.getFitxesActuals();
         } else if (valorMa == 5) {
-            //escala
+            aposta = jugador.getFitxesActuals();
         } else if (valorMa == 4) {
-            //trio
+            aposta = jugador.getFitxesActuals() / 2;
         } else if (valorMa == 3) {
-            //doble parella
+            aposta = jugador.getFitxesActuals() / 3;
         } else if (valorMa == 2) {
-            //parella
+            aposta = jugador.getFitxesActuals() / 4;
         } else if (valorMa == 1) {
-            //carta alta
+            aposta = 10;
         }
 
-        return 0.0;
+        return aposta;
     }
 }
