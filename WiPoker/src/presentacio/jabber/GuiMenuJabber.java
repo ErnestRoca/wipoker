@@ -156,7 +156,7 @@ public class GuiMenuJabber {
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
