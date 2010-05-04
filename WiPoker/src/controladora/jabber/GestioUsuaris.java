@@ -4,6 +4,7 @@
  */
 package controladora.jabber;
 
+import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SASLAuthentication;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
@@ -23,6 +24,11 @@ public class GestioUsuaris {
         }
     }
 
+    protected void ferLogin2(XMPPConnection con) throws XMPPException {
+        con.login("peracho87", "Peracho45787385C");
+
+    }
+
     protected void crearCompte(XMPPConnection con, String nom, String password) throws XMPPException {
         if (!con.isConnected()) {
             con.connect();
@@ -35,5 +41,15 @@ public class GestioUsuaris {
         if (con.isConnected()) {
             con.disconnect();
         }
+    }
+
+    public static void main(String[] args) throws XMPPException {
+        GestioUsuaris gu = new GestioUsuaris();
+        ConnectionConfiguration conf = new ConnectionConfiguration("jabberes.org", 5222);
+        XMPPConnection con = new XMPPConnection(conf);
+        con.connect();
+        System.out.println(con.getAccountManager().supportsAccountCreation());
+
+        gu.ferLogin2(con);
     }
 }
