@@ -7,6 +7,8 @@ package presentacio.jabber;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -37,6 +39,8 @@ public class GuiLoginJabber {
     private JTextField jtfCorreu;
     private JButton jbTornar;
     private JButton jbAfegir;
+
+    private GuiMenuJabber menu;
 
     public GuiLoginJabber() throws InterruptedException {
         iniciarComponents();
@@ -139,7 +143,27 @@ public class GuiLoginJabber {
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
+
+        jbTornar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    menu = new GuiMenuJabber();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
+
+    public JFrame getjFrame() {
+        return jFrame;
+    }
+
+
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
