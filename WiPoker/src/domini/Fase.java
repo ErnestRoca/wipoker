@@ -18,6 +18,7 @@ public class Fase {
     private static final String[] nomFases = {"pre-flop", "flop", "turn", "river"};
     private Ronda ronda;
     private ArrayList<Aposta> apostes;
+    private int apostaMinima;
 
     public Fase(String nomFase) {
         this.nomFase = nomFase;
@@ -55,6 +56,16 @@ public class Fase {
     public void setApostes(ArrayList<Aposta> apostes) {
         this.apostes = apostes;
     }
+
+    public int getApostaMinima() {
+        return apostaMinima;
+    }
+
+    public void setApostaMinima(int apostaMinima) {
+        this.apostaMinima = apostaMinima;
+    }
+
+    
 
     @Override
     public boolean equals(Object obj) {
