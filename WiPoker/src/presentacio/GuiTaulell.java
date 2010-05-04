@@ -65,7 +65,7 @@ public class GuiTaulell {
     private JButton jbCheck;
 
     /** Constructor. */
-    private GuiTaulell() {
+    public GuiTaulell() {
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
         crearFormatadors();
@@ -552,10 +552,11 @@ public class GuiTaulell {
     private void crearControlsJPanelBotons() {
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
         jbCheck = new JButton();
-        //jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCheck.setIconTextGap(-180);
+        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbCheck.setMnemonic('C');
         jbCheck.setText("Check");
-        //jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbCheck.setCursor(cursor);
         jbCheck.setToolTipText("Fa chek :)");
         final int x1 = 0;
@@ -563,6 +564,51 @@ public class GuiTaulell {
         final int w1 = 200;
         final int h1 = 40;
         jbCheck.setBounds(x1, y1, w1, h1);
+        jPanelBotons.add(jbCheck);
+
+        jbCheck = new JButton();
+        jbCheck.setIconTextGap(-180);
+        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCheck.setMnemonic('R');
+        jbCheck.setText("Rise");
+        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCheck.setCursor(cursor);
+        jbCheck.setToolTipText("Fa chek :)");
+        final int x2 = 0;
+        final int y2 = 2;
+        final int w2 = 200;
+        final int h2 = 40;
+        jbCheck.setBounds(x2, y2, w2, h2);
+        jPanelBotons.add(jbCheck);
+
+        jbCheck = new JButton();
+        jbCheck.setIconTextGap(-180);
+        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCheck.setMnemonic('C');
+        jbCheck.setText("Check");
+        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCheck.setCursor(cursor);
+        jbCheck.setToolTipText("Fa chek :)");
+        final int x3 = 0;
+        final int y3 = 2;
+        final int w3 = 200;
+        final int h3 = 40;
+        jbCheck.setBounds(x3, y3, w3, h3);
+        jPanelBotons.add(jbCheck);
+
+        jbCheck = new JButton();
+        jbCheck.setIconTextGap(-180);
+        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCheck.setMnemonic('C');
+        jbCheck.setText("Check");
+        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCheck.setCursor(cursor);
+        jbCheck.setToolTipText("Fa chek :)");
+        final int x4 = 0;
+        final int y4 = 2;
+        final int w4 = 200;
+        final int h4 = 40;
+        jbCheck.setBounds(x4, y4, w4, h4);
         jPanelBotons.add(jbCheck);
     }
 
@@ -582,6 +628,222 @@ public class GuiTaulell {
 
     private void iniciarJFrame() {
         jFrame.setVisible(true);
+    }
+
+    public JFrame getjFrame() {
+        return jFrame;
+    }
+
+    public void setjFrame(JFrame jFrame) {
+        this.jFrame = jFrame;
+    }
+
+    public JButton getJbCheck() {
+        return jbCheck;
+    }
+
+    public void setJbCheck(JButton jbCheck) {
+        this.jbCheck = jbCheck;
+    }
+
+    public JLabel getJlAvatar01() {
+        return jlAvatar01;
+    }
+
+    public void setJlAvatar01(JLabel jlAvatar01) {
+        this.jlAvatar01 = jlAvatar01;
+    }
+
+    public JLabel getJlAvatar02() {
+        return jlAvatar02;
+    }
+
+    public void setJlAvatar02(JLabel jlAvatar02) {
+        this.jlAvatar02 = jlAvatar02;
+    }
+
+    public JLabel getJlAvatar03() {
+        return jlAvatar03;
+    }
+
+    public void setJlAvatar03(JLabel jlAvatar03) {
+        this.jlAvatar03 = jlAvatar03;
+    }
+
+    public JLabel getJlAvatar04() {
+        return jlAvatar04;
+    }
+
+    public void setJlAvatar04(JLabel jlAvatar04) {
+        this.jlAvatar04 = jlAvatar04;
+    }
+
+    public JLabel getJlAvatar05() {
+        return jlAvatar05;
+    }
+
+    public void setJlAvatar05(JLabel jlAvatar05) {
+        this.jlAvatar05 = jlAvatar05;
+    }
+
+    public JLabel getJlAvatar06() {
+        return jlAvatar06;
+    }
+
+    public void setJlAvatar06(JLabel jlAvatar06) {
+        this.jlAvatar06 = jlAvatar06;
+    }
+
+    public JLabel getJlAvatar07() {
+        return jlAvatar07;
+    }
+
+    public void setJlAvatar07(JLabel jlAvatar07) {
+        this.jlAvatar07 = jlAvatar07;
+    }
+
+    public JLabel getJlAvatar08() {
+        return jlAvatar08;
+    }
+
+    public void setJlAvatar08(JLabel jlAvatar08) {
+        this.jlAvatar08 = jlAvatar08;
+    }
+
+    public JLabel getJlAvatar09() {
+        return jlAvatar09;
+    }
+
+    public void setJlAvatar09(JLabel jlAvatar09) {
+        this.jlAvatar09 = jlAvatar09;
+    }
+
+    public JLabel getJlCarta01() {
+        return jlCarta01;
+    }
+
+    public void setJlCarta01(JLabel jlCarta01) {
+        this.jlCarta01 = jlCarta01;
+    }
+
+    public JLabel getJlCarta02() {
+        return jlCarta02;
+    }
+
+    public void setJlCarta02(JLabel jlCarta02) {
+        this.jlCarta02 = jlCarta02;
+    }
+
+    public JLabel getJlCarta03() {
+        return jlCarta03;
+    }
+
+    public void setJlCarta03(JLabel jlCarta03) {
+        this.jlCarta03 = jlCarta03;
+    }
+
+    public JLabel getJlCarta04() {
+        return jlCarta04;
+    }
+
+    public void setJlCarta04(JLabel jlCarta04) {
+        this.jlCarta04 = jlCarta04;
+    }
+
+    public JLabel getJlCarta05() {
+        return jlCarta05;
+    }
+
+    public void setJlCarta05(JLabel jlCarta05) {
+        this.jlCarta05 = jlCarta05;
+    }
+
+    public JLabel getJlCroupier() {
+        return jlCroupier;
+    }
+
+    public void setJlCroupier(JLabel jlCroupier) {
+        this.jlCroupier = jlCroupier;
+    }
+
+    public JLabel getJlFitxes01() {
+        return jlFitxes01;
+    }
+
+    public void setJlFitxes01(JLabel jlFitxes01) {
+        this.jlFitxes01 = jlFitxes01;
+    }
+
+    public JLabel getJlFitxes02() {
+        return jlFitxes02;
+    }
+
+    public void setJlFitxes02(JLabel jlFitxes02) {
+        this.jlFitxes02 = jlFitxes02;
+    }
+
+    public JLabel getJlFitxes03() {
+        return jlFitxes03;
+    }
+
+    public void setJlFitxes03(JLabel jlFitxes03) {
+        this.jlFitxes03 = jlFitxes03;
+    }
+
+    public JLabel getJlFitxes04() {
+        return jlFitxes04;
+    }
+
+    public void setJlFitxes04(JLabel jlFitxes04) {
+        this.jlFitxes04 = jlFitxes04;
+    }
+
+    public JLabel getJlFitxes05() {
+        return jlFitxes05;
+    }
+
+    public void setJlFitxes05(JLabel jlFitxes05) {
+        this.jlFitxes05 = jlFitxes05;
+    }
+
+    public JLabel getJlFitxes06() {
+        return jlFitxes06;
+    }
+
+    public void setJlFitxes06(JLabel jlFitxes06) {
+        this.jlFitxes06 = jlFitxes06;
+    }
+
+    public JLabel getJlFitxes07() {
+        return jlFitxes07;
+    }
+
+    public void setJlFitxes07(JLabel jlFitxes07) {
+        this.jlFitxes07 = jlFitxes07;
+    }
+
+    public JLabel getJlFitxes08() {
+        return jlFitxes08;
+    }
+
+    public void setJlFitxes08(JLabel jlFitxes08) {
+        this.jlFitxes08 = jlFitxes08;
+    }
+
+    public JLabel getJlFitxes09() {
+        return jlFitxes09;
+    }
+
+    public void setJlFitxes09(JLabel jlFitxes09) {
+        this.jlFitxes09 = jlFitxes09;
+    }
+
+    public JLabel getJlNomCroupier() {
+        return jlNomCroupier;
+    }
+
+    public void setJlNomCroupier(JLabel jlNomCroupier) {
+        this.jlNomCroupier = jlNomCroupier;
     }
 
     /**
