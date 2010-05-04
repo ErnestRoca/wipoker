@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import presentacio.jabber.GuiMenuJabber;
 
 /**
  *
@@ -35,6 +36,7 @@ public class GuiMenu {
     private JButton jbConsultar;
     private JButton jbTornar;
 
+    private GuiMenuJabber jabber;
     private GuiMenuDades dades;
 
     public GuiMenu() throws InterruptedException {
@@ -118,6 +120,23 @@ public class GuiMenu {
 
         jFrame.setVisible(true);
 
+        jbConsultar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    jabber = new GuiMenuJabber();
+                    jabber.getjFrame().setLocation(jFrame.getLocation());
+                    jabber.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        
+
+
         jbEditar.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent event) {
@@ -129,6 +148,13 @@ public class GuiMenu {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+        });
+
+        jbEliminar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
             }
         });
 
