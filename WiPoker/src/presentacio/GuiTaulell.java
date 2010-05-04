@@ -1,9 +1,11 @@
 package presentacio;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -49,6 +51,7 @@ public class GuiTaulell {
     private JLabel jlFitxes08;
     private JLabel jlFitxes09;
     private JLabel jlCroupier;
+    private JPanel jPanelBotons;
     private JLabel jlNomCroupier;
     private JLabel jlAvatar01;
     private JLabel jlAvatar02;
@@ -59,6 +62,7 @@ public class GuiTaulell {
     private JLabel jlAvatar07;
     private JLabel jlAvatar08;
     private JLabel jlAvatar09;
+    private JButton jbCheck;
 
     /** Constructor. */
     private GuiTaulell() {
@@ -250,6 +254,15 @@ public class GuiTaulell {
         jPanelCrupier.setLayout(null);
         jPanelGlobal.add(jPanelCrupier);
 
+        jPanelBotons = new JPanel();
+        jPanelBotons.setOpaque(false);
+        jPanelBotons.setBackground(Color.white);
+        jPanelBotons.setLayout(null);
+        jPanelBotons.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jPanelBotons.setBounds(0, 550, 200, 200);
+        jPanelBotons.setLayout(null);
+        jPanelGlobal.add(jPanelBotons);
+
     }
 
     private void crearControls() {
@@ -264,13 +277,13 @@ public class GuiTaulell {
         crearControlsJPanelFitxes08();
         crearControlsJPanelFitxes09();
         crearControlsJPanelCrupier();
+        crearControlsJPanelBotons();
     }
 
     private void crearControlsJPanelCartesTaula() {
 
         jlCarta01 = new JLabel();
         jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
-        jlCarta01.setOpaque(true);
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 73;
@@ -280,7 +293,6 @@ public class GuiTaulell {
 
         jlCarta02 = new JLabel();
         jlCarta02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/2h.gif")));
-        jlCarta02.setOpaque(true);
         final int sh12 = 2;
         final int x2 = x1 + w1 + sh12;
         final int y2 = y1;
@@ -291,7 +303,6 @@ public class GuiTaulell {
 
         jlCarta03 = new JLabel();
         jlCarta03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/3c.gif")));
-        jlCarta03.setOpaque(true);
         final int sh23 = sh12;
         final int x3 = x2 + w2 + sh23;
         final int y3 = y1;
@@ -302,7 +313,6 @@ public class GuiTaulell {
 
         jlCarta04 = new JLabel();
         jlCarta04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/kc.gif")));
-        jlCarta04.setOpaque(true);
         final int sh34 = sh12;
         final int x4 = x3 + w3 + sh34;
         final int y4 = y1;
@@ -313,7 +323,6 @@ public class GuiTaulell {
 
         jlCarta05 = new JLabel();
         jlCarta05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
-        jlCarta05.setOpaque(true);
         final int sh45 = sh12;
         final int x5 = x4 + w4 + sh45;
         final int y5 = y1;
@@ -335,7 +344,7 @@ public class GuiTaulell {
         jPanelJugador01.add(jlAvatar01);
 
         jlFitxes01 = new JLabel();
-        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
+        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
         jlFitxes01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x2 = 0;
         final int y2 = jPanelJugador01.getHeight() - 80;
@@ -441,7 +450,7 @@ public class GuiTaulell {
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 80;
-        
+
         jlFitxes06.setBounds(x1, y1, w1, h1);
         jPanelJugador06.add(jlFitxes06);
 
@@ -538,6 +547,23 @@ public class GuiTaulell {
         final int h1 = 100;
         jlCroupier.setBounds(x1, y1, w1, h1);
         jPanelCrupier.add(jlCroupier);
+    }
+
+    private void crearControlsJPanelBotons() {
+        final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+        jbCheck = new JButton();
+        //jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCheck.setMnemonic('C');
+        jbCheck.setText("Check");
+        //jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCheck.setCursor(cursor);
+        jbCheck.setToolTipText("Fa chek :)");
+        final int x1 = 0;
+        final int y1 = 2;
+        final int w1 = 200;
+        final int h1 = 40;
+        jbCheck.setBounds(x1, y1, w1, h1);
+        jPanelBotons.add(jbCheck);
     }
 
     private void crearEscoltadors() {
