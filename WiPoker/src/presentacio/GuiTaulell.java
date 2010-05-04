@@ -4,16 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
-import sun.font.Font2D;
 
 /*
  * To change this template, choose Tools | Templates
@@ -172,9 +166,9 @@ public class GuiTaulell {
         jPanelJugador04.setLayout(null);
         jPanelJugador04.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x4 = 620;
-        final int y4 = 400;
+        final int y4 = 350;
         final int w4 = w1;
-        final int h4 = h1;
+        final int h4 = 250;
         jPanelJugador04.setBounds(x4, y4, w4, h4);
         jPanelJugador04.setLayout(null);
         jPanelGlobal.add(jPanelJugador04);
@@ -185,9 +179,9 @@ public class GuiTaulell {
         jPanelJugador05.setLayout(null);
         jPanelJugador05.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x5 = 460;
-        final int y5 = 400;
+        final int y5 = 350;
         final int w5 = w1;
-        final int h5 = h1;
+        final int h5 = 250;
         jPanelJugador05.setBounds(x5, y5, w5, h5);
         jPanelJugador05.setLayout(null);
         jPanelGlobal.add(jPanelJugador05);
@@ -198,9 +192,9 @@ public class GuiTaulell {
         jPanelJugador06.setLayout(null);
         jPanelJugador06.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x6 = 310;
-        final int y6 = 400;
+        final int y6 = 350;
         final int w6 = w1;
-        final int h6 = h1;
+        final int h6 = 250;
         jPanelJugador06.setBounds(x6, y6, w6, h6);
         jPanelJugador06.setLayout(null);
         jPanelGlobal.add(jPanelJugador06);
@@ -210,8 +204,8 @@ public class GuiTaulell {
         jPanelJugador07.setBackground(Color.white);
         jPanelJugador07.setLayout(null);
         jPanelJugador07.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        final int x7 = 100;
-        final int y7 = 350;
+        final int x7 = 60;
+        final int y7 = 300;
         final int w7 = 200;
         final int h7 = h1;
         jPanelJugador07.setBounds(x7, y7, w7, h7);
@@ -223,8 +217,8 @@ public class GuiTaulell {
         jPanelJugador08.setBackground(Color.white);
         jPanelJugador08.setLayout(null);
         jPanelJugador08.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        final int x8 = 100;
-        final int y8 = 100;
+        final int x8 = 80;
+        final int y8 = 50;
         final int w8 = 200;
         final int h8 = h1;
         jPanelJugador08.setBounds(x8, y8, w8, h8);
@@ -366,7 +360,7 @@ public class GuiTaulell {
         jlFitxes02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes02.setOpaque(false);
         final int x2 = 0;
-        final int y2 = jPanelJugador01.getHeight() - 80;
+        final int y2 = jPanelJugador02.getHeight() - 80;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes02.setBounds(x2, y2, w2, h2);
@@ -410,7 +404,7 @@ public class GuiTaulell {
         jlAvatar04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar04.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 100;
+        final int y2 = 150;
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar04.setBounds(x2, y2, w2, h2);
@@ -432,7 +426,7 @@ public class GuiTaulell {
         jlAvatar05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar05.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 100;
+        final int y2 = 150;
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar05.setBounds(x2, y2, w2, h2);
@@ -447,6 +441,7 @@ public class GuiTaulell {
         final int y1 = 0;
         final int w1 = 107;
         final int h1 = 80;
+        
         jlFitxes06.setBounds(x1, y1, w1, h1);
         jPanelJugador06.add(jlFitxes06);
 
@@ -454,7 +449,7 @@ public class GuiTaulell {
         jlAvatar06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar06.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 100;
+        final int y2 = 150;
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar06.setBounds(x2, y2, w2, h2);
@@ -488,7 +483,7 @@ public class GuiTaulell {
         jlFitxes08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes08.setOpaque(false);
         final int x1 = 100;
-        final int y1 = 100;
+        final int y1 = 120;
         final int w1 = 107;
         final int h1 = 80;
         jlFitxes08.setBounds(x1, y1, w1, h1);
