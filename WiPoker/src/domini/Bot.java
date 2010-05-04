@@ -16,6 +16,7 @@ public class Bot {
     private final  byte posicioTaula;
     private Ma maActual;
     private Aposta aposta;
+    private Partida partida;
 
     public Bot(String alias, int fitxesInicials, int fitxesActuals, byte posicioTaula) {
         this.alias = alias;
