@@ -6,6 +6,7 @@ package presentacio;
 
 import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -35,9 +36,9 @@ public class GuiMenu {
     private JButton jbEliminar;
     private JButton jbConsultar;
     private JButton jbTornar;
-
     private GuiMenuJabber jabber;
     private GuiMenuDades dades;
+    private GuiTaulell taulell;
 
     public GuiMenu() throws InterruptedException {
         iniciarComponents();
@@ -71,8 +72,10 @@ public class GuiMenu {
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
 
+        final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbConsultar = new JButton("Jabber");
+        jbConsultar.setCursor(cursor);
         jbConsultar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbConsultar.setBorder(null);
         jbConsultar.setLayout(null);
@@ -84,6 +87,7 @@ public class GuiMenu {
         jpFons.add(jbConsultar);
 
         jbAfegir = new JButton("Jugar");
+        jbAfegir.setCursor(cursor);
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
         jbAfegir.setLayout(null);
@@ -95,6 +99,7 @@ public class GuiMenu {
         jpFons.add(jbAfegir);
 
         jbEditar = new JButton("Dades jugador");
+        jbEditar.setCursor(cursor);
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEditar.setBorder(null);
         jbEditar.setLayout(null);
@@ -106,6 +111,7 @@ public class GuiMenu {
         jpFons.add(jbEditar);
 
         jbEliminar = new JButton("Sortir");
+        jbEliminar.setCursor(cursor);
         jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEliminar.setBorder(null);
         jbEliminar.setLayout(null);
@@ -133,8 +139,21 @@ public class GuiMenu {
                 }
             }
         });
-        
-        
+
+
+        jbAfegir.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    taulell = new GuiTaulell();
+                    taulell.getjFrame().setLocation(jFrame.getLocation());
+                    taulell.getjFrame().setVisible(true);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        });
 
 
         jbEditar.addActionListener(new ActionListener() {
@@ -163,8 +182,6 @@ public class GuiMenu {
     public JFrame getjFrame() {
         return jFrame;
     }
-
-
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
