@@ -10,6 +10,7 @@ import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
+import domini.Ma;
 import domini.Partida;
 import domini.Ronda;
 import domini.Taula;
@@ -256,8 +257,9 @@ public class ControladoraPartida {
         return esPoker;
     }
 
-    private boolean esTrio(ArrayList<Carta> cartes) {
+    private boolean esTrio(Jugador jugador) {
         boolean esTrio = true;
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         int condicioNoEsTrio = 0;
         int diferents = 0;
         if (cartes.size() == 5) {
@@ -267,11 +269,19 @@ public class ControladoraPartida {
         } else if (cartes.size() == 7) {
             condicioNoEsTrio = 5;
         }
-        int indexCarta = 0;
-        for (Carta carta : cartes) {
-            indexCarta = cartes.indexOf(carta);
-            for (int i = 0; i < cartes.size(); i++) {
-                if (!carta.equals(cartes.get(i)) && (i != indexCarta)) {
+        int iguals = 0;
+        int valor = 0;
+        for (int i = 0; i < cartes.size(); i++) {
+            boolean cond = valor == 0;
+            for (int j = i + 1; j < cartes.size() - 1; i++) {
+                if (cartes.get(i).equals(cartes.get(j)) && cond) {
+                    iguals++;
+                    valor = cartes.get(i).getValor();
+                } else if (cartes.get(i).equals(cartes.get(j)) && !cond && valor == cartes.get(i).getValor()) {
+                    iguals++;
+                }
+
+                else if (!cartes.get(i).equals(cartes.get(j))) {
                     diferents++;
                     if (diferents == condicioNoEsTrio) {
                         esTrio = false;
@@ -283,31 +293,50 @@ public class ControladoraPartida {
         return esTrio;
     }
 
-    private boolean esDobleParella(ArrayList<Carta> cartes) {
-        boolean hiHaParella = esParella(cartes);
-        if (!hiHaParella) {
-            return false;
-        }
+    private boolean esDobleParella(Jugador jugador) {
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        int valorParella1 = -1;
+        int valorParella2 = -1;
+        int valorParella3 = -1;
         int numParelles = 0;
-        int indexCarta = 0;
-        int valorParella = -1;
-        for (Carta carta : cartes) {
-            indexCarta = cartes.indexOf(carta);
-            for (int i = 0; i < cartes.size(); i++) {
-                if (carta.equals(cartes.get(i)) && (i != indexCarta) && carta.getValor() != valorParella) {
-                    numParelles++;
+        for (int i = 0; i < cartes.size(); i++) {
+            for (int j = i + 1; j < cartes.size() - 1; j++) {
+                if (cartes.get(i).equals(cartes.get(j))) {
+                    if (valorParella1 == -1) {
+                        valorParella1 = cartes.get(i).getValor();
+                        numParelles++;
+                    } else if (valorParella2 == -1 && valorParella1 != -1) {
+                        valorParella2 = cartes.get(i).getValor();
+                        numParelles++;
+                    } else if (valorParella3 == -1 && valorParella2 != -1) {
+                        valorParella3 = cartes.get(i).getValor();
+                        numParelles++;
+                    }
                 }
             }
         }
-
-        boolean esDobleParella = numParelles >= 2;
-        return esDobleParella;
+        boolean dobleParella = numParelles >= 2 ? true : false;
+        if (dobleParella) {
+            if ((valorParella1 > valorParella2) && valorParella1 > valorParella3) {
+                jugador.getMaActual().setCombinacio((byte) 3);
+                jugador.getMaActual().setValorMesAlt((byte) valorParella1);
+            } else if (valorParella2 > valorParella1 && valorParella2 > valorParella3) {
+                jugador.getMaActual().setCombinacio((byte) 3);
+                jugador.getMaActual().setValorMesAlt((byte) valorParella2);
+            } else if (valorParella3 > valorParella1 && valorParella3 > valorParella2) {
+                jugador.getMaActual().setCombinacio((byte) 3);
+                jugador.getMaActual().setValorMesAlt((byte) valorParella3);
+            }
+        }
+        return dobleParella;
     }
 
-    private boolean esParella(ArrayList<Carta> cartes) {
+    private boolean esParella(Jugador jugador) {
         boolean esParella = true;
         int condicioNoEsParella = 0;
         int diferents = 0;
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        int valor = -1;
         if (cartes.size() == 5) {
             condicioNoEsParella = 4;
         } else if (cartes.size() == 6) {
@@ -315,11 +344,13 @@ public class ControladoraPartida {
         } else if (cartes.size() == 7) {
             condicioNoEsParella = 6;
         }
-        int indexCarta = 0;
-        for (Carta carta : cartes) {
-            indexCarta = cartes.indexOf(carta);
-            for (int i = 0; i < cartes.size(); i++) {
-                if (!carta.equals(cartes.get(i)) && (i != indexCarta)) {
+        for (int i = 0; i <
+                cartes.size(); i++) {
+            for (int j = i + 1; j <
+                    cartes.size(); j++) {
+                if (cartes.get(i).equals(cartes.get(j)) && cartes.get(i).getValor() > valor) {
+                    valor = cartes.get(i).getValor();
+                } else if (!cartes.get(i).equals(cartes.get(j))) {
                     diferents++;
                     if (diferents == condicioNoEsParella) {
                         esParella = false;
@@ -327,6 +358,10 @@ public class ControladoraPartida {
                     }
                 }
             }
+        }
+        if (esParella) {
+            jugador.getMaActual().setCombinacio((byte) 2);
+            jugador.getMaActual().setValorMesAlt((byte) valor);
         }
         return esParella;
     }
@@ -337,6 +372,7 @@ public class ControladoraPartida {
             if (cartes.get(i).getValor() > num) {
                 num = cartes.get(i).getValor();
             }
+
         }
         return num;
     }
@@ -348,8 +384,10 @@ public class ControladoraPartida {
             byte puntuacio = cartaMesAlta(jugador.getMaActual().getCartes());
             if (puntuacio > puntuacioMesAlta) {
                 puntuacioMesAlta = puntuacio;
-                jugadorAux = jugador;
+                jugadorAux =
+                        jugador;
             }
+
         }
         return jugadorAux;
     }
@@ -366,6 +404,7 @@ public class ControladoraPartida {
             }
         };
         Collections.sort(jugadorsOrdenats, c);
+        //arreglar para retorno misma combinacion
         return jugadorsOrdenats.get(0);
     }
 
@@ -374,6 +413,7 @@ public class ControladoraPartida {
             if (j.getFitxesActuals() <= 0) {
                 jugadors.remove(j);
             }
+
         }
     }
 
@@ -407,94 +447,117 @@ public class ControladoraPartida {
             if (valorCarta == 13) {
                 //trio asos
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 12) {
                 //trio K
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 11) {
                 //trio Q
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 10) {
                 //trio J
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 9) {
                 //trio 10
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 8) {
                 //trio 9
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 7) {
                 //trio 8
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 6) {
                 //trio 7
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 5) {
                 //trio 6
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 4) {
                 //trio 5
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 3) {
                 //trio 4
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 2) {
                 //trio 3
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 1) {
                 //trio 2
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             }
+
         } else if (valorMa == 3) {
             //doble parella
             if (valorCarta == 13) {
                 //Parella asos
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 12) {
                 //parella K
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 11) {
                 //Parella Q
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 10) {
                 //Parella J
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 9) {
                 //Parella 10
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 2;
+                aposta +=
+                        jugador.getFitxesActuals() / 2;
             } else if (valorCarta == 8) {
                 //Parella 9
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 3;
+                aposta +=
+                        jugador.getFitxesActuals() / 3;
             } else if (valorCarta == 7) {
                 //Parella 8
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 4;
+                aposta +=
+                        jugador.getFitxesActuals() / 4;
             } else if (valorCarta == 6) {
                 //Parella 7
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 5;
+                aposta +=
+                        jugador.getFitxesActuals() / 5;
             } else if (valorCarta == 5) {
                 //Parella 6
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 5;
+                aposta +=
+                        jugador.getFitxesActuals() / 5;
             } else if (valorCarta == 4) {
                 //Parella 5
                 aposta += apostaMinima;
@@ -508,44 +571,54 @@ public class ControladoraPartida {
                 //Parella 2
                 aposta += apostaMinima;
             }
+
         } else if (valorMa == 2) {
             //parella
             if (valorCarta == 13) {
                 //Parella asos
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 12) {
                 //parella K
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 11) {
                 //Parella Q
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 10) {
                 //Parella J
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals();
+                aposta +=
+                        jugador.getFitxesActuals();
             } else if (valorCarta == 9) {
                 //Parella 10
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 2;
+                aposta +=
+                        jugador.getFitxesActuals() / 2;
             } else if (valorCarta == 8) {
                 //Parella 9
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 3;
+                aposta +=
+                        jugador.getFitxesActuals() / 3;
             } else if (valorCarta == 7) {
                 //Parella 8
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 4;
+                aposta +=
+                        jugador.getFitxesActuals() / 4;
             } else if (valorCarta == 6) {
                 //Parella 7
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 5;
+                aposta +=
+                        jugador.getFitxesActuals() / 5;
             } else if (valorCarta == 5) {
                 //Parella 6
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 5;
+                aposta +=
+                        jugador.getFitxesActuals() / 5;
             } else if (valorCarta == 4) {
                 //Parella 5
                 aposta += apostaMinima;
@@ -559,23 +632,28 @@ public class ControladoraPartida {
                 //Parella 2
                 aposta += apostaMinima;
             }
+
         } else if (valorMa == 1) {
             if (valorCarta == 13) {
                 //as
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 5;
+                aposta +=
+                        jugador.getFitxesActuals() / 5;
             } else if (valorCarta == 12) {
                 //K
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 6;
+                aposta +=
+                        jugador.getFitxesActuals() / 6;
             } else if (valorCarta == 11) {
                 //Q
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 7;
+                aposta +=
+                        jugador.getFitxesActuals() / 7;
             } else if (valorCarta == 10) {
                 //J
                 aposta += apostaMinima;
-                aposta += jugador.getFitxesActuals() / 8;
+                aposta +=
+                        jugador.getFitxesActuals() / 8;
             } else if (valorCarta == 9) {
                 //10
                 aposta += apostaMinima;
