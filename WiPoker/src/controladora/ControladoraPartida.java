@@ -309,24 +309,22 @@ public class ControladoraPartida {
             cartes.add(new Carta((byte) 1, (byte) 1));
         }
         int consecutives = 0;
-        boolean esEscala = consecutives >= 5;
+        boolean esEscala = false;
         int valor = 0;
-        int n = -1;
+        int n = 0;
         for (int i = 0; i < 2; i++) {
-            if ((cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4) && valor == 0) {
-                for (n = i; n < i + 5; n++) {
-                    if (cartes.get(n).getValor() - cartes.get(n + 1).getValor() > 1) {
+            if ((cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4)) {
+                for (n = i; n < (i + 5); n++) {
+                    System.out.println(cartes.get(n));
+                    if (cartes.get(i).getValor() - cartes.get(i + 1).getValor() == 1) {
                         consecutives++;
                     }
                 }
-                if (consecutives == 5) {
-                    valor = cartes.get(n - 5).getValor();
-                }
             }
-            if (consecutives == 5) {
-                esEscala = true;
-                valor = cartes.get(i).getValor();
-            }
+        }
+        if (consecutives == 5) {
+            esEscala = true;
+            //valor = cartes.get(i).getValor();
         }
 
 
