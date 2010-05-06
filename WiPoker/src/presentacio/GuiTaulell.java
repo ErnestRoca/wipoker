@@ -2,16 +2,25 @@ package presentacio;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
 /*
@@ -70,6 +79,12 @@ public class GuiTaulell {
     private JButton jbBet;
     private JButton jbFold;
     private JMenuBar jMenuBar;
+    private JMenuItem jmiSortir;
+    private JMenuItem jmiAjuda;
+    private JMenu jmMenuJoc;
+    private JMenu jmMenuAjuda;
+    private JMenuItem jmiQuantA;
+    private JSeparator jseSeparador;
 
     /** Constructor. */
     public GuiTaulell() {
@@ -95,8 +110,9 @@ public class GuiTaulell {
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("WiPoker");
         jFrame.setBackground(Color.WHITE);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
+        jFrame.setLayout(null);
     }
 
     //Mètode per introduir una imatge de fons.
@@ -111,17 +127,15 @@ public class GuiTaulell {
     }
 
     private void crearJPanels() {
+        jMenuBar = new JMenuBar();
+        jMenuBar.setToolTipText("Barra de menús");
+        jMenuBar.setBounds(0, 0, 1024, 25);
+        jFrame.add(jMenuBar);
 
         jPanelGlobal = new jPanelGlobal();
-        jPanelGlobal.setBackground(Color.BLACK);
         jPanelGlobal.setLayout(null);
-        jPanelGlobal.setBounds(0, 100, 1024, 700);
+        jPanelGlobal.setBounds(0, 25, 1024, 761);
         jFrame.add(jPanelGlobal);
-
-        jMenuBar = new JMenuBar();
-        jMenuBar.setBounds(0, 0, 1024, 110);
-        jPanelGlobal.add(jMenuBar);
-
 
         jPanelCartesTaula = new JPanel();
         jPanelCartesTaula.setOpaque(false);
@@ -270,13 +284,14 @@ public class GuiTaulell {
         jPanelBotons.setBackground(Color.white);
         jPanelBotons.setLayout(null);
         jPanelBotons.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        jPanelBotons.setBounds(0, 550, 200, 200);
+        jPanelBotons.setBounds(0, 535, 200, 200);
         jPanelBotons.setLayout(null);
         jPanelGlobal.add(jPanelBotons);
 
     }
 
     private void crearControls() {
+        crearControlsJMenuBar();
         crearControlsJPanelCartesTaula();
         crearControlsJPanelFitxes01();
         crearControlsJPanelFitxes02();
@@ -289,6 +304,33 @@ public class GuiTaulell {
         crearControlsJPanelFitxes09();
         crearControlsJPanelCrupier();
         crearControlsJPanelBotons();
+    }
+
+    private void crearControlsJMenuBar() {
+        jmMenuJoc = new JMenu("Joc");
+        jmMenuJoc.setMnemonic('J');
+        jMenuBar.add(jmMenuJoc);
+
+        jmiSortir = new JMenuItem("Sortir");
+        jmiSortir.setMnemonic('S');
+        jmMenuJoc.add(jmiSortir);
+
+
+
+        jmMenuAjuda = new JMenu("Ajuda");
+        jmMenuAjuda.setMnemonic('A');
+        jMenuBar.add(jmMenuAjuda);
+
+        jmiAjuda = new JMenuItem("Contingut de l'ajuda F1");
+        jmiAjuda.setMnemonic(KeyEvent.VK_F1);
+        jmMenuAjuda.add(jmiAjuda);
+
+        jseSeparador = new JSeparator(SwingConstants.HORIZONTAL);
+        jmMenuAjuda.add(jseSeparador);
+
+        jmiQuantA = new JMenuItem("Quant a WiPoker");
+        jmiQuantA.setMnemonic('Q');
+        jmMenuAjuda.add(jmiQuantA);
     }
 
     private void crearControlsJPanelCartesTaula() {
@@ -626,27 +668,37 @@ public class GuiTaulell {
 
     private void crearEscoltadors() {
 
+        jmiSortir.addActionListener(new ActionListener() {
+            
+
+            public void actionPerformed(final ActionEvent evt) {
+                System.exit(0);
+            }
+        });
 
         jbCheck.addActionListener(new ActionListener() {
 
             public void actionPerformed(final ActionEvent evt) {
-                jFrame.dispose();
+                System.out.println("S'ha prmut el boto check");
             }
         });
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                System.out.println("S'ha prmut el boto bet");
             }
         });
 
         jbRise.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                System.out.println("S'ha prmut el boto rise");
             }
         });
         jbFold.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                System.out.println("S'ha prmut el boto fold");
             }
         });
     }
@@ -881,6 +933,68 @@ public class GuiTaulell {
      * @param args No emprats
      */
     public static void main(final String[] args) {
-        new GuiTaulell();
+        /** Triem el tipus de Look&Feel. */
+        final int TIPUSLF = 6;
+        EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                String plaf = "";   // plaf = Pluggable Look&Feel
+                // Missatge inicarAction la classe Gui per crear un objecte Gui
+                final GuiTaulell gui = new GuiTaulell();
+                try {
+                    // Triem el Look&Feel
+                    switch (TIPUSLF) {
+                        case 1:
+                            // Especifiquem el Java Look & Feel (Conegut com Metal). Es pot emprar en totes les plataformes.
+                            plaf = "javax.swing.plaf.metal.MetalLookAndFeel";
+                            UIManager.setLookAndFeel(plaf);
+                            break;
+                        case 2:
+                            // Es pot emprar en totes les plataformes.
+                            plaf = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+                            UIManager.setLookAndFeel(plaf);
+                            break;
+                        case 3:
+                            // Nomes funciona en sistemes Win32.
+                            plaf = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+                            UIManager.setLookAndFeel(plaf);
+                            break;
+                        case 4:
+                            // Nomes funciona en sistemes Mac OS.
+                            plaf = "javax.swing.plaf.mac.MacLookAndFeel";
+                            UIManager.setLookAndFeel(plaf);
+                            break;
+                        case 5:
+                            // Especifiquem el Java Look & Feel (Conegut com Metal) Es pot emprar en totes les plataformes.
+                            plaf = UIManager.getCrossPlatformLookAndFeelClassName();
+                            UIManager.setLookAndFeel(plaf);
+                            break;
+                        case 6:
+                            /* Especifiquem el Java Look & Feel de la plataforma actual
+                             * En Win32, es el Windows Look & Feel.
+                             * En Mac es el Mac OS Look & Feel.
+                             * En Sun es el CDE/Motif Look & Feel.
+                             * Es pot emprar en totes les plataformes.
+                             */
+                            plaf = UIManager.getSystemLookAndFeelClassName();
+                            UIManager.setLookAndFeel(plaf);
+                            break;
+                        default:
+                    }
+                    //Actualitzem l'objecte jFrame amb el Look&Feel triat i tots els demes components ho faran en cascada
+                    SwingUtilities.updateComponentTreeUI(gui.jFrame);
+                } catch (final Exception exception) {
+                    final String missatge = "No s'ha pogut carregar el Look&Feel desitjat\nEs carrega el Look&Feel per defecte (Java Look & Feel)";
+                    final String titol = "S'ha produit una excepció";
+                    JOptionPane.showMessageDialog(gui.jFrame, missatge, titol, JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    gui.jFrame.setVisible(true);
+                }
+            }
+        });
     }
+
+
+
 }

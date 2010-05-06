@@ -5,6 +5,7 @@
 package presentacio.dades;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -29,17 +30,16 @@ public class GuiMenuDades {
     private JPanel jpFons;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
+    private JLabel jlRuta;
     private JButton jbAfegir;
     private JButton jbEditar;
     private JButton jbEliminar;
     private JButton jbConsultar;
     private JButton jbTornar;
-
     private GuiConsultarDades consultar;
     private GuiAfegirJugador afegir;
     private GuiEditarJugador editar;
     private GuiEliminarJugador eliminar;
-
     private GuiMenu menu;
 
     public GuiMenuDades() throws InterruptedException {
@@ -74,8 +74,10 @@ public class GuiMenuDades {
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
 
+        final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbConsultar = new JButton("Consultar dades jugador");
+        jbConsultar.setCursor(cursor);
         jbConsultar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbConsultar.setBorder(null);
         jbConsultar.setLayout(null);
@@ -87,6 +89,7 @@ public class GuiMenuDades {
         jpFons.add(jbConsultar);
 
         jbAfegir = new JButton("Afegir nou jugador");
+        jbAfegir.setCursor(cursor);
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbAfegir.setBorder(null);
         jbAfegir.setLayout(null);
@@ -98,6 +101,7 @@ public class GuiMenuDades {
         jpFons.add(jbAfegir);
 
         jbEditar = new JButton("Editar un jugador");
+        jbEditar.setCursor(cursor);
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEditar.setBorder(null);
         jbEditar.setLayout(null);
@@ -109,6 +113,7 @@ public class GuiMenuDades {
         jpFons.add(jbEditar);
 
         jbEliminar = new JButton("Eliminir dades jugador");
+        jbEliminar.setCursor(cursor);
         jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbEliminar.setBorder(null);
         jbEliminar.setLayout(null);
@@ -118,8 +123,9 @@ public class GuiMenuDades {
         jbEliminar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbEliminar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbEliminar);
-        
+
         jbTornar = new JButton("Tornar enrere");
+        jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(null);
         jbTornar.setLayout(null);
@@ -129,6 +135,12 @@ public class GuiMenuDades {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
+
+        jlRuta = new JLabel("Menu Principal/MenuDades");
+        jlRuta.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
+        jlRuta.setLayout(null);
+        jlRuta.setBounds(0, 930, 340, 20);
+        jpFons.add(jlRuta);
 
         jpFons.add(jlImatgeFons);
 
@@ -208,7 +220,6 @@ public class GuiMenuDades {
     public JFrame getjFrame() {
         return jFrame;
     }
-
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
