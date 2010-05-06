@@ -169,10 +169,22 @@ public class ControladoraPartida {
     }
 
     public void determinarCombinacio() {
-        for (Jugador j : jugadors) {            
-            if (esEscalaReial(j)) {
+        for (Jugador j : jugadors) {
+            esEscalaReial(j);
+            esPoker(j);
+            esFull(j);
+            sonMateixColor(j);
+            esEscala(j);
+            esTrio(j);
+            esDobleParella(j);
+            esParella(j);
+            valorMesAlt(j);
+
+
+            /*
+            esEscalaReial(j);
                 
-            } else if (esEscala(j) && sonMateixColor(j)) {
+            if (esEscala(j) && sonMateixColor(j)) {
                 
             } else if (esPoker(j)) {
                 
@@ -190,8 +202,13 @@ public class ControladoraPartida {
                 
             } else if (valorMesAlt(j) > 0) {
                 
-            }
+            }*/
         }
+    }
+    
+    public boolean esFull(Jugador jugador) {
+        return esEscala(jugador) && sonMateixColor(jugador);
+        
     }
 
     public boolean sonMateixColor(Jugador jugador) {
@@ -323,8 +340,7 @@ public class ControladoraPartida {
         int numParelles = 0;
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).equals(cartes.get(j))) {
-                    System.out.println(cartes.get(i).getValor() + " <>" + cartes.get(j).getValor());
+                if (cartes.get(i).equals(cartes.get(j))) {                    
                     if (valorParella1 == -1) {
                         valorParella1 = cartes.get(i).getValor();
                         numParelles++;
