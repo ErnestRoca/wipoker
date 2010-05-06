@@ -170,26 +170,48 @@ public class ControladoraPartida {
 
     public void determinarCombinacio() {
         for (Jugador j : jugadors) {
-            if (esEscalaReial(j)) {
-
+            /*if (esEscalaReial(j)) {
+                System.out.println("hola 1");
             } else if (esEscalaColor(j)) {
-
+                System.out.println("hola2");
             } else if (esPoker(j)) {
-
+                System.out.println("hola3");
             } else if (esFull(j)){
-
+                System.out.println("hola4");
             } else if (sonMateixColor(j)) {
-
+                System.out.println("hola5");
             } else if (esEscala(j)) {
-
+                System.out.println("hola6");
             } else if (esTrio(j)) {
-
+                System.out.println("hola7");
             } else if (esDobleParella(j)) {
-
+                System.out.println("hola8");
             } else if (esParella(j)) {
-
+                System.out.println("hola9");
             } else if (valorMesAlt(j)) {
+                System.out.println("hola10");
+            }*/
 
+            if (esEscalaReial(j)) {
+                System.out.println("hola 1");
+            } else if (esEscalaColor(j)) {
+                System.out.println("hola2");
+            } else if (esPoker(j)) {
+                System.out.println("hola3");
+            } else if (esFull(j)){
+                System.out.println("hola4");
+            } else if (sonMateixColor(j)) {
+                System.out.println("hola5");
+            } else if (esEscala(j)) {
+                System.out.println("hola6");
+            } else if (esTrio(j)) {
+                System.out.println("hola7");
+            } else if (esDobleParella(j)) {
+                System.out.println("hola8");
+            } else if (esParella(j)) {
+                System.out.println("hola9");
+            } else if (valorMesAlt(j)) {
+                System.out.println("hola10");
             }
         }
     }
@@ -364,34 +386,19 @@ public class ControladoraPartida {
         return dobleParella;
     }
 
-    public boolean esParella(Jugador jugador) {
-        System.out.println("hola");
-        boolean esParella = true;
-        int condicioNoEsParella = 0;
-        int diferents = 0;
+    public boolean esParella(Jugador jugador) {                  
+        int iguals = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         int valor = -1;
-        if (cartes.size() == 5) {
-            condicioNoEsParella = 4;
-        } else if (cartes.size() == 6) {
-            condicioNoEsParella = 5;
-        } else if (cartes.size() == 7) {
-            condicioNoEsParella = 6;
-        }
-
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).equals(cartes.get(j)) && cartes.get(i).getValor() > valor) {
+                if (cartes.get(i).equals(cartes.get(j))) {
                     valor = cartes.get(i).getValor();
-                } else if (!cartes.get(i).equals(cartes.get(j))) {
-                    diferents++;
-                }
-            }
-            if (diferents == condicioNoEsParella) {
-                esParella = false;
-                break;
+                    iguals++;
+                } 
             }
         }
+        boolean esParella = iguals >= 1;        
         if (esParella) {
             jugador.getMaActual().setCombinacio((byte) 2);
             jugador.getMaActual().setValorMesAlt((byte) valor);
