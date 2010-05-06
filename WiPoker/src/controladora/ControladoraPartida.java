@@ -168,29 +168,28 @@ public class ControladoraPartida {
         }
     }
 
-    private void determinarCombinacio() {
-        for (Jugador j : jugadors) {
-            ArrayList<Carta> cartes = j.getMaActual().getCartes();
+    public void determinarCombinacio() {
+        for (Jugador j : jugadors) {            
             if (esEscalaReial(j)) {
-                j.getMaActual().setCombinacio((byte) 10);
+                
             } else if (esEscala(j) && sonMateixColor(j)) {
-                j.getMaActual().setCombinacio((byte) 9);
+                
             } else if (esPoker(j)) {
-                j.getMaActual().setCombinacio((byte) 8);
+                
             } else if (esParella(j) && esTrio(j)) {
-                j.getMaActual().setCombinacio((byte) 7);
+               
             } else if (sonMateixColor(j)) {
-                j.getMaActual().setCombinacio((byte) 6);
+               
             } else if (esEscala(j)) {
-                j.getMaActual().setCombinacio((byte) 5);
+               
             } else if (esTrio(j)) {
-                j.getMaActual().setCombinacio((byte) 4);
+                
             } else if (esDobleParella(j)) {
-                j.getMaActual().setCombinacio((byte) 3);
+                
             } else if (esParella(j)) {
-                j.getMaActual().setCombinacio((byte) 2);
-            } else {
-                j.getMaActual().setCombinacio((byte) 1);
+                
+            } else if (valorMesAlt(j) > 0) {
+                
             }
         }
     }
@@ -290,27 +289,24 @@ public class ControladoraPartida {
 
         int iguals = 0;
         int valor = 0;
-        for (int i = 0; i <
-                cartes.size(); i++) {
-            boolean cond = valor == 0;
-            for (int j = i + 1; j <
-                    cartes.size() - 1; i++) {
-                if (cartes.get(i).equals(cartes.get(j)) && cond) {
+        for (int i = 0; i < cartes.size(); i++) {
+            for (int j = i + 1; j < cartes.size(); j++) {
+                if (cartes.get(i).equals(cartes.get(j)) && iguals < 3) {
                     iguals++;
-                    valor =
-                            cartes.get(i).getValor();
-                } else if (cartes.get(i).equals(cartes.get(j)) && !cond && valor == cartes.get(i).getValor()) {
+                    valor = cartes.get(i).getValor();
+                } else if (cartes.get(i).equals(cartes.get(j)) && valor == cartes.get(i).getValor()) {
                     iguals++;
+                    valor = cartes.get(i).getValor();
                 } else if (!cartes.get(i).equals(cartes.get(j))) {
                     diferents++;
-                    if (diferents == condicioNoEsTrio) {
-                        esTrio = false;
-                        break;
-                    }
                 }
             }
+            if (diferents == condicioNoEsTrio) {
+                esTrio = false;
+                break;
+            }
         }
-        if (iguals == 3) {
+        if (iguals >= 3) {
             esTrio = true;
             jugador.getMaActual().setCombinacio((byte) 4);
             jugador.getMaActual().setValorMesAlt((byte) valor);
@@ -395,10 +391,22 @@ public class ControladoraPartida {
         return esParella;
     }
 
+    public byte valorMesAlt(Jugador jugador) {
+        byte num = 0;
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        for (int i = 0; i < cartes.size(); i++) {
+            if (cartes.get(i).getValor() > num) {
+                num = cartes.get(i).getValor();
+            }
+        }
+        jugador.getMaActual().setCombinacio((byte)1);
+        jugador.getMaActual().setValorMesAlt(num);
+        return num;
+    }
+
     public byte cartaMesAlta(ArrayList<Carta> cartes) {
         byte num = 0;
-        for (int i = 1; i <=
-                2; i++) {
+        for (int i = 1; i <= 2; i++) {
             if (cartes.get(i).getValor() > num) {
                 num = cartes.get(i).getValor();
             }
