@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
@@ -63,13 +66,15 @@ public class GuiTaulell {
     private JLabel jlAvatar08;
     private JLabel jlAvatar09;
     private JButton jbCheck;
+    private JButton jbRise;
+    private JButton jbBet;
+    private JButton jbFold;
+    private JMenuBar jMenuBar;
 
     /** Constructor. */
     public GuiTaulell() {
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
-        crearFormatadors();
-        crearVerificadors();
         crearControlador();  // Automissatge per crear l'objecte Controlador
 
     }
@@ -110,7 +115,13 @@ public class GuiTaulell {
         jPanelGlobal = new jPanelGlobal();
         jPanelGlobal.setBackground(Color.BLACK);
         jPanelGlobal.setLayout(null);
+        jPanelGlobal.setBounds(0, 100, 1024, 700);
         jFrame.add(jPanelGlobal);
+
+        jMenuBar = new JMenuBar();
+        jMenuBar.setBounds(0, 0, 1024, 110);
+        jPanelGlobal.add(jMenuBar);
+
 
         jPanelCartesTaula = new JPanel();
         jPanelCartesTaula.setOpaque(false);
@@ -559,66 +570,85 @@ public class GuiTaulell {
         jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbCheck.setCursor(cursor);
         jbCheck.setToolTipText("Fa chek :)");
+        final int sv = 2;
         final int x1 = 0;
-        final int y1 = 2;
+        final int y1 = 0;
         final int w1 = 200;
         final int h1 = 40;
         jbCheck.setBounds(x1, y1, w1, h1);
         jPanelBotons.add(jbCheck);
 
-        jbCheck = new JButton();
-        jbCheck.setIconTextGap(-180);
-        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbCheck.setMnemonic('R');
-        jbCheck.setText("Rise");
-        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbCheck.setCursor(cursor);
-        jbCheck.setToolTipText("Fa rise :)");
+        jbRise = new JButton();
+        jbRise.setIconTextGap(-180);
+        jbRise.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbRise.setMnemonic('R');
+        jbRise.setText("Rise");
+        jbRise.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbRise.setCursor(cursor);
+        jbRise.setToolTipText("Fa rise :)");
         final int x2 = 0;
-        final int y2 = 2;
-        final int w2 = 200;
-        final int h2 = 40;
-        jbCheck.setBounds(x2, y2, w2, h2);
-        jPanelBotons.add(jbCheck);
+        final int y2 = y1 + h1 + sv;
+        final int w2 = w1;
+        final int h2 = h1;
+        jbRise.setBounds(x2, y2, w2, h2);
+        jPanelBotons.add(jbRise);
 
-        jbCheck = new JButton();
-        jbCheck.setIconTextGap(-180);
-        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbCheck.setMnemonic('C');
-        jbCheck.setText("Check");
-        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbCheck.setCursor(cursor);
-        jbCheck.setToolTipText("Fa chek :)");
+        jbBet = new JButton();
+        jbBet.setIconTextGap(-180);
+        jbBet.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbBet.setMnemonic('B');
+        jbBet.setText("Bet");
+        jbBet.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbBet.setCursor(cursor);
+        jbBet.setToolTipText("Fa bet :)");
         final int x3 = 0;
-        final int y3 = 2;
-        final int w3 = 200;
-        final int h3 = 40;
-        jbCheck.setBounds(x3, y3, w3, h3);
-        jPanelBotons.add(jbCheck);
+        final int y3 = y2 + h2 + sv;
+        final int w3 = w1;
+        final int h3 = h1;
+        jbBet.setBounds(x3, y3, w3, h3);
+        jPanelBotons.add(jbBet);
 
-        jbCheck = new JButton();
-        jbCheck.setIconTextGap(-180);
-        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbCheck.setMnemonic('C');
-        jbCheck.setText("Check");
-        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbCheck.setCursor(cursor);
-        jbCheck.setToolTipText("Fa chek :)");
+        jbFold = new JButton();
+        jbFold.setIconTextGap(-180);
+        jbFold.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbFold.setMnemonic('F');
+        jbFold.setText("Fold");
+        jbFold.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbFold.setCursor(cursor);
+        jbFold.setToolTipText("Fa fold :)");
         final int x4 = 0;
-        final int y4 = 2;
-        final int w4 = 200;
-        final int h4 = 40;
-        jbCheck.setBounds(x4, y4, w4, h4);
-        jPanelBotons.add(jbCheck);
+        final int y4 = y3 + h2 + sv;
+        final int w4 = w1;
+        final int h4 = h1;
+        jbFold.setBounds(x4, y4, w4, h4);
+        jPanelBotons.add(jbFold);
     }
 
     private void crearEscoltadors() {
-    }
 
-    private void crearFormatadors() {
-    }
 
-    private void crearVerificadors() {
+        jbCheck.addActionListener(new ActionListener() {
+
+            public void actionPerformed(final ActionEvent evt) {
+                jFrame.dispose();
+            }
+        });
+        jbBet.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+
+        jbRise.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        jbFold.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
     }
 
     /** Crea l'objecte controlador del cas d'ús. */
