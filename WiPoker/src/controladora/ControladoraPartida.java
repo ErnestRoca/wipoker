@@ -249,7 +249,10 @@ public class ControladoraPartida {
                 if (cartes.get(i).equals(cartes.get(j)) && valor == 0) {
                     valor = cartes.get(i).getValor();
                     iguals++;
-                } else {
+                } else if(cartes.get(i).equals(cartes.get(j)) && valor == cartes.get(i).getValor()) {
+                    iguals++;
+                }
+                else {
                     diferents++;
                 }
             }
@@ -258,7 +261,10 @@ public class ControladoraPartida {
                 break;
             }
         }
-
+        if (esPoker && iguals == 4) {
+            jugador.getMaActual().setCombinacio((byte)5);
+            jugador.getMaActual().setValorMesAlt((byte)valor);
+        }
 
         return esPoker;
     }
