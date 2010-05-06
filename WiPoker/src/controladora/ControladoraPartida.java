@@ -296,31 +296,38 @@ public class ControladoraPartida {
     public boolean esEscala(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         Collections.sort(cartes, new Comparator() {
+
             public int compare(Object o1, Object o2) {
                 Carta c1 = (Carta) o1;
                 Carta c2 = (Carta) o2;
-                return c1.getValor() - c2.getValor();
+                return c2.getValor() - c1.getValor();
             }
         });
-        Collections.reverse(cartes);
-        if (cartes.get(0).getValor() == 13) {
-            cartes.add(new Carta((byte)1, (byte)1));
-        }
 
+        Collections.reverseOrder();
+        if (cartes.get(0).getValor() == 13) {
+            cartes.add(new Carta((byte) 1, (byte) 1));
+        }
         int consecutives = 0;
+        boolean esEscala = consecutives >= 5;
         int valor = 0;
-        for (int i = 0; i < cartes.size(); i++) {
+        for (int i = 0; i < 2; i++) {
+            /*
             if (cartes.get(i).getValor() - cartes.get(i + 1).getValor() == 1) {
                 consecutives++;
                 if (consecutives == 1) {
                     valor = cartes.get(i).getValor();
-                } else {
-                    consecutives = 0;
-                    valor = 0;
                 }
+            } else {
+                consecutives = 0;
+                valor = 0;
+            }*/
+            if (cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4 && valor == 0) {
+                esEscala = true;
+                valor = cartes.get(i).getValor();
             }
         }
-        boolean esEscala = consecutives >= 5;
+        
         if (esEscala) {
             jugador.getMaActual().setCombinacio((byte) 5);
             jugador.getMaActual().setValorMesAlt((byte) valor);
