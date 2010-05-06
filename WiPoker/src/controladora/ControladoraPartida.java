@@ -311,23 +311,25 @@ public class ControladoraPartida {
         int consecutives = 0;
         boolean esEscala = consecutives >= 5;
         int valor = 0;
+        int n = -1;
         for (int i = 0; i < 2; i++) {
-            /*
-            if (cartes.get(i).getValor() - cartes.get(i + 1).getValor() == 1) {
-                consecutives++;
-                if (consecutives == 1) {
-                    valor = cartes.get(i).getValor();
+            if ((cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4) && valor == 0) {
+                for (n = i; n < i + 5; n++) {
+                    if (cartes.get(n).getValor() - cartes.get(n + 1).getValor() > 1) {
+                        consecutives++;
+                    }
                 }
-            } else {
-                consecutives = 0;
-                valor = 0;
-            }*/
-            if (cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4 && valor == 0) {
+                if (consecutives == 5) {
+                    valor = cartes.get(n - 5).getValor();
+                }
+            }
+            if (consecutives == 5) {
                 esEscala = true;
                 valor = cartes.get(i).getValor();
             }
         }
-        
+
+
         if (esEscala) {
             jugador.getMaActual().setCombinacio((byte) 5);
             jugador.getMaActual().setValorMesAlt((byte) valor);
