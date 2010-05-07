@@ -4,7 +4,7 @@ package domini;
  *
  * @author ernest
  */
-public class Carta {
+public class Carta implements Comparable {
 
     private final byte pal;
     private final byte valor;
@@ -52,5 +52,10 @@ public class Carta {
     @Override
     public String toString() {
         return "Carta: " + valor + " de " + pal + "\n";
+    }
+
+    public int compareTo(Object o) {
+        Carta c = (Carta) o;
+        return this.valor - c.getValor();
     }
 }
