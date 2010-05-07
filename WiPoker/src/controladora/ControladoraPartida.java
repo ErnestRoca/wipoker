@@ -74,7 +74,7 @@ public class ControladoraPartida {
         }
     }
 
-    public void iniciarRonda() {
+    public void iniciarRonda() throws InterruptedException {
         Ronda novaRonda = new Ronda(0);
         novaRonda.setPartida(partida);
         partida.getRondes().add(novaRonda);
@@ -90,7 +90,7 @@ public class ControladoraPartida {
         partida.getRondes().clear();
     }
 
-    public void gestionarFase(Ronda ronda) {
+    public void gestionarFase(Ronda ronda) throws InterruptedException {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()]);
@@ -172,7 +172,7 @@ public class ControladoraPartida {
         }
     }
 
-    public void determinarCombinacio() {
+    public void determinarCombinacio() throws InterruptedException {
         for (Jugador j : jugadors) {
             /*if (esEscalaReial(j)) {
             System.out.println("hola 1");
@@ -224,7 +224,7 @@ public class ControladoraPartida {
         return esTrio(jugador) && esParella(jugador);
     }
 
-    public boolean esEscalaColor(Jugador jugador) {
+    public boolean esEscalaColor(Jugador jugador) throws InterruptedException {
         return sonMateixColor(jugador) && esEscala(jugador);
     }
 
@@ -296,9 +296,12 @@ public class ControladoraPartida {
         return esPoker;
     }
 
-    public boolean esEscala(Jugador jugador) {
+    public boolean esEscala(Jugador jugador) throws InterruptedException {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
         HashSet<Carta> senseDuplicades = new HashSet<Carta>(cartes);
+        if (senseDuplicades.size() < 5) {
+            return false;
+        }
         boolean esEscala = false;
         int iteracions = cartes.size() - 4;
         int valor = 0;
@@ -308,44 +311,27 @@ public class ControladoraPartida {
         cartes.addAll(senseDuplicades);
         Collections.sort(cartes);
         Collections.reverse(cartes);
-        for (Carta c : cartes) {
-            System.out.println(c);
-        }
-                
         boolean hiHaAs = cartes.get(0).getValor() == 13;
-        if (!hiHaAs) {
-        //for (int i = 0; i <= iteracions; i++) {
-        for (int j = 0; j < 6; j++) {
-        if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
-        //System.out.println(cartes.get(j));
-        consecutives++;
-        }
-        }
-        }
-        /*
         for (int i = 0; i <= 2; i++) {
-        boolean cond = cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4;
-        System.out.println(i + ":" + (cartes.get(i).getValor() - cartes.get(i + 4).getValor()));
-        if (cond) {
-        for (int j = 0; j < 5; j++) {
-        if (cartes.get(j + i).getValor() - cartes.get(j + i + 1).getValor() == 1) {
-        consecutives++;
-        }
-        }
-        }
-        }
-         */
-        if (consecutives == 5) {
-            esEscala = true;
-            //valor = cartes.get(i).getValor();
+            if (!(cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4)) {
+                break;
+            } else {
+                for (int j = i; j < 5; j++) {
+                    if (cartes.get(j + i).getValor() - cartes.get(j + i + 1).getValor() == 1) {
+                        consecutives++;
+                    }
+                    consecutives++;
+                    System.out.println(cartes.get(i));
+                }
             }
-
-
+        }
+        if (consecutives >= 5) {
+            esEscala = true;
+        }
         if (esEscala) {
             jugador.getMaActual().setCombinacio((byte) 5);
             //jugador.getMaActual().setValorMesAlt((byte) valor);
             }
-
         return esEscala;
     }
 
@@ -355,19 +341,24 @@ public class ControladoraPartida {
         int numCartes2 = 1;
         int valorTrio1 = 0;
         int valorTrio2 = 0;
-        for (int i = 0; i < cartes.size(); i++) {
-            for (int j = i + 1; j < cartes.size(); j++) {
+        for (int i = 0; i <
+                cartes.size(); i++) {
+            for (int j = i + 1; j <
+                    cartes.size(); j++) {
                 if (cartes.get(i).equals(cartes.get(j)) && numCartes1 == 1 && numCartes2 == 1) {
                     numCartes1++;
-                    valorTrio1 = cartes.get(i).getValor();
+                    valorTrio1 =
+                            cartes.get(i).getValor();
                 } else if (cartes.get(i).equals(cartes.get(j)) && numCartes1 > 1 && cartes.get(i).getValor() == valorTrio1) {
                     numCartes1++;
                 } else if (cartes.get(i).equals(cartes.get(j)) && numCartes2 == 1 && cartes.get(i).getValor() != valorTrio1) {
                     numCartes2++;
-                    valorTrio2 = cartes.get(i).getValor();
+                    valorTrio2 =
+                            cartes.get(i).getValor();
                 } else if (cartes.get(i).equals(cartes.get(j)) && numCartes2 > 1 && cartes.get(i).getValor() == valorTrio2) {
                     numCartes2++;
                 }
+
             }
         }
         boolean esTrio = numCartes1 >= 3 || numCartes2 >= 3;
@@ -386,12 +377,15 @@ public class ControladoraPartida {
         int valorParella2 = -1;
         int valorParella3 = -1;
         int numParelles = 0;
-        for (int i = 0; i < cartes.size(); i++) {
-            for (int j = i + 1; j < cartes.size(); j++) {
+        for (int i = 0; i <
+                cartes.size(); i++) {
+            for (int j = i + 1; j <
+                    cartes.size(); j++) {
                 if (cartes.get(i).equals(cartes.get(j))) {
                     if (valorParella1 == -1) {
                         valorParella1 = cartes.get(i).getValor();
                         numParelles++;
+
                     } else if (valorParella2 == -1 && valorParella1 != -1) {
                         valorParella2 = cartes.get(i).getValor();
                         numParelles++;
@@ -399,7 +393,10 @@ public class ControladoraPartida {
                     } else if (valorParella3 == -1 && valorParella2 != -1) {
                         valorParella3 = cartes.get(i).getValor();
                         numParelles++;
+
                     }
+
+
                 }
             }
         }
@@ -425,12 +422,17 @@ public class ControladoraPartida {
         int iguals = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         int valor = -1;
-        for (int i = 0; i < cartes.size(); i++) {
-            for (int j = i + 1; j < cartes.size(); j++) {
+        for (int i = 0; i <
+                cartes.size(); i++) {
+            for (int j = i + 1; j <
+                    cartes.size(); j++) {
                 if (cartes.get(i).equals(cartes.get(j))) {
                     valor = cartes.get(i).getValor();
                     iguals++;
+
                 }
+
+
             }
         }
         boolean esParella = iguals >= 1;
@@ -438,16 +440,19 @@ public class ControladoraPartida {
             jugador.getMaActual().setCombinacio((byte) 2);
             jugador.getMaActual().setValorMesAlt((byte) valor);
         }
+
         return esParella;
     }
 
     public boolean valorMesAlt(Jugador jugador) {
         byte num = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        for (int i = 0; i < cartes.size(); i++) {
+        for (int i = 0; i <
+                cartes.size(); i++) {
             if (cartes.get(i).getValor() > num) {
                 num = cartes.get(i).getValor();
             }
+
         }
         jugador.getMaActual().setCombinacio((byte) 1);
         jugador.getMaActual().setValorMesAlt(num);
@@ -456,7 +461,8 @@ public class ControladoraPartida {
 
     public byte cartaMesAlta(ArrayList<Carta> cartes) {
         byte num = 0;
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <=
+                2; i++) {
             if (cartes.get(i).getValor() > num) {
                 num = cartes.get(i).getValor();
             }
