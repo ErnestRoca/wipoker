@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -294,44 +297,55 @@ public class ControladoraPartida {
     }
 
     public boolean esEscala(Jugador jugador) {
-        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        Collections.sort(cartes, new Comparator() {
-
-            public int compare(Object o1, Object o2) {
-                Carta c1 = (Carta) o1;
-                Carta c2 = (Carta) o2;
-                return c2.getValor() - c1.getValor();
-            }
-        });
-
-        Collections.reverseOrder();
-        if (cartes.get(0).getValor() == 13) {
-            cartes.add(new Carta((byte) 1, (byte) 1));
-        }
-        int consecutives = 0;
+        ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
+        HashSet<Carta> senseDuplicades = new HashSet<Carta>(cartes);
         boolean esEscala = false;
+        int iteracions = cartes.size() - 4;
         int valor = 0;
-        int n = 0;
-        for (int i = 0; i < 2; i++) {
-            if ((cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4)) {
-                for (n = i; n < (i + 5); n++) {
-                    System.out.println(cartes.get(n));
-                    if (cartes.get(i).getValor() - cartes.get(i + 1).getValor() == 1) {
-                        consecutives++;
-                    }
-                }
-            }
+        int consecutives = 0;
+        Collections.sort(cartes);
+        cartes.clear();
+        cartes.addAll(senseDuplicades);
+        Collections.sort(cartes);
+        Collections.reverse(cartes);
+        for (Carta c : cartes) {
+            System.out.println(c);
         }
+                
+        boolean hiHaAs = cartes.get(0).getValor() == 13;
+        if (!hiHaAs) {
+        //for (int i = 0; i <= iteracions; i++) {
+        for (int j = 0; j < 6; j++) {
+        if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
+        //System.out.println(cartes.get(j));
+        consecutives++;
+        }
+        }
+        }
+        /*
+        for (int i = 0; i <= 2; i++) {
+        boolean cond = cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4;
+        System.out.println(i + ":" + (cartes.get(i).getValor() - cartes.get(i + 4).getValor()));
+        if (cond) {
+        for (int j = 0; j < 5; j++) {
+        if (cartes.get(j + i).getValor() - cartes.get(j + i + 1).getValor() == 1) {
+        consecutives++;
+        }
+        }
+        }
+        }
+         */
         if (consecutives == 5) {
             esEscala = true;
             //valor = cartes.get(i).getValor();
-        }
+            }
 
 
         if (esEscala) {
             jugador.getMaActual().setCombinacio((byte) 5);
-            jugador.getMaActual().setValorMesAlt((byte) valor);
-        }
+            //jugador.getMaActual().setValorMesAlt((byte) valor);
+            }
+
         return esEscala;
     }
 
