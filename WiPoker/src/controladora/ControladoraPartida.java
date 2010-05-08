@@ -297,41 +297,27 @@ public class ControladoraPartida {
     }
 
     public boolean esEscala(Jugador jugador) throws InterruptedException {
-        ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
-        HashSet<Carta> senseDuplicades = new HashSet<Carta>(cartes);
-        if (senseDuplicades.size() < 5) {
-            return false;
-        }
-        boolean esEscala = false;
-        int iteracions = cartes.size() - 4;
-        int valor = 0;
-        int consecutives = 0;
-        Collections.sort(cartes);
-        cartes.clear();
-        cartes.addAll(senseDuplicades);
+        ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());        
+        boolean esEscala = false;        
+        int consecutives = 0;        
         Collections.sort(cartes);
         Collections.reverse(cartes);
         boolean hiHaAs = cartes.get(0).getValor() == 13;
         for (int i = 0; i <= 2; i++) {
-            if (!(cartes.get(i).getValor() - cartes.get(i + 4).getValor() == 4)) {
-                break;
-            } else {
-                for (int j = i; j < 5; j++) {
-                    if (cartes.get(j + i).getValor() - cartes.get(j + i + 1).getValor() == 1) {
-                        consecutives++;
-                    }
+            for (int j = i; j < (i + 4); j++) {
+                if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
                     consecutives++;
-                    System.out.println(cartes.get(i));
                 }
             }
         }
+
         if (consecutives >= 5) {
             esEscala = true;
         }
         if (esEscala) {
             jugador.getMaActual().setCombinacio((byte) 5);
             //jugador.getMaActual().setValorMesAlt((byte) valor);
-            }
+        }
         return esEscala;
     }
 
@@ -341,10 +327,10 @@ public class ControladoraPartida {
         int numCartes2 = 1;
         int valorTrio1 = 0;
         int valorTrio2 = 0;
-        for (int i = 0; i <
-                cartes.size(); i++) {
-            for (int j = i + 1; j <
-                    cartes.size(); j++) {
+        for (int i = 0; i
+                < cartes.size(); i++) {
+            for (int j = i + 1; j
+                    < cartes.size(); j++) {
                 if (cartes.get(i).equals(cartes.get(j)) && numCartes1 == 1 && numCartes2 == 1) {
                     numCartes1++;
                     valorTrio1 =
@@ -377,10 +363,10 @@ public class ControladoraPartida {
         int valorParella2 = -1;
         int valorParella3 = -1;
         int numParelles = 0;
-        for (int i = 0; i <
-                cartes.size(); i++) {
-            for (int j = i + 1; j <
-                    cartes.size(); j++) {
+        for (int i = 0; i
+                < cartes.size(); i++) {
+            for (int j = i + 1; j
+                    < cartes.size(); j++) {
                 if (cartes.get(i).equals(cartes.get(j))) {
                     if (valorParella1 == -1) {
                         valorParella1 = cartes.get(i).getValor();
@@ -422,10 +408,10 @@ public class ControladoraPartida {
         int iguals = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         int valor = -1;
-        for (int i = 0; i <
-                cartes.size(); i++) {
-            for (int j = i + 1; j <
-                    cartes.size(); j++) {
+        for (int i = 0; i
+                < cartes.size(); i++) {
+            for (int j = i + 1; j
+                    < cartes.size(); j++) {
                 if (cartes.get(i).equals(cartes.get(j))) {
                     valor = cartes.get(i).getValor();
                     iguals++;
@@ -447,8 +433,8 @@ public class ControladoraPartida {
     public boolean valorMesAlt(Jugador jugador) {
         byte num = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        for (int i = 0; i <
-                cartes.size(); i++) {
+        for (int i = 0; i
+                < cartes.size(); i++) {
             if (cartes.get(i).getValor() > num) {
                 num = cartes.get(i).getValor();
             }
@@ -461,8 +447,8 @@ public class ControladoraPartida {
 
     public byte cartaMesAlta(ArrayList<Carta> cartes) {
         byte num = 0;
-        for (int i = 1; i <=
-                2; i++) {
+        for (int i = 1; i
+                <= 2; i++) {
             if (cartes.get(i).getValor() > num) {
                 num = cartes.get(i).getValor();
             }
