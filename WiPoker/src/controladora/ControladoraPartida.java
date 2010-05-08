@@ -303,11 +303,13 @@ public class ControladoraPartida {
         Collections.sort(cartes);
         Collections.reverse(cartes);
         boolean hiHaAs = cartes.get(0).getValor() == 13;
-        for (int i = 0; i <= 2; i++) {
-            for (int j = i; j < (i + 4); j++) {
+        int iteracions = cartes.size() - 4;
+        for (int i = 0; i < iteracions; i++) {
+            for (int j = i; j < cartes.size(); j++) {
                 if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
                     consecutives++;
                 }
+                System.out.println(cartes.get(j));
             }
         }
 
