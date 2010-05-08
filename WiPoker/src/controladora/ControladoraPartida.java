@@ -304,17 +304,19 @@ public class ControladoraPartida {
         Collections.reverse(cartes);        
         int iteracions = cartes.size() - 4;
         System.out.println(cartes.size() -4);
-        for (int i = 0; i < iteracions; i++) {
+        //for (int i = 0; i < iteracions; i++) {
             for (int j = 0; j < 4 ; j++) {
                 System.out.println(cartes.get(j));
                 
                 if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
                     consecutives++;
                 }
+                
             }
-        }
+        System.out.println(consecutives);
+        //}
 
-        if (consecutives >= 5) {
+        if (consecutives == 5) {
             esEscala = true;
         }
         if (esEscala) {
