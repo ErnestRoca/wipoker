@@ -296,20 +296,21 @@ public class ControladoraPartida {
         return esPoker;
     }
 
-    public boolean esEscala(Jugador jugador) throws InterruptedException {
+    public boolean esEscala(Jugador jugador) {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());        
         boolean esEscala = false;        
         int consecutives = 0;        
         Collections.sort(cartes);
-        Collections.reverse(cartes);
-        boolean hiHaAs = cartes.get(0).getValor() == 13;
+        Collections.reverse(cartes);        
         int iteracions = cartes.size() - 4;
+        System.out.println(cartes.size() -4);
         for (int i = 0; i < iteracions; i++) {
-            for (int j = i; j < cartes.size(); j++) {
+            for (int j = 0; j < 4 ; j++) {
+                System.out.println(cartes.get(j));
+                
                 if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
                     consecutives++;
                 }
-                System.out.println(cartes.get(j));
             }
         }
 
