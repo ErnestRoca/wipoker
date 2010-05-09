@@ -298,6 +298,8 @@ public class ControladoraPartida {
 
     public boolean esEscala(Jugador jugador) {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
+        Collections.sort(cartes);
+        Collections.reverse(cartes);
         boolean condFalse = cartes.size() <= 4;
         boolean condFalse2 = false;
         boolean esEscala = false;
@@ -310,8 +312,7 @@ public class ControladoraPartida {
             return esEscala;
         }
         System.out.println("cond1: " + condFalse + " cond2 " + condFalse2);
-        Collections.sort(cartes);
-        Collections.reverse(cartes);
+        
 
         if (condFalse || condFalse2) {
             return esEscala;
