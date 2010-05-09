@@ -299,27 +299,37 @@ public class ControladoraPartida {
     public boolean esEscala(Jugador jugador) {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
         boolean condFalse = cartes.size() <= 4;
-        boolean condFalse2 = cartes.get(4).getValor() - cartes.get(0).getValor() != 4;
+        boolean condFalse2 = false;
+        boolean esEscala = false;
+        if (condFalse) {
+            System.out.println(condFalse);
+            return esEscala;
+        } else if (cartes.size() >= 5) {
+            condFalse2 = cartes.get(4).getValor() - cartes.get(0).getValor() != 4;
+            System.out.println(condFalse2);
+            return esEscala;
+        }
         System.out.println("cond1: " + condFalse + " cond2 " + condFalse2);
         Collections.sort(cartes);
         Collections.reverse(cartes);
-        boolean esEscala = false;
+
         if (condFalse || condFalse2) {
             return esEscala;
         }
         int consecutives = 0;
 
-        int iteracions = cartes.size() - 4;        
+        int iteracions = cartes.size() - 4;
         //for (int i = 0; i < iteracions; i++) {
         for (int j = 0; j < cartes.size() - 1; j++) {/*
             System.out.println(cartes.get(j));
 
             if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
-                consecutives++;
+            consecutives++;
             }
-*/
+             */
+
         }
-        
+
         //}
 
         return esEscala;
