@@ -10,18 +10,13 @@ import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
-import domini.Ma;
 import domini.Partida;
 import domini.Ronda;
 import domini.Taula;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  *
@@ -173,29 +168,7 @@ public class ControladoraPartida {
     }
 
     public void determinarCombinacio() throws InterruptedException {
-        for (Jugador j : jugadors) {
-            /*if (esEscalaReial(j)) {
-            System.out.println("hola 1");
-            } else if (esEscalaColor(j)) {
-            System.out.println("hola2");
-            } else if (esPoker(j)) {
-            System.out.println("hola3");
-            } else if (esFull(j)){
-            System.out.println("hola4");
-            } else if (sonMateixColor(j)) {
-            System.out.println("hola5");
-            } else if (esEscala(j)) {
-            System.out.println("hola6");
-            } else if (esTrio(j)) {
-            System.out.println("hola7");
-            } else if (esDobleParella(j)) {
-            System.out.println("hola8");
-            } else if (esParella(j)) {
-            System.out.println("hola9");
-            } else if (valorMesAlt(j)) {
-            System.out.println("hola10");
-            }*/
-
+        for (Jugador j : jugadors) {            
             if (esEscalaReial(j)) {
                 System.out.println("hola 1");
             } else if (esEscalaColor(j)) {
@@ -304,7 +277,7 @@ public class ControladoraPartida {
         boolean condFalse2 = false;
         boolean esEscala = false;
         if (condFalse) {
-            System.out.println(condFalse);
+            System.out.println("5 cartes: " + condFalse);
             return esEscala;
         } else if (cartes.size() >= 5) {
             condFalse2 = cartes.get(4).getValor() - cartes.get(0).getValor() != 4;
