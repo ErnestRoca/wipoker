@@ -194,32 +194,19 @@ public class ControladoraPartida {
     }
 
     public boolean esEscalaReial(Jugador jugador) {
-        /*
-        boolean esEscalaReial = true;
-        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        if (!sonMateixColor(jugador)) {
-        esEscalaReial = false;
-        }
-        int j = 10;
-        for (int i = 0; i < cartes.size() - 1; i++) {
-        if (!(cartes.get(i).getValor() < cartes.get(i + 1).getValor())) {
-        esEscalaReial = false;
-        break;
-        }
-        }*/
+        boolean esEscalaReial = false;
         boolean escalaColor = esEscalaColor(jugador);
-        boolean interval = false;
+        boolean limits = false;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         Collections.sort(cartes);
         Collections.reverse(cartes);
         int iteracions = cartes.size() - 4;
-        System.out.println(escalaColor);
-        for (int i = 0; i < iteracions; i++) {
-            if (cartes.get(i).getValor() == 10 && cartes.get(i + 4).getValor() == 14) {
-                interval = true;
+        for (int i = 0; i < iteracions; i++) {            
+            if ((cartes.get(i).getValor() == 14 && cartes.get(i + 4).getValor() == 10)) {
+                limits = true;
             }
-        }
-        boolean esEscalaReial = escalaColor && interval;
+        }       
+        esEscalaReial = escalaColor && limits;
         return esEscalaReial;
     }
 
@@ -316,7 +303,7 @@ public class ControladoraPartida {
             for (int j = iteracions - 1; j < (iteracions + 3); j++) {
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
                     valor = cartes.get(j).getValor();
-                    consecutives++;                    
+                    consecutives++;
                 }
             }
             if (consecutives <= 3) {
@@ -333,17 +320,17 @@ public class ControladoraPartida {
             cartes.add(new Carta((byte) cartes.get(0).getPal(), (byte) 1));
             cartes.remove(0);
             for (int i = 0; i < iteracions; i++) {
-            for (int j = iteracions - 1; j < (iteracions + 3); j++) {
-                if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                    valor = cartes.get(j).getValor();
-                    consecutives++;                    
+                for (int j = iteracions - 1; j < (iteracions + 3); j++) {
+                    if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
+                        valor = cartes.get(j).getValor();
+                        consecutives++;
+                    }
+                }
+                if (consecutives <= 3) {
+                    consecutives = 0;
+                    valor = 0;
                 }
             }
-            if (consecutives <= 3) {
-                consecutives = 0;
-                valor = 0;
-            }
-        }
         }
         if (consecutives >= 4) {
             esEscala = true;
