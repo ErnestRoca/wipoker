@@ -247,10 +247,10 @@ public class ControladoraPartida {
         int iguals = 0;
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size() - 1; j++) {
-                if (cartes.get(i).equals(cartes.get(j)) && valor == 0) {
+                if (cartes.get(i).getValor() == cartes.get(j).getValor() && valor == 0) {
                     valor = cartes.get(i).getValor();
                     iguals++;
-                } else if (cartes.get(i).equals(cartes.get(j)) && valor == cartes.get(i).getValor()) {
+                } else if (cartes.get(i).getValor() ==  cartes.get(j).getValor() && valor == cartes.get(i).getValor()) {
                     iguals++;
                 } else {
                     diferents++;
