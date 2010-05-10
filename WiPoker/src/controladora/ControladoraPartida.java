@@ -275,17 +275,27 @@ public class ControladoraPartida {
         Collections.reverse(cartes);
         boolean esEscala = false;
         int consecutives = 0;
+        int valor = 0;
         int iteracions = cartes.size() - 4;
+        
         for (int i = 0; i < iteracions; i++) {
-            for (int j = iteracions - 1; j < (iteracions + 5); j++) {
-                System.out.println(cartes.get(j).getValor());
-                
+            for (int j = iteracions - 1; j < (iteracions + 3) ; j++) {
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
+                    valor = cartes.get(iteracions - 1).getValor();
                     consecutives++;                    
-                }
+                }                
+            }            
+            if (consecutives <= 3) {
+                consecutives = 0;
+                valor = 0;
             }
-        }
 
+        }
+        if (consecutives >= 4) {
+            esEscala = true;
+            jugador.getMaActual().setCombinacio((byte) 5);
+            jugador.getMaActual().setValorMesAlt((byte) valor);
+        }
         return esEscala;
     }
 
