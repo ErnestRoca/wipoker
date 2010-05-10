@@ -326,9 +326,7 @@ public class ControladoraPartida {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
         Collections.sort(cartes);
         Collections.reverse(cartes);
-        if (cartes.get(0).getValor() == 14) {
-            cartes.add(new Carta((byte) 0, (byte) 1));
-        }
+      
         boolean esEscala = false;
         int consecutives = 0;
         int valor = 0;
