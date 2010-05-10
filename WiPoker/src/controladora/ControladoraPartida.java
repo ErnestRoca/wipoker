@@ -167,7 +167,7 @@ public class ControladoraPartida {
         }
     }
 
-    public void determinarCombinacio() throws InterruptedException {
+    public void determinarCombinacio()  {
         for (Jugador j : jugadors) {
             if (esEscalaReial(j)) {
                 System.out.println("hola 1");
@@ -194,6 +194,7 @@ public class ControladoraPartida {
     }    
 
     public boolean esEscalaReial(Jugador jugador) {
+        /*
         boolean esEscalaReial = true;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         if (!sonMateixColor(jugador)) {
@@ -205,13 +206,46 @@ public class ControladoraPartida {
                 esEscalaReial = false;
                 break;
             }
+        }*/
+        boolean escalaColor = esEscalaColor(jugador);
+        boolean interval = false;
+         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+         Collections.sort(cartes);
+         Collections.reverse(cartes);
+        int iteracions = cartes.size() -4;
+        System.out.println(escalaColor);
+        for (int i = 0; i < iteracions;i++) {
+            if (cartes.get(i).getValor() == 10 && cartes.get(i + 4).getValor() == 14) {
+                interval = true;
+            }
         }
-
+        boolean esEscalaReial = escalaColor && interval;
         return esEscalaReial;
     }
 
-    public boolean esEscalaColor(Jugador jugador) throws InterruptedException {
-        return sonMateixColor(jugador) && esEscala(jugador);
+    public boolean esEscalaColor(Jugador jugador)  {
+        ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
+        Collections.sort(cartes);
+        Collections.reverse(cartes);
+        boolean esEscalaColor = false;
+        int consecutives = 0;
+        int valor = 0;
+        int iteracions = cartes.size() - 4;
+
+        for (int i = 0; i < iteracions; i++) {
+            for (int j = iteracions - 1; j < (iteracions + 3); j++) {
+                if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
+                    valor = cartes.get(iteracions - 1).getValor();
+                    consecutives++;
+                }
+            }
+            if (consecutives <= 3) {
+                consecutives = 0;
+                valor = 0;
+            }
+        }
+        return esEscalaColor;
+        
     }
 
     public boolean esPoker(Jugador jugador) {
@@ -231,9 +265,7 @@ public class ControladoraPartida {
                     esPoker = true;
                     jugador.getMaActual().setValorMesAlt((byte) valor);
                 }
-
             }
-
         }
         if (esPoker) {
             esPoker = true;
@@ -281,6 +313,9 @@ public class ControladoraPartida {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
         Collections.sort(cartes);
         Collections.reverse(cartes);
+        if (cartes.get(0).getValor() == 14) {
+            cartes.add(new Carta((byte) 0, (byte) 1));
+        }
         boolean esEscala = false;
         int consecutives = 0;
         int valor = 0;
@@ -303,7 +338,7 @@ public class ControladoraPartida {
             esEscala = true;
             jugador.getMaActual().setCombinacio((byte) 5);
             jugador.getMaActual().setValorMesAlt((byte) valor);
-        }
+        }        
         return esEscala;
     }
 
