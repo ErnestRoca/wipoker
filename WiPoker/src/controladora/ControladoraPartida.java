@@ -191,28 +191,7 @@ public class ControladoraPartida {
                 System.out.println("hola10");
             }
         }
-    }
-
-    public boolean esFull(Jugador jugador) {
-        return esTrio(jugador) && esParella(jugador);
-    }
-
-    public boolean esEscalaColor(Jugador jugador) throws InterruptedException {
-        return sonMateixColor(jugador) && esEscala(jugador);
-    }
-
-    public boolean sonMateixColor(Jugador jugador) {
-        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        boolean mateixColor = true;
-        byte color = cartes.get(0).getPal();
-        for (Carta c : cartes) {
-            if (color != c.getPal()) {
-                mateixColor = false;
-                break;
-            }
-        }
-        return mateixColor;
-    }
+    }    
 
     public boolean esEscalaReial(Jugador jugador) {
         boolean esEscalaReial = true;
@@ -231,6 +210,10 @@ public class ControladoraPartida {
         return esEscalaReial;
     }
 
+    public boolean esEscalaColor(Jugador jugador) throws InterruptedException {
+        return sonMateixColor(jugador) && esEscala(jugador);
+    }
+
     public boolean esPoker(Jugador jugador) {
         boolean esPoker = false;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
@@ -242,22 +225,56 @@ public class ControladoraPartida {
                     iguals = 1;
                     valor = cartes.get(i).getValor();
                 } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && valor == cartes.get(i).getValor()) {
-                    iguals++;                    
+                    iguals++;
                 }
                 if (iguals >= 3) {
-                    esPoker = true;                    
+                    esPoker = true;
+                    jugador.getMaActual().setValorMesAlt((byte) valor);
                 }
 
             }
-            System.out.println(iguals);
 
         }
         if (esPoker) {
             esPoker = true;
             jugador.getMaActual().setCombinacio((byte) 5);
-            //jugador.getMaActual().setValorMesAlt((byte) valor);
+        } else {
+            jugador.getMaActual().setValorMesAlt((byte) 0);
         }
         return esPoker;
+    }
+
+    public boolean esFull(Jugador jugador) {
+        return esParella(jugador) && esTrio(jugador) ;
+    }
+
+    public boolean sonMateixColor(Jugador jugador) {
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        boolean mateixColor = false;
+        Collections.sort(cartes);
+        Collections.reverse(cartes);
+        int valor = 0;
+        for (int i = 0; i < cartes.size(); i++) {
+            int igualColor = 0;
+            byte color = cartes.get(i).getPal();
+            valor = cartes.get(i).getValor();
+            for (int j = i + 1; j < cartes.size(); j++) {
+                if (cartes.get(j).getPal() == color) {
+                    igualColor++;
+                    valor = cartes.get(j).getValor();
+                }
+            }
+            if (igualColor >= 4) {
+                mateixColor = true;
+                jugador.getMaActual().setCombinacio((byte) 6);
+                jugador.getMaActual().setValorMesAlt((byte) valor);
+            }
+        }
+        if (!mateixColor) {
+            jugador.getMaActual().setValorMesAlt((byte) 0);
+        }
+        
+        return mateixColor;
     }
 
     public boolean esEscala(Jugador jugador) {
@@ -346,7 +363,6 @@ public class ControladoraPartida {
                         numParelles++;
 
                     }
-
 
                 }
             }
