@@ -276,13 +276,12 @@ public class ControladoraPartida {
         boolean esEscala = false;
         int consecutives = 0;
         int iteracions = cartes.size() - 4;
-
         for (int i = 0; i < iteracions; i++) {
-            for (int j = iteracions - 1; j < (i + 5); j++) {
-                System.out.println(cartes.get(j));
+            for (int j = iteracions - 1; j < (iteracions + 5); j++) {
+                System.out.println(cartes.get(j).getValor());
+                
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                    consecutives++;
-                    System.out.println(consecutives);
+                    consecutives++;                    
                 }
             }
         }
