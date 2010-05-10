@@ -227,27 +227,9 @@ public class ControladoraPartida {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
         Collections.sort(cartes);
         Collections.reverse(cartes);
-        boolean mateixColor = false;
+        boolean mateixColor = sonMateixColor(jugador);
         boolean esEscalaColor = false;
-        boolean esEscala = false;
-        if (cartes.get(0).getValor() != 14) {
-            esEscala = esEscala(jugador);
-            mateixColor = sonMateixColor(jugador);
-            esEscalaColor = mateixColor && esEscala;
-            if (esEscalaColor) {
-                jugador.getMaActual().setCombinacio((byte) 9);
-
-            }
-        } else if (cartes.get(0).getValor() == 14) {
-            mateixColor = sonMateixColor(jugador);
-            //cartes.add(new Carta((byte) 3, (byte) 1));
-            esEscala = esEscala(jugador);
-            //cartes.remove(cartes.size() - 1);
-            System.out.println(esEscala);
-
-        }
-
-
+        boolean esEscala = esEscala(jugador);
         esEscalaColor = mateixColor && esEscala;
         if (esEscalaColor) {
             jugador.getMaActual().setCombinacio((byte) 9);
@@ -318,7 +300,6 @@ public class ControladoraPartida {
         if (!mateixColor) {
             jugador.getMaActual().setValorMesAlt((byte) 0);
         }
-
         return mateixColor;
     }
 
@@ -355,8 +336,7 @@ public class ControladoraPartida {
             for (int j = iteracions - 1; j < (iteracions + 3); j++) {
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
                     valor = cartes.get(j).getValor();
-                    consecutives++;
-                    System.out.println(consecutives);
+                    consecutives++;                    
                 }
             }
             if (consecutives <= 3) {
@@ -364,6 +344,11 @@ public class ControladoraPartida {
                 valor = 0;
             }
         }
+        }
+        if (consecutives >= 4) {
+            esEscala = true;
+            jugador.getMaActual().setCombinacio((byte) 5);
+            jugador.getMaActual().setValorMesAlt((byte) valor);
         }
         return esEscala;
     }
