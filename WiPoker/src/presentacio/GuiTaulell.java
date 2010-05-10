@@ -36,6 +36,8 @@ public class GuiTaulell {
     /** Pseudoatributs per tenir visibilitat d'atribut. */
     private JFrame jFrame;
     private JPanel jPanelGlobal;
+    private JPanel jPanelBotons;
+    private JPanel jPanelUsuari;
     private JPanel jPanelCartesTaula;
     private JPanel jPanelJugador01;
     private JPanel jPanelJugador02;
@@ -47,12 +49,16 @@ public class GuiTaulell {
     private JPanel jPanelJugador08;
     private JPanel jPanelJugador09;
     private JPanel jPanelCrupier;
+    //
+    private JLabel jlCarta01Usuari;
+    private JLabel jlCarta02Usuari;
+    //
     private JLabel jlCarta01;
     private JLabel jlCarta02;
     private JLabel jlCarta03;
     private JLabel jlCarta04;
     private JLabel jlCarta05;
-//  private Controlador c; // Referència a un objecte Controlador
+    //
     private JLabel jlFitxes01;
     private JLabel jlFitxes02;
     private JLabel jlFitxes03;
@@ -62,8 +68,8 @@ public class GuiTaulell {
     private JLabel jlFitxes07;
     private JLabel jlFitxes08;
     private JLabel jlFitxes09;
+    //
     private JLabel jlCroupier;
-    private JPanel jPanelBotons;
     private JLabel jlNomCroupier;
     private JLabel jlAvatar01;
     private JLabel jlAvatar02;
@@ -74,10 +80,12 @@ public class GuiTaulell {
     private JLabel jlAvatar07;
     private JLabel jlAvatar08;
     private JLabel jlAvatar09;
+    //
     private JButton jbCheck;
     private JButton jbRise;
     private JButton jbBet;
     private JButton jbFold;
+    //
     private JMenuBar jMenuBar;
     private JMenuItem jmiSortir;
     private JMenuItem jmiAjuda;
@@ -136,6 +144,18 @@ public class GuiTaulell {
         jPanelGlobal.setLayout(null);
         jPanelGlobal.setBounds(0, 25, 1024, 761);
         jFrame.add(jPanelGlobal);
+
+        jPanelUsuari = new JPanel();
+        jPanelUsuari.setOpaque(false);
+        jPanelUsuari.setBackground(Color.white);
+        jPanelUsuari.setLayout(null);
+        final int xjPanelUsari = 420;
+        final int yjPanelUsari = 610;
+        final int wjPanelUsari = 148;
+        final int hjPanelUsari = 97;
+        jPanelUsuari.setBounds(xjPanelUsari, yjPanelUsari, wjPanelUsari, hjPanelUsari);
+        jPanelUsuari.setLayout(null);
+        jPanelGlobal.add(jPanelUsuari);
 
         jPanelCartesTaula = new JPanel();
         jPanelCartesTaula.setOpaque(false);
@@ -292,6 +312,7 @@ public class GuiTaulell {
 
     private void crearControls() {
         crearControlsJMenuBar();
+        crearControlsJPanelUsuari();
         crearControlsJPanelCartesTaula();
         crearControlsJPanelFitxes01();
         crearControlsJPanelFitxes02();
@@ -331,6 +352,27 @@ public class GuiTaulell {
         jmiQuantA = new JMenuItem("Quant a WiPoker");
         jmiQuantA.setMnemonic('Q');
         jmMenuAjuda.add(jmiQuantA);
+    }
+
+    private void crearControlsJPanelUsuari() {
+        jlCarta01Usuari = new JLabel();
+        jlCarta01Usuari.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
+        final int x1 = 0;
+        final int y1 = 0;
+        final int w1 = 73;
+        final int h1 = 97;
+        jlCarta01Usuari.setBounds(x1, y1, w1, h1);
+        jPanelUsuari.add(jlCarta01Usuari);
+
+        jlCarta02Usuari = new JLabel();
+        jlCarta02Usuari.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/2h.gif")));
+        final int sh12 = 2;
+        final int x2 = x1 + w1 + sh12;
+        final int y2 = y1;
+        final int w2 = w1;
+        final int h2 = h1;
+        jlCarta02Usuari.setBounds(x2, y2, w2, h2);
+        jPanelUsuari.add(jlCarta02Usuari);
     }
 
     private void crearControlsJPanelCartesTaula() {
@@ -669,7 +711,6 @@ public class GuiTaulell {
     private void crearEscoltadors() {
 
         jmiSortir.addActionListener(new ActionListener() {
-            
 
             public void actionPerformed(final ActionEvent evt) {
                 System.exit(0);
@@ -994,7 +1035,4 @@ public class GuiTaulell {
             }
         });
     }
-
-
-
 }
