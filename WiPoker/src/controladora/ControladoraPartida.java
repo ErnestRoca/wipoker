@@ -278,11 +278,11 @@ public class ControladoraPartida {
         int iteracions = cartes.size() - 4;
 
         for (int i = 0; i < iteracions; i++) {
-            for (int j = i; j < 4; j++) {
+            for (int j = i; j <= (i + 5); j++) {
                 System.out.println(cartes.get(j));
-                if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
+                /*if (cartes.get(j).getValor() - cartes.get(j + 1).getValor() == 1) {
                     consecutives++;
-                }
+                }*/
             }
         }
 
