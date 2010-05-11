@@ -24,7 +24,7 @@ import presentacio.GuiTaulell;
  *
  * @author wida45787385
  */
-public class GuiNovaPartida implements ActionListener {
+public class GuiNovaPartida {
 
     private JFrame jFrame;
     private JPanel jpFons;
@@ -114,14 +114,15 @@ public class GuiNovaPartida implements ActionListener {
 
         jpFons.add(jlImatgeFons);
 
-        jFrame.setVisible(true);
-    }
+        jbContraMaquina.addActionListener(new ActionListener() {
 
-    public void actionPerformed(ActionEvent e) {
-        final JButton jb = (JButton) e.getSource();
-        if (jb.equals(jbContraMaquina)) {
-            new GuiTaulell();
-        }
+            public void actionPerformed(ActionEvent e) {
+                GuiTaulell gt = new GuiTaulell();
+                jFrame.setVisible(false);
+                gt.getjFrame().setLocation(jFrame.getLocation());
+                gt.getjFrame().setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {
