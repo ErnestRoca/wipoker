@@ -11,6 +11,20 @@ package controladora;
  */
 public class ControladoraJoc {
 
-    ControladoraPartida cp = new ControladoraPartida((byte) 1);
+    ControladoraPartida cp;
+
+    public ControladoraJoc() throws InterruptedException {
+        cp = new ControladoraPartida((byte) 2);
+        jugar();
+    }
+
+    public void jugar() throws InterruptedException {
+        cp.crearBaralla();
+        cp.barallar();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        new ControladoraJoc();
+    }
     
 }
