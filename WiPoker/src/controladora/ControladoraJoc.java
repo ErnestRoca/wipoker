@@ -66,10 +66,4 @@ public class ControladoraJoc {
     public void barallar(Baralla baralla) {
         Collections.shuffle(baralla.getCartes());
     }
-
-
-
-    public static void main(String[] args) {
-        new ControladoraJoc();
-    }
 }
