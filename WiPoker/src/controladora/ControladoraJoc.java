@@ -18,7 +18,7 @@ public class ControladoraJoc {
 
     ControladoraPartida cp;
 
-    public ControladoraJoc() throws InterruptedException {
+    public ControladoraJoc()  {
         cp = new ControladoraPartida((byte) 2);
     }
 
@@ -65,7 +65,9 @@ public class ControladoraJoc {
         Collections.shuffle(baralla.getCartes());
     }
 
-    public static void main(String[] args) throws InterruptedException {
+
+
+    public static void main(String[] args) {
         new ControladoraJoc();
     }
 }
