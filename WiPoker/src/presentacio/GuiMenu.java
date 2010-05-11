@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import presentacio.jabber.GuiMenuJabber;
+import presentacio.partida.GuiNovaPartida;
 
 /**
  *
@@ -35,14 +36,14 @@ public class GuiMenu {
     private JPanel jpFons;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
-    private JButton jbJugar;
-    private JButton jbEditar;
+    private JButton jbPartida;
+    private JButton jbDades;
     private JButton jbSortir;
-    private JButton jbConsultar;
+    private JButton jbJabber;
     private JButton jbTornar;
     private GuiMenuJabber jabber;
     private GuiMenuDades dades;
-    private GuiTaulell taulell;
+    private GuiNovaPartida partida;
 
     public GuiMenu() throws InterruptedException {
         iniciarComponents();
@@ -78,41 +79,41 @@ public class GuiMenu {
 
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
-        jbConsultar = new JButton("Jabber");
-        jbConsultar.setCursor(cursor);
-        jbConsultar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbConsultar.setBorder(null);
-        jbConsultar.setLayout(null);
-        jbConsultar.setBounds(40, 135, 260, 40);
-        jbConsultar.setIconTextGap(-260);
-        jbConsultar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbConsultar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbConsultar.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbConsultar);
+        jbJabber = new JButton("Jabber");
+        jbJabber.setCursor(cursor);
+        jbJabber.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbJabber.setBorder(null);
+        jbJabber.setLayout(null);
+        jbJabber.setBounds(40, 135, 260, 40);
+        jbJabber.setIconTextGap(-260);
+        jbJabber.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbJabber.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbJabber.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbJabber);
 
-        jbJugar = new JButton("Jugar");
-        jbJugar.setCursor(cursor);
-        jbJugar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbJugar.setBorder(null);
-        jbJugar.setLayout(null);
-        jbJugar.setBounds(40, 245, 260, 40);
-        jbJugar.setIconTextGap(-260);
-        jbJugar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbJugar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbJugar.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbJugar);
+        jbPartida = new JButton("Jugar");
+        jbPartida.setCursor(cursor);
+        jbPartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbPartida.setBorder(null);
+        jbPartida.setLayout(null);
+        jbPartida.setBounds(40, 245, 260, 40);
+        jbPartida.setIconTextGap(-260);
+        jbPartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbPartida.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbPartida.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbPartida);
 
-        jbEditar = new JButton("Dades jugador");
-        jbEditar.setCursor(cursor);
-        jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbEditar.setBorder(null);
-        jbEditar.setLayout(null);
-        jbEditar.setBounds(40, 355, 260, 40);
-        jbEditar.setIconTextGap(-260);
-        jbEditar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbEditar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbEditar.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbEditar);
+        jbDades = new JButton("Dades jugador");
+        jbDades.setCursor(cursor);
+        jbDades.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbDades.setBorder(null);
+        jbDades.setLayout(null);
+        jbDades.setBounds(40, 355, 260, 40);
+        jbDades.setIconTextGap(-260);
+        jbDades.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbDades.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbDades.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbDades);
 
         jbSortir = new JButton("Sortir");
         jbSortir.setCursor(cursor);
@@ -130,7 +131,7 @@ public class GuiMenu {
 
         jFrame.setVisible(true);
 
-        jbConsultar.addActionListener(new ActionListener() {
+        jbJabber.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent event) {
                 try {
@@ -145,14 +146,14 @@ public class GuiMenu {
         });
 
 
-        jbJugar.addActionListener(new ActionListener() {
+        jbPartida.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    taulell = new GuiTaulell();
-                    taulell.getjFrame().setLocation(jFrame.getLocation());
-                    taulell.getjFrame().setVisible(true);
+                    partida = new GuiNovaPartida();
+                    partida.getjFrame().setLocation(jFrame.getLocation());
+                    partida.getjFrame().setVisible(true);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -160,7 +161,7 @@ public class GuiMenu {
         });
 
 
-        jbEditar.addActionListener(new ActionListener() {
+        jbDades.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent event) {
                 try {

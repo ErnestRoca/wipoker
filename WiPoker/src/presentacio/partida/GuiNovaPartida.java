@@ -26,7 +26,7 @@ import presentacio.GuiTaulell;
  */
 public class GuiNovaPartida {
 
-    private JFrame jFrame;
+    protected  JFrame jFrame;
     private JPanel jpFons;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
@@ -123,6 +123,10 @@ public class GuiNovaPartida {
                 gt.getjFrame().setVisible(true);
             }
         });
+    }
+
+    public JFrame getjFrame() {
+        return jFrame;
     }
 
     public static void main(String[] args) {
