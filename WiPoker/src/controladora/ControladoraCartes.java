@@ -276,17 +276,4 @@ public class ControladoraCartes {
         jugador.getMaActual().setValorMesAlt(num);
         return true;
     }
-
-    public byte cartaMesAlta(ArrayList<Carta> cartes) {
-        byte num = 0;
-        for (int i = 1; i <= 2; i++) {
-            if (cartes.get(i).getValor() > num) {
-                num = cartes.get(i).getValor();
-            }
-
-        }
-        return num;
-    }
-
-
 }
