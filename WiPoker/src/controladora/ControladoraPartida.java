@@ -141,10 +141,14 @@ public class ControladoraPartida {
     }
 
     private Jugador determinarGuanyador() {
-        
+    
 
 
         return null;
+    }
+
+    public void desempat() {
+        
     }
 
     private void determinarJugadorsEliminats() {
