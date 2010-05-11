@@ -40,16 +40,16 @@ public class ControladoraPartida {
 
     public void crearBaralla() {
         ArrayList<Carta> cartes = new ArrayList<Carta>();
-        for (byte i = 1; i <= 13; i++) {
+        for (byte i = 2; i <= 14; i++) {
             cartes.add(new Carta((byte) 0, i));
         }
-        for (byte i = 1; i <= 13; i++) {
+        for (byte i = 2; i <= 14; i++) {
             cartes.add(new Carta((byte) 1, i));
         }
-        for (byte i = 1; i <= 13; i++) {
+        for (byte i = 2; i <= 14; i++) {
             cartes.add(new Carta((byte) 2, i));
         }
-        for (byte i = 1; i <= 13; i++) {
+        for (byte i = 21; i <= 14; i++) {
             cartes.add(new Carta((byte) 3, i));
         }
         baralla.setCartes(cartes);
