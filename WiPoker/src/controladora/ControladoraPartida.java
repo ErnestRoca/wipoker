@@ -78,28 +78,28 @@ public class ControladoraPartida {
         ronda.getFases().add(novaFase);
         novaFase.setRonda(ronda);
         if (Fase.getNumFase() == 1) {
-            repartirCartesPrivades();
-            determinarCombinacioPreFlop();
+            controlJoc.repartirCartesPrivades(jugadors, baralla);
+            determinarCombinacioPreFlop(jugadors);
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
             }
         } else if (Fase.getNumFase() == 2) {
-            cremarCartes();
-            aixecarCartes((byte) 3);
+            controlJoc.cremarCartes(baralla);
+            controlJoc.aixecarCartes(jugadors, baralla, (byte) 3);
             determinarCombinacio();
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
             }
         } else if (Fase.getNumFase() == 3) {
-            cremarCartes();
-            aixecarCartes((byte) 1);
+            controlJoc.cremarCartes(baralla);
+         controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
             determinarCombinacio();
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
             }
         } else if (Fase.getNumFase() == 4) {
-            cremarCartes();
-            aixecarCartes((byte) 1);
+            controlJoc.cremarCartes(baralla);
+            controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
             determinarCombinacio();
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
@@ -121,9 +121,9 @@ public class ControladoraPartida {
 
     private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
         for (Jugador j : jugadors) {
-            ArrayList<Carta> cartes = j.getMaActual().getCartes();
-            byte combinacio = (byte) (cartes.get(0).equals(cartes.get(1)) ? 1 : 0);
-            j.getMaActual().setCombinacio(combinacio);
+            if (controlCartes.esParella(j)) {
+
+            } else if (controlCartes.valorMesAlt(j));
         }
     }
 
@@ -153,20 +153,8 @@ public class ControladoraPartida {
         }
     }
 
-    public Jugador desempat() {
-        Jugador jugadorAux = jugadors.get(0);
-        byte puntuacioMesAlta = cartaMesAlta(jugadorAux.getMaActual().getCartes());
-        for (Jugador jugador : jugadors) {
-            byte puntuacio = cartaMesAlta(jugador.getMaActual().getCartes());
-            if (puntuacio > puntuacioMesAlta) {
-                puntuacioMesAlta = puntuacio;
-                jugadorAux =
-                        jugador;
-            }
-
-        }
-        return jugadorAux;
-    }
+   
+    
 
     private Jugador determinarGuanyador() {
         ArrayList<Jugador> jugadorsOrdenats = jugadors;
