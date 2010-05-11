@@ -4,10 +4,12 @@
  */
 package presentacio.partida;
 
+import java.awt.event.ActionEvent;
 import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -16,12 +18,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import presentacio.GuiTaulell;
 
 /**
  *
  * @author wida45787385
  */
-public class GuiNovaPartida {
+public class GuiNovaPartida implements ActionListener {
 
     private JFrame jFrame;
     private JPanel jpFons;
@@ -112,9 +115,13 @@ public class GuiNovaPartida {
         jpFons.add(jlImatgeFons);
 
         jFrame.setVisible(true);
+    }
 
-
-
+    public void actionPerformed(ActionEvent e) {
+        final JButton jb = (JButton) e.getSource();
+        if (jb.equals(jbContraMaquina)) {
+            new GuiTaulell();
+        }
     }
 
     public static void main(String[] args) {
