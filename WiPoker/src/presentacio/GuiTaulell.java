@@ -120,7 +120,6 @@ public class GuiTaulell {
         jFrame.setSize(w, h);
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("WiPoker");
-        jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
         jFrame.setLayout(null);
@@ -131,8 +130,8 @@ public class GuiTaulell {
 
         @Override
         public void paintComponent(Graphics g) {
-            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taula.png"));
-            g.drawImage(imatgeFons.getImage(), 50, 70, 900, 450, null);
+            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taulaMenu.gif"));
+            g.drawImage(imatgeFons.getImage(), 0, 0, 1016, 733, null);
             setOpaque(true);
         }
     }
@@ -144,7 +143,9 @@ public class GuiTaulell {
         jFrame.add(jMenuBar);
 
         jPanelGlobal = new jPanelGlobal();
+        jPanelGlobal.setBackground(Color.WHITE);
         jPanelGlobal.setLayout(null);
+        jPanelGlobal.setBorder(null);
         jPanelGlobal.setBounds(0, 25, 1024, 761);
         jFrame.add(jPanelGlobal);
 
@@ -307,7 +308,7 @@ public class GuiTaulell {
         jPanelBotons.setBackground(Color.white);
         jPanelBotons.setLayout(null);
         jPanelBotons.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        jPanelBotons.setBounds(0, 535, 200, 200);
+        jPanelBotons.setBounds(5, 557, 236, 166);
         jPanelBotons.setLayout(null);
         jPanelGlobal.add(jPanelBotons);
 
@@ -660,7 +661,7 @@ public class GuiTaulell {
         final int sv = 2;
         final int x1 = 0;
         final int y1 = 0;
-        final int w1 = 200;
+        final int w1 = 236;
         final int h1 = 40;
         jbCheck.setBounds(x1, y1, w1, h1);
         jPanelBotons.add(jbCheck);
@@ -673,7 +674,7 @@ public class GuiTaulell {
         jbRise.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbRise.setCursor(cursor);
         jbRise.setToolTipText("Fa rise :)");
-        final int x2 = 0;
+        final int x2 = x1;
         final int y2 = y1 + h1 + sv;
         final int w2 = w1;
         final int h2 = h1;
@@ -688,7 +689,7 @@ public class GuiTaulell {
         jbBet.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbBet.setCursor(cursor);
         jbBet.setToolTipText("Fa bet :)");
-        final int x3 = 0;
+        final int x3 = x1;
         final int y3 = y2 + h2 + sv;
         final int w3 = w1;
         final int h3 = h1;
@@ -703,7 +704,7 @@ public class GuiTaulell {
         jbFold.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbFold.setCursor(cursor);
         jbFold.setToolTipText("Fa fold :)");
-        final int x4 = 0;
+        final int x4 = x1;
         final int y4 = y3 + h2 + sv;
         final int w4 = w1;
         final int h4 = h1;
