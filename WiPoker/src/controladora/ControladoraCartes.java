@@ -172,27 +172,57 @@ public class ControladoraCartes {
             for (int j = i + 1; j < cartes.size(); j++) {
                 if (cartes.get(i).equals(cartes.get(j)) && numCartes1 == 1 && numCartes2 == 1) {
                     numCartes1++;
-                    valorTrio1 =
-                            cartes.get(i).getValor();
+                    valorTrio1 = cartes.get(i).getValor();                    
                 } else if (cartes.get(i).equals(cartes.get(j)) && numCartes1 > 1 && cartes.get(i).getValor() == valorTrio1) {
                     numCartes1++;
                 } else if (cartes.get(i).equals(cartes.get(j)) && numCartes2 == 1 && cartes.get(i).getValor() != valorTrio1) {
                     numCartes2++;
-                    valorTrio2 =
-                            cartes.get(i).getValor();
+                    valorTrio2 = cartes.get(j).getValor();
                 } else if (cartes.get(i).equals(cartes.get(j)) && numCartes2 > 1 && cartes.get(i).getValor() == valorTrio2) {
                     numCartes2++;
                 }
             }
         }
-        boolean esTrio = numCartes1 >= 3 || numCartes2 >= 3;
-        byte max = (byte) (valorTrio1 > valorTrio2 ? valorTrio1 : valorTrio2);
-        if (esTrio) {
+        boolean esTrio1 = numCartes1 >= 3;
+        boolean esTrio2 = numCartes2 >= 3;
+        if (esTrio1 && esTrio2) {
+            byte max = (byte) (valorTrio1 > valorTrio2 ? valorTrio1 : valorTrio2);
             jugador.getMaActual().setCombinacio((byte) 4);
             jugador.getMaActual().setValorMesAlt((byte) max);
+            byte valor = (byte) (valorTrio1 > valorTrio2 ? valorTrio1 : valorTrio2);
+            for (int i = 0; i < 2; i++) {
+                byte desempat = 0;
+                if (cartes.get(i).getValor() != valor && cartes.get(i).getValor() > desempat) {
+                    desempat = cartes.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }
+        } else if (esTrio1 && !esTrio2) {
+            jugador.getMaActual().setCombinacio((byte) 4);
+            jugador.getMaActual().setValorMesAlt((byte) valorTrio1);
+            for (int i = 0; i < 2; i++) {
+                byte desempat = 0;
+                if (cartes.get(i).getValor() != valorTrio1 && cartes.get(i).getValor() > desempat) {
+                    desempat = cartes.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }
+        } else if (!esTrio1 && esTrio2) {
+            jugador.getMaActual().setCombinacio((byte) 4);
+            jugador.getMaActual().setValorMesAlt((byte) valorTrio2);
+            for (int i = 0; i < 2; i++) {
+                byte desempat = 0;
+                if (cartes.get(i).getValor() != valorTrio2 && cartes.get(i).getValor() > desempat) {
+                    desempat = cartes.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }
         }
 
-        return esTrio;
+
+        
+
+        return esTrio1 || esTrio2;
     }
 
     public boolean esDobleParella(Jugador jugador) {
