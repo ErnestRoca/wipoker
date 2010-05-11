@@ -28,6 +28,10 @@ public class ControladoraPartida {
     private Partida partida;
     private ArrayList<Jugador> jugadors;
 
+    private ControladoraCartes controlCartes = new ControladoraCartes();
+    private ControladoraIA controlIA = new ControladoraIA();
+    private ControladoraJoc controlJoc = new ControladoraJoc();
+
     public ControladoraPartida(byte maxJugadors) {
         baralla = new Baralla();
         crearBaralla();
@@ -36,8 +40,6 @@ public class ControladoraPartida {
         taula.setPartidaActual(partida);
         jugadors = partida.getJugadors();
     }
-
-    
 
     public boolean taulaIsFull() {
         boolean completa = taula.getPlaces() - taula.getCadiresOcupades() == 0;
@@ -107,14 +109,6 @@ public class ControladoraPartida {
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
-    
-
-    
-
-    
-
-    
-
     public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
         //modificar cuando este hecha gui
         int fase = ronda.getFases().size();
@@ -125,7 +119,7 @@ public class ControladoraPartida {
         }
     }
 
-    private void determinarCombinacioPreFlop() {
+    private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
         for (Jugador j : jugadors) {
             ArrayList<Carta> cartes = j.getMaActual().getCartes();
             byte combinacio = (byte) (cartes.get(0).equals(cartes.get(1)) ? 1 : 0);
@@ -159,7 +153,6 @@ public class ControladoraPartida {
         }
     }
 
-    
     public Jugador desempat() {
         Jugador jugadorAux = jugadors.get(0);
         byte puntuacioMesAlta = cartaMesAlta(jugadorAux.getMaActual().getCartes());
@@ -198,5 +191,5 @@ public class ControladoraPartida {
             }
 
         }
-    }    
+    }
 }
