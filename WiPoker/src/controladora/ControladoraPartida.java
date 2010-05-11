@@ -141,14 +141,17 @@ public class ControladoraPartida {
     }
 
     private Jugador determinarGuanyador() {
-    
+        Jugador j = jugadors.get(0);
+        for (Jugador j: jugadors) {
+            if j.getMaActual().getCombinacio()
+        }
 
 
         return null;
     }
 
-    public void desempat() {
-        
+    public Jugador desempat(Jugador j1, Jugador j2) {
+        return j1;
     }
 
     private void determinarJugadorsEliminats() {

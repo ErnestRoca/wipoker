@@ -226,6 +226,7 @@ public class ControladoraCartes {
             if ((valorParella1 > valorParella2) && valorParella1 > valorParella3) {
                 jugador.getMaActual().setCombinacio((byte) 3);
                 jugador.getMaActual().setValorMesAlt((byte) valorParella1);
+                byte desempat = (byte) (valorParella2 > valorParella3 ? valorParella3 : valorParella2);
             } else if (valorParella2 > valorParella1 && valorParella2 > valorParella3) {
                 jugador.getMaActual().setCombinacio((byte) 3);
                 jugador.getMaActual().setValorMesAlt((byte) valorParella2);
@@ -262,7 +263,6 @@ public class ControladoraCartes {
                 }
             }
         }
-
         return esParella;
     }
 
