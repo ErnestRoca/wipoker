@@ -26,7 +26,6 @@ public class ControladoraPartida {
     private Baralla baralla;
     private Partida partida;
     private ArrayList<Jugador> jugadors;
-
     private ControladoraCartes controlCartes = new ControladoraCartes();
     private ControladoraIA controlIA = new ControladoraIA();
     private ControladoraJoc controlJoc = new ControladoraJoc();
@@ -91,7 +90,7 @@ public class ControladoraPartida {
             }
         } else if (Fase.getNumFase() == 3) {
             controlJoc.cremarCartes(baralla);
-         controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
+            controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
             determinarCombinacio();
             for (Jugador j : jugadors) {
                 apostar(j, 0, ronda);
@@ -121,7 +120,6 @@ public class ControladoraPartida {
     private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
         for (Jugador j : jugadors) {
             if (controlCartes.esParella(j)) {
-
             } else if (controlCartes.valorMesAlt(j));
         }
     }
@@ -129,46 +127,23 @@ public class ControladoraPartida {
     public void determinarCombinacio() {
         for (Jugador j : jugadors) {
             if (controlCartes.esEscalaReial(j)) {
-                
             } else if (controlCartes.esEscalaColor(j)) {
-                
             } else if (controlCartes.esPoker(j)) {
-                
             } else if (controlCartes.esFull(j)) {
-                
             } else if (controlCartes.sonMateixColor(j)) {
-                
             } else if (controlCartes.esEscala(j)) {
-                
             } else if (controlCartes.esTrio(j)) {
-                
             } else if (controlCartes.esDobleParella(j)) {
-                
             } else if (controlCartes.esParella(j)) {
-                
             } else if (controlCartes.valorMesAlt(j)) {
-                
             }
         }
     }
 
-   
-    
-
     private Jugador determinarGuanyador() {
-        ArrayList<Jugador> jugadorsOrdenats = jugadors;
-        Comparator c = new Comparator() {
 
-            @Override
-            public int compare(Object o1, Object o2) {
-                Jugador j1 = (Jugador) o1;
-                Jugador j2 = (Jugador) o2;
-                return j1.getMaActual().getCombinacio() - j2.getMaActual().getCombinacio();
-            }
-        };
-        Collections.sort(jugadorsOrdenats, c);
-        //arreglar para retorno misma combinacion
-        return jugadorsOrdenats.get(0);
+
+        return null;
     }
 
     private void determinarJugadorsEliminats() {
