@@ -34,9 +34,9 @@ public class ControladoraPartida {
         super();
         baralla = controlJoc.crearBaralla();
         taula = new Taula(maxJugadors, baralla);
-        partida = new Partida(Calendar.getInstance());
+        //partida = new Partida(Calendar.getInstance());
         taula.setPartidaActual(partida);
-        jugadors = partida.getJugadors();
+        //jugadors = partida.getJugadors();
     }
 
     public boolean taulaIsFull() {
@@ -141,6 +141,7 @@ public class ControladoraPartida {
     }
 
     private Jugador determinarGuanyador() {
+        
 
 
         return null;
