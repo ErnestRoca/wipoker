@@ -12,6 +12,7 @@ public class Ma {
     private Fase fase;
     private byte combinacio;
     private byte valorMesAlt = 0;
+    private byte valorDesempat = 0;
 
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
@@ -47,6 +48,14 @@ public class Ma {
 
     public void setValorMesAlt(byte valorMesAlt) {
         this.valorMesAlt = valorMesAlt;
+    }
+
+    public byte getValorDesempat() {
+        return valorDesempat;
+    }
+
+    public void setValorDesempat(byte valorDesempat) {
+        this.valorDesempat = valorDesempat;
     }
 
     @Override
