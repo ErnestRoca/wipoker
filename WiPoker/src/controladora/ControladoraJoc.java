@@ -16,10 +16,10 @@ import java.util.Collections;
  */
 public class ControladoraJoc {
 
-    ControladoraPartida cp;
+    
 
     public ControladoraJoc()  {
-        cp = new ControladoraPartida((byte) 2);
+        
     }
 
     public Baralla crearBaralla() {
