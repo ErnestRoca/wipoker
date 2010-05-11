@@ -6,7 +6,6 @@ package controladora;
 
 import domini.Aposta;
 import domini.Baralla;
-import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
 import domini.Partida;
