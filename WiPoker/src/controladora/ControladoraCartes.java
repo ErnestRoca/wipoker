@@ -114,6 +114,9 @@ public class ControladoraCartes {
 
     public boolean esEscala(Jugador jugador) {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
+        ArrayList<Carta> privades = new ArrayList<Carta>();
+        //privades.add(cartes.get(0));
+        //privades.add(cartes.get(1));
         Collections.sort(cartes);
         Collections.reverse(cartes);
         boolean esEscala = false;
@@ -122,13 +125,13 @@ public class ControladoraCartes {
         int iteracions = cartes.size() - 4;
 
         for (int i = 0; i < iteracions; i++) {
-            for (int j = iteracions - 1; j < (iteracions + 3); j++) {
+            for (int j = iteracions - 1; j < (iteracions + 3); j++) {                
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                    valor = cartes.get(j).getValor();
-                    consecutives++;
+                    valor = cartes.get(i).getValor();
+                    consecutives++;                    
                 }
             }
-            if (consecutives <= 3) {
+            if (consecutives <= 3) {                
                 consecutives = 0;
                 valor = 0;
             }
@@ -136,7 +139,14 @@ public class ControladoraCartes {
         if (consecutives >= 4) {
             esEscala = true;
             jugador.getMaActual().setCombinacio((byte) 5);
-            jugador.getMaActual().setValorMesAlt((byte) valor);
+            jugador.getMaActual().setValorMesAlt((byte) (valor));
+            /*for (int i = 0; i < 2; i++) {
+                byte desempat = 0;
+                if (privades.get(i).getValor() > valor || privades.get(i).getValor() < (valor - 5) && valor > desempat) {
+                    desempat = privades.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }*/
         }
         if (!esEscala && cartes.get(0).getValor() == 14) {
             cartes.add(new Carta((byte) cartes.get(0).getPal(), (byte) 1));
@@ -144,7 +154,7 @@ public class ControladoraCartes {
             for (int i = 0; i < iteracions; i++) {
                 for (int j = iteracions - 1; j < (iteracions + 3); j++) {
                     if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                        valor = cartes.get(j).getValor();
+                        valor = cartes.get(i).getValor();
                         consecutives++;
                     }
                 }
@@ -154,10 +164,17 @@ public class ControladoraCartes {
                 }
             }
         }
-        if (consecutives >= 4) {
+        if (consecutives >= 4 && valor == 0) {
             esEscala = true;
             jugador.getMaActual().setCombinacio((byte) 5);
-            jugador.getMaActual().setValorMesAlt((byte) valor);
+            jugador.getMaActual().setValorMesAlt((byte) (valor));
+            /*for (int i = 0; i < 2; i++) {
+                byte desempat = 0;
+                if (privades.get(i).getValor() > valor || privades.get(i).getValor() < (valor - 5) && valor > desempat) {
+                    desempat = privades.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }*/
         }
         return esEscala;
     }
@@ -217,10 +234,7 @@ public class ControladoraCartes {
                     jugador.getMaActual().setValorDesempat(desempat);
                 }
             }
-        }
-
-
-        
+        }     
 
         return esTrio1 || esTrio2;
     }
