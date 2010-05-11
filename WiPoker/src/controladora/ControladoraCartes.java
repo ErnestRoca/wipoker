@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controladora;
 
 import domini.Carta;
@@ -248,16 +247,20 @@ public class ControladoraCartes {
                 if (cartes.get(i).equals(cartes.get(j))) {
                     valor = cartes.get(i).getValor();
                     iguals++;
-
                 }
-
-
             }
         }
         boolean esParella = iguals >= 1;
         if (esParella) {
             jugador.getMaActual().setCombinacio((byte) 2);
             jugador.getMaActual().setValorMesAlt((byte) valor);
+            byte desempat = 0;
+            for (int i = 0; i < 2; i++) {
+                if (cartes.get(i).getValor() != valor && cartes.get(i).getValor() > desempat) {
+                    desempat = cartes.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }
         }
 
         return esParella;
