@@ -1,5 +1,6 @@
 package presentacio;
 
+import controladora.ControladoraPartida;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -93,6 +94,8 @@ public class GuiTaulell {
     private JMenu jmMenuAjuda;
     private JMenuItem jmiQuantA;
     private JSeparator jseSeparador;
+
+    private ControladoraPartida cp = new ControladoraPartida((byte)1);
 
     /** Constructor. */
     public GuiTaulell() {
