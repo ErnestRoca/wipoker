@@ -4,11 +4,10 @@
  */
 package presentacio.partida;
 
-import java.awt.event.ActionEvent;
-import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,15 +17,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import presentacio.GuiTaulell;
+import presentacio.dades.GuiMenuDades;
 
 /**
  *
  * @author wida45787385
  */
-public class GuiNovaPartida {
+public class GuiUnirsePartida {
 
-    protected JFrame jFrame;
+    private JFrame jFrame;
     private JPanel jpFons;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
@@ -35,7 +34,7 @@ public class GuiNovaPartida {
     private JButton jbCrearPartida;
     private JButton jbTornar;
 
-    public GuiNovaPartida() throws InterruptedException {
+    public GuiUnirsePartida() throws InterruptedException {
         iniciarComponents();
     }
 
@@ -43,7 +42,7 @@ public class GuiNovaPartida {
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle("Nova Partida");
+        jFrame.setTitle("Unirse Partida");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,34 +112,11 @@ public class GuiNovaPartida {
         jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
-
-        jbCrearPartida.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                GuiTaulell gt = new GuiTaulell();
-                jFrame.setVisible(false);
-                gt.getjFrame().setLocation(jFrame.getLocation());
-                gt.getjFrame().setVisible(true);
-            }
-        });
-
-        jbUnirsePartida.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                GuiUnirsePartida gt = new GuiUnirsePartida();
-                jFrame.setVisible(false);
-                gt.getjFrame().setLocation(jFrame.getLocation());
-                gt.getjFrame().setVisible(true);
-            }
-        });
-
+        jFrame.setVisible(true);
         jbContraMaquina.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                GuiTaulell gt = new GuiTaulell();
-                jFrame.setVisible(false);
-                gt.getjFrame().setLocation(jFrame.getLocation());
-                gt.getjFrame().setVisible(true);
+                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
     }
@@ -154,7 +130,7 @@ public class GuiNovaPartida {
 
             public void run() {
                 try {
-                    new GuiNovaPartida();
+                    new GuiPartidaLocal();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
