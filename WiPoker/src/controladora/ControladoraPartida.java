@@ -141,9 +141,9 @@ public class ControladoraPartida {
     }
 
     private Jugador determinarGuanyador() {
-        Jugador j = jugadors.get(0);
+        Jugador j1 = jugadors.get(0);
         for (Jugador j: jugadors) {
-            if j.getMaActual().getCombinacio()
+            //if j.getMaActual().getCombinacio()
         }
 
 

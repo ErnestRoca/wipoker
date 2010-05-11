@@ -222,20 +222,35 @@ public class ControladoraCartes {
         }
 
         boolean dobleParella = numParelles >= 2 ? true : false;
+        byte valor1 = 0;
+        byte valor2 = 0;
         if (dobleParella) {
             if ((valorParella1 > valorParella2) && valorParella1 > valorParella3) {
                 jugador.getMaActual().setCombinacio((byte) 3);
                 jugador.getMaActual().setValorMesAlt((byte) valorParella1);
-                byte desempat = (byte) (valorParella2 > valorParella3 ? valorParella3 : valorParella2);
+                valor1 = (byte) valorParella1;
+                valor2 = (byte) (valorParella2 > valorParella3 ? valorParella2 : valorParella3);
             } else if (valorParella2 > valorParella1 && valorParella2 > valorParella3) {
                 jugador.getMaActual().setCombinacio((byte) 3);
+                valor1 = (byte) valorParella2;
                 jugador.getMaActual().setValorMesAlt((byte) valorParella2);
+                valor2 = (byte) (valorParella1 > valorParella3 ? valorParella1 : valorParella3);
             } else if (valorParella3 > valorParella1 && valorParella3 > valorParella2) {
                 jugador.getMaActual().setCombinacio((byte) 3);
                 jugador.getMaActual().setValorMesAlt((byte) valorParella3);
+                valor1 = (byte) valorParella3;
+                valor2 = (byte) (valorParella1 > valorParella2 ? valorParella1 : valorParella2);
             }
-
+            for (int i = 0; i < 2; i++) {
+                byte desempat = 0;
+                if (cartes.get(i).getValor() != valor1 && cartes.get(i).getValor() != valor2 && cartes.get(i).getValor() > desempat) {
+                    desempat = cartes.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }
         }
+
+
         return dobleParella;
     }
 
