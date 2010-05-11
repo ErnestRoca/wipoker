@@ -6,7 +6,6 @@ package controladora;
 
 import domini.Aposta;
 import domini.Baralla;
-import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
@@ -38,22 +37,7 @@ public class ControladoraPartida {
         jugadors = partida.getJugadors();
     }
 
-    public void crearBaralla() {
-        ArrayList<Carta> cartes = new ArrayList<Carta>();
-        for (byte i = 2; i <= 14; i++) {
-            cartes.add(new Carta((byte) 0, i));
-        }
-        for (byte i = 2; i <= 14; i++) {
-            cartes.add(new Carta((byte) 1, i));
-        }
-        for (byte i = 2; i <= 14; i++) {
-            cartes.add(new Carta((byte) 2, i));
-        }
-        for (byte i = 21; i <= 14; i++) {
-            cartes.add(new Carta((byte) 3, i));
-        }
-        baralla.setCartes(cartes);
-    }
+    
 
     public boolean taulaIsFull() {
         boolean completa = taula.getPlaces() - taula.getCadiresOcupades() == 0;
@@ -123,31 +107,13 @@ public class ControladoraPartida {
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
-    public void repartirCartesPrivades() {
-        for (int i = 0; i <= 1; i++) {
-            for (Jugador j : jugadors) {
-                j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-                baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
-            }
-        }
-    }
+    
 
-    public void aixecarCartes(byte numCartes) {
-        for (int i = 0; i < numCartes; i++) {
-            for (Jugador j : jugadors) {
-                j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-                baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
-            }
-        }
-    }
+    
 
-    public void cremarCartes() {
-        baralla.getCartes().remove(baralla.getCartes().size());
-    }
+    
 
-    public void barallar() {
-        Collections.shuffle(baralla.getCartes());
-    }
+    
 
     public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
         //modificar cuando este hecha gui
