@@ -33,8 +33,8 @@ public class ControladoraPartida {
     private ControladoraJoc controlJoc = new ControladoraJoc();
 
     public ControladoraPartida(byte maxJugadors) {
-        baralla = new Baralla();
-        crearBaralla();
+        super();
+        baralla = controlJoc.crearBaralla();
         taula = new Taula(maxJugadors, baralla);
         partida = new Partida(Calendar.getInstance());
         taula.setPartidaActual(partida);
@@ -55,11 +55,11 @@ public class ControladoraPartida {
         }
     }
 
-    public void iniciarRonda() throws InterruptedException {
+    public void iniciarRonda() {
         Ronda novaRonda = new Ronda(0);
         novaRonda.setPartida(partida);
         partida.getRondes().add(novaRonda);
-        barallar();
+        controlJoc.barallar(baralla);
         for (int i = 0; i < 4; i++) {
             gestionarFase(novaRonda);
         }
@@ -71,7 +71,7 @@ public class ControladoraPartida {
         partida.getRondes().clear();
     }
 
-    public void gestionarFase(Ronda ronda) throws InterruptedException {
+    public void gestionarFase(Ronda ronda) {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()]);

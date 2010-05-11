@@ -22,7 +22,7 @@ public class ControladoraJoc {
         cp = new ControladoraPartida((byte) 2);
     }
 
-    public ArrayList<Carta> crearBaralla() {
+    public Baralla crearBaralla() {
         ArrayList<Carta> cartes = new ArrayList<Carta>();
         for (byte i = 2; i <= 14; i++) {
             cartes.add(new Carta((byte) 0, i));
@@ -36,7 +36,9 @@ public class ControladoraJoc {
         for (byte i = 21; i <= 14; i++) {
             cartes.add(new Carta((byte) 3, i));
         }
-        return cartes;
+        Baralla b = new Baralla();
+        b.setCartes(cartes);
+        return b;
     }
 
     public void repartirCartesPrivades(ArrayList<Jugador> jugadors, Baralla baralla) {
