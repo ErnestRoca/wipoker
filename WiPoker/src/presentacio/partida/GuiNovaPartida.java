@@ -127,10 +127,14 @@ public class GuiNovaPartida {
         jbUnirsePartida.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                GuiUnirsePartida gt = new GuiUnirsePartida();
-                jFrame.setVisible(false);
-                gt.getjFrame().setLocation(jFrame.getLocation());
-                gt.getjFrame().setVisible(true);
+                try {
+                    GuiUnirsePartida gt = new GuiUnirsePartida();
+                    jFrame.setVisible(false);
+                    gt.getjFrame().setLocation(jFrame.getLocation());
+                    gt.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiNovaPartida.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
