@@ -113,6 +113,7 @@ public class GuiNovaPartida {
         jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
+        jFrame.setVisible(true);
 
         jbCrearPartida.addActionListener(new ActionListener() {
 

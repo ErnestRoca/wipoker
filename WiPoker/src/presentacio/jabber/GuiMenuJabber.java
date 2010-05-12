@@ -5,6 +5,7 @@
 package presentacio.jabber;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -70,8 +71,10 @@ public class GuiMenuJabber {
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
 
+        final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbIniciarSessio = new JButton("Iniciar sessió a Jabber");
+        jbIniciarSessio.setCursor(cursor);
         jbIniciarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbIniciarSessio.setBorder(null);
         jbIniciarSessio.setLayout(null);
@@ -83,6 +86,7 @@ public class GuiMenuJabber {
         jpFons.add(jbIniciarSessio);
 
         jbCrearCompte = new JButton("Crea el teu compte Jabber");
+        jbCrearCompte.setCursor(cursor);
         jbCrearCompte.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbCrearCompte.setBorder(null);
         jbCrearCompte.setLayout(null);
@@ -94,6 +98,7 @@ public class GuiMenuJabber {
         jpFons.add(jbCrearCompte);
 
         jbTancarSessio = new JButton("Tanca la sessió");
+        jbTancarSessio.setCursor(cursor);
         jbTancarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTancarSessio.setBorder(null);
         jbTancarSessio.setLayout(null);
@@ -105,6 +110,7 @@ public class GuiMenuJabber {
         jpFons.add(jbTancarSessio);
 
         jbTornar = new JButton("Tornar enrere");
+        jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(null);
         jbTornar.setLayout(null);
