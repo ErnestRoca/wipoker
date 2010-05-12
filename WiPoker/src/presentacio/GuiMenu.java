@@ -23,6 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import javax.swing.plaf.metal.MetalBorders.Flush3DBorder;
 import presentacio.jabber.GuiMenuJabber;
 import presentacio.partida.GuiNovaPartida;
 
@@ -40,7 +43,6 @@ public class GuiMenu {
     private JButton jbDades;
     private JButton jbSortir;
     private JButton jbJabber;
-    private JButton jbTornar;
     private GuiMenuJabber jabber;
     private GuiMenuDades dades;
     private GuiNovaPartida partida;
@@ -61,29 +63,24 @@ public class GuiMenu {
 
         jpFons = new JPanel();
         jpFons.setLayout(null);
-        jpFons.setOpaque(false);
         jpFons.setBounds(0, 0, 340, 950);
         jFrame.add(jpFons);
 
         jlTitol = new JLabel();
         jlTitol.setBounds(0, 0, 340, 104);
-        jlTitol.setLayout(null);
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
         jlImatgeFons.setBounds(0, 104, 340, 499);
-        jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jlImatgeFons.setOpaque(false);
 
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbJabber = new JButton("Jabber");
         jbJabber.setCursor(cursor);
         jbJabber.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbJabber.setBorder(null);
-        jbJabber.setLayout(null);
+        jbJabber.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbJabber.setBounds(40, 135, 260, 40);
         jbJabber.setIconTextGap(-260);
         jbJabber.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -94,8 +91,7 @@ public class GuiMenu {
         jbPartida = new JButton("Jugar");
         jbPartida.setCursor(cursor);
         jbPartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbPartida.setBorder(null);
-        jbPartida.setLayout(null);
+        jbPartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbPartida.setBounds(40, 245, 260, 40);
         jbPartida.setIconTextGap(-260);
         jbPartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -106,25 +102,24 @@ public class GuiMenu {
         jbDades = new JButton("Dades jugador");
         jbDades.setCursor(cursor);
         jbDades.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbDades.setBorder(null);
-        jbDades.setLayout(null);
-        jbDades.setBounds(40, 355, 260, 40);
+        jbDades.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbDades.setIconTextGap(-260);
         jbDades.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbDades.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbDades.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbDades.setBounds(40, 355, 260, 40);
         jpFons.add(jbDades);
 
         jbSortir = new JButton("Sortir");
+        jbSortir.setMnemonic('S');
         jbSortir.setCursor(cursor);
         jbSortir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbSortir.setBorder(null);
-        jbSortir.setLayout(null);
-        jbSortir.setBounds(40, 465, 260, 40);
         jbSortir.setIconTextGap(-260);
         jbSortir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbSortir.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbSortir.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbSortir.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbSortir.setBounds(40, 465, 260, 40);
         jpFons.add(jbSortir);
 
         jpFons.add(jlImatgeFons);
@@ -189,68 +184,13 @@ public class GuiMenu {
     }
 
     public static void main(final String[] args) {
-        /** Triem el tipus de Look&Feel. */
-        final int TIPUSLF = 6;
-        EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
-            @Override
             public void run() {
-                // Missatge inicarAction la classe Gui per crear un objecte Gui
                 try {
-                    String plaf = ""; // plaf = Pluggable Look&Feel
-                    // Missatge inicarAction la classe Gui per crear un objecte Gui
-                    final GuiMenu gui = new GuiMenu();
-                    try {
-                        // Triem el Look&Feel
-                        switch (TIPUSLF) {
-                            case 1:
-                                // Especifiquem el Java Look & Feel (Conegut com Metal). Es pot emprar en totes les plataformes.
-                                plaf = "javax.swing.plaf.metal.MetalLookAndFeel";
-                                UIManager.setLookAndFeel(plaf);
-                                break;
-                            case 2:
-                                // Es pot emprar en totes les plataformes.
-                                plaf = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-                                UIManager.setLookAndFeel(plaf);
-                                break;
-                            case 3:
-                                // Nomes funciona en sistemes Win32.
-                                plaf = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-                                UIManager.setLookAndFeel(plaf);
-                                break;
-                            case 4:
-                                // Nomes funciona en sistemes Mac OS.
-                                plaf = "javax.swing.plaf.mac.MacLookAndFeel";
-                                UIManager.setLookAndFeel(plaf);
-                                break;
-                            case 5:
-                                // Especifiquem el Java Look & Feel (Conegut com Metal) Es pot emprar en totes les plataformes.
-                                plaf = UIManager.getCrossPlatformLookAndFeelClassName();
-                                UIManager.setLookAndFeel(plaf);
-                                break;
-                            case 6:
-                                /* Especifiquem el Java Look & Feel de la plataforma actual
-                                 * En Win32, es el Windows Look & Feel.
-                                 * En Mac es el Mac OS Look & Feel.
-                                 * En Sun es el CDE/Motif Look & Feel.
-                                 * Es pot emprar en totes les plataformes.
-                                 */
-                                plaf = UIManager.getSystemLookAndFeelClassName();
-                                UIManager.setLookAndFeel(plaf);
-                                break;
-                            default:
-                        }
-                        //Actualitzem l'objecte jFrame amb el Look&Feel triat i tots els demes components ho faran en cascada
-                        SwingUtilities.updateComponentTreeUI(gui.jFrame);
-                    } catch (final Exception exception) {
-                        final String missatge = "No s'ha pogut carregar el Look&Feel desitjat\nEs carrega el Look&Feel per defecte (Java Look & Feel)";
-                        final String titol = "S'ha produit una excepció";
-                        JOptionPane.showMessageDialog(gui.jFrame, missatge, titol, JOptionPane.ERROR_MESSAGE);
-                    } finally {
-                        gui.jFrame.setVisible(true);
-                    }
+                    new GuiMenu();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
