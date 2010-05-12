@@ -34,6 +34,7 @@ public class GuiNovaPartida {
     private JButton jbContraMaquina;
     private JButton jbCrearPartida;
     private JButton jbTornar;
+    private JLabel jlBarra;
 
     public GuiNovaPartida() throws InterruptedException {
         iniciarComponents();
@@ -111,6 +112,11 @@ public class GuiNovaPartida {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
+
+        jlBarra = new JLabel("Menú Principal/Nova Partida");
+        jlBarra.setForeground(Color.white);
+        jlBarra.setBounds(2, 578, 340, 30);
+        jpFons.add(jlBarra);
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);

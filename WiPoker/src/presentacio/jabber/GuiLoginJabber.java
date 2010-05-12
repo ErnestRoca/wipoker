@@ -48,6 +48,7 @@ public class GuiLoginJabber {
     private JButton jbTornar;
     private JButton jbLogin;
     private GuiMenuJabber menu;
+    private JLabel jlBarra;
 
     public GuiLoginJabber() throws InterruptedException {
         iniciarComponents();
@@ -143,6 +144,11 @@ public class GuiLoginJabber {
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jbTornar.setBounds(30, 500, 120, 24);
         jpFons.add(jbTornar);
+
+        jlBarra = new JLabel("Menú Principal/Jabber/Login");
+        jlBarra.setForeground(Color.white);
+        jlBarra.setBounds(2, 578, 340, 30);
+        jpFons.add(jlBarra);
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
