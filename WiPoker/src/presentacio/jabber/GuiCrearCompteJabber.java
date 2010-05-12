@@ -40,8 +40,8 @@ public class GuiCrearCompteJabber {
     private JTextField jtfCorreu;
     private JButton jbTornar;
     private JButton jbCrear;
-
     private GuiMenuJabber menu;
+    private JLabel jlBarra;
 
     public GuiCrearCompteJabber() throws InterruptedException {
         iniciarComponents();
@@ -145,7 +145,12 @@ public class GuiCrearCompteJabber {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
-        
+
+        jlBarra = new JLabel("Menú Principal/Jabber/Crear Compte");
+        jlBarra.setForeground(Color.white);
+        jlBarra.setBounds(2, 578, 340, 30);
+        jpFons.add(jlBarra);
+
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
 
@@ -167,8 +172,6 @@ public class GuiCrearCompteJabber {
     public JFrame getjFrame() {
         return jFrame;
     }
-
-
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {

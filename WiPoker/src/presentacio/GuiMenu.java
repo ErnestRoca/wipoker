@@ -46,6 +46,8 @@ public class GuiMenu {
     private GuiMenuJabber jabber;
     private GuiMenuDades dades;
     private GuiNovaPartida partida;
+    private JLabel jlBarra;
+    private JLabel jlBarra2;
 
     public GuiMenu() throws InterruptedException {
         iniciarComponents();
@@ -78,6 +80,7 @@ public class GuiMenu {
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbJabber = new JButton("Jabber");
+        jbJabber.setMnemonic('a');
         jbJabber.setCursor(cursor);
         jbJabber.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbJabber.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
@@ -89,6 +92,7 @@ public class GuiMenu {
         jpFons.add(jbJabber);
 
         jbPartida = new JButton("Jugar");
+        jbPartida.setMnemonic('J');
         jbPartida.setCursor(cursor);
         jbPartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbPartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
@@ -100,6 +104,7 @@ public class GuiMenu {
         jpFons.add(jbPartida);
 
         jbDades = new JButton("Dades jugador");
+        jbDades.setMnemonic('D');
         jbDades.setCursor(cursor);
         jbDades.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbDades.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
@@ -121,6 +126,16 @@ public class GuiMenu {
         jbSortir.setHorizontalTextPosition(SwingConstants.CENTER);
         jbSortir.setBounds(40, 465, 260, 40);
         jpFons.add(jbSortir);
+
+        jlBarra = new JLabel("Voleu posar alguna cosa aqui?¿?¿?");
+        jlBarra.setForeground(Color.white);
+        jlBarra.setBounds(2, 578, 340, 30);
+        jpFons.add(jlBarra);
+
+        jlBarra2 = new JLabel("b.1.3");
+        jlBarra2.setForeground(Color.white);
+        jlBarra2.setBounds(300, 578, 340, 30);
+        jpFons.add(jlBarra2);
 
         jpFons.add(jlImatgeFons);
 

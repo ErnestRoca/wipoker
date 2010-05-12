@@ -34,10 +34,10 @@ public class GuiMenuJabber {
     private JButton jbTancarSessio;
     private JButton jbIniciarSessio;
     private JButton jbTornar;
-
     private GuiMenu menu;
     private GuiLoginJabber iniciar;
     private GuiCrearCompteJabber crear;
+    private JLabel jlBarra;
 
     public GuiMenuJabber() throws InterruptedException {
         iniciarComponents();
@@ -74,6 +74,7 @@ public class GuiMenuJabber {
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbIniciarSessio = new JButton("Iniciar sessió a Jabber");
+        jbIniciarSessio.setMnemonic('I');
         jbIniciarSessio.setCursor(cursor);
         jbIniciarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbIniciarSessio.setBorder(null);
@@ -86,6 +87,7 @@ public class GuiMenuJabber {
         jpFons.add(jbIniciarSessio);
 
         jbCrearCompte = new JButton("Crea el teu compte Jabber");
+        jbCrearCompte.setMnemonic('C');
         jbCrearCompte.setCursor(cursor);
         jbCrearCompte.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbCrearCompte.setBorder(null);
@@ -98,6 +100,7 @@ public class GuiMenuJabber {
         jpFons.add(jbCrearCompte);
 
         jbTancarSessio = new JButton("Tanca la sessió");
+        jbTancarSessio.setMnemonic('T');
         jbTancarSessio.setCursor(cursor);
         jbTancarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTancarSessio.setBorder(null);
@@ -110,6 +113,7 @@ public class GuiMenuJabber {
         jpFons.add(jbTancarSessio);
 
         jbTornar = new JButton("Tornar enrere");
+        jbTornar.setMnemonic('r');
         jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(null);
@@ -120,6 +124,11 @@ public class GuiMenuJabber {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
+
+        jlBarra = new JLabel("Menú Principal/Jabber");
+        jlBarra.setForeground(Color.white);
+        jlBarra.setBounds(2, 578, 340, 30);
+        jpFons.add(jlBarra);
 
         jpFons.add(jlImatgeFons);
 
@@ -173,9 +182,7 @@ public class GuiMenuJabber {
         return jFrame;
     }
 
-
-
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
