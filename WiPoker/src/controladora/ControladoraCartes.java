@@ -124,12 +124,12 @@ public class ControladoraCartes {
         int valor = 0;
         int iteracions = cartes.size() - 4;
 
-        for (int i = 1; i < iteracions; i++) {
-            for (int j = (i - 1); j < (j + 4); j++) {
+        for (int i = 0; i < iteracions; i++) {
+            for (int j = i; j < (j + 3); j++) {
+                System.out.println(cartes.get(j));
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
                     valor = cartes.get(j).getValor();
-                    consecutives++;
-                    System.out.println(consecutives);
+                    consecutives++;                    
                 }
             }
             if (consecutives <= 3) {
@@ -149,7 +149,7 @@ public class ControladoraCartes {
             }
             }*/
         }
-        if (!esEscala && cartes.get(0).getValor() == 14) {
+        /*if (!esEscala && cartes.get(0).getValor() == 14) {
             cartes.add(new Carta((byte) cartes.get(0).getPal(), (byte) 1));
             cartes.remove(0);
             for (int i = 0; i < iteracions; i++) {
@@ -165,6 +165,8 @@ public class ControladoraCartes {
                 }
             }
         }
+         * 
+         */
         return esEscala;
     }
 
