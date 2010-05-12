@@ -5,6 +5,7 @@
 package presentacio.jabber;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,7 @@ public class GuiCrearCompteJabber {
     private JLabel jlCorreu;
     private JTextField jtfCorreu;
     private JButton jbTornar;
-    private JButton jbAfegir;
+    private JButton jbCrear;
 
     private GuiMenuJabber menu;
 
@@ -119,18 +120,22 @@ public class GuiCrearCompteJabber {
         jtfCorreu.setBounds(170, 350, 120, 24);
         jpFons.add(jtfCorreu);
 
-        jbAfegir = new JButton("CREAR");
-        jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbAfegir.setBorder(null);
-        jbAfegir.setLayout(null);
-        jbAfegir.setBounds(30, 450, 120, 24);
-        jbAfegir.setIconTextGap(-260);
-        jbAfegir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbAfegir.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbAfegir.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbAfegir);
+        final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+
+        jbCrear = new JButton("CREAR");
+        jbCrear.setCursor(cursor);
+        jbCrear.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbCrear.setBorder(null);
+        jbCrear.setLayout(null);
+        jbCrear.setBounds(30, 450, 120, 24);
+        jbCrear.setIconTextGap(-260);
+        jbCrear.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCrear.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCrear.setHorizontalTextPosition(SwingConstants.CENTER);
+        jpFons.add(jbCrear);
 
         jbTornar = new JButton("Tornar enrere");
+        jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(null);
         jbTornar.setLayout(null);
