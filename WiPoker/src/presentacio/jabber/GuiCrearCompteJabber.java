@@ -17,8 +17,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 /**
  *
@@ -40,7 +42,6 @@ public class GuiCrearCompteJabber {
     private JTextField jtfCorreu;
     private JButton jbTornar;
     private JButton jbCrear;
-    private GuiMenuJabber menu;
     private JLabel jlBarra;
 
     public GuiCrearCompteJabber() throws InterruptedException {
@@ -55,24 +56,21 @@ public class GuiCrearCompteJabber {
         jFrame.setTitle("Crear compte Jabber");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
         jpFons.setLayout(null);
-        jpFons.setOpaque(false);
         jpFons.setBounds(0, 0, 340, 950);
         jFrame.add(jpFons);
 
         jlTitol = new JLabel();
         jlTitol.setBounds(0, 0, 340, 104);
-        jlTitol.setLayout(null);
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
         jlImatgeFons.setBounds(0, 104, 340, 499);
-        jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
 
@@ -80,7 +78,6 @@ public class GuiCrearCompteJabber {
         jlNom.setBounds(30, 100, 340, 104);
         jlNom.setText("Nom Complet ");
         jlNom.setForeground(Color.red);
-        jlNom.setLayout(null);
         jpFons.add(jlNom);
 
         jtfNom = new JTextField(20);
@@ -91,10 +88,9 @@ public class GuiCrearCompteJabber {
         jlPassword.setBounds(30, 170, 340, 104);
         jlPassword.setText("Contrasenya");
         jlPassword.setForeground(Color.red);
-        jlPassword.setLayout(null);
         jpFons.add(jlPassword);
 
-        jtfPassword = new JTextField(20);
+        jtfPassword = new JPasswordField();
         jtfPassword.setBounds(170, 210, 120, 24);
         jpFons.add(jtfPassword);
 
@@ -105,7 +101,7 @@ public class GuiCrearCompteJabber {
         jlPassword2.setLayout(null);
         jpFons.add(jlPassword2);
 
-        jtfPassword2 = new JTextField(20);
+        jtfPassword2 = new JPasswordField();
         jtfPassword2.setBounds(170, 280, 120, 24);
         jpFons.add(jtfPassword2);
 
@@ -123,10 +119,10 @@ public class GuiCrearCompteJabber {
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbCrear = new JButton("CREAR");
+        jbCrear.setMnemonic('C');
         jbCrear.setCursor(cursor);
         jbCrear.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbCrear.setBorder(null);
-        jbCrear.setLayout(null);
+        jbCrear.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbCrear.setBounds(30, 450, 120, 24);
         jbCrear.setIconTextGap(-260);
         jbCrear.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -135,10 +131,10 @@ public class GuiCrearCompteJabber {
         jpFons.add(jbCrear);
 
         jbTornar = new JButton("Tornar enrere");
+        jbTornar.setMnemonic('r');
         jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
-        jbTornar.setLayout(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setBounds(30, 500, 120, 24);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -152,9 +148,11 @@ public class GuiCrearCompteJabber {
         jpFons.add(jlBarra);
 
         jpFons.add(jlImatgeFons);
+
         jFrame.setVisible(true);
 
         jbTornar.addActionListener(new ActionListener() {
+            private GuiMenuJabber menu;
 
             public void actionPerformed(ActionEvent event) {
                 try {
@@ -186,4 +184,3 @@ public class GuiCrearCompteJabber {
         });
     }
 }
-

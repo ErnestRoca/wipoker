@@ -7,7 +7,6 @@ package presentacio.jabber;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,15 +16,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
-import presentacio.GuiMenu;
 
 /**
  *
@@ -47,7 +42,6 @@ public class GuiLoginJabber {
     private JTextField jtfCorreu;
     private JButton jbTornar;
     private JButton jbLogin;
-    private GuiMenuJabber menu;
     private JLabel jlBarra;
 
     public GuiLoginJabber() throws InterruptedException {
@@ -62,7 +56,7 @@ public class GuiLoginJabber {
         jFrame.setTitle("login Jabber");
         //jFrame.setLayout(null);
         //jFrame.setBackground(Color.WHITE);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
@@ -73,13 +67,11 @@ public class GuiLoginJabber {
         jlTitol = new JLabel();
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
         jlTitol.setBounds(0, 0, 340, 104);
-        jlTitol.setLayout(null);
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setBounds(0, 104, 340, 499);
-        jlImatgeFons.setOpaque(false);
 
         jlNom = new JLabel();
         jlNom.setBounds(30, 100, 340, 104);
@@ -124,6 +116,7 @@ public class GuiLoginJabber {
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbLogin = new JButton("LOGIN");
+        jbLogin.setMnemonic('L');
         jbLogin.setCursor(cursor);
         jbLogin.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbLogin.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
@@ -135,6 +128,7 @@ public class GuiLoginJabber {
         jpFons.add(jbLogin);
 
         jbTornar = new JButton("Tornar enrere");
+        jbTornar.setMnemonic('r');
         jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
@@ -151,9 +145,11 @@ public class GuiLoginJabber {
         jpFons.add(jlBarra);
 
         jpFons.add(jlImatgeFons);
+
         jFrame.setVisible(true);
 
         jbTornar.addActionListener(new ActionListener() {
+            private GuiMenuJabber menu;
 
             public void actionPerformed(ActionEvent event) {
                 try {
@@ -185,4 +181,3 @@ public class GuiLoginJabber {
         });
     }
 }
-

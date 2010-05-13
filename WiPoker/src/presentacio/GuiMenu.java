@@ -8,7 +8,6 @@ import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,14 +17,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
-import javax.swing.plaf.metal.MetalBorders.Flush3DBorder;
 import presentacio.jabber.GuiMenuJabber;
 import presentacio.partida.GuiNovaPartida;
 
@@ -43,9 +37,6 @@ public class GuiMenu {
     private JButton jbDades;
     private JButton jbSortir;
     private JButton jbJabber;
-    private GuiMenuJabber jabber;
-    private GuiMenuDades dades;
-    private GuiNovaPartida partida;
     private JLabel jlBarra;
     private JLabel jlBarra2;
 
@@ -60,7 +51,7 @@ public class GuiMenu {
         jFrame.setTitle("WiPoker");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
@@ -142,6 +133,7 @@ public class GuiMenu {
         jFrame.setVisible(true);
 
         jbJabber.addActionListener(new ActionListener() {
+            private GuiMenuJabber jabber;
 
             public void actionPerformed(ActionEvent event) {
                 try {
@@ -157,6 +149,7 @@ public class GuiMenu {
 
 
         jbPartida.addActionListener(new ActionListener() {
+            private GuiNovaPartida partida;
 
             public void actionPerformed(ActionEvent event) {
                 try {
@@ -172,6 +165,7 @@ public class GuiMenu {
 
 
         jbDades.addActionListener(new ActionListener() {
+            private GuiMenuDades dades;
 
             public void actionPerformed(ActionEvent event) {
                 try {
