@@ -114,6 +114,9 @@ public class ControladoraCartes {
 
     public boolean esEscala(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        ArrayList<Carta> comb1 = new ArrayList<Carta>();
+        ArrayList<Carta> comb2 = new ArrayList<Carta>();
+        ArrayList<Carta> comb3 = new ArrayList<Carta>();
         Collections.sort(cartes);
         Collections.reverse(cartes);
         for (int i = 0; i < cartes.size() - 1; i++) {
@@ -128,8 +131,16 @@ public class ControladoraCartes {
         for (int i = 0; i < iteracions; i++) {
             for (int j = i; j < (i + 4); j++) {
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                    valor = cartes.get(j).getValor();
-                    consecutives++;
+                    if (i == 0) {
+                        comb1.add(cartes.get(j));                        
+                        consecutives++;
+                    } else if (i == 1) {
+                        comb2.add(cartes.get(j));                        
+                        consecutives++;
+                    } else if (i == 2) {
+                        comb3.add(cartes.get(j));                       
+                        consecutives++;
+                    }
                 }
                 System.out.println("iteracio " + i + " num " + j + " carta " + cartes.get(j) + "cons= " + consecutives);
             }
@@ -138,9 +149,17 @@ public class ControladoraCartes {
                 valor = 0;
             }
         }
+        System.out.println(comb1.size() + " / " + comb2.size() + " / " + comb3.size());
         if (consecutives >= 4) {
             esEscala = true;
             jugador.getMaActual().setCombinacio((byte) 5);
+            if (comb1.size() == 4) {
+                valor = comb1.get(0).getValor();
+            } else if (comb2.size() == 4) {
+                valor = comb2.get(0).getValor();
+            } else  if (comb3.size() == 4) {
+                valor = comb3.get(0).getValor();
+            }
             jugador.getMaActual().setValorMesAlt((byte) (valor));
             consecutives = 0;
             /*for (int i = 0; i < 2; i++) {
