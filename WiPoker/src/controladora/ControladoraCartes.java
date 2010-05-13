@@ -10,6 +10,7 @@ import domini.Carta;
 import domini.Jugador;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -68,7 +69,6 @@ public class ControladoraCartes {
                 if (iguals >= 3) {
                     esPoker = true;
                     jugador.getMaActual().setValorMesAlt((byte) valor);
-
                 }
             }
         }
@@ -97,7 +97,7 @@ public class ControladoraCartes {
         int valor = -1;
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio ) {
+                if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio) {
                     valor = cartes.get(i).getValor();
                     iguals++;
                 }
@@ -120,14 +120,20 @@ public class ControladoraCartes {
 
     public boolean sonMateixColor(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        Collections.sort(cartes, new Comparator() {
+
+            public int compare(Object o1, Object o2) {
+                Carta c1 = (Carta) o1;
+                Carta c2 = (Carta) o1;
+                return c1.getPal() - c2.getPal();
+            }
+        });
         ArrayList<Carta> cartesColor = new ArrayList<Carta>();
         ArrayList<Carta> cartesNoColor = new ArrayList<Carta>();
         boolean mateixColor = false;
         Collections.sort(cartes);
         Collections.reverse(cartes);
-        int valor = 0;
         byte color = cartes.get(0).getPal();
-        
         for (int col = 0; col <= 3; col++) {
             int igualColor = 0;
             for (int i = 0; i < cartes.size(); i++) {
@@ -137,7 +143,7 @@ public class ControladoraCartes {
                 } else {
                     cartesNoColor.add(cartes.get(i));
                 }
-               
+
             }
             if (igualColor > 4) {
                 mateixColor = true;
@@ -146,18 +152,22 @@ public class ControladoraCartes {
             }
             if (!mateixColor) {
                 cartesColor.clear();
+                cartesNoColor.clear();
             }
         }
         Collections.sort(cartesColor);
         Collections.reverse(cartesColor);
-        byte desempat = 0;
-        for (Carta c: cartesNoColor) {
-            if (c.getPal() != color && c.getValor() > desempat) {
-                desempat = c.getValor();
+        if (!mateixColor) {
+            byte desempat = 0;
+            for (Carta c : cartesNoColor) {
+                if (c.getPal() != color && c.getValor() > desempat) {
+                    desempat = c.getValor();
+                }
             }
+
+            jugador.getMaActual().setValorMesAlt(cartesColor.get(0).getValor());
+            jugador.getMaActual().setValorDesempat(desempat);
         }
-        jugador.getMaActual().setValorMesAlt(cartesColor.get(0).getValor());
-        jugador.getMaActual().setValorDesempat(desempat);
         return mateixColor;
     }
 
