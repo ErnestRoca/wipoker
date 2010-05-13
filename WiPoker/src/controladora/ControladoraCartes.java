@@ -211,8 +211,8 @@ public class ControladoraCartes {
             jugador.getMaActual().setCombinacio((byte) 4);
             jugador.getMaActual().setValorMesAlt((byte) max);
             byte valor = (byte) (valorTrio1 > valorTrio2 ? valorTrio1 : valorTrio2);
-            for (int i = 0; i < 2; i++) {
-                byte desempat = 0;
+            byte desempat = 0;
+            for (int i = 0; i < cartes.size(); i++) {
                 if (cartes.get(i).getValor() != valor && cartes.get(i).getValor() > desempat) {
                     desempat = cartes.get(i).getValor();
                     jugador.getMaActual().setValorDesempat(desempat);
@@ -221,8 +221,8 @@ public class ControladoraCartes {
         } else if (esTrio1 && !esTrio2) {
             jugador.getMaActual().setCombinacio((byte) 4);
             jugador.getMaActual().setValorMesAlt((byte) valorTrio1);
-            for (int i = 0; i < 2; i++) {
-                byte desempat = 0;
+            byte desempat = 0;
+            for (int i = 0; i < cartes.size(); i++) {
                 if (cartes.get(i).getValor() != valorTrio1 && cartes.get(i).getValor() > desempat) {
                     desempat = cartes.get(i).getValor();
                     jugador.getMaActual().setValorDesempat(desempat);
@@ -231,8 +231,8 @@ public class ControladoraCartes {
         } else if (!esTrio1 && esTrio2) {
             jugador.getMaActual().setCombinacio((byte) 4);
             jugador.getMaActual().setValorMesAlt((byte) valorTrio2);
-            for (int i = 0; i < 2; i++) {
-                byte desempat = 0;
+            byte desempat = 0;
+            for (int i = 0; i < cartes.size(); i++) {
                 if (cartes.get(i).getValor() != valorTrio2 && cartes.get(i).getValor() > desempat) {
                     desempat = cartes.get(i).getValor();
                     jugador.getMaActual().setValorDesempat(desempat);
@@ -263,7 +263,6 @@ public class ControladoraCartes {
                     } else if (valorParella3 == -1 && valorParella2 != -1) {
                         valorParella3 = cartes.get(i).getValor();
                         numParelles++;
-
                     }
                 }
             }
@@ -289,8 +288,8 @@ public class ControladoraCartes {
                 valor1 = (byte) valorParella3;
                 valor2 = (byte) (valorParella1 > valorParella2 ? valorParella1 : valorParella2);
             }
-            for (int i = 0; i < 2; i++) {
-                byte desempat = 0;
+            byte desempat = 0;
+            for (int i = 0; i < cartes.size(); i++) {
                 if (cartes.get(i).getValor() != valor1 && cartes.get(i).getValor() != valor2 && cartes.get(i).getValor() > desempat) {
                     desempat = cartes.get(i).getValor();
                     jugador.getMaActual().setValorDesempat(desempat);
@@ -319,7 +318,7 @@ public class ControladoraCartes {
             jugador.getMaActual().setCombinacio((byte) 2);
             jugador.getMaActual().setValorMesAlt((byte) valor);
             byte desempat = 0;
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < cartes.size(); i++) {
                 if (cartes.get(i).getValor() != valor && cartes.get(i).getValor() > desempat) {
                     desempat = cartes.get(i).getValor();
                     jugador.getMaActual().setValorDesempat(desempat);
