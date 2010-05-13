@@ -96,6 +96,12 @@ public class ControladoraCartes {
         boolean full = esParella(jugador) && esTrio(jugador);
         if (full) {
             jugador.getMaActual().setCombinacio((byte) 7);
+            jugador.getMaActual().setValorMesAlt(valorTrio);
+            jugador.getMaActual().setValorDesempat((byte) 0);
+        } else {
+            jugador.getMaActual().setCombinacio((byte) 0);
+            jugador.getMaActual().setValorMesAlt((byte) 0);
+            jugador.getMaActual().setValorDesempat((byte) 0);
         }
         return full;
     }
