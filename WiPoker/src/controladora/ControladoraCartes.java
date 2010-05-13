@@ -86,29 +86,42 @@ public class ControladoraCartes {
 
     public boolean sonMateixColor(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        ArrayList<Carta> cartesColor = new ArrayList<Carta>();
+        ArrayList<Carta> cartesNoColor = new ArrayList<Carta>();
         boolean mateixColor = false;
         Collections.sort(cartes);
         Collections.reverse(cartes);
         int valor = 0;
-        for (int i = 0; i < cartes.size(); i++) {
+        byte color = cartes.get(0).getPal();
+        
+        for (int col = 0; col <= 3; col++) {
             int igualColor = 0;
-            byte color = cartes.get(i).getPal();
-            valor = cartes.get(i).getValor();
-            for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(j).getPal() == color) {
+            for (int i = 0; i < cartes.size(); i++) {
+                if (cartes.get(i).getPal() == col) {
                     igualColor++;
-                    valor = cartes.get(j).getValor();
+                    cartesColor.add(cartes.get(i));
+                } else {
+                    cartesNoColor.add(cartes.get(i));
                 }
+               
             }
-            if (igualColor >= 4) {
+            if (igualColor > 4) {
                 mateixColor = true;
                 jugador.getMaActual().setCombinacio((byte) 6);
-                jugador.getMaActual().setValorMesAlt((byte) valor);
+                color = cartesColor.get(0).getPal();
+            }
+            if (!mateixColor) {
+                cartesColor.clear();
             }
         }
-        if (!mateixColor) {
-            jugador.getMaActual().setValorMesAlt((byte) 0);
+        Collections.sort(cartesColor);
+        Collections.reverse(cartesColor);
+        for (Carta c: cartesNoColor) {
+            if (c.getPal() != color) {
+                System.out.println(c);
+            }
         }
+
         return mateixColor;
     }
 
