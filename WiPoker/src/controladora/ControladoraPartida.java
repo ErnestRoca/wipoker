@@ -131,7 +131,7 @@ public class ControladoraPartida {
             } else if (controlCartes.esPoker(j)) {
             } else if (controlCartes.esFull(j)) {
             } else if (controlCartes.sonMateixColor(j)) {
-            } else if (controlCartes.esEscala(j)) {
+            } else if (controlCartes.esEscalaSenseAs(j)) {
             } else if (controlCartes.esTrio(j)) {
             } else if (controlCartes.esDobleParella(j)) {
             } else if (controlCartes.esParella(j)) {
