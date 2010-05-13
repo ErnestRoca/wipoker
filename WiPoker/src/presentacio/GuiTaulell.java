@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
+import presentacio.partida.GuiNovaPartida;
 
 /*
  * To change this template, choose Tools | Templates
@@ -94,8 +97,7 @@ public class GuiTaulell {
     private JMenu jmMenuAjuda;
     private JMenuItem jmiQuantA;
     private JSeparator jseSeparador;
-
-    private ControladoraPartida cp = new ControladoraPartida((byte)1);
+    private ControladoraPartida cp = new ControladoraPartida((byte) 1);
 
     /** Constructor. */
     public GuiTaulell() {
@@ -716,8 +718,17 @@ public class GuiTaulell {
 
         jmiSortir.addActionListener(new ActionListener() {
 
+            private GuiMenu menu;
+
             public void actionPerformed(final ActionEvent evt) {
-                System.exit(0);
+                try {
+                    jFrame.dispose();
+                    menu = new GuiMenu();
+                    menu.getjFrame().setVisible(true);
+                } catch (Throwable ex) {
+                    Logger.getLogger(GuiTaulell.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         });
 

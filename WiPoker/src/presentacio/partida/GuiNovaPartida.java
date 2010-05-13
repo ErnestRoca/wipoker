@@ -7,6 +7,7 @@ package presentacio.partida;
 import java.awt.event.ActionEvent;
 import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -18,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import presentacio.GuiMenu;
 import presentacio.GuiTaulell;
 
 /**
@@ -47,32 +50,30 @@ public class GuiNovaPartida {
         jFrame.setTitle("Nova Partida");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
         jpFons.setLayout(null);
-        jpFons.setOpaque(false);
         jpFons.setBounds(0, 0, 340, 950);
         jFrame.add(jpFons);
 
         jlTitol = new JLabel();
         jlTitol.setBounds(0, 0, 340, 104);
-        jlTitol.setLayout(null);
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
         jlImatgeFons.setBounds(0, 104, 340, 499);
-        jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jlImatgeFons.setOpaque(false);
 
+        final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbCrearPartida = new JButton("Crear nova partida internet");
+        jbCrearPartida.setMnemonic('C');
+        jbCrearPartida.setCursor(cursor);
         jbCrearPartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbCrearPartida.setBorder(null);
-        jbCrearPartida.setLayout(null);
+        jbCrearPartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbCrearPartida.setBounds(40, 135, 260, 40);
         jbCrearPartida.setIconTextGap(-260);
         jbCrearPartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -81,9 +82,10 @@ public class GuiNovaPartida {
         jpFons.add(jbCrearPartida);
 
         jbUnirsePartida = new JButton("Unir-se a partida a internet");
+        jbUnirsePartida.setMnemonic('U');
+        jbUnirsePartida.setCursor(cursor);
         jbUnirsePartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbUnirsePartida.setBorder(null);
-        jbUnirsePartida.setLayout(null);
+        jbUnirsePartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbUnirsePartida.setBounds(40, 225, 260, 40);
         jbUnirsePartida.setIconTextGap(-260);
         jbUnirsePartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -92,9 +94,10 @@ public class GuiNovaPartida {
         jpFons.add(jbUnirsePartida);
 
         jbContraMaquina = new JButton("Jugar contra la màquina");
+        jbContraMaquina.setMnemonic('J');
+        jbContraMaquina.setCursor(cursor);
         jbContraMaquina.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbContraMaquina.setBorder(null);
-        jbContraMaquina.setLayout(null);
+        jbContraMaquina.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbContraMaquina.setBounds(40, 315, 260, 40);
         jbContraMaquina.setIconTextGap(-260);
         jbContraMaquina.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -103,9 +106,10 @@ public class GuiNovaPartida {
         jpFons.add(jbContraMaquina);
 
         jbTornar = new JButton("Tornar enrere");
+        jbTornar.setMnemonic('r');
+        jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
-        jbTornar.setLayout(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setBounds(40, 405, 260, 40);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -122,12 +126,13 @@ public class GuiNovaPartida {
         jFrame.setVisible(true);
 
         jbCrearPartida.addActionListener(new ActionListener() {
+            private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
-                GuiTaulell gt = new GuiTaulell();
+                taulell = new GuiTaulell();
                 jFrame.setVisible(false);
-                gt.getjFrame().setLocation(jFrame.getLocation());
-                gt.getjFrame().setVisible(true);
+                taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                taulell.getjFrame().setVisible(true);
             }
         });
 
@@ -146,12 +151,28 @@ public class GuiNovaPartida {
         });
 
         jbContraMaquina.addActionListener(new ActionListener() {
+            private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
-                GuiTaulell gt = new GuiTaulell();
+                taulell = new GuiTaulell();
                 jFrame.setVisible(false);
-                gt.getjFrame().setLocation(jFrame.getLocation());
-                gt.getjFrame().setVisible(true);
+                taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                taulell.getjFrame().setVisible(true);
+            }
+        });
+
+        jbTornar.addActionListener(new ActionListener() {
+            private GuiMenu menu;
+
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    jFrame.setVisible(false);
+                    menu = new GuiMenu();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiNovaPartida.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

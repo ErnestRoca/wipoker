@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import presentacio.GuiMenu;
 
 /**
@@ -50,7 +51,7 @@ public class GuiMenuJabber {
         jFrame.setTitle("Usuaris");
         jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
@@ -77,8 +78,7 @@ public class GuiMenuJabber {
         jbIniciarSessio.setMnemonic('I');
         jbIniciarSessio.setCursor(cursor);
         jbIniciarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbIniciarSessio.setBorder(null);
-        jbIniciarSessio.setLayout(null);
+        jbIniciarSessio.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbIniciarSessio.setBounds(40, 135, 260, 40);
         jbIniciarSessio.setIconTextGap(-260);
         jbIniciarSessio.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -90,8 +90,7 @@ public class GuiMenuJabber {
         jbCrearCompte.setMnemonic('C');
         jbCrearCompte.setCursor(cursor);
         jbCrearCompte.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbCrearCompte.setBorder(null);
-        jbCrearCompte.setLayout(null);
+        jbCrearCompte.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbCrearCompte.setBounds(40, 225, 260, 40);
         jbCrearCompte.setIconTextGap(-260);
         jbCrearCompte.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -103,8 +102,7 @@ public class GuiMenuJabber {
         jbTancarSessio.setMnemonic('T');
         jbTancarSessio.setCursor(cursor);
         jbTancarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTancarSessio.setBorder(null);
-        jbTancarSessio.setLayout(null);
+        jbTancarSessio.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTancarSessio.setBounds(40, 315, 260, 40);
         jbTancarSessio.setIconTextGap(-260);
         jbTancarSessio.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -116,8 +114,7 @@ public class GuiMenuJabber {
         jbTornar.setMnemonic('r');
         jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
-        jbTornar.setLayout(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setBounds(40, 405, 260, 40);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));

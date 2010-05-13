@@ -112,7 +112,9 @@ public class GuiUnirsePartida {
         jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
+        
         jFrame.setVisible(true);
+
         jbContraMaquina.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -130,7 +132,7 @@ public class GuiUnirsePartida {
 
             public void run() {
                 try {
-                    new GuiPartidaLocal();
+                    new GuiUnirsePartida();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
