@@ -114,22 +114,24 @@ public class ControladoraCartes {
 
     public boolean esEscala(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        ArrayList<Carta> privades = new ArrayList<Carta>();
-        //privades.add(cartes.get(0));
-        //privades.add(cartes.get(1));
         Collections.sort(cartes);
         Collections.reverse(cartes);
+        for (int i = 0; i < cartes.size() - 1; i++) {
+            if (cartes.get(i).equals(cartes.get(i + 1))) {
+                cartes.remove(i);
+            }
+        }
         boolean esEscala = false;
         int consecutives = 0;
         int valor = 0;
-        int iteracions = cartes.size() - 4;        
+        int iteracions = cartes.size() - 4;
         for (int i = 0; i < iteracions; i++) {
             for (int j = i; j < (i + 4); j++) {
-                System.out.println(("iteracio " + i + " num " + j + " carta " + cartes.get(j)));
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                    //valor = cartes.get(j).getValor();
-                    consecutives++;                    
+                    valor = cartes.get(j).getValor();
+                    consecutives++;
                 }
+                System.out.println("iteracio " + i + " num " + j + " carta " + cartes.get(j) + "cons= " + consecutives);
             }
             if (consecutives <= 3) {
                 consecutives = 0;
@@ -140,6 +142,7 @@ public class ControladoraCartes {
             esEscala = true;
             jugador.getMaActual().setCombinacio((byte) 5);
             jugador.getMaActual().setValorMesAlt((byte) (valor));
+            consecutives = 0;
             /*for (int i = 0; i < 2; i++) {
             byte desempat = 0;
             if (privades.get(i).getValor() > valor || privades.get(i).getValor() < (valor - 5) && valor > desempat) {
@@ -149,20 +152,20 @@ public class ControladoraCartes {
             }*/
         }
         /*if (!esEscala && cartes.get(0).getValor() == 14) {
-            cartes.add(new Carta((byte) cartes.get(0).getPal(), (byte) 1));
-            cartes.remove(0);
-            for (int i = 0; i < iteracions; i++) {
-                for (int j = iteracions - 1; j < (iteracions + 4); j++) {
-                    if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                        valor = cartes.get(i).getValor();
-                        consecutives++;
-                    }
-                }
-                if (consecutives <= 3) {
-                    consecutives = 0;
-                    valor = 0;
-                }
-            }
+        cartes.add(new Carta((byte) cartes.get(0).getPal(), (byte) 1));
+        cartes.remove(0);
+        for (int i = 0; i < iteracions; i++) {
+        for (int j = iteracions - 1; j < (iteracions + 4); j++) {
+        if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
+        valor = cartes.get(i).getValor();
+        consecutives++;
+        }
+        }
+        if (consecutives <= 3) {
+        consecutives = 0;
+        valor = 0;
+        }
+        }
         }
          * 
          */
