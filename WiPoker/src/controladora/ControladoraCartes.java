@@ -116,12 +116,14 @@ public class ControladoraCartes {
         }
         Collections.sort(cartesColor);
         Collections.reverse(cartesColor);
+        byte desempat = 0;
         for (Carta c: cartesNoColor) {
-            if (c.getPal() != color) {
-                System.out.println(c);
+            if (c.getPal() != color && c.getValor() > desempat) {
+                desempat = c.getValor();
             }
         }
-
+        jugador.getMaActual().setValorMesAlt(cartesColor.get(0).getValor());
+        jugador.getMaActual().setValorDesempat(desempat);
         return mateixColor;
     }
 
