@@ -38,7 +38,7 @@ public class ControladoraCartes {
         Collections.reverse(cartes);
         boolean mateixColor = sonMateixColor(jugador);
         boolean esEscalaColor = false;
-        boolean esEscala = esEscalaSenseAs(jugador);
+        boolean esEscala = esEscala(jugador);
         esEscalaColor = mateixColor && esEscala;
         if (esEscalaColor) {
             jugador.getMaActual().setCombinacio((byte) 9);
@@ -111,12 +111,8 @@ public class ControladoraCartes {
         }
         return mateixColor;
     }
-
+    
     public boolean esEscala(Jugador jugador) {
-        return false;
-    }
-
-    public boolean esEscalaAmbAs(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         ArrayList<Carta> comb1 = new ArrayList<Carta>();
         ArrayList<Carta> comb2 = new ArrayList<Carta>();
@@ -128,64 +124,7 @@ public class ControladoraCartes {
                 cartes.remove(i);
             }
         }
-        if (cartes.get(0).getValor() == 14) {
-            cartes.add(new Carta((byte) 3, (byte) 1));
-            cartes.remove(0);
-        }
-        boolean esEscala = false;
-        int consecutives = 0;
-        int valor = 0;
-        int iteracions = cartes.size() - 4;
-        for (int i = 0; i < iteracions; i++) {
-            for (int j = i; j < (i + 4); j++) {
-                if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                    if (i == 0) {
-                        comb1.add(cartes.get(j));
-                        consecutives++;
-                    } else if (i == 1) {
-                        comb2.add(cartes.get(j));
-                        consecutives++;
-                    } else if (i == 2) {
-                        comb3.add(cartes.get(j));
-                        consecutives++;
-                    }
-                }
-                System.out.println("iteracio " + i + " num " + j + " carta " + cartes.get(j) + "cons= " + consecutives);
-            }
-            if (consecutives <= 3) {
-                consecutives = 0;
-                valor = 0;
-            }
-        }
-        System.out.println(comb1.size() + " / " + comb2.size() + " / " + comb3.size());
-        if (consecutives >= 4) {
-            esEscala = true;
-            jugador.getMaActual().setCombinacio((byte) 5);
-            if (comb1.size() == 4) {
-                valor = comb1.get(0).getValor();
-            } else if (comb2.size() == 4) {
-                valor = comb2.get(0).getValor();
-            } else  if (comb3.size() == 4) {
-                valor = comb3.get(0).getValor();
-            }
-            jugador.getMaActual().setValorMesAlt((byte) (valor));
-            consecutives = 0;
-        }
-        return esEscala;
-    }
-
-    public boolean esEscalaSenseAs(Jugador jugador) {
-        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        ArrayList<Carta> comb1 = new ArrayList<Carta>();
-        ArrayList<Carta> comb2 = new ArrayList<Carta>();
-        ArrayList<Carta> comb3 = new ArrayList<Carta>();
-        Collections.sort(cartes);
-        Collections.reverse(cartes);
-        for (int i = 0; i < cartes.size() - 1; i++) {
-            if (cartes.get(i).equals(cartes.get(i + 1))) {
-                cartes.remove(i);
-            }
-        }
+        
         boolean esEscala = false;
         int consecutives = 0;
         int valor = 0;
@@ -223,8 +162,8 @@ public class ControladoraCartes {
                 valor = comb3.get(0).getValor();
             }
             jugador.getMaActual().setValorMesAlt((byte) (valor));
-            consecutives = 0;            
-        }
+            consecutives = 0;
+        }                
         return esEscala;
     }
 
