@@ -61,6 +61,7 @@ public class ControladoraCartes {
                 if (cartes.get(i).getValor() == cartes.get(j).getValor() && valor == 0) {
                     iguals = 1;
                     valor = cartes.get(i).getValor();
+                    valorPoker = (byte) valor;
                 } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && valor == cartes.get(i).getValor()) {
                     iguals++;
                 }
