@@ -180,6 +180,18 @@ public class ControladoraCartes {
                 consecutives = 0;
             }
         }
+        byte desempat = 0;
+        for (int i = 0; i < cartes.size(); i++) {
+            if (cartes.get(i).getValor() > valor && cartes.get(i).getValor() > desempat) {
+                desempat = cartes.get(i).getValor();
+            } else if (cartes.get(i).getValor() < (valor - 5) && cartes.get(i).getValor() > desempat) {
+                desempat = cartes.get(i).getValor();
+            }
+        }
+        jugador.getMaActual().setValorDesempat(desempat);
+
+
+
         return esEscala;
     }
 
