@@ -1,3 +1,5 @@
+//Coooooooorfejwksrtsarhgohaerjgfdsgn
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -50,6 +52,7 @@ public class ControladoraCartes {
 
     public boolean esPoker(Jugador jugador) {
         boolean esPoker = false;
+        byte valorPoker = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         for (int i = 0; i < cartes.size(); i++) {
             int valor = 0;
@@ -64,12 +67,20 @@ public class ControladoraCartes {
                 if (iguals >= 3) {
                     esPoker = true;
                     jugador.getMaActual().setValorMesAlt((byte) valor);
+
                 }
             }
         }
         if (esPoker) {
             esPoker = true;
             jugador.getMaActual().setCombinacio((byte) 8);
+            byte desempat = 0;
+            for (int i = 0; i < cartes.size(); i++) {
+                if (cartes.get(i).getValor() != valorPoker && cartes.get(i).getValor() > desempat) {
+                    desempat = cartes.get(i).getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }
         } else {
             jugador.getMaActual().setValorMesAlt((byte) 0);
         }
