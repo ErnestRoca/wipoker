@@ -77,6 +77,22 @@ public class ControladoraCartes {
     }
 
     public boolean esFull(Jugador jugador) {
+        boolean esTrio = esTrio(jugador);
+        byte valorTrio = jugador.getMaActual().getValorDesempat();
+        //System.out.println("parella: " + valorParella + " trio: " + valorTrio);
+        int iguals = 0;
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
+        int valor = -1;
+        for (int i = 0; i < cartes.size(); i++) {
+            for (int j = i + 1; j < cartes.size(); j++) {
+                if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio ) {
+                    valor = cartes.get(i).getValor();
+                    iguals++;
+                }
+            }
+        }
+        boolean esParella = iguals >= 1;
+
         boolean full = esParella(jugador) && esTrio(jugador);
         if (full) {
             jugador.getMaActual().setCombinacio((byte) 7);
