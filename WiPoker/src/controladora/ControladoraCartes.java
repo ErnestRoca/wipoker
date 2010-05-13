@@ -124,7 +124,7 @@ public class ControladoraCartes {
         int valor = 0;
         int iteracions = cartes.size() - 4;        
         for (int i = 0; i < iteracions; i++) {
-            for (int j = i; j < (i + 2); j++) {
+            for (int j = i; j < (i + 4); j++) {
                 System.out.println(("iteracio " + i + " num " + j + " carta " + cartes.get(j)));
                 if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
                     //valor = cartes.get(j).getValor();
