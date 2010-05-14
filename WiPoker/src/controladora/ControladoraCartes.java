@@ -45,7 +45,7 @@ public class ControladoraCartes {
         esEscalaColor = mateixColor && esEscala;
         if (esEscalaColor) {
             jugador.getMaActual().setCombinacio((byte) 9);
-            //jugador.getMaActual().setValorMesAlt((byte) valor);
+            jugador.getMaActual().setValorMesAlt(jugador.getMaActual().getValorMesAlt());
         }
         return esEscalaColor;
 
@@ -251,7 +251,7 @@ public class ControladoraCartes {
         }
         byte desempat = 0;
         for (int i = 0; i < cartes.size(); i++) {
-            if (cartes.get(i).getValor() > valor && cartes.get(i).getValor() > desempat) {
+            if (cartes.get(i).getValor() > valor && cartes.get(i).getValor() > desempat && cartes.get(i).getValor() != 14) {
                 desempat = cartes.get(i).getValor();
             } else if (cartes.get(i).getValor() < (valor - 5) && cartes.get(i).getValor() > desempat) {
                 desempat = cartes.get(i).getValor();
