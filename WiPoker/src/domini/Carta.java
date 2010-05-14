@@ -51,7 +51,7 @@ public class Carta implements Comparable {
 
     @Override
     public String toString() {
-        return "Carta: " + valor + " de " + pal + "\n";
+        return "Carta amb valor " + valor + " i pal " + pal + "\n";
     }
 
     public int compareTo(Object o) {
