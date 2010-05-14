@@ -56,19 +56,18 @@ public class ControladoraCartes {
         byte valorPoker = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         for (int i = 0; i < cartes.size(); i++) {
-            int valor = 0;
+            
             int iguals = 0;
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).getValor() == cartes.get(j).getValor() && valor == 0) {
-                    iguals = 1;
-                    valor = cartes.get(i).getValor();
-                    valorPoker = (byte) valor;
-                } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && valor == cartes.get(i).getValor()) {
+                if (cartes.get(i).getValor() == cartes.get(j).getValor() && valorPoker == 0) {
+                    iguals = 1;                    
+                    valorPoker = cartes.get(i).getValor();
+                } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && valorPoker == cartes.get(i).getValor()) {
                     iguals++;
                 }
                 if (iguals >= 3) {
                     esPoker = true;
-                    jugador.getMaActual().setValorMesAlt((byte) valor);
+                    jugador.getMaActual().setValorMesAlt((byte) valorPoker);
                 }
             }
         }
