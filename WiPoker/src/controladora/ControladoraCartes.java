@@ -90,15 +90,17 @@ public class ControladoraCartes {
 
     public boolean esFull(Jugador jugador) {
         boolean esTrio = esTrio(jugador);
-        byte valorTrio = jugador.getMaActual().getValorDesempat();
-        //System.out.println("parella: " + valorParella + " trio: " + valorTrio);
+        byte valorTrio = jugador.getMaActual().getValorMesAlt();
+        byte valorParella = 0;        
         int iguals = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        int valor = -1;
+        
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio) {
-                    valor = cartes.get(i).getValor();
+                if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio && valorParella == 0) {
+                    valorParella = cartes.get(i).getValor();
+                    iguals++;
+                } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio && valorParella != 0) {
                     iguals++;
                 }
             }
@@ -109,7 +111,13 @@ public class ControladoraCartes {
         if (full) {
             jugador.getMaActual().setCombinacio((byte) 7);
             jugador.getMaActual().setValorMesAlt(valorTrio);
-            jugador.getMaActual().setValorDesempat((byte) 0);
+            byte desempat = 0;
+            for (Carta c: cartes) {
+                if (c.getValor() != valorTrio && c.getValor() != valorParella && c.getValor() > desempat) {
+                    desempat = c.getValor();
+                    jugador.getMaActual().setValorDesempat(desempat);
+                }
+            }
         } else {
             jugador.getMaActual().setCombinacio((byte) 0);
             jugador.getMaActual().setValorMesAlt((byte) 0);
@@ -385,7 +393,7 @@ public class ControladoraCartes {
         int valor = -1;
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).equals(cartes.get(j))) {
+                if (cartes.get(i).getValor() == cartes.get(j).getValor()) {
                     valor = cartes.get(i).getValor();
                     iguals++;
                 }
