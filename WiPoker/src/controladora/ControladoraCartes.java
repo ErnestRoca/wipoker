@@ -269,7 +269,7 @@ public class ControladoraCartes {
         int valorTrio2 = 0;
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).equals(cartes.get(j)) && numCartes1 == 1 && numCartes2 == 1) {
+                if (cartes.get(i).getValor() == cartes.get(j).getValor() && numCartes1 == 1 && numCartes2 == 1) {
                     numCartes1++;
                     valorTrio1 = cartes.get(i).getValor();
                 } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && numCartes1 > 1 && cartes.get(i).getValor() == valorTrio1) {
