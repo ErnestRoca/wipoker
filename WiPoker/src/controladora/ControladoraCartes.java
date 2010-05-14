@@ -1,4 +1,4 @@
-//Coooooooorfejwksrtsarhgohaerjgfdsgn
+
 
 /*
  * To change this template, choose Tools | Templates
@@ -23,15 +23,21 @@ public class ControladoraCartes {
         boolean escalaColor = esEscalaColor(jugador);
         boolean limits = false;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        Collections.sort(cartes);
-        Collections.reverse(cartes);
+        
         int iteracions = cartes.size() - 4;
-        for (int i = 0; i < iteracions; i++) {
+        for (int i  = 0; i < iteracions; i++) {
+
+        }
+        for (int i = 0; i < 5; i++) {
             if ((cartes.get(i).getValor() == 14 && cartes.get(i + 4).getValor() == 10)) {
                 limits = true;
             }
         }
         esEscalaReial = escalaColor && limits;
+        if (!esEscalaReial) {
+            jugador.getMaActual().setCombinacio((byte)0);
+            jugador.getMaActual().setValorMesAlt((byte)0);
+        }
         return esEscalaReial;
     }
 
