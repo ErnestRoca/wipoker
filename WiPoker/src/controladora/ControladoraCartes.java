@@ -105,7 +105,7 @@ public class ControladoraCartes {
         }
         boolean esParella = iguals >= 1;
 
-        boolean full = esParella(jugador) && esTrio(jugador);
+        boolean full = esParella(jugador) && esTrio;
         if (full) {
             jugador.getMaActual().setCombinacio((byte) 7);
             jugador.getMaActual().setValorMesAlt(valorTrio);
@@ -139,7 +139,7 @@ public class ControladoraCartes {
             int igualColor = 0;
             color = (byte) col;
             for (int i = 0; i < cartes.size(); i++) {
-                System.out.print("col = " + col);
+                System.out.println("col = " + col);
                 System.out.println(" cond " + (cartes.get(i).getPal() == col));
                 if (cartes.get(i).getPal() == col) {
                     igualColor++;
@@ -272,12 +272,12 @@ public class ControladoraCartes {
                 if (cartes.get(i).equals(cartes.get(j)) && numCartes1 == 1 && numCartes2 == 1) {
                     numCartes1++;
                     valorTrio1 = cartes.get(i).getValor();
-                } else if (cartes.get(i).equals(cartes.get(j)) && numCartes1 > 1 && cartes.get(i).getValor() == valorTrio1) {
+                } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && numCartes1 > 1 && cartes.get(i).getValor() == valorTrio1) {
                     numCartes1++;
-                } else if (cartes.get(i).equals(cartes.get(j)) && numCartes2 == 1 && cartes.get(i).getValor() != valorTrio1) {
+                } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && numCartes2 == 1 && cartes.get(i).getValor() != valorTrio1) {
                     numCartes2++;
                     valorTrio2 = cartes.get(j).getValor();
-                } else if (cartes.get(i).equals(cartes.get(j)) && numCartes2 > 1 && cartes.get(i).getValor() == valorTrio2) {
+                } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && numCartes2 > 1 && cartes.get(i).getValor() == valorTrio2) {
                     numCartes2++;
                 }
             }
