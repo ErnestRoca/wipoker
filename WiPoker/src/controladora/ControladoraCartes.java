@@ -37,6 +37,7 @@ public class ControladoraCartes {
         if (!esEscalaReial) {
             jugador.getMaActual().setCombinacio((byte)0);
             jugador.getMaActual().setValorMesAlt((byte)0);
+             jugador.getMaActual().setValorDesempat((byte)0);
         }
         return esEscalaReial;
     }
