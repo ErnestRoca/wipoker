@@ -91,21 +91,17 @@ public class ControladoraCartes {
     public boolean esFull(Jugador jugador) {
         boolean esTrio = esTrio(jugador);
         byte valorTrio = jugador.getMaActual().getValorMesAlt();
-        byte valorParella = 0;        
-        int iguals = 0;
+        byte valorParella = 0;       
+        
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio && valorParella == 0) {
-                    valorParella = cartes.get(i).getValor();
-                    iguals++;
-                } else if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio && valorParella != 0) {
-                    iguals++;
-                }
+                if (cartes.get(i).getValor() == cartes.get(j).getValor() && cartes.get(i).getValor() != valorTrio) {
+                    valorParella = cartes.get(i).getValor();                    
+                } 
             }
-        }
-        boolean esParella = iguals >= 1;
+        }        
 
         boolean full = esParella(jugador) && esTrio;
         if (full) {
@@ -195,7 +191,7 @@ public class ControladoraCartes {
         Collections.reverse(cartes);
         int iteracions = cartes.size() - 4;
         for (int i = 0; i < cartes.size() - 1; i++) {
-            if (cartes.get(i).equals(cartes.get(i + 1))) {
+            if (cartes.get(i).getValor() == cartes.get(i + 1).getValor()) {
                 cartes.remove(i);
             }
         }
@@ -337,7 +333,7 @@ public class ControladoraCartes {
         int numParelles = 0;
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).equals(cartes.get(j))) {
+                if (cartes.get(i).getValor() == cartes.get(j).getValor()) {
                     if (valorParella1 == -1) {
                         valorParella1 = cartes.get(i).getValor();
                         numParelles++;
