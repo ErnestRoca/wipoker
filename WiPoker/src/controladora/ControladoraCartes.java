@@ -128,7 +128,7 @@ public class ControladoraCartes {
                 return c1.getPal() - c2.getPal();
             }
         });
-        
+
         ArrayList<Carta> cartesColor = new ArrayList<Carta>();
         ArrayList<Carta> cartesNoColor = new ArrayList<Carta>();
         boolean mateixColor = false;
@@ -137,40 +137,44 @@ public class ControladoraCartes {
         byte color = 0;
         for (int col = 0; col <= 3; col++) {
             int igualColor = 0;
-            color = (byte) col;            
-            for (int i = 0; i < cartes.size(); i++) {                
+            color = (byte) col;
+            for (int i = 0; i < cartes.size(); i++) {
                 System.out.print("col = " + col);
-                    System.out.println(" cond " + (cartes.get(i).getPal() == col));
+                System.out.println(" cond " + (cartes.get(i).getPal() == col));
                 if (cartes.get(i).getPal() == col) {
                     igualColor++;
                     color = cartes.get(i).getPal();
+                    cartesColor.add(cartes.get(i));
                 } else {
                     cartesNoColor.add(cartes.get(i));
-                }                    
-            }           
-            if (igualColor >= 5) {
-                mateixColor = true;
-                jugador.getMaActual().setCombinacio((byte) 6);                
-                break;
-            } else  {
-               color = 0;
-            }
-        }
-        /*
-        Collections.sort(cartesColor);
-        Collections.reverse(cartesColor);
-        if (mateixColor) {
-            byte desempat = 0;
-            for (Carta c : cartesNoColor) {
-                if (c.getPal() != color && c.getValor() > desempat) {
-                    desempat = c.getValor();
                 }
             }
-
-            jugador.getMaActual().setValorMesAlt(cartesColor.get(0).getValor());
-            jugador.getMaActual().setValorDesempat(desempat);
+            if (igualColor >= 5) {
+                mateixColor = true;
+                jugador.getMaActual().setCombinacio((byte) 6);
+                break;
+            } else {
+                color = 0;
+                cartesColor.clear();
+                cartesNoColor.clear();
+            }
         }
-         */
+        if (mateixColor) {
+            Collections.sort(cartesColor);
+            Collections.reverse(cartesColor);
+            if (mateixColor) {
+                byte desempat = 0;
+                for (Carta c : cartesNoColor) {
+                    if (c.getPal() != color && c.getValor() > desempat) {
+                        desempat = c.getValor();
+                    }
+                }
+
+                jugador.getMaActual().setValorMesAlt(cartesColor.get(0).getValor());
+                jugador.getMaActual().setValorDesempat(desempat);
+            }
+        }
+
         return mateixColor;
     }
 
