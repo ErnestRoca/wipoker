@@ -40,13 +40,16 @@ public class ControladoraJoc {
         return b;
     }
 
-    public void repartirCartesPrivades(ArrayList<Jugador> jugadors, Baralla baralla) {
+    public ArrayList<Carta> repartirCartesPrivades(ArrayList<Jugador> jugadors, Baralla baralla) {
+        ArrayList<Carta> privades = new ArrayList<Carta>();
         for (int i = 0; i <= 1; i++) {
             for (Jugador j : jugadors) {
+                privades.add(baralla.getCartes().get(baralla.getCartesActuals()));
                 j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
                 baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
             }
         }
+        return privades;
     }
 
     public void aixecarCartes(ArrayList<Jugador> jugadors, Baralla baralla, byte numCartes) {
@@ -75,10 +78,10 @@ public class ControladoraJoc {
             ronda.setPot(ronda.getPot() + quantitat);
         }
     }
-    
+
     public void repartirPremi(ArrayList<Jugador> jugadors, double pot) {
         pot = pot / jugadors.size();
-        for (Jugador j: jugadors) {
+        for (Jugador j : jugadors) {
             j.setFitxesActuals((int) (j.getFitxesActuals() + pot));
         }
     }

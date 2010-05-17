@@ -20,7 +20,7 @@ import java.util.Comparator;
  *
  * @author wida45787385
  */
-public class ControladoraPartida implements Runnable {
+public class ControladoraPartida {
 
     private Taula taula;
     private Baralla baralla;
@@ -53,13 +53,21 @@ public class ControladoraPartida implements Runnable {
         }
     }
 
-    public void iniciarRonda() {
+    public void jugar() {
+        while (jugadors.size() > 1) {
+            int boto = 0;
+            iniciarRonda(boto);
+            boto++;
+        }
+    }
+
+    public void iniciarRonda(int boto) {
         Ronda novaRonda = new Ronda(0);
         novaRonda.setPartida(partida);
         partida.getRondes().add(novaRonda);
         controlJoc.barallar(baralla);
         for (int i = 0; i < 4; i++) {
-            gestionarFase(novaRonda);
+            gestionarFase(novaRonda, boto);
         }
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
@@ -70,7 +78,7 @@ public class ControladoraPartida implements Runnable {
         novaRonda.getFases().clear();        
     }
 
-    public void gestionarFase(Ronda ronda) {
+    public void gestionarFase(Ronda ronda, int boto) {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()]);
