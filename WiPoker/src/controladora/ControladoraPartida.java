@@ -13,12 +13,14 @@ import domini.Partida;
 import domini.Ronda;
 import domini.Taula;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
  * @author wida45787385
  */
-public class ControladoraPartida {
+public class ControladoraPartida implements Runnable {
 
     private Taula taula;
     private Baralla baralla;
@@ -105,9 +107,50 @@ public class ControladoraPartida {
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
-   private void eventsPreFlop() {
-       
-   }
+    private void eventsPreFlop(int quanitat, Ronda ronda, int boto) {
+        //cega petita i gran
+        controlJoc.apostar(jugadors.get(boto + 1), quanitat, ronda);
+        controlJoc.apostar(jugadors.get(boto + 2), (quanitat * 2), ronda);
+        controlJoc.repartirCartesPrivades(jugadors, baralla);
+
+        for (int i = boto + 3; i < jugadors.size(); i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+        for (int i = boto - 3; i <= 2; i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+    }
+
+    private void eventsFlop(Ronda ronda, int boto) {
+        controlJoc.aixecarCartes(jugadors, baralla, (byte) 3);
+        for (int i = boto + 3; i < jugadors.size(); i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+        for (int i = boto - 3; i <= 2; i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+    }
+
+    private void eventsTurn(Ronda ronda, int boto) {
+        controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
+        for (int i = boto + 3; i < jugadors.size(); i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+        for (int i = boto - 3; i <= 2; i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+    }
+
+    private void eventsRiver(Ronda ronda, int boto) {
+        controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
+        for (int i = boto + 3; i < jugadors.size(); i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+        for (int i = boto - 3; i <= 2; i++) {
+            controlJoc.apostar(jugadors.get(i), 0, ronda);
+        }
+        determinarCombinacio();
+    }
 
     private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
         for (Jugador j : jugadors) {
@@ -132,19 +175,50 @@ public class ControladoraPartida {
         }
     }
 
-    private Jugador determinarGuanyador() {
-        Jugador j1 = jugadors.get(0);
-        for (Jugador j: jugadors) {
-            //if j.getMaActual().getCombinacio()
+    private ArrayList<Jugador> determinarGuanyador() {
+
+        ArrayList<Jugador> posiblesGuanyadors = new ArrayList<Jugador>();
+        int comb = 0;
+        for (int i = 0; i < jugadors.size(); i++) {
+            if (jugadors.get(i).getMaActual().getCombinacio() > comb) {
+                comb = jugadors.get(i).getMaActual().getCombinacio();
+            }
         }
-
-
-        return null;
+        for (Jugador j : jugadors) {
+            if (j.getMaActual().getCombinacio() == comb) {
+                posiblesGuanyadors.add(j);
+            }
+        }
+        comb = 0;
+        if (posiblesGuanyadors.size() > 1) {
+            for (int i = 0; i < posiblesGuanyadors.size(); i++) {
+                if (posiblesGuanyadors.get(i).getMaActual().getValorMesAlt() > comb) {
+                    comb = posiblesGuanyadors.get(i).getMaActual().getValorMesAlt();
+                }
+            }
+            for (Jugador j : posiblesGuanyadors) {
+                if (j.getMaActual().getValorMesAlt() != comb) {
+                    posiblesGuanyadors.remove(j);
+                }
+            }
+            if (posiblesGuanyadors.size() > 1) {
+                comb = 0;
+                for (int i = 0; i < posiblesGuanyadors.size(); i++) {
+                    if (posiblesGuanyadors.get(i).getMaActual().getValorDesempat() > comb) {
+                        comb = posiblesGuanyadors.get(i).getMaActual().getValorDesempat();
+                    }
+                }
+                for (Jugador j : posiblesGuanyadors) {
+                    if (j.getMaActual().getValorDesempat() != comb) {
+                        posiblesGuanyadors.remove(j);
+                    }
+                }
+            }
+        }
+        return posiblesGuanyadors;
     }
 
-    public Jugador desempat(Jugador j1, Jugador j2) {
-        return j1;
-    }
+    
 
     private void determinarJugadorsEliminats() {
         for (Jugador j : jugadors) {
