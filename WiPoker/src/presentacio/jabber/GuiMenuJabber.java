@@ -4,6 +4,7 @@
  */
 package presentacio.jabber;
 
+import controladora.ControladoraGui;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -39,9 +40,15 @@ public class GuiMenuJabber {
     private GuiLoginJabber iniciar;
     private GuiCrearCompteJabber crear;
     private JLabel jlBarra;
+    private ControladoraGui gui;
 
     public GuiMenuJabber() throws InterruptedException {
         iniciarComponents();
+    }
+
+    public GuiMenuJabber(ControladoraGui gui) throws InterruptedException {
+        iniciarComponents();
+        this.gui = gui;
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -136,9 +143,10 @@ public class GuiMenuJabber {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    iniciar = new GuiLoginJabber();
+                    iniciar = new GuiLoginJabber(gui);
                     iniciar.getjFrame().setLocation(jFrame.getLocation());
                     iniciar.getjFrame().setVisible(true);
+
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -153,8 +161,19 @@ public class GuiMenuJabber {
                     crear = new GuiCrearCompteJabber();
                     crear.getjFrame().setLocation(jFrame.getLocation());
                     crear.getjFrame().setVisible(true);
+                    crear.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        jbTancarSessio.addActionListener(new ActionListener() {
+
+
+            public void actionPerformed(ActionEvent event) {
+                if (gui.isLogin()) {
+                    gui.setLoginFalse();
                 }
             }
         });
@@ -167,6 +186,7 @@ public class GuiMenuJabber {
                     menu = new GuiMenu();
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
+                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -177,6 +197,14 @@ public class GuiMenuJabber {
 
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
     }
 
     public static void main(String[] args) {

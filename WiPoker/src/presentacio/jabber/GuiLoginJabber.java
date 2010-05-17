@@ -4,6 +4,7 @@
  */
 package presentacio.jabber;
 
+import controladora.ControladoraGui;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -43,10 +44,15 @@ public class GuiLoginJabber {
     private JButton jbTornar;
     private JButton jbLogin;
     private JLabel jlBarra;
+    private ControladoraGui gui;
 
     public GuiLoginJabber() throws InterruptedException {
         iniciarComponents();
+    }
 
+    public GuiLoginJabber(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -148,15 +154,23 @@ public class GuiLoginJabber {
 
         jFrame.setVisible(true);
 
+        jbLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                if (!gui.isLogin()) {
+                    gui.setLoginTrue();
+                }
+            }
+        });
+
         jbTornar.addActionListener(new ActionListener() {
             private GuiMenuJabber menu;
-
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
                     menu = new GuiMenuJabber();
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
+                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -166,6 +180,14 @@ public class GuiLoginJabber {
 
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
     }
 
     public static void main(String[] args) {
