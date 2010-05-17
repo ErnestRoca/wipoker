@@ -25,7 +25,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
-import presentacio.partida.GuiNovaPartida;
 
 /*
  * To change this template, choose Tools | Templates
@@ -128,7 +127,7 @@ public class GuiTaulell {
     }
 
     //Mètode per introduir una imatge de fons.
-    public class jPanelGlobal extends javax.swing.JPanel {
+    public class JPanelGlobal extends javax.swing.JPanel {
 
         @Override
         public void paintComponent(Graphics g) {
@@ -144,7 +143,7 @@ public class GuiTaulell {
         jMenuBar.setBounds(0, 0, 1024, 25);
         jFrame.add(jMenuBar);
 
-        jPanelGlobal = new jPanelGlobal();
+        jPanelGlobal = new JPanelGlobal();
         jPanelGlobal.setBackground(Color.WHITE);
         jPanelGlobal.setLayout(null);
         jPanelGlobal.setBorder(null);
@@ -989,64 +988,10 @@ public class GuiTaulell {
      * @param args No emprats
      */
     public static void main(final String[] args) {
-        /** Triem el tipus de Look&Feel. */
-        final int TIPUSLF = 6;
-        EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
-            @Override
             public void run() {
-                String plaf = "";   // plaf = Pluggable Look&Feel
-                // Missatge inicarAction la classe Gui per crear un objecte Gui
-                final GuiTaulell gui = new GuiTaulell();
-                try {
-                    // Triem el Look&Feel
-                    switch (TIPUSLF) {
-                        case 1:
-                            // Especifiquem el Java Look & Feel (Conegut com Metal). Es pot emprar en totes les plataformes.
-                            plaf = "javax.swing.plaf.metal.MetalLookAndFeel";
-                            UIManager.setLookAndFeel(plaf);
-                            break;
-                        case 2:
-                            // Es pot emprar en totes les plataformes.
-                            plaf = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-                            UIManager.setLookAndFeel(plaf);
-                            break;
-                        case 3:
-                            // Nomes funciona en sistemes Win32.
-                            plaf = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-                            UIManager.setLookAndFeel(plaf);
-                            break;
-                        case 4:
-                            // Nomes funciona en sistemes Mac OS.
-                            plaf = "javax.swing.plaf.mac.MacLookAndFeel";
-                            UIManager.setLookAndFeel(plaf);
-                            break;
-                        case 5:
-                            // Especifiquem el Java Look & Feel (Conegut com Metal) Es pot emprar en totes les plataformes.
-                            plaf = UIManager.getCrossPlatformLookAndFeelClassName();
-                            UIManager.setLookAndFeel(plaf);
-                            break;
-                        case 6:
-                            /* Especifiquem el Java Look & Feel de la plataforma actual
-                             * En Win32, es el Windows Look & Feel.
-                             * En Mac es el Mac OS Look & Feel.
-                             * En Sun es el CDE/Motif Look & Feel.
-                             * Es pot emprar en totes les plataformes.
-                             */
-                            plaf = UIManager.getSystemLookAndFeelClassName();
-                            UIManager.setLookAndFeel(plaf);
-                            break;
-                        default:
-                    }
-                    //Actualitzem l'objecte jFrame amb el Look&Feel triat i tots els demes components ho faran en cascada
-                    SwingUtilities.updateComponentTreeUI(gui.jFrame);
-                } catch (final Exception exception) {
-                    final String missatge = "No s'ha pogut carregar el Look&Feel desitjat\nEs carrega el Look&Feel per defecte (Java Look & Feel)";
-                    final String titol = "S'ha produit una excepció";
-                    JOptionPane.showMessageDialog(gui.jFrame, missatge, titol, JOptionPane.ERROR_MESSAGE);
-                } finally {
-                    gui.jFrame.setVisible(true);
-                }
+                new GuiTaulell();
             }
         });
     }
