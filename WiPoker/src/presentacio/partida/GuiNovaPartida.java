@@ -4,6 +4,7 @@
  */
 package presentacio.partida;
 
+import controladora.ControladoraGui;
 import java.awt.event.ActionEvent;
 import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
@@ -38,9 +39,17 @@ public class GuiNovaPartida {
     private JButton jbCrearPartida;
     private JButton jbTornar;
     private JLabel jlBarra;
+    private ControladoraGui gui;
 
     public GuiNovaPartida() throws InterruptedException {
         iniciarComponents();
+        comprovarLogin();
+    }
+
+    public GuiNovaPartida(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+        comprovarLogin();
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -158,6 +167,7 @@ public class GuiNovaPartida {
                 jFrame.setVisible(false);
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);
+                //taulell.setControladoraGui(gui);
             }
         });
 
@@ -170,6 +180,7 @@ public class GuiNovaPartida {
                     menu = new GuiMenu();
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
+                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiNovaPartida.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -177,8 +188,23 @@ public class GuiNovaPartida {
         });
     }
 
+    private void comprovarLogin() {
+        if (!gui.isLogin()) {
+            jbCrearPartida.setEnabled(false);
+            jbUnirsePartida.setEnabled(false);
+        }
+    }
+
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
     }
 
     public static void main(String[] args) {
@@ -193,4 +219,6 @@ public class GuiNovaPartida {
             }
         });
     }
+
+
 }

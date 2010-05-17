@@ -4,6 +4,7 @@
  */
 package presentacio.partida;
 
+import controladora.ControladoraGui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -33,6 +34,7 @@ public class GuiUnirsePartida {
     private JButton jbContraMaquina;
     private JButton jbCrearPartida;
     private JButton jbTornar;
+    private ControladoraGui gui;
 
     public GuiUnirsePartida() throws InterruptedException {
         iniciarComponents();
@@ -112,7 +114,7 @@ public class GuiUnirsePartida {
         jpFons.add(jbTornar);
 
         jpFons.add(jlImatgeFons);
-        
+
         jFrame.setVisible(true);
 
         jbContraMaquina.addActionListener(new ActionListener() {
@@ -121,10 +123,34 @@ public class GuiUnirsePartida {
                 throw new UnsupportedOperationException("Not supported yet.");
             }
         });
+
+        jbTornar.addActionListener(new ActionListener() {
+            private GuiNovaPartida menu;
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    jFrame.setVisible(false);
+                    menu = new GuiNovaPartida();
+                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setVisible(true);
+                    menu.setControladoraGui(gui);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiNovaPartida.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
+
 
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
     }
 
     public static void main(String[] args) {
