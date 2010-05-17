@@ -61,12 +61,13 @@ public class ControladoraPartida implements Runnable {
         for (int i = 0; i < 4; i++) {
             gestionarFase(novaRonda);
         }
-        novaRonda.setJugadorGuanyadorRonda(determinarGuanyador());
-        novaRonda.getJugadorGuanyadorRonda().setFitxesActuals(novaRonda.getPot());
+        determinarCombinacio();
+        ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
+        controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
+        novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));        
         Fase.setNumFase((byte) 0);
         determinarJugadorsEliminats();
-        novaRonda.getFases().clear();
-        partida.getRondes().clear();
+        novaRonda.getFases().clear();        
     }
 
     public void gestionarFase(Ronda ronda) {
@@ -76,32 +77,13 @@ public class ControladoraPartida implements Runnable {
         ronda.getFases().add(novaFase);
         novaFase.setRonda(ronda);
         if (Fase.getNumFase() == 1) {
-            controlJoc.repartirCartesPrivades(jugadors, baralla);
-            determinarCombinacioPreFlop(jugadors);
-            for (Jugador j : jugadors) {
-                apostar(j, 0, ronda);
-            }
+            eventsPreFlop(0, ronda, boto);
         } else if (Fase.getNumFase() == 2) {
-            controlJoc.cremarCartes(baralla);
-            controlJoc.aixecarCartes(jugadors, baralla, (byte) 3);
-            determinarCombinacio();
-            for (Jugador j : jugadors) {
-                apostar(j, 0, ronda);
-            }
+            eventsFlop(ronda, boto);
         } else if (Fase.getNumFase() == 3) {
-            controlJoc.cremarCartes(baralla);
-            controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
-            determinarCombinacio();
-            for (Jugador j : jugadors) {
-                apostar(j, 0, ronda);
-            }
+            eventsTurn(ronda, boto);
         } else if (Fase.getNumFase() == 4) {
-            controlJoc.cremarCartes(baralla);
-            controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
-            determinarCombinacio();
-            for (Jugador j : jugadors) {
-                apostar(j, 0, ronda);
-            }
+            eventsRiver(ronda, boto);
         }
 
         //Al finalitzar la fase afegir potFase al pot de la ronda
@@ -122,6 +104,7 @@ public class ControladoraPartida implements Runnable {
     }
 
     private void eventsFlop(Ronda ronda, int boto) {
+        controlJoc.cremarCartes(baralla);
         controlJoc.aixecarCartes(jugadors, baralla, (byte) 3);
         for (int i = boto + 3; i < jugadors.size(); i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
@@ -132,6 +115,7 @@ public class ControladoraPartida implements Runnable {
     }
 
     private void eventsTurn(Ronda ronda, int boto) {
+        controlJoc.cremarCartes(baralla);
         controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
         for (int i = boto + 3; i < jugadors.size(); i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
@@ -142,6 +126,7 @@ public class ControladoraPartida implements Runnable {
     }
 
     private void eventsRiver(Ronda ronda, int boto) {
+        controlJoc.cremarCartes(baralla);
         controlJoc.aixecarCartes(jugadors, baralla, (byte) 1);
         for (int i = boto + 3; i < jugadors.size(); i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
@@ -149,9 +134,7 @@ public class ControladoraPartida implements Runnable {
         for (int i = boto - 3; i <= 2; i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
-        determinarCombinacio();
-        ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
-        controlJoc.repartirPremi(jugadorsGuanyadors, ronda.getPot());
+        
     }
 
     private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
