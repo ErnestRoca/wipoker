@@ -4,9 +4,11 @@
  */
 package controladora;
 
+import domini.Aposta;
 import domini.Baralla;
 import domini.Carta;
 import domini.Jugador;
+import domini.Ronda;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -65,5 +67,15 @@ public class ControladoraJoc {
 
     public void barallar(Baralla baralla) {
         Collections.shuffle(baralla.getCartes());
+    }
+
+     public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
+        //modificar cuando este hecha gui
+        int fase = ronda.getFases().size();
+        if (quantitat > ronda.getFases().get(fase).getApostes().get(ronda.getFases().size()).getQuantitat()) {
+            jugador.setAposta(new Aposta(jugador, quantitat));
+            jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
+            ronda.setPot(ronda.getPot() + quantitat);
+        }
     }
 }

@@ -105,15 +105,9 @@ public class ControladoraPartida {
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
-    public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
-        //modificar cuando este hecha gui
-        int fase = ronda.getFases().size();
-        if (quantitat > ronda.getFases().get(fase).getApostes().get(ronda.getFases().size()).getQuantitat()) {
-            jugador.setAposta(new Aposta(jugador, quantitat));
-            jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
-            ronda.setPot(ronda.getPot() + quantitat);
-        }
-    }
+   private void eventsPreFlop() {
+       
+   }
 
     private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
         for (Jugador j : jugadors) {
