@@ -133,6 +133,7 @@ public class GuiMenu {
         jFrame.setVisible(true);
 
         jbJabber.addActionListener(new ActionListener() {
+
             private GuiMenuJabber jabber;
 
             public void actionPerformed(ActionEvent event) {
@@ -149,6 +150,7 @@ public class GuiMenu {
 
 
         jbPartida.addActionListener(new ActionListener() {
+
             private GuiNovaPartida partida;
 
             public void actionPerformed(ActionEvent event) {
@@ -165,6 +167,7 @@ public class GuiMenu {
 
 
         jbDades.addActionListener(new ActionListener() {
+
             private GuiMenuDades dades;
 
             public void actionPerformed(ActionEvent event) {
