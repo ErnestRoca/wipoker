@@ -4,6 +4,7 @@
  */
 package presentacio.jabber;
 
+import controladora.ControladoraGui;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -43,6 +44,7 @@ public class GuiCrearCompteJabber {
     private JButton jbTornar;
     private JButton jbCrear;
     private JLabel jlBarra;
+    private ControladoraGui gui;
 
     public GuiCrearCompteJabber() throws InterruptedException {
         iniciarComponents();
@@ -160,6 +162,7 @@ public class GuiCrearCompteJabber {
                     menu = new GuiMenuJabber();
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
+                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -169,6 +172,14 @@ public class GuiCrearCompteJabber {
 
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
     }
 
     public static void main(String[] args) {
