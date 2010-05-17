@@ -4,6 +4,7 @@
  */
 package presentacio.dades;
 
+import controladora.ControladoraGui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -43,6 +44,7 @@ public class GuiEditarJugador {
     private JButton jbTornar;
 
     private GuiMenuDades menu;
+    private ControladoraGui gui;
 
     public GuiEditarJugador() throws InterruptedException {
         iniciarComponents();
@@ -164,6 +166,7 @@ public class GuiEditarJugador {
                     menu = new GuiMenuDades();
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
+                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -173,6 +176,15 @@ public class GuiEditarJugador {
 
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
     }
 
 

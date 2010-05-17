@@ -4,6 +4,7 @@
  */
 package presentacio.dades;
 
+import controladora.ControladoraGui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -45,6 +46,7 @@ public class GuiConsultarDades {
     private JButton jbTornar;
 
     private GuiMenuDades menu;
+    private ControladoraGui gui;
 
 
 
@@ -185,6 +187,7 @@ public class GuiConsultarDades {
                     menu = new GuiMenuDades();
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
+                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -199,6 +202,13 @@ public class GuiConsultarDades {
     }
 
 
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
+    }
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
