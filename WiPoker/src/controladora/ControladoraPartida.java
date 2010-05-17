@@ -13,6 +13,7 @@ import domini.Partida;
 import domini.Ronda;
 import domini.Taula;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -31,12 +32,13 @@ public class ControladoraPartida {
     private ControladoraJoc controlJoc = new ControladoraJoc();
 
     public ControladoraPartida(byte maxJugadors) {
-        super();
+        //super();
         baralla = controlJoc.crearBaralla();
         taula = new Taula(maxJugadors, baralla);
-        //partida = new Partida(Calendar.getInstance());
+        partida = new Partida(Calendar.getInstance());
         taula.setPartidaActual(partida);
         //jugadors = partida.getJugadors();
+        jugadors = new ArrayList<Jugador>(maxJugadors);
     }
 
     public boolean taulaIsFull() {
@@ -49,7 +51,7 @@ public class ControladoraPartida {
             jugadors.add(nouJugador);
             taula.setCadiresOcupades((byte) (taula.getCadiresOcupades() + 1));
         } else {
-            //implementar metodo no quedanPlazas
+            System.out.println(taula.getCadiresOcupades());
         }
     }
 
