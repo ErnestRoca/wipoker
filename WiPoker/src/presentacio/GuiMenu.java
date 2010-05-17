@@ -4,6 +4,7 @@
  */
 package presentacio;
 
+import controladora.ControladoraGui;
 import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -39,9 +40,11 @@ public class GuiMenu {
     private JButton jbJabber;
     private JLabel jlBarra;
     private JLabel jlBarra2;
+    private ControladoraGui gui;
 
     public GuiMenu() throws InterruptedException {
         iniciarComponents();
+        gui = new ControladoraGui();
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -50,7 +53,7 @@ public class GuiMenu {
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("WiPoker");
         jFrame.setLayout(null);
-        jFrame.setBackground(Color.WHITE);
+        jFrame.setBackground(Color.GREEN);
         jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
@@ -139,7 +142,7 @@ public class GuiMenu {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    jabber = new GuiMenuJabber();
+                    jabber = new GuiMenuJabber(gui);
                     jabber.getjFrame().setLocation(jFrame.getLocation());
                     jabber.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
@@ -156,9 +159,11 @@ public class GuiMenu {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    partida = new GuiNovaPartida();
+                    partida = new GuiNovaPartida(gui);
                     partida.getjFrame().setLocation(jFrame.getLocation());
                     partida.getjFrame().setVisible(true);
+                    //partida.setControladoraGui(gui);
+                    
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -171,13 +176,15 @@ public class GuiMenu {
             private GuiMenuDades dades;
 
             public void actionPerformed(ActionEvent event) {
+                //
                 try {
                     jFrame.setVisible(false);
                     dades = new GuiMenuDades();
                     dades.getjFrame().setLocation(jFrame.getLocation());
                     dades.getjFrame().setVisible(true);
+                    dades.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -193,6 +200,14 @@ public class GuiMenu {
 
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+    public ControladoraGui getControladoraGui() {
+        return gui;
+    }
+
+    public void setControladoraGui(ControladoraGui gui) {
+        this.gui = gui;
     }
 
     public static void main(final String[] args) {
