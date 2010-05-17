@@ -14,7 +14,7 @@ public class Ronda {
 
     private Partida partida;
     //Jugador que guanya la ronda
-    private Jugador jugadorGuanyadorRonda;
+    private ArrayList<Jugador> jugadorsGuanyadorRonda;
     //pot de la ronda
     private int pot;
     private ArrayList<Fase> fases = new ArrayList<Fase>();
@@ -42,12 +42,12 @@ public class Ronda {
         this.fases = fases;
     }
 
-    public Jugador getJugadorGuanyadorRonda() {
-        return jugadorGuanyadorRonda;
+    public ArrayList<Jugador> getJugadorGuanyadorRonda() {
+        return jugadorsGuanyadorRonda;
     }
 
-    public void setJugadorGuanyadorRonda(Jugador jugadorGuanyadorRonda) {
-        this.jugadorGuanyadorRonda = jugadorGuanyadorRonda;
+    public void setJugadorGuanyadorRonda(ArrayList<Jugador> jugadorGuanyadorRonda) {
+        this.jugadorsGuanyadorRonda = jugadorGuanyadorRonda;
     }
 
     public Partida getPartida() {
@@ -70,6 +70,6 @@ public class Ronda {
 
     @Override
     public String toString() {
-        return ("Pot : " + pot + ", guanyador: " + jugadorGuanyadorRonda.getNomComplet());
+        return ("Pot : " + pot + ", guanyador: " + jugadorsGuanyadorRonda.toString());
     }
 }
