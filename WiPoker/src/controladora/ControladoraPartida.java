@@ -150,6 +150,8 @@ public class ControladoraPartida implements Runnable {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
         determinarCombinacio();
+        ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
+        controlJoc.repartirPremi(jugadorsGuanyadors, ronda.getPot());
     }
 
     private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
@@ -217,8 +219,6 @@ public class ControladoraPartida implements Runnable {
         }
         return posiblesGuanyadors;
     }
-
-    
 
     private void determinarJugadorsEliminats() {
         for (Jugador j : jugadors) {
