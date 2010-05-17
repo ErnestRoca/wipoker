@@ -18,10 +18,7 @@ import java.util.Collections;
  */
 public class ControladoraJoc {
 
-    
-
-    public ControladoraJoc()  {
-        
+    public ControladoraJoc() {
     }
 
     public Baralla crearBaralla() {
@@ -69,13 +66,20 @@ public class ControladoraJoc {
         Collections.shuffle(baralla.getCartes());
     }
 
-     public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
+    public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
         //modificar cuando este hecha gui
         int fase = ronda.getFases().size();
         if (quantitat > ronda.getFases().get(fase).getApostes().get(ronda.getFases().size()).getQuantitat()) {
             jugador.setAposta(new Aposta(jugador, quantitat));
             jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
             ronda.setPot(ronda.getPot() + quantitat);
+        }
+    }
+    
+    public void repartirPremi(ArrayList<Jugador> jugadors, double pot) {
+        pot = pot / jugadors.size();
+        for (Jugador j: jugadors) {
+            j.setFitxesActuals((int) (j.getFitxesActuals() + pot));
         }
     }
 }
