@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import presentacio.GuiTaulell;
 import presentacio.dades.GuiMenuDades;
 
@@ -40,6 +41,13 @@ public class GuiPartidaLocal {
     public GuiPartidaLocal() throws InterruptedException {
         iniciarComponents();
     }
+
+    public GuiPartidaLocal(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -72,7 +80,7 @@ public class GuiPartidaLocal {
 
         jbCrearPartida = new JButton("Crear nova partida internet");
         jbCrearPartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbCrearPartida.setBorder(null);
+        jbCrearPartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbCrearPartida.setLayout(null);
         jbCrearPartida.setBounds(40, 135, 260, 40);
         jbCrearPartida.setIconTextGap(-260);
@@ -83,7 +91,7 @@ public class GuiPartidaLocal {
 
         jbUnirsePartida = new JButton("Unir-se a partida a internet");
         jbUnirsePartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbUnirsePartida.setBorder(null);
+        jbUnirsePartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbUnirsePartida.setLayout(null);
         jbUnirsePartida.setBounds(40, 225, 260, 40);
         jbUnirsePartida.setIconTextGap(-260);
@@ -94,7 +102,7 @@ public class GuiPartidaLocal {
 
         jbContraMaquina = new JButton("Jugar contra la màquina");
         jbContraMaquina.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbContraMaquina.setBorder(null);
+        jbContraMaquina.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbContraMaquina.setLayout(null);
         jbContraMaquina.setBounds(40, 315, 260, 40);
         jbContraMaquina.setIconTextGap(-260);
@@ -105,7 +113,7 @@ public class GuiPartidaLocal {
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setLayout(null);
         jbTornar.setBounds(40, 405, 260, 40);
         jbTornar.setIconTextGap(-260);
@@ -119,11 +127,10 @@ public class GuiPartidaLocal {
         jbContraMaquina.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                GuiTaulell gt = new GuiTaulell();
+                GuiTaulell gt = new GuiTaulell(gui);
                 jFrame.setVisible(false);
                 gt.getjFrame().setLocation(jFrame.getLocation());
                 gt.getjFrame().setVisible(true);
-                //gt.setControladoraGui(gui);
             }
         });
 
@@ -132,10 +139,9 @@ public class GuiPartidaLocal {
             public void actionPerformed(ActionEvent e) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiNovaPartida();
+                    menu = new GuiNovaPartida(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiNovaPartida.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -145,14 +151,6 @@ public class GuiPartidaLocal {
     
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
     }
 
     public static void main(String[] args) {

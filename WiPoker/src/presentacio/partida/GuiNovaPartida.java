@@ -138,7 +138,7 @@ public class GuiNovaPartida {
             private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
-                taulell = new GuiTaulell();
+                taulell = new GuiTaulell(gui);
                 jFrame.setVisible(false);
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);
@@ -149,7 +149,7 @@ public class GuiNovaPartida {
 
             public void actionPerformed(ActionEvent e) {
                 try {
-                    GuiUnirsePartida gt = new GuiUnirsePartida();
+                    GuiUnirsePartida gt = new GuiUnirsePartida(gui);
                     jFrame.setVisible(false);
                     gt.getjFrame().setLocation(jFrame.getLocation());
                     gt.getjFrame().setVisible(true);
@@ -177,10 +177,9 @@ public class GuiNovaPartida {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenu();
+                    menu = new GuiMenu(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiNovaPartida.class.getName()).log(Level.SEVERE, null, ex);
                 }
