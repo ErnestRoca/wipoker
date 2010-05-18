@@ -43,9 +43,16 @@ public class GuiMenu {
     private ControladoraGui gui;
 
     public GuiMenu() throws InterruptedException {
-        iniciarComponents();
         gui = new ControladoraGui();
+        iniciarComponents();
     }
+
+    public GuiMenu(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -179,10 +186,9 @@ public class GuiMenu {
                 //
                 try {
                     jFrame.setVisible(false);
-                    dades = new GuiMenuDades();
+                    dades = new GuiMenuDades(gui);
                     dades.getjFrame().setLocation(jFrame.getLocation());
                     dades.getjFrame().setVisible(true);
-                    dades.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -200,14 +206,6 @@ public class GuiMenu {
 
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
     }
 
     public static void main(final String[] args) {

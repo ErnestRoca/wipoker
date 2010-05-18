@@ -1,5 +1,6 @@
 package presentacio;
 
+import controladora.ControladoraGui;
 import controladora.ControladoraPartida;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -97,6 +98,7 @@ public class GuiTaulell {
     private JMenuItem jmiQuantA;
     private JSeparator jseSeparador;
     private ControladoraPartida cp = new ControladoraPartida((byte) 1);
+    private ControladoraGui gui;
 
     /** Constructor. */
     public GuiTaulell() {
@@ -105,6 +107,15 @@ public class GuiTaulell {
         crearControlador();  // Automissatge per crear l'objecte Controlador
 
     }
+
+    public GuiTaulell(ControladoraGui gui) {
+        this.gui = gui;
+        iniciarComponents(); // Automissatge per crear els components de la UI
+        crearEscoltadors();
+        crearControlador();  // Automissatge per crear l'objecte Controlador
+    }
+
+
 
     /** Crea objectes crear els components de la UI. */
     private void iniciarComponents() {
@@ -722,7 +733,7 @@ public class GuiTaulell {
             public void actionPerformed(final ActionEvent evt) {
                 try {
                     jFrame.dispose();
-                    menu = new GuiMenu();
+                    menu = new GuiMenu(gui);
                     menu.getjFrame().setVisible(true);
                 } catch (Throwable ex) {
                     Logger.getLogger(GuiTaulell.class.getName()).log(Level.SEVERE, null, ex);
