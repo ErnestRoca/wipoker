@@ -4,11 +4,9 @@
  */
 package controladora.jabber;
 
-import java.io.IOException;
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.UnsupportedCallbackException;
+import java.util.List;
 import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.SASLAuthentication;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
@@ -18,7 +16,7 @@ import org.jivesoftware.smack.XMPPException;
  */
 public class GestioUsuaris implements logable {
 
-    protected XMPPConnection connection;
+    private XMPPConnection connection;
 
     public GestioUsuaris() {
         XMPPConnection.DEBUG_ENABLED = false;
@@ -26,11 +24,7 @@ public class GestioUsuaris implements logable {
 
     public XMPPConnection getConnection() {
         return connection;
-    }
-
-    public void setConnection(XMPPConnection connection) {
-        this.connection = connection;
-    }
+    }    
 
     public void prepararConnexio() {
         ConnectionConfiguration cc = new ConnectionConfiguration("jabber.org", 5222);
@@ -65,6 +59,19 @@ public class GestioUsuaris implements logable {
     public static void main(String[] args) throws XMPPException {
         GestioUsuaris g = new GestioUsuaris();
         g.prepararConnexio();
-        g.connection.connect();
+        List<Class> clasesMetodesSuportats = SASLAuthentication.getRegisterSASLMechanisms();
+        for (Class c : clasesMetodesSuportats) {
+            System.out.println(c);
+        }
+        String[] nomMetodes = new String[clasesMetodesSuportats.size()];
+        for (int i = 0; i < clasesMetodesSuportats.size(); i++) {
+            String var = clasesMetodesSuportats.get(i).getSimpleName();
+            nomMetodes[i] = var;            
+        }
+        for (int i = 0; i < clasesMetodesSuportats.size(); i++) {
+            SASLAuthentication.registerSASLMechanism(nomMetodes[i], clasesMetodesSuportats.get(i));
+        }
+        SASLAuthentication.supportSASLMechanism(nomMetodes[0]);
+
     }
 }
