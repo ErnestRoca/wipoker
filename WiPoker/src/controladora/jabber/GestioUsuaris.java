@@ -26,15 +26,26 @@ public class GestioUsuaris implements logable {
 
     public XMPPConnection getConnection() {
         return connection;
-    }    
+    }
 
     public void prepararConnexio() {
-        ConnectionConfiguration cc = new ConnectionConfiguration("jabber.org", 5222);
+        ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
         cc.setDebuggerEnabled(false);
         cc.setReconnectionAllowed(false);
         cc.setSASLAuthenticationEnabled(true);
         connection = new XMPPConnection(cc);
+    }
+
+    public void prepararMecanismes() {
+        ArrayList<String> mecanismes = new ArrayList<String>();
+        List<Class> tipusMecanismes = SASLAuthentication.getRegisterSASLMechanisms();
+        for (Class o : tipusMecanismes) {
+            mecanismes.add(o.getSimpleName());
+        }
+        for (String s : mecanismes) {
+            SASLAuthentication.supportSASLMechanism(s);
+        }
     }
 
     public void conectar() throws XMPPException {
@@ -45,13 +56,9 @@ public class GestioUsuaris implements logable {
         return connection.isAuthenticated();
     }
 
-    public boolean ferLogin(String user, String password) {
-        try {
-            connection.login(user, password);
-        } catch (XMPPException e) {
-            return false;
-        }
-        return estasLogat();
+    public void ferLogin(String user, String password) throws XMPPException {
+
+        connection.login(user, password);
     }
 
     public void desconnectar() {
@@ -61,20 +68,10 @@ public class GestioUsuaris implements logable {
     public static void main(String[] args) throws XMPPException {
         GestioUsuaris g = new GestioUsuaris();
         g.prepararConnexio();
-        List<Class> clasesMetodesSuportats = SASLAuthentication.getRegisterSASLMechanisms();
-        
-        ArrayList<String> nomMetodes = new ArrayList<String>();
-        for (int i = 0; i < clasesMetodesSuportats.size(); i++) {
-            String var = clasesMetodesSuportats.get(i).getSimpleName();
-            nomMetodes.add(var);
-        }
-        for (int i = 0; i < clasesMetodesSuportats.size(); i++) {
-            SASLAuthentication.registerSASLMechanism(nomMetodes.get(i), clasesMetodesSuportats.get(i));
-        }
-        SmackConfiguration.addSaslMechs(nomMetodes);
-        SASLAuthentication.supportSASLMechanism(nomMetodes.get(0));
-        g.connection.connect();
-
-
+        g.prepararMecanismes();
+        g.conectar();
+        System.out.println(g.connection.isConnected());
+        System.out.println(g.connection.getSASLAuthentication().hasAnonymousAuthentication());
+        g.connection.login(null, null, null);
     }
 }
