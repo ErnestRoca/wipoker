@@ -30,11 +30,7 @@ public class GestioUsuaris {
 
     public void prepararConnexio() {
         ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
-        cc.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
-        cc.setDebuggerEnabled(false);
-        cc.setReconnectionAllowed(false);
-        cc.setSASLAuthenticationEnabled(true);
-        connection = new XMPPConnection(cc);
+        
     }
 
     public void prepararMecanismes() {
@@ -78,6 +74,6 @@ public class GestioUsuaris {
         System.out.println(g.connection.getSASLAuthentication().hasAnonymousAuthentication());
         System.out.println(SmackConfiguration.getVersion());
         g.ferLogin("peracho87", "Peracho45787385C");
-        
+        System.out.println(g.connection.isAuthenticated());
     }
 }
