@@ -16,7 +16,7 @@ import org.jivesoftware.smack.XMPPException;
  *
  * @author wida45787385
  */
-public class GestioUsuaris implements logable {
+public class GestioUsuaris {
 
     private XMPPConnection connection;
 
@@ -30,7 +30,7 @@ public class GestioUsuaris implements logable {
 
     public void prepararConnexio() {
         ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
-        cc.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
+        cc.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
         cc.setDebuggerEnabled(false);
         cc.setReconnectionAllowed(false);
         cc.setSASLAuthenticationEnabled(true);
@@ -45,6 +45,10 @@ public class GestioUsuaris implements logable {
         }
         for (String s : mecanismes) {
             SASLAuthentication.supportSASLMechanism(s);
+        }
+        List<String> lista = SmackConfiguration.getSaslMechs();
+        for (String c: lista) {
+            System.out.println(c);
         }
     }
 
@@ -72,6 +76,8 @@ public class GestioUsuaris implements logable {
         g.conectar();
         System.out.println(g.connection.isConnected());
         System.out.println(g.connection.getSASLAuthentication().hasAnonymousAuthentication());
-        g.connection.login(null, null, null);
+        System.out.println(SmackConfiguration.getVersion());
+        g.ferLogin("peracho87", "Peracho45787385C");
+        
     }
 }
