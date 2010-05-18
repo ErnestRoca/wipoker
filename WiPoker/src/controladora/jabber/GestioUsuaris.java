@@ -4,9 +4,11 @@
  */
 package controladora.jabber;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SASLAuthentication;
+import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
@@ -60,18 +62,19 @@ public class GestioUsuaris implements logable {
         GestioUsuaris g = new GestioUsuaris();
         g.prepararConnexio();
         List<Class> clasesMetodesSuportats = SASLAuthentication.getRegisterSASLMechanisms();
-        for (Class c : clasesMetodesSuportats) {
-            System.out.println(c);
-        }
-        String[] nomMetodes = new String[clasesMetodesSuportats.size()];
+        
+        ArrayList<String> nomMetodes = new ArrayList<String>();
         for (int i = 0; i < clasesMetodesSuportats.size(); i++) {
             String var = clasesMetodesSuportats.get(i).getSimpleName();
-            nomMetodes[i] = var;            
+            nomMetodes.add(var);
         }
         for (int i = 0; i < clasesMetodesSuportats.size(); i++) {
-            SASLAuthentication.registerSASLMechanism(nomMetodes[i], clasesMetodesSuportats.get(i));
+            SASLAuthentication.registerSASLMechanism(nomMetodes.get(i), clasesMetodesSuportats.get(i));
         }
-        SASLAuthentication.supportSASLMechanism(nomMetodes[0]);
+        SmackConfiguration.addSaslMechs(nomMetodes);
+        SASLAuthentication.supportSASLMechanism(nomMetodes.get(0));
+        g.connection.connect();
+
 
     }
 }
