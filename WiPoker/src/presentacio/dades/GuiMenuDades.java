@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import presentacio.GuiMenu;
 
 /**
@@ -47,6 +48,13 @@ public class GuiMenuDades {
     public GuiMenuDades() throws InterruptedException {
         iniciarComponents();
     }
+
+    public GuiMenuDades(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -81,7 +89,7 @@ public class GuiMenuDades {
         jbConsultar = new JButton("Consultar dades jugador");
         jbConsultar.setCursor(cursor);
         jbConsultar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbConsultar.setBorder(null);
+        jbConsultar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbConsultar.setLayout(null);
         jbConsultar.setBounds(40, 135, 260, 40);
         jbConsultar.setIconTextGap(-260);
@@ -93,7 +101,7 @@ public class GuiMenuDades {
         jbAfegir = new JButton("Afegir nou jugador");
         jbAfegir.setCursor(cursor);
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbAfegir.setBorder(null);
+        jbAfegir.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbAfegir.setLayout(null);
         jbAfegir.setBounds(40, 225, 260, 40);
         jbAfegir.setIconTextGap(-260);
@@ -105,7 +113,7 @@ public class GuiMenuDades {
         jbEditar = new JButton("Editar un jugador");
         jbEditar.setCursor(cursor);
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbEditar.setBorder(null);
+        jbEditar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbEditar.setLayout(null);
         jbEditar.setBounds(40, 315, 260, 40);
         jbEditar.setIconTextGap(-260);
@@ -117,7 +125,7 @@ public class GuiMenuDades {
         jbEliminar = new JButton("Eliminir dades jugador");
         jbEliminar.setCursor(cursor);
         jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbEliminar.setBorder(null);
+        jbEliminar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbEliminar.setLayout(null);
         jbEliminar.setBounds(40, 405, 260, 40);
         jbEliminar.setIconTextGap(-260);
@@ -129,7 +137,7 @@ public class GuiMenuDades {
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setCursor(cursor);
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setLayout(null);
         jbTornar.setBounds(40, 495, 260, 40);
         jbTornar.setIconTextGap(-260);
@@ -153,10 +161,9 @@ public class GuiMenuDades {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    consultar = new GuiConsultarDades();
+                    consultar = new GuiConsultarDades(gui);
                     consultar.getjFrame().setLocation(jFrame.getLocation());
                     consultar.getjFrame().setVisible(true);
-                    consultar.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -168,10 +175,9 @@ public class GuiMenuDades {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    afegir = new GuiAfegirJugador();
+                    afegir = new GuiAfegirJugador(gui);
                     afegir.getjFrame().setLocation(jFrame.getLocation());
                     afegir.getjFrame().setVisible(true);
-                    afegir.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -183,10 +189,9 @@ public class GuiMenuDades {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    editar = new GuiEditarJugador();
+                    editar = new GuiEditarJugador(gui);
                     editar.getjFrame().setLocation(jFrame.getLocation());
                     editar.getjFrame().setVisible(true);
-                    editar.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -198,10 +203,9 @@ public class GuiMenuDades {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    eliminar = new GuiEliminarJugador();
+                    eliminar = new GuiEliminarJugador(gui);
                     eliminar.getjFrame().setLocation(jFrame.getLocation());
                     eliminar.getjFrame().setVisible(true);
-                    eliminar.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -213,10 +217,9 @@ public class GuiMenuDades {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenu();
+                    menu = new GuiMenu(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -226,14 +229,6 @@ public class GuiMenuDades {
 
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
     }
 
     public static void main(String[] args) {

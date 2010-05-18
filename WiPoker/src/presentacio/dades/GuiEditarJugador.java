@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 /**
  *
@@ -49,6 +50,13 @@ public class GuiEditarJugador {
     public GuiEditarJugador() throws InterruptedException {
         iniciarComponents();
     }
+
+    public GuiEditarJugador(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -135,7 +143,7 @@ public class GuiEditarJugador {
 
         jbEditar = new JButton("EDITAR");
         jbEditar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbEditar.setBorder(null);
+        jbEditar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbEditar.setLayout(null);
         jbEditar.setBounds(100, 490, 120, 24);
         jbEditar.setIconTextGap(-260);
@@ -146,7 +154,7 @@ public class GuiEditarJugador {
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setLayout(null);
         jbTornar.setBounds(100, 540, 120, 24);
         jbTornar.setIconTextGap(-260);
@@ -163,10 +171,9 @@ public class GuiEditarJugador {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenuDades();
+                    menu = new GuiMenuDades(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -177,16 +184,6 @@ public class GuiEditarJugador {
     public JFrame getjFrame() {
         return jFrame;
     }
-
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
-    }
-
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {

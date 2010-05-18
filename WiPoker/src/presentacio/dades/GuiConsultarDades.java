@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 /**
  *
@@ -53,6 +54,13 @@ public class GuiConsultarDades {
     public GuiConsultarDades() throws InterruptedException {
         iniciarComponents();
     }
+
+    public GuiConsultarDades(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -95,7 +103,7 @@ public class GuiConsultarDades {
 
         jbBuscar = new JButton("Buscar");
         jbBuscar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbBuscar.setBorder(null);
+        jbBuscar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbBuscar.setLayout(null);
         jbBuscar.setBounds(120, 160, 80, 24);
         jbBuscar.setIconTextGap(-260);
@@ -166,7 +174,7 @@ public class GuiConsultarDades {
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setLayout(null);
         jbTornar.setBounds(100, 540, 120, 24);
         jbTornar.setIconTextGap(-260);
@@ -184,10 +192,9 @@ public class GuiConsultarDades {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenuDades();
+                    menu = new GuiMenuDades(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -201,14 +208,6 @@ public class GuiConsultarDades {
         return jFrame;
     }
 
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
-    }
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {

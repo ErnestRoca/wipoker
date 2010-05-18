@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 /**
  *
@@ -45,6 +46,13 @@ public class GuiEliminarJugador {
     public GuiEliminarJugador() throws InterruptedException {
         iniciarComponents();
     }
+
+    public GuiEliminarJugador(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -87,7 +95,7 @@ public class GuiEliminarJugador {
 
         jbBuscar = new JButton("Buscar");
         jbBuscar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbBuscar.setBorder(null);
+        jbBuscar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbBuscar.setLayout(null);
         jbBuscar.setBounds(120, 160, 80, 24);
         jbBuscar.setIconTextGap(-260);
@@ -110,7 +118,7 @@ public class GuiEliminarJugador {
 
         jbEliminar = new JButton("ELIMINAR");
         jbEliminar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbEliminar.setBorder(null);
+        jbEliminar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbEliminar.setLayout(null);
         jbEliminar.setBounds(100, 500, 120, 24);
         jbEliminar.setIconTextGap(-260);
@@ -121,7 +129,7 @@ public class GuiEliminarJugador {
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setLayout(null);
         jbTornar.setBounds(100, 540, 120, 24);
         jbTornar.setIconTextGap(-260);
@@ -135,10 +143,9 @@ public class GuiEliminarJugador {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenuDades();
+                    menu = new GuiMenuDades(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -152,17 +159,6 @@ public class GuiEliminarJugador {
     public JFrame getjFrame() {
         return jFrame;
     }
-
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
-    }
-
-
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
