@@ -9,6 +9,7 @@ import domini.Aposta;
 import domini.Baralla;
 import domini.Fase;
 import domini.Jugador;
+import domini.Ma;
 import domini.Partida;
 import domini.Ronda;
 import domini.Taula;
@@ -47,7 +48,9 @@ public class ControladoraPartida {
     }
 
     public void afegirJugador(Jugador nouJugador) {
+
         if (!taulaIsFull()) {
+            nouJugador.setMaActual(new Ma());
             jugadors.add(nouJugador);
             taula.setCadiresOcupades((byte) (taula.getCadiresOcupades() + 1));
         } else {
@@ -74,10 +77,10 @@ public class ControladoraPartida {
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
         controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
-        novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));        
+        novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
         Fase.setNumFase((byte) 0);
         determinarJugadorsEliminats();
-        novaRonda.getFases().clear();        
+        novaRonda.getFases().clear();
     }
 
     public void gestionarFase(Ronda ronda, int boto) {
@@ -101,14 +104,15 @@ public class ControladoraPartida {
 
     private void eventsPreFlop(int quanitat, Ronda ronda, int boto) {
         //cega petita i gran
-        controlJoc.apostar(jugadors.get(boto + 1), quanitat, ronda);
-        controlJoc.apostar(jugadors.get(boto + 2), (quanitat * 2), ronda);
+        controlJoc.apostar(jugadors.get(boto + 1), quanitat, ronda);        //Cega Petita
+        controlJoc.apostar(jugadors.get(boto + 2), (quanitat * 2), ronda);  //Cega Gran
         controlJoc.repartirCartesPrivades(jugadors, baralla);
 
         for (int i = boto + 3; i < jugadors.size(); i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
-        for (int i = boto - 3; i <= 2; i++) {
+
+        for (int i = 0; i < boto + 3; i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
     }
@@ -119,7 +123,8 @@ public class ControladoraPartida {
         for (int i = boto + 3; i < jugadors.size(); i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
-        for (int i = boto - 3; i <= 2; i++) {
+
+        for (int i = 0; i < boto + 3; i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
     }
@@ -130,7 +135,8 @@ public class ControladoraPartida {
         for (int i = boto + 3; i < jugadors.size(); i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
-        for (int i = boto - 3; i <= 2; i++) {
+
+        for (int i = 0; i < boto + 3; i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
     }
@@ -141,10 +147,11 @@ public class ControladoraPartida {
         for (int i = boto + 3; i < jugadors.size(); i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
-        for (int i = boto - 3; i <= 2; i++) {
+
+        for (int i = 0; i < boto + 3; i++) {
             controlJoc.apostar(jugadors.get(i), 0, ronda);
         }
-        
+
     }
 
     private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
@@ -186,6 +193,7 @@ public class ControladoraPartida {
         }
         comb = 0;
         if (posiblesGuanyadors.size() > 1) {
+            ArrayList<Jugador> jug = new ArrayList<Jugador>();
             for (int i = 0; i < posiblesGuanyadors.size(); i++) {
                 if (posiblesGuanyadors.get(i).getMaActual().getValorMesAlt() > comb) {
                     comb = posiblesGuanyadors.get(i).getMaActual().getValorMesAlt();
@@ -193,9 +201,11 @@ public class ControladoraPartida {
             }
             for (Jugador j : posiblesGuanyadors) {
                 if (j.getMaActual().getValorMesAlt() != comb) {
-                    posiblesGuanyadors.remove(j);
+                    jug.add(j);
                 }
             }
+            posiblesGuanyadors.removeAll(jug);
+            jug.clear();
             if (posiblesGuanyadors.size() > 1) {
                 comb = 0;
                 for (int i = 0; i < posiblesGuanyadors.size(); i++) {
@@ -205,20 +215,22 @@ public class ControladoraPartida {
                 }
                 for (Jugador j : posiblesGuanyadors) {
                     if (j.getMaActual().getValorDesempat() != comb) {
-                        posiblesGuanyadors.remove(j);
+                        jug.add(j);
                     }
                 }
+                posiblesGuanyadors.removeAll(jug);
             }
         }
         return posiblesGuanyadors;
     }
 
     private void determinarJugadorsEliminats() {
+        ArrayList<Jugador> jug = new ArrayList<Jugador>();
         for (Jugador j : jugadors) {
             if (j.getFitxesActuals() <= 0) {
-                jugadors.remove(j);
+                jug.add(j);
             }
-
         }
+        jugadors.removeAll(jug);
     }
 }
