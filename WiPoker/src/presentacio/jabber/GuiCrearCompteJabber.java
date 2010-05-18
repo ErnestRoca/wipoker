@@ -48,8 +48,14 @@ public class GuiCrearCompteJabber {
 
     public GuiCrearCompteJabber() throws InterruptedException {
         iniciarComponents();
-
     }
+
+    public GuiCrearCompteJabber(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -159,10 +165,9 @@ public class GuiCrearCompteJabber {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenuJabber();
+                    menu = new GuiMenuJabber(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -172,14 +177,6 @@ public class GuiCrearCompteJabber {
 
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
     }
 
     public static void main(String[] args) {
