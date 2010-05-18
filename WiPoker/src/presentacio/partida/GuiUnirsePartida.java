@@ -46,41 +46,33 @@ public class GuiUnirsePartida {
         iniciarComponents();
     }
 
-
-
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle("Unirse Partida");
-        jFrame.setLayout(null);
+        jFrame.setTitle("Unirse Partida en Xarxa");
         jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
         jpFons.setLayout(null);
-        jpFons.setOpaque(false);
         jpFons.setBounds(0, 0, 340, 950);
         jFrame.add(jpFons);
 
         jlTitol = new JLabel();
         jlTitol.setBounds(0, 0, 340, 104);
-        jlTitol.setLayout(null);
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
         jlImatgeFons.setBounds(0, 104, 340, 499);
-        jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
-
 
         jbCrearPartida = new JButton("Crear nova partida internet");
         jbCrearPartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbCrearPartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbCrearPartida.setLayout(null);
         jbCrearPartida.setBounds(40, 135, 260, 40);
         jbCrearPartida.setIconTextGap(-260);
         jbCrearPartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -91,7 +83,6 @@ public class GuiUnirsePartida {
         jbUnirsePartida = new JButton("Unir-se a partida a internet");
         jbUnirsePartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbUnirsePartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbUnirsePartida.setLayout(null);
         jbUnirsePartida.setBounds(40, 225, 260, 40);
         jbUnirsePartida.setIconTextGap(-260);
         jbUnirsePartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -102,7 +93,6 @@ public class GuiUnirsePartida {
         jbContraMaquina = new JButton("Jugar contra la màquina");
         jbContraMaquina.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbContraMaquina.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbContraMaquina.setLayout(null);
         jbContraMaquina.setBounds(40, 315, 260, 40);
         jbContraMaquina.setIconTextGap(-260);
         jbContraMaquina.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -113,7 +103,6 @@ public class GuiUnirsePartida {
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbTornar.setLayout(null);
         jbTornar.setBounds(40, 405, 260, 40);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
@@ -128,15 +117,17 @@ public class GuiUnirsePartida {
         jbContraMaquina.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                throw new UnsupportedOperationException("Encara no suportat.");
             }
         });
 
         jbTornar.addActionListener(new ActionListener() {
+
             private GuiNovaPartida menu;
+
             public void actionPerformed(ActionEvent e) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     menu = new GuiNovaPartida(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
@@ -146,7 +137,6 @@ public class GuiUnirsePartida {
             }
         });
     }
-
 
     public JFrame getjFrame() {
         return jFrame;
