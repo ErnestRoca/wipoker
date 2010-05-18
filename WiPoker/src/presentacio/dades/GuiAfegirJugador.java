@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 /**
  *
@@ -50,6 +51,13 @@ public class GuiAfegirJugador {
     public GuiAfegirJugador() throws InterruptedException {
         iniciarComponents();
     }
+
+    public GuiAfegirJugador(ControladoraGui gui) throws InterruptedException {
+        this.gui = gui;
+        iniciarComponents();
+    }
+
+
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -136,7 +144,7 @@ public class GuiAfegirJugador {
 
         jbAfegir = new JButton("CREAR");
         jbAfegir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbAfegir.setBorder(null);
+        jbAfegir.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbAfegir.setLayout(null);
         jbAfegir.setBounds(100, 490, 120, 24);
         jbAfegir.setIconTextGap(-260);
@@ -147,7 +155,7 @@ public class GuiAfegirJugador {
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTornar.setBorder(null);
+        jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setLayout(null);
         jbTornar.setBounds(100, 540, 120, 24);
         jbTornar.setIconTextGap(-260);
@@ -164,10 +172,9 @@ public class GuiAfegirJugador {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenuDades();
+                    menu = new GuiMenuDades(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -177,14 +184,6 @@ public class GuiAfegirJugador {
 
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
     }
 
     public static void main(String[] args) {
