@@ -42,14 +42,15 @@ public class GuiNovaPartida {
     private ControladoraGui gui;
 
     public GuiNovaPartida() throws InterruptedException {
+        gui = new ControladoraGui();
         iniciarComponents();
-        comprovarLogin();
+        gui.comprovarLogin(this);
     }
 
     public GuiNovaPartida(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
         iniciarComponents();
-        comprovarLogin();
+        gui.comprovarLogin(this);
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -135,11 +136,12 @@ public class GuiNovaPartida {
         jFrame.setVisible(true);
 
         jbCrearPartida.addActionListener(new ActionListener() {
+
             private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
                 taulell = new GuiTaulell(gui);
-                jFrame.setVisible(false);
+                jFrame.dispose();
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);
             }
@@ -149,8 +151,8 @@ public class GuiNovaPartida {
 
             public void actionPerformed(ActionEvent e) {
                 try {
+                    jFrame.dispose();
                     GuiUnirsePartida gt = new GuiUnirsePartida(gui);
-                    jFrame.setVisible(false);
                     gt.getjFrame().setLocation(jFrame.getLocation());
                     gt.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
@@ -160,11 +162,12 @@ public class GuiNovaPartida {
         });
 
         jbContraMaquina.addActionListener(new ActionListener() {
+
             private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
+                jFrame.dispose();
                 taulell = new GuiTaulell();
-                jFrame.setVisible(false);
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);
                 //taulell.setControladoraGui(gui);
@@ -172,11 +175,12 @@ public class GuiNovaPartida {
         });
 
         jbTornar.addActionListener(new ActionListener() {
+
             private GuiMenu menu;
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     menu = new GuiMenu(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
@@ -187,16 +191,41 @@ public class GuiNovaPartida {
         });
     }
 
-    private void comprovarLogin() {
-        if (!gui.isLogin()) {
-            jbCrearPartida.setEnabled(false);
-            jbUnirsePartida.setEnabled(false);
-        }
-    }
-
     public JFrame getjFrame() {
         return jFrame;
     }
+
+    public JButton getJbContraMaquina() {
+        return jbContraMaquina;
+    }
+
+    public void setJbContraMaquina(JButton jbContraMaquina) {
+        this.jbContraMaquina = jbContraMaquina;
+    }
+
+    public JButton getJbCrearPartida() {
+        return jbCrearPartida;
+    }
+
+    public void setJbCrearPartida(JButton jbCrearPartida) {
+        this.jbCrearPartida = jbCrearPartida;
+    }
+
+    public JButton getJbTornar() {
+        return jbTornar;
+    }
+
+    public void setJbTornar(JButton jbTornar) {
+        this.jbTornar = jbTornar;
+    }
+
+    public JButton getJbUnirsePartida() {
+        return jbUnirsePartida;
+    }
+
+    public void setJbUnirsePartida(JButton jbUnirsePartida) {
+        this.jbUnirsePartida = jbUnirsePartida;
+    }    
 
     public ControladoraGui getControladoraGui() {
         return gui;
@@ -218,6 +247,4 @@ public class GuiNovaPartida {
             }
         });
     }
-
-
 }

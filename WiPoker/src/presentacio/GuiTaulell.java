@@ -4,7 +4,6 @@ import controladora.ControladoraGui;
 import controladora.ControladoraPartida;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -19,25 +18,17 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author ernest
  */
 public class GuiTaulell {
 
-    /** Pseudoatributs per tenir visibilitat d'atribut. */
     private JFrame jFrame;
     private JPanel jPanelGlobal;
     private JPanel jPanelBotons;
@@ -97,6 +88,7 @@ public class GuiTaulell {
     private JMenu jmMenuAjuda;
     private JMenuItem jmiQuantA;
     private JSeparator jseSeparador;
+    //
     private ControladoraPartida cp = new ControladoraPartida((byte) 1);
     private ControladoraGui gui;
 
@@ -351,8 +343,6 @@ public class GuiTaulell {
         jmiSortir = new JMenuItem("Sortir");
         jmiSortir.setMnemonic('S');
         jmMenuJoc.add(jmiSortir);
-
-
 
         jmMenuAjuda = new JMenu("Ajuda");
         jmMenuAjuda.setMnemonic('A');
@@ -771,7 +761,7 @@ public class GuiTaulell {
 
     /** Crea l'objecte controlador del cas d'ús. */
     private void crearControlador() {
-        // c = new Controlador(this); // Missatge a la classe Controlador per crear un objecte Controlador
+         cp = new ControladoraPartida((byte)9); // Missatge a la classe Controladora per crear un objecte ControladoraPArtida
     }
 
     private void iniciarJFrame() {

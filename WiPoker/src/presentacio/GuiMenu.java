@@ -60,7 +60,6 @@ public class GuiMenu {
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("WiPoker");
         jFrame.setLayout(null);
-        jFrame.setBackground(Color.GREEN);
         jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
@@ -148,7 +147,7 @@ public class GuiMenu {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     jabber = new GuiMenuJabber(gui);
                     jabber.getjFrame().setLocation(jFrame.getLocation());
                     jabber.getjFrame().setVisible(true);
@@ -165,7 +164,7 @@ public class GuiMenu {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     partida = new GuiNovaPartida(gui);
                     partida.getjFrame().setLocation(jFrame.getLocation());
                     partida.getjFrame().setVisible(true);

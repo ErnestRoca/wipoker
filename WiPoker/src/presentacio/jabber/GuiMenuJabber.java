@@ -28,6 +28,7 @@ import presentacio.GuiMenu;
  */
 public class GuiMenuJabber {
 
+    private ControladoraGui gui;
     private JFrame jFrame;
     private JPanel jpFons;
     private JLabel jlTitol;
@@ -36,19 +37,15 @@ public class GuiMenuJabber {
     private JButton jbTancarSessio;
     private JButton jbIniciarSessio;
     private JButton jbTornar;
-    private GuiMenu menu;
-    private GuiLoginJabber iniciar;
-    private GuiCrearCompteJabber crear;
     private JLabel jlBarra;
-    private ControladoraGui gui;
 
     public GuiMenuJabber() throws InterruptedException {
         iniciarComponents();
     }
 
     public GuiMenuJabber(ControladoraGui gui) throws InterruptedException {
-        iniciarComponents();
         this.gui = gui;
+        iniciarComponents();        
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -56,26 +53,22 @@ public class GuiMenuJabber {
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("Usuaris");
-        jFrame.setLayout(null);
         jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
         jpFons.setLayout(null);
-        jpFons.setOpaque(false);
         jpFons.setBounds(0, 0, 340, 950);
         jFrame.add(jpFons);
 
         jlTitol = new JLabel();
         jlTitol.setBounds(0, 0, 340, 104);
-        jlTitol.setLayout(null);
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
         jpFons.add(jlTitol);
 
         jlImatgeFons = new JLabel();
         jlImatgeFons.setBounds(0, 104, 340, 499);
-        jlImatgeFons.setLayout(null);
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
 
@@ -140,6 +133,8 @@ public class GuiMenuJabber {
 
         jbIniciarSessio.addActionListener(new ActionListener() {
 
+            private GuiLoginJabber iniciar;
+
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
@@ -155,9 +150,11 @@ public class GuiMenuJabber {
 
         jbCrearCompte.addActionListener(new ActionListener() {
 
+            private GuiCrearCompteJabber crear;
+
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     crear = new GuiCrearCompteJabber(gui);
                     crear.getjFrame().setLocation(jFrame.getLocation());
                     crear.getjFrame().setVisible(true);
@@ -169,7 +166,6 @@ public class GuiMenuJabber {
 
         jbTancarSessio.addActionListener(new ActionListener() {
 
-
             public void actionPerformed(ActionEvent event) {
                 if (gui.isLogin()) {
                     gui.setLoginFalse();
@@ -179,9 +175,11 @@ public class GuiMenuJabber {
 
         jbTornar.addActionListener(new ActionListener() {
 
+            private GuiMenu menu;
+
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     menu = new GuiMenu(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);

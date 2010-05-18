@@ -62,8 +62,6 @@ public class GuiCrearCompteJabber {
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("Crear compte Jabber");
-        jFrame.setLayout(null);
-        jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
@@ -164,7 +162,7 @@ public class GuiCrearCompteJabber {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     menu = new GuiMenuJabber(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);

@@ -29,6 +29,7 @@ import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
  */
 public class GuiLoginJabber {
 
+    private ControladoraGui gui;
     private JFrame jFrame;
     private JPanel jpFons;
     private JLabel jlTitol;
@@ -44,7 +45,6 @@ public class GuiLoginJabber {
     private JButton jbTornar;
     private JButton jbLogin;
     private JLabel jlBarra;
-    private ControladoraGui gui;
 
     public GuiLoginJabber() throws InterruptedException {
         iniciarComponents();
@@ -60,8 +60,6 @@ public class GuiLoginJabber {
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("login Jabber");
-        //jFrame.setLayout(null);
-        //jFrame.setBackground(Color.WHITE);
         jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
@@ -155,6 +153,7 @@ public class GuiLoginJabber {
         jFrame.setVisible(true);
 
         jbLogin.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent event) {
                 if (!gui.isLogin()) {
                     gui.setLoginTrue();
@@ -163,10 +162,12 @@ public class GuiLoginJabber {
         });
 
         jbTornar.addActionListener(new ActionListener() {
+
             private GuiMenuJabber menu;
+
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     menu = new GuiMenuJabber(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
