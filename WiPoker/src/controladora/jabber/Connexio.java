@@ -17,11 +17,10 @@ import org.jivesoftware.smack.XMPPConnection;
 public class Connexio {
     
     public Connexio(String servidor) {
-        registrarMecanismes();
-        iniciarConfiguracio(servidor);
+        registrarMecanismes();        
     }
 
-    private XMPPConnection iniciarConfiguracio(String servidor) {
+    protected XMPPConnection crearConnexio(String servidor) {
         ConnectionConfiguration cc = new ConnectionConfiguration(servidor);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
         cc.setDebuggerEnabled(false);
