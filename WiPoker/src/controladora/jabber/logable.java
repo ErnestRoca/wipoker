@@ -6,14 +6,18 @@
 package controladora.jabber;
 
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
 
 /**
  *
  * @author andres
  */
 public interface logable {
-    public void prepararConnexio(XMPPConnection con);
-    public boolean estasLogat(XMPPConnection con);
-    public boolean ferLogin(String user, String password, XMPPConnection con);
-    public void desconnexio(XMPPConnection con);
+    public void prepararConnexio();    
+    public void conectar() throws  XMPPException;
+    public void desconnectar();
+    public boolean estasLogat();
+    public boolean ferLogin(String user, String password);
+    
+
 }

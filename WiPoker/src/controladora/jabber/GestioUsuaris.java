@@ -18,43 +18,53 @@ import org.jivesoftware.smack.XMPPException;
  */
 public class GestioUsuaris implements logable {
 
-    private XMPPConnection connection;
+    protected XMPPConnection connection;
 
-    public GestioUsuaris(String servidor) {
-       XMPPConnection.DEBUG_ENABLED = false;
+    public GestioUsuaris() {
+        XMPPConnection.DEBUG_ENABLED = false;
     }
 
-    public void prepararConnexio(XMPPConnection con) {
-        ConnectionConfiguration cc = new ConnectionConfiguration("jabber.org", 5222);        
+    public XMPPConnection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(XMPPConnection connection) {
+        this.connection = connection;
+    }
+
+    public void prepararConnexio() {
+        ConnectionConfiguration cc = new ConnectionConfiguration("jabber.org", 5222);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
         cc.setDebuggerEnabled(false);
         cc.setReconnectionAllowed(false);
         cc.setSASLAuthenticationEnabled(true);
-        con = new XMPPConnection(cc);
+        connection = new XMPPConnection(cc);
     }
 
-     public boolean estasLogat(XMPPConnection con) {
-        return con.isAuthenticated();
+    public void conectar() throws XMPPException {
+        connection.connect();
     }
 
-    public boolean ferLogin(String user, String password, XMPPConnection con) {
+    public boolean estasLogat() {
+        return connection.isAuthenticated();
+    }
+
+    public boolean ferLogin(String user, String password) {
         try {
-            con.login(user, password);
+            connection.login(user, password);
         } catch (XMPPException e) {
             return false;
         }
-        return estasLogat(con);
+        return estasLogat();
     }
 
-    public void desconnexio(XMPPConnection con) {
-        con.disconnect();
+    public void desconnectar() {
+        connection.disconnect();
     }
 
-    public static void main(String[] args) {
-        GestioUsuaris g = new GestioUsuaris("hermes.jabber.org");
-        
-        
-
-        
+    public static void main(String[] args) throws XMPPException {
+        GestioUsuaris g = new GestioUsuaris();
+        g.prepararConnexio();
+        g.connection.connect();
     }
 }
