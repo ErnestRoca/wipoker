@@ -149,8 +149,6 @@ public class ControladoraCartes {
             int igualColor = 0;
             color = (byte) col;
             for (int i = 0; i < cartes.size(); i++) {
-                System.out.println("col = " + col);
-                System.out.println(" cond " + (cartes.get(i).getPal() == col));
                 if (cartes.get(i).getPal() == col) {
                     igualColor++;
                     color = cartes.get(i).getPal();
@@ -234,14 +232,12 @@ public class ControladoraCartes {
                             consecutives++;
                         }
                     }
-                    System.out.println("iteracio " + i + " num " + j + " carta " + cartes.get(j) + "cons= " + consecutives);
                 }
                 if (consecutives <= 3) {
                     consecutives = 0;
                     valor = 0;
                 }
             }
-            System.out.println(comb1.size() + " / " + comb2.size() + " / " + comb3.size());
             if (consecutives >= 4) {
                 esEscala = true;
                 jugador.getMaActual().setCombinacio((byte) 5);

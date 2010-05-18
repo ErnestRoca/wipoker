@@ -14,6 +14,9 @@ public class Ma {
     private byte valorMesAlt = 0;
     private byte valorDesempat = 0;
 
+    public Ma() {
+    }
+
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
     }

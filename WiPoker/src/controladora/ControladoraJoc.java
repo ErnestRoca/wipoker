@@ -32,7 +32,7 @@ public class ControladoraJoc {
         for (byte i = 2; i <= 14; i++) {
             cartes.add(new Carta((byte) 2, i));
         }
-        for (byte i = 21; i <= 14; i++) {
+        for (byte i = 2; i <= 14; i++) {
             cartes.add(new Carta((byte) 3, i));
         }
         Baralla b = new Baralla();
@@ -44,10 +44,14 @@ public class ControladoraJoc {
         ArrayList<Carta> privades = new ArrayList<Carta>();
         for (int i = 0; i <= 1; i++) {
             for (Jugador j : jugadors) {
-                privades.add(baralla.getCartes().get(baralla.getCartesActuals()));
-                j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
+
+                privades.add(baralla.getCartes().get(baralla.getCartesActuals() - 1));
+
+                j.getMaActual().getCartes().add(privades.get(privades.size() - 1));
+
                 baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
             }
+
         }
         return privades;
     }
@@ -56,13 +60,15 @@ public class ControladoraJoc {
         for (int i = 0; i < numCartes; i++) {
             for (Jugador j : jugadors) {
                 j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-                baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
+
             }
+            baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
         }
     }
 
     public void cremarCartes(Baralla baralla) {
-        baralla.getCartes().remove(baralla.getCartes().size());
+        baralla.getCartes().remove(baralla.getCartes().size() - 1);
+        baralla.setCartesActuals((byte) (baralla.getCartesActuals() - 1));
     }
 
     public void barallar(Baralla baralla) {
@@ -71,12 +77,10 @@ public class ControladoraJoc {
 
     public void apostar(Jugador jugador, int quantitat, Ronda ronda) {
         //modificar cuando este hecha gui
-        int fase = ronda.getFases().size();
-        if (quantitat > ronda.getFases().get(fase).getApostes().get(ronda.getFases().size()).getQuantitat()) {
-            jugador.setAposta(new Aposta(jugador, quantitat));
-            jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
-            ronda.setPot(ronda.getPot() + quantitat);
-        }
+        jugador.setAposta(new Aposta(jugador, quantitat));
+        jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
+        ronda.setPot(ronda.getPot() + quantitat);
+
     }
 
     public void repartirPremi(ArrayList<Jugador> jugadors, double pot) {
