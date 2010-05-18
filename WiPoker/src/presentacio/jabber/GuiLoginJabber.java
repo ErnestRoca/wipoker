@@ -167,10 +167,9 @@ public class GuiLoginJabber {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenuJabber();
+                    menu = new GuiMenuJabber(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -180,14 +179,6 @@ public class GuiLoginJabber {
 
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
     }
 
     public static void main(String[] args) {

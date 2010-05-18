@@ -158,10 +158,9 @@ public class GuiMenuJabber {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    crear = new GuiCrearCompteJabber();
+                    crear = new GuiCrearCompteJabber(gui);
                     crear.getjFrame().setLocation(jFrame.getLocation());
                     crear.getjFrame().setVisible(true);
-                    crear.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -183,10 +182,9 @@ public class GuiMenuJabber {
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
-                    menu = new GuiMenu();
+                    menu = new GuiMenu(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
-                    menu.setControladoraGui(gui);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -197,14 +195,6 @@ public class GuiMenuJabber {
 
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public ControladoraGui getControladoraGui() {
-        return gui;
-    }
-
-    public void setControladoraGui(ControladoraGui gui) {
-        this.gui = gui;
     }
 
     public static void main(String[] args) {
