@@ -32,4 +32,14 @@ public class GestioUsuaris {
             //sacar en gui un mensaje ya estas desconectado
         }
     }
+
+    protected void crearCompte(XMPPConnection connexio, String nom, String password1, String password2, String mail) throws XMPPException {
+        if (connexio.getAccountManager().supportsAccountCreation()) {
+            if (password1.equals(password2)) {
+                connexio.getAccountManager().createAccount(nom, password1);
+            }
+        } else {
+            //sacar mensaje servidor no soporta creacion cuentas
+        }
+    }
 }
