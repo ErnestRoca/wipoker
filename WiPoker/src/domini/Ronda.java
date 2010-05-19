@@ -12,13 +12,13 @@ import java.util.ArrayList;
  */
 public class Ronda {
 
-    private Partida partida;
+    public  Partida partida;
     //Jugador que guanya la ronda
-    private ArrayList<Jugador> jugadorsGuanyadorRonda;
+    public ArrayList<Jugador> jugadorsGuanyadorRonda;
     //pot de la ronda
-    private int pot;
-    private ArrayList<Fase> fases = new ArrayList<Fase>();
-    private int bigBlind;
+    public int pot;
+    public ArrayList<Fase> fases = new ArrayList<Fase>();
+    public int bigBlind;
 
     public Ronda() {
     }
