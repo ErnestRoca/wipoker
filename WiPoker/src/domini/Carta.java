@@ -9,9 +9,9 @@ public class Carta implements Comparable {
     private final byte pal;
     private final byte valor;
 
-    public Carta(byte pal, byte valor) {
-        this.pal = pal;
-        this.valor = valor;
+    public Carta(int pal, int valor) {
+        this.pal = (byte) pal;
+        this.valor = (byte) valor;
     }
 
     public byte getPal() {

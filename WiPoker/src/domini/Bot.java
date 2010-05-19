@@ -18,11 +18,11 @@ public class Bot {
     private Aposta aposta;
     private Partida partida;
 
-    public Bot(String alias, int fitxesInicials, int fitxesActuals, byte posicioTaula) {
+    public Bot(String alias, int fitxesInicials, int fitxesActuals, int posicioTaula) {
         this.alias = alias;
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesActuals;
-        this.posicioTaula = posicioTaula;
+        this.posicioTaula = (byte) posicioTaula;
     }
 
     public double jugadaBot() {

@@ -20,7 +20,14 @@ public class Fase {
     private ArrayList<Aposta> apostes;
     private int apostaMinima;
 
-    public Fase(String nomFase) {
+    public Fase(String nomFase, Ronda ronda, int apostaMinima) {
+        this.nomFase = nomFase;
+        this.ronda = ronda;
+        this.apostaMinima = apostaMinima;
+        numFase++;
+    }
+
+    public Fase(String nomFase, int aposta) {
         this.nomFase = nomFase;
         numFase++;
     }
@@ -37,8 +44,8 @@ public class Fase {
         return nomFases;
     }
 
-    public static void setNumFase(byte numFase) {
-        Fase.numFase = numFase;
+    public static void setNumFase(int numFase) {
+        Fase.numFase = (byte) numFase;
     }
 
     public Ronda getRonda() {
@@ -64,8 +71,6 @@ public class Fase {
     public void setApostaMinima(int apostaMinima) {
         this.apostaMinima = apostaMinima;
     }
-
-    
 
     @Override
     public boolean equals(Object obj) {

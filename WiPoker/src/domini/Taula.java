@@ -15,8 +15,8 @@ public class Taula {
     Baralla baralla;
     private Partida partidaActual;
 
-    public Taula(byte places, Baralla baralla) {
-        this.places = places;
+    public Taula(int places, Baralla baralla) {
+        this.places = (byte) places;
         this.baralla = baralla;
         cadiresOcupades = 0;
     }
@@ -33,8 +33,8 @@ public class Taula {
         return cadiresOcupades;
     }
 
-    public void setCadiresOcupades(byte cadiresOcupades) {
-        this.cadiresOcupades = cadiresOcupades;
+    public void setCadiresOcupades(int cadiresOcupades) {
+        this.cadiresOcupades = (byte) cadiresOcupades;
     }
 
     public byte getPlaces() {
