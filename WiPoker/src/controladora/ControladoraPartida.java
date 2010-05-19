@@ -5,7 +5,6 @@
  */
 package controladora;
 
-import domini.Aposta;
 import domini.Baralla;
 import domini.Fase;
 import domini.Jugador;
@@ -15,8 +14,6 @@ import domini.Ronda;
 import domini.Taula;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
@@ -26,11 +23,11 @@ public class ControladoraPartida {
 
     private Taula taula;
     private Baralla baralla;
-    private Partida partida;
+    public Partida partida;
     private ArrayList<Jugador> jugadors;
-    private ControladoraCartes controlCartes = new ControladoraCartes();
-    private ControladoraIA controlIA = new ControladoraIA();
-    private ControladoraJoc controlJoc = new ControladoraJoc();
+    public ControladoraCartes controlCartes = new ControladoraCartes();
+    public ControladoraIA controlIA = new ControladoraIA();
+    public ControladoraJoc controlJoc = new ControladoraJoc();
 
     public ControladoraPartida(byte maxJugadors) {
         //super();
