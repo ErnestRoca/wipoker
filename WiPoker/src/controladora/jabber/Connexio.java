@@ -20,7 +20,7 @@ public class Connexio {
         registrarMecanismes();        
     }
 
-    protected XMPPConnection crearConnexio(String servidor) {
+    public static XMPPConnection crearConnexio(String servidor) {
         ConnectionConfiguration cc = new ConnectionConfiguration(servidor);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
         cc.setDebuggerEnabled(false);
@@ -30,7 +30,7 @@ public class Connexio {
         return connexio;
     }
 
-    private void registrarMecanismes() {
+    public static void registrarMecanismes() {
         for (Class c: SASLAuthentication.getRegisterSASLMechanisms()) {
             SmackConfiguration.addSaslMech(c.getSimpleName());
             SASLAuthentication.supportSASLMechanism(c.getSimpleName());
