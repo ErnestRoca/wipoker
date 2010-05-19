@@ -20,8 +20,8 @@ import org.jivesoftware.smack.packet.Packet;
  */
 public class ControladoraJabber implements PacketListener {
 
-    private XMPPConnection connexio;
-    private Ronda ronda = new Ronda();
+    public XMPPConnection connexio;
+    public Ronda ronda = new Ronda();
     
     public ControladoraJabber(String servidor) {
         connexio = Connexio.crearConnexio(servidor);
