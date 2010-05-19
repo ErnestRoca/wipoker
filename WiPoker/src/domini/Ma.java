@@ -41,24 +41,24 @@ public class Ma {
         return combinacio;
     }
 
-    public void setCombinacio(byte combinacio) {
-        this.combinacio = combinacio;
+    public void setCombinacio(int combinacio) {
+        this.combinacio = (byte) combinacio;
     }
 
     public byte getValorMesAlt() {
         return valorMesAlt;
     }
 
-    public void setValorMesAlt(byte valorMesAlt) {
-        this.valorMesAlt = valorMesAlt;
+    public void setValorMesAlt(int valorMesAlt) {
+        this.valorMesAlt = (byte) valorMesAlt;
     }
 
     public byte getValorDesempat() {
         return valorDesempat;
     }
 
-    public void setValorDesempat(byte valorDesempat) {
-        this.valorDesempat = valorDesempat;
+    public void setValorDesempat(int valorDesempat) {
+        this.valorDesempat = (byte) valorDesempat;
     }
 
     @Override

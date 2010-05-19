@@ -28,8 +28,8 @@ public class Baralla {
         return cartesActuals;
     }
 
-    public void setCartesActuals(byte cartesActuals) {
-        this.cartesActuals = cartesActuals;
+    public void setCartesActuals(int cartesActuals) {
+        this.cartesActuals = (byte) cartesActuals;
     }
 
     @Override

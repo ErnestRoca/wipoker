@@ -23,26 +23,26 @@ public class Jugador {
     private Ma maActual;
     private Aposta aposta;
 
-    public Jugador(String dni, String nomComplet, String alias, byte edat, short partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int fitxesActuals, byte posicioTaula) {
+    public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
         this.dni = dni;
         this.nomComplet = nomComplet;
         this.alias = alias;
-        this.edat = edat;
-        this.partidesGuanyades = partidesGuanyades;
+        this.edat = (byte) edat;
+        this.partidesGuanyades = (short) partidesGuanyades;
         this.puntuacio = puntuacio;
         this.telefon = telefon;
         this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesActuals;
-        this.posicioTaula = posicioTaula;
+        this.fitxesActuals = fitxesInicials;
+        this.posicioTaula = (byte) posicioTaula;
     }
 
-    public Jugador(String dni, String nomComplet, String alias, byte edat, String telefon, byte posicioTaula) {
+    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula) {
         this.dni = dni;
         this.nomComplet = nomComplet;
         this.alias = alias;
-        this.edat = edat;
+        this.edat = (byte) edat;
         this.telefon = telefon;
-        this.posicioTaula = posicioTaula;
+        this.posicioTaula = (byte) posicioTaula;
     }
 
     public String getAlias() {
@@ -81,8 +81,8 @@ public class Jugador {
         return partidesGuanyades;
     }
 
-    public void setPartidesGuanyades(short partidesGuanyades) {
-        this.partidesGuanyades = partidesGuanyades;
+    public void setPartidesGuanyades(int partidesGuanyades) {
+        this.partidesGuanyades = (short) partidesGuanyades;
     }
 
     public byte getPosicioTaula() {

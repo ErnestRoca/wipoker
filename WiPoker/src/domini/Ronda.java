@@ -23,7 +23,8 @@ public class Ronda {
     public Ronda() {
     }
 
-    public Ronda(double pot) {
+    public Ronda(int pot) {
+        this.pot = pot;
     }
 
     public int getPot() {
