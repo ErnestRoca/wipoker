@@ -42,13 +42,19 @@ public class ControladoraCartes {
     }
 
     public boolean esEscalaColor(Jugador jugador) {
+        Jugador j1 = new Jugador("123", "Oleguer Bernet", "ula", 22, 0, 0, "3455346734", 1000, 0);
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
-        Collections.sort(cartes);
+        ArrayList<Carta> escala = new ArrayList<Carta>(cartes);
+        Collections.sort(escala);
         Collections.reverse(cartes);
-        boolean mateixColor = sonMateixColor(jugador);
         boolean esEscalaColor = false;
-        boolean esEscala = esEscala(jugador);
-        esEscalaColor = mateixColor && esEscala;
+        for (int i = 0; i < cartes.size() - 4; i++) {
+            j1.getMaActual().setCartes((ArrayList<Carta>) escala.subList(i, i + 5));
+            esEscalaColor = sonMateixColor(j1) && esEscala(j1);
+            if (esEscalaColor) {
+                break;
+            }
+        }
         if (esEscalaColor) {
             jugador.getMaActual().setCombinacio(9);
             jugador.getMaActual().setValorMesAlt(jugador.getMaActual().getValorMesAlt());
@@ -112,8 +118,6 @@ public class ControladoraCartes {
                 }
             }
         }
-
-
 
         for (int i = 0; i < c.size(); i++) {
             int valor = (int) c.get(i).getValor();
