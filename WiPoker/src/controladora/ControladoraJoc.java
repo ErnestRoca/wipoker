@@ -58,10 +58,11 @@ public class ControladoraJoc {
     public void aixecarCartes(ArrayList<Jugador> jugadors, Baralla baralla, int numCartes) {
         for (int i = 0; i < numCartes; i++) {
             for (Jugador j : jugadors) {
-                j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
+                j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()-1));
+
             }
+            baralla.setCartesActuals((baralla.getCartesActuals() - 1));
         }
-        baralla.setCartesActuals((baralla.getCartesActuals() - numCartes));
     }
 
     public void cremarCartes(Baralla baralla) {
@@ -74,7 +75,6 @@ public class ControladoraJoc {
     }
 
     public void apostar(Jugador jugador, int quantitat, Fase fase) {
-        System.out.println(jugador.toString());
         //modificar cuando este hecha gui
         Aposta aposta = new Aposta(jugador, quantitat);
         jugador.setAposta(aposta);
