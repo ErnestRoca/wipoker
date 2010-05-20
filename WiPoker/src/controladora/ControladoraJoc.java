@@ -84,9 +84,8 @@ public class ControladoraJoc {
     }
 
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
-        pot = pot / jugadors.size();
         for (Jugador j : jugadors) {
-            j.setFitxesActuals((j.getFitxesActuals() + pot));
+            j.setFitxesActuals((j.getFitxesActuals() + (pot / jugadors.size())));
         }
     }
 }
