@@ -81,6 +81,7 @@ public class ControladoraJoc {
         jugador.setAposta(new Aposta(jugador, quantitat));
         jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
         fase.getApostes().add(new Aposta(jugador, quantitat));
+        fase.getRonda().setPot(fase.getRonda().getPot() + quantitat);
     }
 
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
