@@ -145,7 +145,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        String str = nomComplet + " amb " + edat + " anys i puntuació " + puntuacio + "punts";
+        String str = nomComplet + " amb " + edat + " anys i amb " + fitxesActuals + "fitxes";
         return str;
     }
 }
