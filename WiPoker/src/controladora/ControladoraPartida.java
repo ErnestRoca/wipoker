@@ -14,7 +14,6 @@ import domini.Ronda;
 import domini.Taula;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 
 /**
  *
@@ -56,7 +55,7 @@ public class ControladoraPartida {
     }
 
     public void jugar() {
-        while (partida.getJugadors().size() > 1) {
+        while (partida.getJugadors().size() > 2) {
             int boto = 0;
             iniciarRonda(boto);
             boto++;
@@ -69,12 +68,10 @@ public class ControladoraPartida {
         partida.getRondes().add(novaRonda);
         baralla = controlJoc.crearBaralla();
         controlJoc.barallar(baralla);
-
-        System.out.println("\njugadors: " + partida.getJugadors().size());
+        
         for (int i = 0; i < 4; i++) {
 
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 20);
-            //System.out.println("\n"+Fase.getNomFases()[Fase.getNumFase()]);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
 
@@ -86,18 +83,27 @@ public class ControladoraPartida {
         Fase.setNumFase(0);
         determinarJugadorsEliminats();
         novaRonda.getFases().clear();
+        for (Jugador j : partida.getJugadors()) {
+            System.out.println("\n\n"+j);
+            System.out.println(j.getMaActual().getCartes());
+            System.out.println("comb:"+j.getMaActual().getCombinacio());
+        }
+        for (Jugador jugador : partida.getJugadors()) {            
+            jugador.getMaActual().getCartes().clear();
+        }
+
     }
 
     public void gestionarFase(Fase novaFase, int boto) {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
-        if (Fase.getNumFase() == 0) {
+        if (Fase.getNumFase() == 1) {
             eventsPreFlop(novaFase.getApostaMinima(), novaFase, boto);
-        } else if (Fase.getNumFase() == 1) {
-            eventsFlop(novaFase.getApostaMinima(), novaFase, boto);
         } else if (Fase.getNumFase() == 2) {
-            eventsTurn(novaFase.getApostaMinima(), novaFase, boto);
+            eventsFlop(novaFase.getApostaMinima(), novaFase, boto);
         } else if (Fase.getNumFase() == 3) {
+            eventsTurn(novaFase.getApostaMinima(), novaFase, boto);
+        } else if (Fase.getNumFase() == 4) {
             eventsRiver(novaFase.getApostaMinima(), novaFase, boto);
         }
 
@@ -111,7 +117,6 @@ public class ControladoraPartida {
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
 
         for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
-//            System.out.println(jugadors.get(i).toString());
             controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
         }
 
@@ -188,6 +193,7 @@ public class ControladoraPartida {
             if (partida.getJugadors().get(i).getMaActual().getCombinacio() > comb) {
                 comb = partida.getJugadors().get(i).getMaActual().getCombinacio();
             }
+
         }
         for (Jugador j : partida.getJugadors()) {
             if (j.getMaActual().getCombinacio() == comb) {
@@ -203,11 +209,11 @@ public class ControladoraPartida {
                 }
             }
             for (Jugador j : posiblesGuanyadors) {
-                if (j.getMaActual().getValorMesAlt() != comb) {
+                if (j.getMaActual().getValorMesAlt() != comb) { //Calcula els jugadors perdedors
                     jug.add(j);
                 }
             }
-            posiblesGuanyadors.removeAll(jug);
+            posiblesGuanyadors.removeAll(jug);//Eliminem els jugadors perdedors.
             jug.clear();
             if (posiblesGuanyadors.size() > 1) {
                 comb = 0;
@@ -221,6 +227,7 @@ public class ControladoraPartida {
                         jug.add(j);
                     }
                 }
+
                 posiblesGuanyadors.removeAll(jug);
             }
         }
