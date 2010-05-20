@@ -37,6 +37,7 @@ public class Jugador {
     }
 
     public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula) {
+        System.out.println("poma2");
         this.dni = dni;
         this.nomComplet = nomComplet;
         this.alias = alias;

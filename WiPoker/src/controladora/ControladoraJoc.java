@@ -9,7 +9,6 @@ import domini.Baralla;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
-import domini.Ronda;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -50,10 +49,9 @@ public class ControladoraJoc {
 
                 j.getMaActual().getCartes().add(privades.get(privades.size() - 1));
 
+                baralla.setCartesActuals((baralla.getCartesActuals() - 1));
             }
-            baralla.setCartesActuals((baralla.getCartesActuals() - 1));
         }
-            System.out.println(baralla.getCartesActuals());
         return privades;
     }
 
@@ -61,14 +59,13 @@ public class ControladoraJoc {
         for (int i = 0; i < numCartes; i++) {
             for (Jugador j : jugadors) {
                 j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals()));
-
             }
-            baralla.setCartesActuals((baralla.getCartesActuals() - 1));
         }
+        baralla.setCartesActuals((baralla.getCartesActuals() - numCartes));
     }
 
     public void cremarCartes(Baralla baralla) {
-        baralla.getCartes().remove(baralla.getCartes().size() - 1);
+        //baralla.getCartes().remove(baralla.getCartes().size() - 1);
         baralla.setCartesActuals((baralla.getCartesActuals() - 1));
     }
 
@@ -77,10 +74,12 @@ public class ControladoraJoc {
     }
 
     public void apostar(Jugador jugador, int quantitat, Fase fase) {
+        System.out.println(jugador.toString());
         //modificar cuando este hecha gui
-        jugador.setAposta(new Aposta(jugador, quantitat));
+        Aposta aposta = new Aposta(jugador, quantitat);
+        jugador.setAposta(aposta);
         jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
-        fase.getApostes().add(new Aposta(jugador, quantitat));
+        fase.getApostes().add(aposta);
         fase.getRonda().setPot(fase.getRonda().getPot() + quantitat);
     }
 

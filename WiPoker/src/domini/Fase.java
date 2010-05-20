@@ -17,19 +17,20 @@ public class Fase {
     private static byte numFase = 0;
     private static final String[] nomFases = {"pre-flop", "flop", "turn", "river"};
     private Ronda ronda;
-    private ArrayList<Aposta> apostes;
+    private ArrayList<Aposta> apostes = new ArrayList<Aposta>();
     private int apostaMinima;
 
     public Fase(String nomFase, Ronda ronda, int apostaMinima) {
+        numFase++;
         this.nomFase = nomFase;
         this.ronda = ronda;
         this.apostaMinima = apostaMinima;
-        numFase++;
+
     }
 
     public Fase(String nomFase, int aposta) {
-        this.nomFase = nomFase;
         numFase++;
+        this.nomFase = nomFase;
     }
 
     public String getNomFase() {
