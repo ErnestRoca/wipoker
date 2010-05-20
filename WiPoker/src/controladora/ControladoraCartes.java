@@ -29,7 +29,11 @@ public class ControladoraCartes {
         }
 
         esEscalaReial = escalaColor && limits;
-        if (!esEscalaReial) {
+        if (esEscalaReial) {
+            jugador.getMaActual().setCombinacio(10);
+            jugador.getMaActual().setValorMesAlt(14);
+            jugador.getMaActual().setValorDesempat(14);
+        } else if (!esEscalaReial) {
             jugador.getMaActual().setCombinacio(0);
             jugador.getMaActual().setValorMesAlt(0);
             jugador.getMaActual().setValorDesempat(0);
