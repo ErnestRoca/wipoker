@@ -22,17 +22,14 @@ public class ControladoraCartes {
         boolean esEscalaReial = false;
         boolean escalaColor = esEscalaColor(jugador);
         boolean limits = false;
-        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
-        
+        ArrayList<Carta> cartes = jugador.getMaActual().getCartes();        
         int iteracions = cartes.size() - 4;
-        for (int i  = 0; i < iteracions; i++) {
-
-        }
-        for (int i = 0; i < 5; i++) {
+        for (int i  = 0; i < iteracions; i++) {             
             if ((cartes.get(i).getValor() == 14 && cartes.get(i + 4).getValor() == 10)) {
                 limits = true;
             }
         }
+        
         esEscalaReial = escalaColor && limits;
         if (!esEscalaReial) {
             jugador.getMaActual().setCombinacio(0);
