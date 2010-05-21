@@ -13,6 +13,7 @@ import presentacio.partida.GuiNovaPartida;
 public class ControladoraGui {
 
     private boolean login;
+    private ControladoraPartida cp = new ControladoraPartida(1);
 
     public ControladoraGui() {
         login = false;
@@ -44,7 +45,7 @@ public class ControladoraGui {
 
     //Fa Check
     public void doCheck() {
-        //
+        //cp.controlJoc.ferCheck(null, null, apostaMinima);    //
     }
 
     //Fa Fold
