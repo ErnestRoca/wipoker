@@ -27,6 +27,7 @@ public class ControladoraPartida {
     public ControladoraCartes controlCartes = new ControladoraCartes();
     public ControladoraIA controlIA = new ControladoraIA();
     public ControladoraJoc controlJoc = new ControladoraJoc();
+    public Torn torn;
 
     public ControladoraPartida(int maxJugadors) {
         //super();
