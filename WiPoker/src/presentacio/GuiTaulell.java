@@ -89,14 +89,14 @@ public class GuiTaulell {
     private JMenuItem jmiQuantA;
     private JSeparator jseSeparador;
     //
-    private ControladoraPartida cp = new ControladoraPartida((byte) 1);
+   
     private ControladoraGui gui;
 
     /** Constructor. */
     public GuiTaulell() {
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
-        crearControlador();  // Automissatge per crear l'objecte Controlador
+       
 
     }
 
@@ -104,7 +104,7 @@ public class GuiTaulell {
         this.gui = gui;
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
-        crearControlador();  // Automissatge per crear l'objecte Controlador
+      
     }
 
 
@@ -735,7 +735,7 @@ public class GuiTaulell {
         jbCheck.addActionListener(new ActionListener() {
 
             public void actionPerformed(final ActionEvent evt) {
-                System.out.println("S'ha prmut el boto check");
+                gui.doCheck();
             }
         });
         jbBet.addActionListener(new ActionListener() {
@@ -760,9 +760,8 @@ public class GuiTaulell {
     }
 
     /** Crea l'objecte controlador del cas d'ús. */
-    private void crearControlador() {
-         cp = new ControladoraPartida((byte)9); // Missatge a la classe Controladora per crear un objecte ControladoraPArtida
-    }
+    
+         
 
     private void iniciarJFrame() {
         jFrame.setVisible(true);
