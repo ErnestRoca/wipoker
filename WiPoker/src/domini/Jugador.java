@@ -22,6 +22,7 @@ public class Jugador {
     private final byte posicioTaula;
     private Ma maActual;
     private Aposta aposta;
+    private boolean haFetFold = false;
 
     public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
         this.dni = dni;
@@ -121,6 +122,15 @@ public class Jugador {
     public void setAposta(Aposta aposta) {
         this.aposta = aposta;
     }
+
+    public boolean isHaFetFold() {
+        return haFetFold;
+    }
+
+    public void setHaFetFold(boolean haFetFold) {
+        this.haFetFold = haFetFold;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
