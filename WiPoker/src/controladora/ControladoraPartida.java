@@ -62,7 +62,7 @@ public class ControladoraPartida {
         }
     }
 
-    public void iniciarRonda(int boto) {
+    public void iniciarRonda(int boto) throws InterruptedException {
         Ronda novaRonda = new Ronda(0);
         novaRonda.setPartida(partida);
         partida.getRondes().add(novaRonda);
@@ -94,7 +94,7 @@ public class ControladoraPartida {
 
     }
 
-    public void gestionarFase(Fase novaFase, int boto) {
+    public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         if (Fase.getNumFase() == 1) {
@@ -110,8 +110,7 @@ public class ControladoraPartida {
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
-    private void eventsPreFlop(int apostaMin, Fase fase, int boto) {
-        ArrayList<Torn> torns = new ArrayList<Torn>();
+    private void eventsPreFlop(int apostaMin, Fase fase, int boto) throws InterruptedException {
         //cega petita i gran
         controlJoc.apostar(partida.getJugadors().get(boto + 1), (apostaMin / 2), fase);        //Cega Petita
         controlJoc.apostar(partida.getJugadors().get(boto + 2), apostaMin, fase);  //Cega Gran
@@ -128,7 +127,7 @@ public class ControladoraPartida {
         int minima = apostaMin;
         int numJugadorsTornFinalitzat = 0;
          for (Jugador j: partida.getJugadors()) {
-             torns.add(new Torn(j));
+             j.setTorn(new Torn(j));
          }
          boolean fi = false;
          while(fi){
@@ -136,6 +135,11 @@ public class ControladoraPartida {
                  fi = true;
              } else {
                  for (Jugador j: partida.getJugadors()) {
+                     if (j.isHaFetFold() || j.getAposta().getQuantitat() >= minima) {
+                         numJugadorsTornFinalitzat++;
+                     } else {
+                         j.getTorn().pause();
+                     }
                      
                  }
              }
