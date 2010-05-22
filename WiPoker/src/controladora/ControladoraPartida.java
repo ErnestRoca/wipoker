@@ -111,6 +111,7 @@ public class ControladoraPartida {
     }
 
     private void eventsPreFlop(int apostaMin, Fase fase, int boto) {
+        ArrayList<Torn> torns = new ArrayList<Torn>();
         //cega petita i gran
         controlJoc.apostar(partida.getJugadors().get(boto + 1), (apostaMin / 2), fase);        //Cega Petita
         controlJoc.apostar(partida.getJugadors().get(boto + 2), apostaMin, fase);  //Cega Gran
@@ -125,9 +126,7 @@ public class ControladoraPartida {
         }
          * */
          for (Jugador j: partida.getJugadors()) {
-             Thread t = new Thread(new Torn(j), j.getAlias()) {
-
-             };
+            
          }
     }
 
