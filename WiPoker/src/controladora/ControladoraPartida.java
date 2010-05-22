@@ -125,8 +125,20 @@ public class ControladoraPartida {
             controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
         }
          * */
+        int minima = apostaMin;
+        int numJugadorsTornFinalitzat = 0;
          for (Jugador j: partida.getJugadors()) {
-            
+             torns.add(new Torn(j));
+         }
+         boolean fi = false;
+         while(fi){
+             if (numJugadorsTornFinalitzat == partida.getJugadors().size()) {
+                 fi = true;
+             } else {
+                 for (Jugador j: partida.getJugadors()) {
+                     
+                 }
+             }
          }
     }
 
