@@ -17,6 +17,7 @@ import java.util.Comparator;
 public class ControladoraCartes {
 
     private byte colorFinal;
+
     public boolean esEscalaReial(Jugador jugador) {
         boolean esEscalaReial = false;
         boolean escalaColor = esEscalaColor(jugador);
@@ -49,7 +50,7 @@ public class ControladoraCartes {
         ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
         //Si hi ha escala i hi ha color
 
-        if (sonMateixColor(jugador) && esEscala(jugador)) { //esEscala(jugador) &&
+        if (sonMateixColor(jugador) && esEscala(jugador)) {
             //Ordenem cartes
             Collections.sort(cartes);
             Collections.reverse(cartes);
@@ -137,7 +138,7 @@ public class ControladoraCartes {
             //Mira si la segona "posible" escala es una escala xD
             if (escala2.size() == 5) {
 
-                if (escala2.get(0).getValor() + 4 == escala2.get(4).getValor()) {
+                if (escala2.get(0).getValor() - 4 == escala2.get(4).getValor()) {
                     esEscala2 = true;
                 }
 
@@ -156,7 +157,7 @@ public class ControladoraCartes {
             //Mira si la tercera "posible" escala es una escala xD
             if (escala3.size() == 5) {
 
-                if (escala3.get(0).getValor() + 4 == escala3.get(4).getValor()) {
+                if (escala3.get(0).getValor() - 4 == escala3.get(4).getValor()) {
                     esEscala2 = true;
                 }
                 //Mira si la tercera escala es de color
@@ -171,17 +172,14 @@ public class ControladoraCartes {
                 }
             }
 
-            //Buscar l'escala de color mes alta
-            //Si les tres escales son de color:
+            //Retorna el valor de la combinacio, el valor mes alt i el valor de desempat
             if (esEscalaColor1) {
-                System.out.println("hola");
                 esEscalaColor = true;
                 jugador.getMaActual().setCombinacio((byte) 9);
                 jugador.getMaActual().setValorMesAlt(escala1.get(0).getValor());
                 //busca la carta de desempat
                 //Si el tamany de cartes es 5 la crta de des
                 if (cartes.size() == 5) {
-                    System.out.println("hola");
                     jugador.getMaActual().setValorDesempat(valorCartaDuplicada);
                 } else if (cartes.size() >= 6) {
                     if (cartes.get(5).getValor() > valorCartaDuplicada) {
@@ -192,7 +190,6 @@ public class ControladoraCartes {
 
                 }
             } else if (esEscalaColor2) {
-                System.out.println("hola2");
                 esEscalaColor = true;
                 jugador.getMaActual().setCombinacio((byte) 9);
                 jugador.getMaActual().setValorMesAlt(escala2.get(0).getValor());
@@ -212,7 +209,6 @@ public class ControladoraCartes {
 
                 }
             } else if (esEscalaColor3) {
-                System.out.println("hola3");
                 esEscalaColor = true;
                 jugador.getMaActual().setCombinacio((byte) 9);
                 jugador.getMaActual().setValorMesAlt(escala3.get(0).getValor());
@@ -402,84 +398,106 @@ public class ControladoraCartes {
     }
 
     public boolean esEscala(Jugador jugador) {
-        ArrayList<Carta> cartes1 = jugador.getMaActual().getCartes();
-        ArrayList<Carta> cartes = new ArrayList<Carta>(cartes1);
-        ArrayList<Carta> comb1 = new ArrayList<Carta>();
-        ArrayList<Carta> comb2 = new ArrayList<Carta>();
-        ArrayList<Carta> comb3 = new ArrayList<Carta>();
+        boolean esEscala = false;
+        boolean esEscala1 = false;
+        boolean esEscala2 = false;
+        boolean esEscala3 = false;
+        //Cartes del jugador
+        ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
+        //Cartes duplicades que te el jugador
+        ArrayList<Carta> cartesDuplicades = new ArrayList<Carta>();
         Collections.sort(cartes);
         Collections.reverse(cartes);
-        int iteracions = cartes.size() - 4;
+        //busquem les cartes duplicades
         for (int i = 0; i < cartes.size() - 1; i++) {
             if (cartes.get(i).getValor() == cartes.get(i + 1).getValor()) {
-                cartes.remove(i);
+                cartesDuplicades.add(cartes.get(i));
             }
         }
-        boolean esEscala = false;
-        int consecutives = 0;
-        int valor = 0;
-        iteracions = cartes.size() - 4;
-        boolean escalaTrencada = false;
-        int valors = 0;
-        for (int i = 0; i < cartes.size(); i++) {
-            if (cartes.get(i).getValor() == 14 || cartes.get(i).getValor() == 2 ||
-                    cartes.get(i).getValor() == 3 || cartes.get(i).getValor() == 4 || cartes.get(i).getValor() == 5) {
-                valors++;
-            }
+        //La carta duplicada mes alta
+        byte valorCartaDuplicada = 0;
+        if (cartesDuplicades.size() > 0) {
+            valorCartaDuplicada = cartesDuplicades.get(0).getValor();
         }
-        if (valors == 5) {
-            escalaTrencada = true;
-            esEscala = true;
-            jugador.getMaActual().setValorMesAlt((14));
-            jugador.getMaActual().setCombinacio(5);
-        }
-        if (!escalaTrencada) {
-            for (int i = 0; i < iteracions; i++) {
-                for (int j = i; j < (i + 4); j++) {
-                    if ((cartes.get(j).getValor() - cartes.get(j + 1).getValor()) == 1) {
-                        if (i == 0) {
-                            comb1.add(cartes.get(j));
-                            consecutives++;
-                        } else if (i == 1) {
-                            comb2.add(cartes.get(j));
-                            consecutives++;
-                        } else if (i == 2) {
-                            comb3.add(cartes.get(j));
-                            consecutives++;
-                        }
-                    }
+
+        //eliminem les cartes duplicades
+        cartes.removeAll(cartesDuplicades);
+        //SI enacara hi han 5 cartes
+        if (cartes.size() >= 5) {
+            ArrayList<Carta> escala1 = new ArrayList<Carta>();
+            ArrayList<Carta> escala2 = new ArrayList<Carta>();
+            ArrayList<Carta> escala3 = new ArrayList<Carta>();
+            //crea les 3 posibles escales
+            for (int i = 0; i < cartes.size(); i++) {
+                //si la carta esta entre la primera i la 5
+                if (i <= 4) {
+                    escala1.add(cartes.get(i));
                 }
-                if (consecutives <= 3) {
-                    consecutives = 0;
-                    valor = 0;
+                //si la carta esta entre la 2 i la 6
+                if (i >= 1 && i <= 5 && cartes.size() >= 6) {
+                    escala2.add(cartes.get(i));
+                }
+                //si la carta esta entre la 3 i la 7
+                if (i >= 2 && cartes.size() == 7) {
+                    escala3.add(cartes.get(i));
                 }
             }
-            if (consecutives >= 4) {
-                esEscala = true;
+            //Mira si la primera escala es escala
+            if (escala1.size() == 5) {
+                if (escala1.get(0).getValor() - 4 == escala1.get(4).getValor()) {
+                    esEscala1 = true;
+                    esEscala = true;
+                }
+            }
+            //Mira si la segona escala es escala
+            if (escala2.size() == 5) {
+                if (escala2.get(0).getValor() - 4 == escala2.get(4).getValor()) {
+                    esEscala2 = true;
+                    esEscala = true;
+                }
+            }
+            //Mira si la tercera escala es escala
+            if (escala3.size() == 5) {
+                if (escala3.get(0).getValor() - 4 == escala3.get(4).getValor()) {
+                    esEscala3 = true;
+                    esEscala = true;
+                }
+            }
+            //Si la primera es escala
+            if (esEscala1) {
                 jugador.getMaActual().setCombinacio(5);
-                if (comb1.size() == 4) {
-                    valor = comb1.get(0).getValor();
-                } else if (comb2.size() == 4) {
-                    valor = comb2.get(0).getValor();
-                } else if (comb3.size() == 4) {
-                    valor = comb3.get(0).getValor();
+                jugador.getMaActual().setValorMesAlt(escala1.get(0).getValor());
+                if (cartes.size() > 5) {
+                    if (valorCartaDuplicada > escala2.get(0).getValor()) {
+                        jugador.getMaActual().setValorDesempat(valorCartaDuplicada);
+                    } else {
+                        jugador.getMaActual().setValorDesempat(escala2.get(0).getValor());
+                    }
+                } else {
+                    jugador.getMaActual().setValorDesempat(valorCartaDuplicada);
                 }
-                jugador.getMaActual().setValorMesAlt((valor));
-                consecutives = 0;
+            } else if (esEscala2) {
+                jugador.getMaActual().setCombinacio(5);
+                jugador.getMaActual().setValorMesAlt(escala2.get(0).getValor());
+                if (valorCartaDuplicada > escala1.get(0).getValor()) {
+                    jugador.getMaActual().setValorDesempat(valorCartaDuplicada);
+                } else {
+                    jugador.getMaActual().setValorDesempat(escala1.get(0).getValor());
+                }
+            } else if (esEscala3) {
+                jugador.getMaActual().setCombinacio(5);
+                jugador.getMaActual().setValorMesAlt(escala3.get(0).getValor());
+                if (valorCartaDuplicada > escala1.get(0).getValor()) {
+                    jugador.getMaActual().setValorDesempat(valorCartaDuplicada);
+                } else {
+                    jugador.getMaActual().setValorDesempat(escala1.get(0).getValor());
+                }
+            } else {
+                jugador.getMaActual().setCombinacio(0);
+                jugador.getMaActual().setValorMesAlt(escala2.get(0).getValor());
+                jugador.getMaActual().setValorDesempat(0);
             }
         }
-        byte desempat = 0;
-        for (int i = 0; i < cartes.size(); i++) {
-            if (cartes.get(i).getValor() > valor && cartes.get(i).getValor() > desempat && cartes.get(i).getValor() != 14) {
-                desempat = cartes.get(i).getValor();
-            } else if (cartes.get(i).getValor() < (valor - 5) && cartes.get(i).getValor() > desempat) {
-                desempat = cartes.get(i).getValor();
-            }
-        }
-        jugador.getMaActual().setValorDesempat(desempat);
-
-
-
         return esEscala;
     }
 
