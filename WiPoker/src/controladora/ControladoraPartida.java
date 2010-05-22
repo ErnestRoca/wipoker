@@ -27,7 +27,6 @@ public class ControladoraPartida {
     public ControladoraCartes controlCartes = new ControladoraCartes();
     public ControladoraIA controlIA = new ControladoraIA();
     public ControladoraJoc controlJoc = new ControladoraJoc();
-    public Torn torn;
 
     public ControladoraPartida(int maxJugadors) {
         //super();
@@ -116,7 +115,7 @@ public class ControladoraPartida {
         controlJoc.apostar(partida.getJugadors().get(boto + 1), (apostaMin / 2), fase);        //Cega Petita
         controlJoc.apostar(partida.getJugadors().get(boto + 2), apostaMin, fase);  //Cega Gran
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
-
+        /*
         for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
             controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
         }
@@ -124,6 +123,12 @@ public class ControladoraPartida {
         for (int i = 0; i < boto + 3; i++) {
             controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
         }
+         * */
+         for (Jugador j: partida.getJugadors()) {
+             Thread t = new Thread(new Torn(j), j.getAlias()) {
+
+             };
+         }
     }
 
     private void eventsFlop(int apostaMin, Fase fase, int boto) {
