@@ -1,5 +1,7 @@
 package domini;
 
+import controladora.Torn;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -23,6 +25,7 @@ public class Jugador {
     private Ma maActual;
     private Aposta aposta;
     private boolean haFetFold = false;
+    private Torn torn;
 
     public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
         this.dni = dni;
@@ -35,6 +38,7 @@ public class Jugador {
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesInicials;
         this.posicioTaula = (byte) posicioTaula;
+        this.torn = new Torn(this);
     }
 
     public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula) {
@@ -131,6 +135,13 @@ public class Jugador {
         this.haFetFold = haFetFold;
     }
 
+    public Torn getTorn() {
+        return torn;
+    }
+
+    public void setTorn(Torn torn) {
+        this.torn = torn;
+    }
 
     @Override
     public boolean equals(Object obj) {
