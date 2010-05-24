@@ -737,7 +737,8 @@ public class GuiTaulell {
         jbCheck.addActionListener(new ActionListener() {
 
             public void actionPerformed(final ActionEvent evt) {
-                gui.doCheck();
+                //crear jlabel con dinero
+                gui.doCheck(tornActual.getJugadorTorn(), null, jlDiners.getText);
             }
         });
         jbBet.addActionListener(new ActionListener() {
