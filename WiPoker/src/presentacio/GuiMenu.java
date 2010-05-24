@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import presentacio.jabber.GuiMenuJabber;
-import presentacio.partida.GuiNovaPartida;
+import presentacio.partida.GuiLoginJabberPartida;
 
 /**
  *
@@ -84,7 +84,7 @@ public class GuiMenu {
         jbJabber.setCursor(cursor);
         jbJabber.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbJabber.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbJabber.setBounds(40, 135, 260, 40);
+        jbJabber.setBounds(40, 245, 260, 40);
         jbJabber.setIconTextGap(-260);
         jbJabber.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbJabber.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
@@ -96,7 +96,7 @@ public class GuiMenu {
         jbPartida.setCursor(cursor);
         jbPartida.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbPartida.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbPartida.setBounds(40, 245, 260, 40);
+        jbPartida.setBounds(40, 135, 260, 40);
         jbPartida.setIconTextGap(-260);
         jbPartida.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbPartida.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
@@ -160,18 +160,16 @@ public class GuiMenu {
 
         jbPartida.addActionListener(new ActionListener() {
 
-            private GuiNovaPartida partida;
+            private GuiLoginJabberPartida partida;
 
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
-                    partida = new GuiNovaPartida(gui);
+                    partida = new GuiLoginJabberPartida(gui);
                     partida.getjFrame().setLocation(jFrame.getLocation());
-                    partida.getjFrame().setVisible(true);
-                    //partida.setControladoraGui(gui);
-                    
-                } catch (Exception e) {
-                    System.out.println(e);
+                    partida.getjFrame().setVisible(true);                    
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -214,7 +212,7 @@ public class GuiMenu {
                 try {
                     new GuiMenu();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GuiMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
