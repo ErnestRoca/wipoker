@@ -3,6 +3,7 @@ package presentacio;
 import controladora.ControladoraGui;
 import controladora.ControladoraPartida;
 import controladora.Torn;
+import domini.Fase;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -91,6 +92,7 @@ public class GuiTaulell {
     private JSeparator jseSeparador;
     //
     private Torn tornActual;
+    private Fase faseActual;
    
     private ControladoraGui gui;
 
@@ -738,26 +740,26 @@ public class GuiTaulell {
 
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero
-                gui.doCheck(tornActual.getJugadorTorn(), null, jlDiners.getText);
+                gui.doCheck(tornActual.getJugadorTorn(), faseActual, 0);
             }
         });
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                System.out.println("S'ha prmut el boto bet");
+                gui.doBet(tornActual.getJugadorTorn(), faseActual, 0);
             }
         });
 
         jbRise.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                System.out.println("S'ha prmut el boto rise");
+                gui.doRise(tornActual.getJugadorTorn(), faseActual, 0);
             }
         });
         jbFold.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                System.out.println("S'ha prmut el boto fold");
+                gui.doFold(tornActual.getJugadorTorn());
             }
         });
     }
