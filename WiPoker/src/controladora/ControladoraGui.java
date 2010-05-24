@@ -6,7 +6,6 @@ package controladora;
 
 import domini.Fase;
 import domini.Jugador;
-import java.util.ArrayList;
 import presentacio.partida.GuiNovaPartida;
 
 /**
