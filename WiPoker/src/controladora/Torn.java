@@ -6,7 +6,6 @@
 package controladora;
 
 import domini.Jugador;
-import java.awt.event.ActionListener;
 
 /**
  *
@@ -19,6 +18,14 @@ public class Torn implements Runnable {
     private Jugador jugadorTorn;
     public Torn(Jugador jugador) {
         this.jugadorTorn = jugador;
+    }
+
+    public Jugador getJugadorTorn() {
+        return jugadorTorn;
+    }
+
+    public void setJugadorTorn(Jugador jugadorTorn) {
+        this.jugadorTorn = jugadorTorn;
     }
 
     public void run() {
