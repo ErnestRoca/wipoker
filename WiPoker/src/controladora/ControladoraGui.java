@@ -47,24 +47,23 @@ public class ControladoraGui {
     }
 
     //Fa Check
-    public void doCheck(Jugador jugador, int quantitat) {
-        ArrayList<Fase> fases = cp.partida.getRondes().get(cp.partida.getRondes().size()).getFases();
-        cp.controlJoc.ferCheck(jugador, fases.get(fases.size()), quantitat);    //
+    public void doCheck(Jugador jugador, Fase fase, int quantitat) {
+        cp.controlJoc.ferCheck(jugador, fase, quantitat);    
     }
 
     //Fa Fold
-    public void doFold() {
-        //
+    public void doFold(Jugador jugador) {
+        cp.controlJoc.ferFold(jugador);
     }
 
     //Fa rise
-    public void doRise() {
-        //
+    public void doRise(Jugador jugador, Fase fase, int dinersAfegits) {
+        cp.controlJoc.ferRaise(jugador, fase, fase.getApostaMinima(), dinersAfegits);
     }
 
     //Fa bet
-    public void doBet() {
-        //
+    public void doBet(Jugador jugador, Fase fase, int diners) {
+        cp.controlJoc.ferBet(jugador, fase, diners);
     }
 
     //Registra un jugador a la base de dades (No Jabber).
