@@ -6,7 +6,8 @@ package controladora;
 
 import domini.Fase;
 import domini.Jugador;
-import presentacio.partida.GuiNovaPartida;
+import presentacio.jabber.GuiLoginJabber;
+import presentacio.partida.GuiLoginJabberPartida;
 
 /**
  *
@@ -33,10 +34,10 @@ public class ControladoraGui {
         return login;
     }
 
-    public void comprovarLogin(GuiNovaPartida guiNovaPartida) {
+    public void comprovarLogin(GuiLoginJabberPartida guiNovaPartida) {
         if (!isLogin()) {
-            guiNovaPartida.getJbCrearPartida().setEnabled(false);
-            guiNovaPartida.getJbUnirsePartida().setEnabled(false);
+            //guiNovaPartida.getJbCrearPartida().setEnabled(false);
+            //guiNovaPartida.getJbUnirsePartida().setEnabled(false);
         }
     }
 
