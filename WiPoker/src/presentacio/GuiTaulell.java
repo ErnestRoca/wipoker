@@ -2,6 +2,7 @@ package presentacio;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraPartida;
+import controladora.Torn;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -89,6 +90,7 @@ public class GuiTaulell {
     private JMenuItem jmiQuantA;
     private JSeparator jseSeparador;
     //
+    private Torn tornActual;
    
     private ControladoraGui gui;
 
