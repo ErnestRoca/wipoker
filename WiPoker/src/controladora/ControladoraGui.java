@@ -4,6 +4,9 @@
  */
 package controladora;
 
+import domini.Fase;
+import domini.Jugador;
+import java.util.ArrayList;
 import presentacio.partida.GuiNovaPartida;
 
 /**
@@ -44,8 +47,9 @@ public class ControladoraGui {
     }
 
     //Fa Check
-    public void doCheck() {
-        //cp.controlJoc.ferCheck(null, null, apostaMinima);    //
+    public void doCheck(Jugador jugador, int quantitat) {
+        ArrayList<Fase> fases = cp.partida.getRondes().get(cp.partida.getRondes().size()).getFases();
+        cp.controlJoc.ferCheck(jugador, fases.get(fases.size()), quantitat);    //
     }
 
     //Fa Fold
