@@ -985,6 +985,14 @@ public class GuiTaulell {
         this.jlNomCroupier = jlNomCroupier;
     }
 
+    public Torn getTornActual() {
+        return tornActual;
+    }
+
+    public void setTornActual(Torn tornActual) {
+        this.tornActual = tornActual;
+    }
+
     /**
      * Inicia el cas d'ús des del SO.
      * @param args No emprats
