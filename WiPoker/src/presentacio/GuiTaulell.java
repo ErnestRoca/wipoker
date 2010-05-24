@@ -1,7 +1,6 @@
 package presentacio;
 
 import controladora.ControladoraGui;
-import controladora.ControladoraPartida;
 import controladora.Torn;
 import domini.Fase;
 import java.awt.Color;
