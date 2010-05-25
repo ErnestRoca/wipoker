@@ -27,20 +27,6 @@ public class Jugador {
     private boolean haFetFold = false;
     private Torn torn;
 
-    public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
-        this.dni = dni;
-        this.nomComplet = nomComplet;
-        this.alias = alias;
-        this.edat = (byte) edat;
-        this.partidesGuanyades = (short) partidesGuanyades;
-        this.puntuacio = puntuacio;
-        this.telefon = telefon;
-        this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesInicials;
-        this.posicioTaula = (byte) posicioTaula;
-        this.torn = new Torn(this);
-    }
-
     public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula) {
         System.out.println("poma2");
         this.dni = dni;
@@ -49,6 +35,23 @@ public class Jugador {
         this.edat = (byte) edat;
         this.telefon = telefon;
         this.posicioTaula = (byte) posicioTaula;
+    }
+
+    public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
+        this(dni, nomComplet, alias, edat, telefon, posicioTaula);
+        this.partidesGuanyades = (short) partidesGuanyades;
+        this.puntuacio = puntuacio;       
+        this.fitxesInicials = fitxesInicials;
+        this.fitxesActuals = fitxesInicials;       
+        this.torn = new Torn(this);
+    }
+
+    public Jugador(String alias) {
+        this.dni = "00000000A";
+        this.nomComplet= "local";
+        this.edat = 0;
+        this.posicioTaula = 1;
+        this.alias = alias;
     }
 
     public String getAlias() {
