@@ -16,14 +16,18 @@ import presentacio.partida.GuiLoginJabberPartida;
 public class ControladoraGui {
 
     private boolean login;
-    private ControladoraPartida cp;
+    private Object cp;
     private Torn tornActual = new Torn();
     private Fase faseActual;
 
-    public ControladoraGui() {        
+    public ControladoraGui(Object clase) {
         login = false;
         faseActual = new Fase();
-        cp = new ControladoraPartida(1, this);
+        if (clase instanceof ControladoraPartidaOnline) {
+            cp = new ControladoraPartidaOnline(1, this);
+        } else if (clase instanceof ControladoraPartidaLocal) {
+            cp = new ControladoraPartidaLocal(this);
+        }
     }
 
     public void setLoginTrue() {
@@ -54,7 +58,7 @@ public class ControladoraGui {
         this.tornActual = tornActual;
     }
 
-    public ControladoraPartida getCp() {
+    public Object getCp() {
         return cp;
     }
 

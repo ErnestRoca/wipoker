@@ -19,7 +19,7 @@ import java.util.Calendar;
  *
  * @author wida45787385
  */
-public class ControladoraPartida {
+public class ControladoraPartidaOnline {
 
     private Taula taula;
     private Baralla baralla;
@@ -29,7 +29,7 @@ public class ControladoraPartida {
     public ControladoraJoc controlJoc = new ControladoraJoc();
     private ControladoraGui gui;
 
-    public ControladoraPartida(int maxJugadors, ControladoraGui gui) {
+    public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui) {
         //super();
         this.gui = gui;
         baralla = controlJoc.crearBaralla();
