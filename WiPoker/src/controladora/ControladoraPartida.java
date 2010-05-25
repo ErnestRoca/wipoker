@@ -5,6 +5,7 @@
 package controladora;
 
 import domini.Baralla;
+import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
 import domini.Partida;
@@ -162,19 +163,53 @@ public class ControladoraPartida {
 
     private void eventsFlop(Fase fase, int boto) {
         controlJoc.cremarCartes(baralla);
-        controlJoc.aixecarCartes(partida.getJugadors(), baralla, 3);
-        for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
+        ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 3);
+        gui.mostrarCartesComunitaries(publiques);
+        int minima = 0;
+        int numJugadorsTornFinalitzat = 0;
+        for (Jugador j : partida.getJugadors()) {
+            System.out.println(j);
+            j.setTorn(new Torn(j));
         }
 
-        for (int i = 0; i < boto + 3; i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
+        boolean fi = false;
+        while (!fi) {
+            if (numJugadorsTornFinalitzat == partida.getJugadors().size()) {
+                fi = true;
+            } else {
+                for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (partida.getJugadors().get(i).isHaFetFold()) {
+                        numJugadorsTornFinalitzat++;
+                    } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
+                        numJugadorsTornFinalitzat++;
+                    }
+                    if (partida.getJugadors().get(i).getAposta().getQuantitat() > minima) {
+                        numJugadorsTornFinalitzat = 0;
+                        minima = (int) partida.getJugadors().get(i).getAposta().getQuantitat();
+                    }
+                }
+                for (int i = 0; i <= boto; i++) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (partida.getJugadors().get(i).isHaFetFold()) {
+                        numJugadorsTornFinalitzat++;
+                    } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
+                        numJugadorsTornFinalitzat++;
+                    }
+                    if (partida.getJugadors().get(i).getAposta().getQuantitat() > minima) {
+                        numJugadorsTornFinalitzat = 0;
+                        minima = (int) partida.getJugadors().get(i).getAposta().getQuantitat();
+                    }
+                }
+            }
         }
     }
 
     private void eventsTurn(Fase fase, int boto) {
         controlJoc.cremarCartes(baralla);
-        controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
+        ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
+        gui.mostrarCartesComunitaries(publiques);
+
         for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
             controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
         }
@@ -186,7 +221,9 @@ public class ControladoraPartida {
 
     private void eventsRiver(Fase fase, int boto) {
         controlJoc.cremarCartes(baralla);
-        controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
+        ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
+        gui.mostrarCartesComunitaries(publiques);
+
         for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
             controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
         }
