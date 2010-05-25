@@ -15,12 +15,13 @@ public class ControladoraGui {
 
     private boolean login;
     private ControladoraPartida cp;
-    private Torn tornActual;
+    private Torn tornActual = new Torn();
     private Fase faseActual;
 
     public ControladoraGui() {
         cp = new ControladoraPartida(1, this);
         login = false;
+        faseActual = new Fase();
     }
 
     public void setLoginTrue() {
