@@ -5,7 +5,6 @@
 package controladora;
 
 import domini.Baralla;
-import domini.Bot;
 import domini.Fase;
 import domini.Jugador;
 import domini.Partida;
@@ -18,31 +17,29 @@ import java.util.Calendar;
  *
  * @author wida45787385
  */
-public class ControladoraPartidaLocal {
+public class ControladoraPartida {
 
-    private Taula taula;
-    private Baralla baralla;
+    public Taula taula;
+    public Baralla baralla;
     public Partida partida;
     public ControladoraCartes controlCartes = new ControladoraCartes();
     public ControladoraIA controlIA = new ControladoraIA();
     public ControladoraJoc controlJoc = new ControladoraJoc();
-    private ControladoraGui gui;
+    public ControladoraGui gui;
 
-    public ControladoraPartidaLocal(ControladoraGui gui) {
+    public ControladoraPartida(int maxJugadors, ControladoraGui gui) {
         //super();
         this.gui = gui;
         baralla = controlJoc.crearBaralla();
-        taula = new Taula(2, baralla);
+        taula = new Taula(maxJugadors, baralla);
         partida = new Partida(Calendar.getInstance());
         taula.setPartidaActual(partida);
-        partida.setJugadors(new ArrayList<Jugador>());
-        partida.getJugadors().add(new Jugador("local"));
-        partida.getJugadors().add(new Bot("bot", 1000));
-
+        //jugadors = partida.getJugadors();
+        partida.setJugadors(new ArrayList<Jugador>(maxJugadors));
     }
 
-    public void jugarLocal() throws InterruptedException {
-        while (partida.getJugadors().size() != 1) {
+    public void jugar() throws InterruptedException {
+        while (partida.getJugadors().size() > 1) {
             int boto = 0;
             iniciarRonda(boto);
             boto++;
@@ -81,92 +78,20 @@ public class ControladoraPartidaLocal {
 
     }
 
-
-
-    private void eventsPreFlop(int apostaMin, Fase fase, int boto) throws InterruptedException {
-        //cega petita i gran
-        if (boto == 0) {
-            controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-            controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-        } else if (boto == 1) {
-            controlJoc.apostar(partida.getJugadors().get(0), (apostaMin / 2), fase);        //Cega Petita
-            controlJoc.apostar(partida.getJugadors().get(1), apostaMin, fase);  //Cega Gran
+    public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
+        //Clase fase te dos static: array string nom fases i byte amb el numero de fase
+        //Passem al constructor l'string de l'index de la fase
+        if (Fase.getNumFase() == 1) {
+            eventsPreFlop(novaFase.getApostaMinima(), novaFase, boto);
+        } else if (Fase.getNumFase() == 2) {
+            eventsFlop(novaFase.getApostaMinima(), novaFase, boto);
+        } else if (Fase.getNumFase() == 3) {
+            eventsTurn(novaFase.getApostaMinima(), novaFase, boto);
+        } else if (Fase.getNumFase() == 4) {
+            eventsRiver(novaFase.getApostaMinima(), novaFase, boto);
         }
 
-        controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
-       
-        int minima = apostaMin;
-        int numJugadorsTornFinalitzat = 0;
-        for (Jugador j : partida.getJugadors()) {
-            System.out.println(j);
-            j.setTorn(new Torn(j));
-        }
-        gui.setTornActual(partida.getJugadors().get(0).getTorn());
-
-        boolean fi = false;
-        while (!fi) {
-            if (numJugadorsTornFinalitzat == partida.getJugadors().size()) {
-                fi = true;
-            } else {
-                for (Jugador j : partida.getJugadors()) {
-                    gui.setTornActual(j.getTorn());
-                    gui.setFaseActual(fase);
-                    if (j.isHaFetFold()) {
-                        numJugadorsTornFinalitzat++;
-                    } else if (j.getAposta().getQuantitat() >= minima) {
-                        numJugadorsTornFinalitzat++;
-                        if (j.getAposta().getQuantitat() > minima) {
-                            numJugadorsTornFinalitzat = 0;
-                            minima = (int) j.getAposta().getQuantitat();
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void eventsFlop(int apostaMin, Fase fase, int boto) {
-        controlJoc.cremarCartes(baralla);
-        controlJoc.aixecarCartes(partida.getJugadors(), baralla, 3);
-        for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
-        }
-
-        for (int i = 0; i < boto + 3; i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
-        }
-    }
-
-    private void eventsTurn(int apostaMin, Fase fase, int boto) {
-        controlJoc.cremarCartes(baralla);
-        controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
-        for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
-        }
-
-        for (int i = 0; i < boto + 3; i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
-        }
-    }
-
-    private void eventsRiver(int apostaMin, Fase fase, int boto) {
-        controlJoc.cremarCartes(baralla);
-        controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
-        for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
-        }
-
-        for (int i = 0; i < boto + 3; i++) {
-            controlJoc.apostar(partida.getJugadors().get(i), 100, fase);
-        }
-
-    }
-
-    private void determinarCombinacioPreFlop(ArrayList<Jugador> jugadors) {
-        for (Jugador j : jugadors) {
-            if (controlCartes.esParella(j)) {
-            } else if (controlCartes.valorMesAlt(j));
-        }
+        //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
     public void determinarCombinacio() {
@@ -185,7 +110,9 @@ public class ControladoraPartidaLocal {
         }
     }
 
-    private ArrayList<Jugador> determinarGuanyador() {
+    
+
+     private ArrayList<Jugador> determinarGuanyador() {
 
         ArrayList<Jugador> posiblesGuanyadors = new ArrayList<Jugador>();
         int comb = 0;
