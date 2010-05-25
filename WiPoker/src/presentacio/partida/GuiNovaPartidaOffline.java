@@ -6,6 +6,7 @@
 package presentacio.partida;
 
 import controladora.ControladoraGui;
+import controladora.ControladoraPartidaLocal;
 import domini.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,14 +46,15 @@ public class GuiNovaPartidaOffline {
     private JButton jbCrearPartida;
     private JButton jbUnirsePartida;
 
-    public GuiNovaPartidaOffline() throws InterruptedException {
-        gui = new ControladoraGui();
-        iniciarComponents();
+    //constructor de pruebas
+    public GuiNovaPartidaOffline() throws InterruptedException {        
+        iniciarComponents();        
     }
 
     public GuiNovaPartidaOffline(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
         iniciarComponents();
+        gui.setCp(new ControladoraPartidaLocal(gui));
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -85,7 +87,7 @@ public class GuiNovaPartidaOffline {
 
         jlMaxJ = new JLabel();
         jlMaxJ.setBounds(58, 130, 340, 104);
-        jlMaxJ.setText("Maxim Jugadors ");
+        jlMaxJ.setText("Alias ");
         jlMaxJ.setForeground(Color.red);
         jlMaxJ.setLayout(null);
         jpFons.add(jlMaxJ);
