@@ -14,11 +14,12 @@ import presentacio.partida.GuiLoginJabberPartida;
 public class ControladoraGui {
 
     private boolean login;
-    private ControladoraPartida cp = new ControladoraPartida(1);
+    private ControladoraPartida cp;
     private Torn tornActual;
     private Fase faseActual;
 
     public ControladoraGui() {
+        cp = new ControladoraPartida(1, this);
         login = false;
     }
 
