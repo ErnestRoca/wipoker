@@ -5,24 +5,28 @@
 
 package domini;
 
+import controladora.Torn;
+
 /**
  *
  * @author ula
  */
-public class Bot {
+public class Bot extends Jugador {
     private final  String alias;
     private int fitxesInicials;
     private int fitxesActuals;
     private final  byte posicioTaula;
     private Ma maActual;
     private Aposta aposta;
-    private Partida partida;
+    private Torn torn;
 
-    public Bot(String alias, int fitxesInicials, int fitxesActuals, int posicioTaula) {
+
+    public Bot(String alias, int fitxesInicials) {
+        super(alias);
         this.alias = alias;
         this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesActuals;
-        this.posicioTaula = (byte) posicioTaula;
+        this.fitxesActuals = fitxesInicials;
+        this.posicioTaula = 2;
     }
 
     public double jugadaBot() {
