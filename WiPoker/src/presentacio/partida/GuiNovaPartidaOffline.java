@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
@@ -137,6 +136,7 @@ public class GuiNovaPartidaOffline {
 
             public void actionPerformed(ActionEvent e) {
                 taulell = new GuiTaulell(gui);
+                gui.crearJugadorOffline();
                 jFrame.dispose();
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);
