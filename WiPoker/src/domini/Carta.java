@@ -1,4 +1,11 @@
+/*
+ * Carta.java
+ */
+// Per assignar la classe actual a la capa domini
 package domini;
+
+// Per implementar associacions i navegabilitats
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -8,10 +15,27 @@ public class Carta implements Comparable {
 
     private final byte pal;
     private final byte valor;
+    private ImageIcon imatge;
 
     public Carta(int pal, int valor) {
         this.pal = (byte) pal;
         this.valor = (byte) valor;
+
+        String palCarta = null;
+        if (pal == 0) {
+            palCarta = "s";
+        } else if (pal == 1) {
+            palCarta = "d";
+        } else if (pal == 2) {
+            palCarta = "c";
+        } else if (pal == 3) {
+            palCarta = "h";
+        }
+        try {
+            imatge = new ImageIcon(Carta.class.getResource("/serveis/imatges/cards/" + valor + palCarta + ".gif"));
+        } catch (Exception ex) {
+            System.out.println("No s'ha trobat la imatge" + " associada amb el valor: " + valor + " i pal: " + pal);
+        }
     }
 
     public byte getPal() {
@@ -20,6 +44,14 @@ public class Carta implements Comparable {
 
     public byte getValor() {
         return valor;
+    }
+
+    /**
+     * Retorna el valor de l'atribut imatge.
+     * @return imatge associada a la pesa
+     */
+    public ImageIcon getImatge() {
+        return imatge;
     }
 
     //Una Carta serà diferent quan el seu pal i el seu valor siguin diferents.
