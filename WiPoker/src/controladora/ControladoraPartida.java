@@ -27,6 +27,7 @@ public class ControladoraPartida {
     public ControladoraCartes controlCartes = new ControladoraCartes();
     public ControladoraIA controlIA = new ControladoraIA();
     public ControladoraJoc controlJoc = new ControladoraJoc();
+    private ControladoraGui gui;
 
     public ControladoraPartida(int maxJugadors) {
         //super();
@@ -54,7 +55,7 @@ public class ControladoraPartida {
         }
     }
 
-    public void jugar() {
+    public void jugar() throws InterruptedException {
         while (partida.getJugadors().size() > 2) {
             int boto = 0;
             iniciarRonda(boto);
@@ -70,8 +71,8 @@ public class ControladoraPartida {
         controlJoc.barallar(baralla);
         
         for (int i = 0; i < 4; i++) {
-
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 20);
+
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
 
