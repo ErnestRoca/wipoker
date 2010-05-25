@@ -141,12 +141,11 @@ public class ControladoraPartida {
                          numJugadorsTornFinalitzat++;                         
                      } else if (j.getAposta().getQuantitat() >= minima) {
                          numJugadorsTornFinalitzat++;
-                         minima = (int) (j.getAposta().getQuantitat() > minima ? j.getAposta().getQuantitat() : minima);
-                         
-                     } else {
-                         
-                     }
-                     
+                         if (j.getAposta().getQuantitat() > minima) {
+                             numJugadorsTornFinalitzat = 0;
+                             minima = (int) j.getAposta().getQuantitat();
+                         }                      
+                     }                    
                  }
              }
          }
