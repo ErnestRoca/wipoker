@@ -5,6 +5,8 @@
 package controladora;
 
 import domini.Fase;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import presentacio.partida.GuiLoginJabberPartida;
 
 /**
@@ -18,10 +20,10 @@ public class ControladoraGui {
     private Torn tornActual = new Torn();
     private Fase faseActual;
 
-    public ControladoraGui() {
-        cp = new ControladoraPartida(1, this);
+    public ControladoraGui() {        
         login = false;
         faseActual = new Fase();
+        cp = new ControladoraPartida(1, this);
     }
 
     public void setLoginTrue() {
@@ -65,11 +67,17 @@ public class ControladoraGui {
 
     //Iniciar la partida quan totes les plaçes estan ocupades.
     public void iniciarPartida() {
+        try {
+            cp.jugar();
+            //
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ControladoraGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
     }
 
     //Fa Check
-    public void doCheck(int quantitat) {
+    public void doCheck(int quantitat) {        
         cp.controlJoc.ferCheck(tornActual.getJugadorTorn(), faseActual, quantitat);
     }
 
