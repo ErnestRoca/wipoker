@@ -20,6 +20,10 @@ public class Fase {
     private ArrayList<Aposta> apostes = new ArrayList<Aposta>();
     private int apostaMinima;
 
+    public Fase() {
+        nomFase = nomFases[numFase];
+    }
+
     public Fase(String nomFase, Ronda ronda, int apostaMinima) {
         numFase++;
         this.nomFase = nomFase;
