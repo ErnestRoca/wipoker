@@ -131,6 +131,7 @@ public class ControladoraPartida {
          for (Jugador j: partida.getJugadors()) {
              j.setTorn(new Torn(j));
          }
+         gui.setTornActual(partida.getJugadors().get(0).getTorn());
          boolean fi = false;
          while(!fi){
              if (numJugadorsTornFinalitzat == partida.getJugadors().size()) {
