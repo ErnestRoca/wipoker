@@ -6,6 +6,7 @@
 package presentacio.partida;
 
 import controladora.ControladoraGui;
+import domini.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -135,8 +136,8 @@ public class GuiNovaPartidaOffline {
             private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
-                taulell = new GuiTaulell(gui);
-                gui.crearJugadorOffline();
+                gui.getCp().partida.getJugadors().add(new Jugador("local"));
+                taulell = new GuiTaulell(gui);                
                 jFrame.dispose();
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);
