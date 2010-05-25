@@ -6,7 +6,6 @@ package presentacio.partida;
 
 import controladora.ControladoraGui;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -23,7 +22,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
-import presentacio.GuiMenu;
 import presentacio.GuiTaulell;
 import presentacio.dades.GuiMenuDades;
 
@@ -233,7 +231,7 @@ public class GuiNovaPartidaOnline {
             }
         });
     }
-
+/*
     public void actionPerformed(ActionEvent actionEvent) {
         System.out.println("hola");
         Object source = actionEvent.getSource();
@@ -249,7 +247,7 @@ public class GuiNovaPartidaOnline {
             jbCrear.setText("UNIR-SE");
         }
     }
-
+*/
     public JFrame getjFrame() {
         return jFrame;
     }
