@@ -5,6 +5,7 @@
 package presentacio.partida;
 
 import controladora.ControladoraGui;
+import controladora.ControladoraPartidaOnline;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -51,6 +52,7 @@ public class GuiNovaPartidaOnline {
     private JRadioButton jrbOnline;
     private JRadioButton jrbUnir;
 
+    //constructor de pruebas
     public GuiNovaPartidaOnline() throws InterruptedException {
         gui = new ControladoraGui();
         iniciarComponents();
@@ -59,8 +61,7 @@ public class GuiNovaPartidaOnline {
 
     public GuiNovaPartidaOnline(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
-        iniciarComponents();
-        //gui.comprovarLogin(this);
+        iniciarComponents();        
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -185,6 +186,7 @@ public class GuiNovaPartidaOnline {
             private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
+                gui.setCp(new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui));
                 taulell = new GuiTaulell(gui);
                 jFrame.dispose();
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
@@ -209,6 +211,7 @@ public class GuiNovaPartidaOnline {
         });
 
         jrbOnline.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent event) {
                 jtfNom.setEnabled(true);
                 jtfMAxJ.setEnabled(true);
@@ -231,23 +234,24 @@ public class GuiNovaPartidaOnline {
             }
         });
     }
-/*
+    /*
     public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("hola");
-        Object source = actionEvent.getSource();
-        if (source == jrbOnline) {
-            jtfNom.setEnabled(true);
-            jtfMAxJ.setEnabled(true);
-            jtfFInicials.setEnabled(true);
-            jbCrear.setText("CREAR");
-        } else if (source == jrbUnir) {
-            jtfNom.setEnabled(true);
-            jtfMAxJ.setEnabled(false);
-            jtfFInicials.setEnabled(false);
-            jbCrear.setText("UNIR-SE");
-        }
+    System.out.println("hola");
+    Object source = actionEvent.getSource();
+    if (source == jrbOnline) {
+    jtfNom.setEnabled(true);
+    jtfMAxJ.setEnabled(true);
+    jtfFInicials.setEnabled(true);
+    jbCrear.setText("CREAR");
+    } else if (source == jrbUnir) {
+    jtfNom.setEnabled(true);
+    jtfMAxJ.setEnabled(false);
+    jtfFInicials.setEnabled(false);
+    jbCrear.setText("UNIR-SE");
     }
-*/
+    }
+     */
+
     public JFrame getjFrame() {
         return jFrame;
     }

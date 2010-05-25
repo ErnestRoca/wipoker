@@ -25,14 +25,22 @@ public class ControladoraGui {
     /** Pseudoatribut per implementar visibilitat d'atribut. */
     private GuiTaulell taulell;
 
-    public ControladoraGui(Object clase) {
+    public ControladoraGui() {
+
+    }
+
+    public ControladoraGui(ControladoraPartida cp) {
         login = false;
         faseActual = new Fase();
-        if (clase instanceof ControladoraPartidaOnline) {
-            cp = new ControladoraPartidaOnline(1, this);
-        } else if (clase instanceof ControladoraPartidaLocal) {
-            //cp = new ControladoraPartidaLocal(this);
-        }
+        this.cp = cp;
+    }
+
+    public ControladoraPartida getCp() {
+        return cp;
+    }
+
+    public void setCp(ControladoraPartida cp) {
+        this.cp = cp;
     }
 
     public void setLoginTrue() {
@@ -61,11 +69,7 @@ public class ControladoraGui {
 
     public void setTornActual(Torn tornActual) {
         this.tornActual = tornActual;
-    }
-
-    public Object getCp() {
-        return cp;
-    }
+    }   
 
     public void comprovarLogin(GuiLoginJabberPartida guiNovaPartida) {
         if (!isLogin()) {
