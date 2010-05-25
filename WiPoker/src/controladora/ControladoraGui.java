@@ -4,9 +4,12 @@
  */
 package controladora;
 
+import domini.Carta;
 import domini.Fase;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import presentacio.GuiTaulell;
 import presentacio.partida.GuiLoginJabberPartida;
 
 /**
@@ -16,9 +19,11 @@ import presentacio.partida.GuiLoginJabberPartida;
 public class ControladoraGui {
 
     private boolean login;
-    private Object cp;
+    private ControladoraPartida cp;
     private Torn tornActual = new Torn();
     private Fase faseActual;
+    /** Pseudoatribut per implementar visibilitat d'atribut. */
+    private GuiTaulell taulell;
 
     public ControladoraGui(Object clase) {
         login = false;
@@ -26,7 +31,7 @@ public class ControladoraGui {
         if (clase instanceof ControladoraPartidaOnline) {
             cp = new ControladoraPartidaOnline(1, this);
         } else if (clase instanceof ControladoraPartidaLocal) {
-            cp = new ControladoraPartidaLocal(this);
+            //cp = new ControladoraPartidaLocal(this);
         }
     }
 
@@ -81,7 +86,7 @@ public class ControladoraGui {
     }
 
     //Fa Check
-    public void doCheck(int quantitat) {        
+    public void doCheck(int quantitat) {
         cp.controlJoc.ferCheck(tornActual.getJugadorTorn(), faseActual, quantitat);
     }
 
@@ -128,5 +133,19 @@ public class ControladoraGui {
     //Crea una conta Jabber
     public void crearContaJabber() {
         //
+    }
+
+    //Posa les cartes comunitaries damunt la taula.
+    public void mostrarCartesComunitaries(ArrayList<Carta> publiques) {
+        if (Fase.getNumFase() == 1) {
+        } else if (Fase.getNumFase() == 2) {
+            taulell.getJlCarta01().setIcon(publiques.get(0).getImatge());
+            taulell.getJlCarta02().setIcon(publiques.get(1).getImatge());
+            taulell.getJlCarta03().setIcon(publiques.get(2).getImatge());
+        } else if (Fase.getNumFase() == 3) {
+            taulell.getJlCarta04().setIcon(publiques.get(0).getImatge());
+        } else if (Fase.getNumFase() == 4) {
+            taulell.getJlCarta05().setIcon(publiques.get(0).getImatge());
+        }
     }
 }
