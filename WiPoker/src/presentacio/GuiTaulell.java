@@ -1,8 +1,6 @@
 package presentacio;
 
 import controladora.ControladoraGui;
-import controladora.Torn;
-import domini.Fase;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -90,9 +88,6 @@ public class GuiTaulell {
     private JMenuItem jmiQuantA;
     private JSeparator jseSeparador;
     //
-    private Torn tornActual;
-    private Fase faseActual;
-   
     private ControladoraGui gui;
 
     /** Constructor. */
@@ -718,7 +713,7 @@ public class GuiTaulell {
     }
 
     private void crearEscoltadors() {
-
+        //pendiente crear control que recoja la cantidad apostada
         jmiSortir.addActionListener(new ActionListener() {
 
             private GuiMenu menu;
@@ -739,26 +734,26 @@ public class GuiTaulell {
 
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero
-                gui.doCheck(tornActual.getJugadorTorn(), faseActual, 0);
+                gui.doCheck(0);
             }
         });
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gui.doBet(tornActual.getJugadorTorn(), faseActual, 0);
+                gui.doBet(0);
             }
         });
 
         jbRise.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gui.doRise(tornActual.getJugadorTorn(), faseActual, 0);
+                gui.doRise(0);
             }
         });
         jbFold.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gui.doFold(tornActual.getJugadorTorn());
+                gui.doFold();
             }
         });
     }
@@ -987,13 +982,6 @@ public class GuiTaulell {
         this.jlNomCroupier = jlNomCroupier;
     }
 
-    public Torn getTornActual() {
-        return tornActual;
-    }
-
-    public void setTornActual(Torn tornActual) {
-        this.tornActual = tornActual;
-    }
 
     /**
      * Inicia el cas d'ús des del SO.
