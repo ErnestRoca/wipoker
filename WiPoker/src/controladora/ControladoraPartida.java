@@ -137,6 +137,8 @@ public class ControladoraPartida {
                  fi = true;
              } else {
                  for (Jugador j: partida.getJugadors()) {
+                     gui.setTornActual(j.getTorn());
+                     gui.setFaseActual(fase);
                      if (j.isHaFetFold()) {
                          numJugadorsTornFinalitzat++;                         
                      } else if (j.getAposta().getQuantitat() >= minima) {
