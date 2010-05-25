@@ -50,6 +50,10 @@ public class ControladoraGui {
         this.tornActual = tornActual;
     }
 
+    public ControladoraPartida getCp() {
+        return cp;
+    }
+
     public void comprovarLogin(GuiLoginJabberPartida guiNovaPartida) {
         if (!isLogin()) {
             //guiNovaPartida.getJbCrearPartida().setEnabled(false);
