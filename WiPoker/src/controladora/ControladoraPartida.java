@@ -93,7 +93,7 @@ public class ControladoraPartida {
         //Al finalitzar la fase afegir potFase al pot de la ronda
     }
 
-    private void eventsPreFlop(int apostaMin, Fase fase, int boto) throws InterruptedException {
+    public void eventsPreFlop(int apostaMin, Fase fase, int boto) throws InterruptedException {
         if (partida.getJugadors().size() <= 2) {
             //cega petita i gran
             if (boto == 0) {
@@ -161,7 +161,7 @@ public class ControladoraPartida {
         }
     }
 
-    private void eventsFlop(Fase fase, int boto) {
+    public void eventsFlop(Fase fase, int boto) {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 3);
         gui.mostrarCartesComunitaries(publiques);
@@ -205,7 +205,7 @@ public class ControladoraPartida {
         }
     }
 
-    private void eventsTurn(Fase fase, int boto) {
+    public void eventsTurn(Fase fase, int boto) {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
         gui.mostrarCartesComunitaries(publiques);
@@ -250,7 +250,7 @@ public class ControladoraPartida {
         }
     }
 
-    private void eventsRiver(Fase fase, int boto) {
+    public void eventsRiver(Fase fase, int boto) {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
         gui.mostrarCartesComunitaries(publiques);
@@ -311,7 +311,7 @@ public class ControladoraPartida {
         }
     }
 
-    private ArrayList<Jugador> determinarGuanyador() {
+    public ArrayList<Jugador> determinarGuanyador() {
 
         ArrayList<Jugador> posiblesGuanyadors = new ArrayList<Jugador>();
         int comb = 0;
@@ -360,7 +360,7 @@ public class ControladoraPartida {
         return posiblesGuanyadors;
     }
 
-    private void determinarJugadorsEliminats() {
+    public void determinarJugadorsEliminats() {
         ArrayList<Jugador> jug = new ArrayList<Jugador>();
         for (Jugador j : partida.getJugadors()) {
             if (j.getFitxesActuals() <= 0) {

@@ -63,6 +63,10 @@ public class ControladoraGui {
         this.faseActual = faseActual;
     }
 
+    public void setTaulell (GuiTaulell t) {
+        this.taulell = t;
+    }
+
     public Torn getTornActual() {
         return tornActual;
     }

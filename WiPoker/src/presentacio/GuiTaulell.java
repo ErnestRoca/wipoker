@@ -114,16 +114,15 @@ public class GuiTaulell {
     public GuiTaulell() {
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
-
-
     }
 
     public GuiTaulell(ControladoraGui gui) {
         this.gui = gui;
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
-
+        gui.setTaulell(this);
     }
+
 
     /** Crea objectes crear els components de la UI. */
     private void iniciarComponents() {

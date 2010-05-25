@@ -33,12 +33,15 @@ public class Torn implements Runnable {
         this.jugadorTorn = jugadorTorn;
     }
 
-    public void run() {
+    public synchronized void run() {
+
         
     }
 
     public void pause() {
-        
+        while (true) {
+
+        }
     }
 
     public void resume(String accio) {
