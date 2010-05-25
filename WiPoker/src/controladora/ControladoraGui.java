@@ -21,7 +21,7 @@ public class ControladoraGui {
     private boolean login;
     private ControladoraPartida cp;
     private Torn tornActual = new Torn();
-    private Fase faseActual;
+    private Fase faseActual = new Fase();
     /** Pseudoatribut per implementar visibilitat d'atribut. */
     private GuiTaulell taulell;
 
