@@ -5,8 +5,6 @@
 package controladora;
 
 import domini.Fase;
-import domini.Jugador;
-import presentacio.jabber.GuiLoginJabber;
 import presentacio.partida.GuiLoginJabberPartida;
 
 /**
@@ -17,6 +15,8 @@ public class ControladoraGui {
 
     private boolean login;
     private ControladoraPartida cp = new ControladoraPartida(1);
+    private Torn tornActual;
+    private Fase faseActual;
 
     public ControladoraGui() {
         login = false;
@@ -34,6 +34,22 @@ public class ControladoraGui {
         return login;
     }
 
+    public Fase getFaseActual() {
+        return faseActual;
+    }
+
+    public void setFaseActual(Fase faseActual) {
+        this.faseActual = faseActual;
+    }
+
+    public Torn getTornActual() {
+        return tornActual;
+    }
+
+    public void setTornActual(Torn tornActual) {
+        this.tornActual = tornActual;
+    }
+
     public void comprovarLogin(GuiLoginJabberPartida guiNovaPartida) {
         if (!isLogin()) {
             //guiNovaPartida.getJbCrearPartida().setEnabled(false);
@@ -47,23 +63,23 @@ public class ControladoraGui {
     }
 
     //Fa Check
-    public void doCheck(Jugador jugador, Fase fase, int quantitat) {
-        cp.controlJoc.ferCheck(jugador, fase, quantitat);    
+    public void doCheck(int quantitat) {
+        cp.controlJoc.ferCheck(tornActual.getJugadorTorn(), faseActual, quantitat);
     }
 
     //Fa Fold
-    public void doFold(Jugador jugador) {
-        cp.controlJoc.ferFold(jugador);
+    public void doFold() {
+        cp.controlJoc.ferFold(tornActual.getJugadorTorn());
     }
 
     //Fa rise
-    public void doRise(Jugador jugador, Fase fase, int dinersAfegits) {
-        cp.controlJoc.ferRaise(jugador, fase, fase.getApostaMinima(), dinersAfegits);
+    public void doRise(int dinersAfegits) {
+        cp.controlJoc.ferRaise(tornActual.getJugadorTorn(), faseActual, faseActual.getApostaMinima(), dinersAfegits);
     }
 
     //Fa bet
-    public void doBet(Jugador jugador, Fase fase, int diners) {
-        cp.controlJoc.ferBet(jugador, fase, diners);
+    public void doBet(int diners) {
+        cp.controlJoc.ferBet(tornActual.getJugadorTorn(), faseActual, diners);
     }
 
     //Registra un jugador a la base de dades (No Jabber).
@@ -77,7 +93,7 @@ public class ControladoraGui {
     }
 
     //Busca un jugador de la base de dades (No Jabber).
-    public boolean busacrJugador() {
+    public boolean buscarJugador() {
         return true;
     }
 
