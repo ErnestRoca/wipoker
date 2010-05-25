@@ -954,6 +954,400 @@ public class GuiTaulell {
         this.jFrame = jFrame;
     }
 
+    public JButton getJbBet() {
+        return jbBet;
+    }
+
+    public void setJbBet(JButton jbBet) {
+        this.jbBet = jbBet;
+    }
+
+    public JButton getJbCheck() {
+        return jbCheck;
+    }
+
+    public void setJbCheck(JButton jbCheck) {
+        this.jbCheck = jbCheck;
+    }
+
+    public JButton getJbFold() {
+        return jbFold;
+    }
+
+    public void setJbFold(JButton jbFold) {
+        this.jbFold = jbFold;
+    }
+
+    public JButton getJbRise() {
+        return jbRise;
+    }
+
+    public void setJbRise(JButton jbRise) {
+        this.jbRise = jbRise;
+    }
+
+    public JLabel getJlAvatar01() {
+        return jlAvatar01;
+    }
+
+    public void setJlAvatar01(JLabel jlAvatar01) {
+        this.jlAvatar01 = jlAvatar01;
+    }
+
+    public JLabel getJlAvatar02() {
+        return jlAvatar02;
+    }
+
+    public void setJlAvatar02(JLabel jlAvatar02) {
+        this.jlAvatar02 = jlAvatar02;
+    }
+
+    public JLabel getJlAvatar03() {
+        return jlAvatar03;
+    }
+
+    public void setJlAvatar03(JLabel jlAvatar03) {
+        this.jlAvatar03 = jlAvatar03;
+    }
+
+    public JLabel getJlAvatar04() {
+        return jlAvatar04;
+    }
+
+    public void setJlAvatar04(JLabel jlAvatar04) {
+        this.jlAvatar04 = jlAvatar04;
+    }
+
+    public JLabel getJlAvatar05() {
+        return jlAvatar05;
+    }
+
+    public void setJlAvatar05(JLabel jlAvatar05) {
+        this.jlAvatar05 = jlAvatar05;
+    }
+
+    public JLabel getJlAvatar06() {
+        return jlAvatar06;
+    }
+
+    public void setJlAvatar06(JLabel jlAvatar06) {
+        this.jlAvatar06 = jlAvatar06;
+    }
+
+    public JLabel getJlAvatar07() {
+        return jlAvatar07;
+    }
+
+    public void setJlAvatar07(JLabel jlAvatar07) {
+        this.jlAvatar07 = jlAvatar07;
+    }
+
+    public JLabel getJlAvatar08() {
+        return jlAvatar08;
+    }
+
+    public void setJlAvatar08(JLabel jlAvatar08) {
+        this.jlAvatar08 = jlAvatar08;
+    }
+
+    public JLabel getJlAvatar09() {
+        return jlAvatar09;
+    }
+
+    public void setJlAvatar09(JLabel jlAvatar09) {
+        this.jlAvatar09 = jlAvatar09;
+    }
+
+    public JLabel getJlCarta01() {
+        return jlCarta01;
+    }
+
+    public void setJlCarta01(JLabel jlCarta01) {
+        this.jlCarta01 = jlCarta01;
+    }
+
+    public JLabel getJlCarta01Usuari() {
+        return jlCarta01Usuari;
+    }
+
+    public void setJlCarta01Usuari(JLabel jlCarta01Usuari) {
+        this.jlCarta01Usuari = jlCarta01Usuari;
+    }
+
+    public JLabel getJlCarta02() {
+        return jlCarta02;
+    }
+
+    public void setJlCarta02(JLabel jlCarta02) {
+        this.jlCarta02 = jlCarta02;
+    }
+
+    public JLabel getJlCarta02Usuari() {
+        return jlCarta02Usuari;
+    }
+
+    public void setJlCarta02Usuari(JLabel jlCarta02Usuari) {
+        this.jlCarta02Usuari = jlCarta02Usuari;
+    }
+
+    public JLabel getJlCarta03() {
+        return jlCarta03;
+    }
+
+    public void setJlCarta03(JLabel jlCarta03) {
+        this.jlCarta03 = jlCarta03;
+    }
+
+    public JLabel getJlCarta04() {
+        return jlCarta04;
+    }
+
+    public void setJlCarta04(JLabel jlCarta04) {
+        this.jlCarta04 = jlCarta04;
+    }
+
+    public JLabel getJlCarta05() {
+        return jlCarta05;
+    }
+
+    public void setJlCarta05(JLabel jlCarta05) {
+        this.jlCarta05 = jlCarta05;
+    }
+
+    public JLabel getJlCroupier() {
+        return jlCroupier;
+    }
+
+    public void setJlCroupier(JLabel jlCroupier) {
+        this.jlCroupier = jlCroupier;
+    }
+
+    public JLabel getJlFitxes01() {
+        return jlFitxes01;
+    }
+
+    public void setJlFitxes01(JLabel jlFitxes01) {
+        this.jlFitxes01 = jlFitxes01;
+    }
+
+    public JLabel getJlFitxes02() {
+        return jlFitxes02;
+    }
+
+    public void setJlFitxes02(JLabel jlFitxes02) {
+        this.jlFitxes02 = jlFitxes02;
+    }
+
+    public JLabel getJlFitxes03() {
+        return jlFitxes03;
+    }
+
+    public void setJlFitxes03(JLabel jlFitxes03) {
+        this.jlFitxes03 = jlFitxes03;
+    }
+
+    public JLabel getJlFitxes04() {
+        return jlFitxes04;
+    }
+
+    public void setJlFitxes04(JLabel jlFitxes04) {
+        this.jlFitxes04 = jlFitxes04;
+    }
+
+    public JLabel getJlFitxes05() {
+        return jlFitxes05;
+    }
+
+    public void setJlFitxes05(JLabel jlFitxes05) {
+        this.jlFitxes05 = jlFitxes05;
+    }
+
+    public JLabel getJlFitxes06() {
+        return jlFitxes06;
+    }
+
+    public void setJlFitxes06(JLabel jlFitxes06) {
+        this.jlFitxes06 = jlFitxes06;
+    }
+
+    public JLabel getJlFitxes07() {
+        return jlFitxes07;
+    }
+
+    public void setJlFitxes07(JLabel jlFitxes07) {
+        this.jlFitxes07 = jlFitxes07;
+    }
+
+    public JLabel getJlFitxes08() {
+        return jlFitxes08;
+    }
+
+    public void setJlFitxes08(JLabel jlFitxes08) {
+        this.jlFitxes08 = jlFitxes08;
+    }
+
+    public JLabel getJlFitxes09() {
+        return jlFitxes09;
+    }
+
+    public void setJlFitxes09(JLabel jlFitxes09) {
+        this.jlFitxes09 = jlFitxes09;
+    }
+
+    public JLabel getJlNom01() {
+        return jlNom01;
+    }
+
+    public void setJlNom01(JLabel jlNom01) {
+        this.jlNom01 = jlNom01;
+    }
+
+    public JLabel getJlNom02() {
+        return jlNom02;
+    }
+
+    public void setJlNom02(JLabel jlNom02) {
+        this.jlNom02 = jlNom02;
+    }
+
+    public JLabel getJlNom03() {
+        return jlNom03;
+    }
+
+    public void setJlNom03(JLabel jlNom03) {
+        this.jlNom03 = jlNom03;
+    }
+
+    public JLabel getJlNom04() {
+        return jlNom04;
+    }
+
+    public void setJlNom04(JLabel jlNom04) {
+        this.jlNom04 = jlNom04;
+    }
+
+    public JLabel getJlNom05() {
+        return jlNom05;
+    }
+
+    public void setJlNom05(JLabel jlNom05) {
+        this.jlNom05 = jlNom05;
+    }
+
+    public JLabel getJlNom06() {
+        return jlNom06;
+    }
+
+    public void setJlNom06(JLabel jlNom06) {
+        this.jlNom06 = jlNom06;
+    }
+
+    public JLabel getJlNom07() {
+        return jlNom07;
+    }
+
+    public void setJlNom07(JLabel jlNom07) {
+        this.jlNom07 = jlNom07;
+    }
+
+    public JLabel getJlNom08() {
+        return jlNom08;
+    }
+
+    public void setJlNom08(JLabel jlNom08) {
+        this.jlNom08 = jlNom08;
+    }
+
+    public JLabel getJlNom09() {
+        return jlNom09;
+    }
+
+    public void setJlNom09(JLabel jlNom09) {
+        this.jlNom09 = jlNom09;
+    }
+
+    public JLabel getJlNomCroupier() {
+        return jlNomCroupier;
+    }
+
+    public void setJlNomCroupier(JLabel jlNomCroupier) {
+        this.jlNomCroupier = jlNomCroupier;
+    }
+
+    public JLabel getJlNumFitxes01() {
+        return jlNumFitxes01;
+    }
+
+    public void setJlNumFitxes01(JLabel jlNumFitxes01) {
+        this.jlNumFitxes01 = jlNumFitxes01;
+    }
+
+    public JLabel getJlNumFitxes02() {
+        return jlNumFitxes02;
+    }
+
+    public void setJlNumFitxes02(JLabel jlNumFitxes02) {
+        this.jlNumFitxes02 = jlNumFitxes02;
+    }
+
+    public JLabel getJlNumFitxes03() {
+        return jlNumFitxes03;
+    }
+
+    public void setJlNumFitxes03(JLabel jlNumFitxes03) {
+        this.jlNumFitxes03 = jlNumFitxes03;
+    }
+
+    public JLabel getJlNumFitxes04() {
+        return jlNumFitxes04;
+    }
+
+    public void setJlNumFitxes04(JLabel jlNumFitxes04) {
+        this.jlNumFitxes04 = jlNumFitxes04;
+    }
+
+    public JLabel getJlNumFitxes05() {
+        return jlNumFitxes05;
+    }
+
+    public void setJlNumFitxes05(JLabel jlNumFitxes05) {
+        this.jlNumFitxes05 = jlNumFitxes05;
+    }
+
+    public JLabel getJlNumFitxes06() {
+        return jlNumFitxes06;
+    }
+
+    public void setJlNumFitxes06(JLabel jlNumFitxes06) {
+        this.jlNumFitxes06 = jlNumFitxes06;
+    }
+
+    public JLabel getJlNumFitxes07() {
+        return jlNumFitxes07;
+    }
+
+    public void setJlNumFitxes07(JLabel jlNumFitxes07) {
+        this.jlNumFitxes07 = jlNumFitxes07;
+    }
+
+    public JLabel getJlNumFitxes08() {
+        return jlNumFitxes08;
+    }
+
+    public void setJlNumFitxes08(JLabel jlNumFitxes08) {
+        this.jlNumFitxes08 = jlNumFitxes08;
+    }
+
+    public JLabel getJlNumFitxes09() {
+        return jlNumFitxes09;
+    }
+
+    public void setJlNumFitxes09(JLabel jlNumFitxes09) {
+        this.jlNumFitxes09 = jlNumFitxes09;
+    }
+
+    
+
     /**
      * Inicia el cas d'ús des del SO.
      * @param args No emprats
