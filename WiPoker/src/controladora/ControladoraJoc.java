@@ -43,6 +43,7 @@ public class ControladoraJoc {
     public ArrayList<Carta> repartirCartesPrivades(ArrayList<Jugador> jugadors, Baralla baralla) {
         ArrayList<Carta> privades = new ArrayList<Carta>();
         for (int i = 0; i <= 1; i++) {
+
             for (Jugador j : jugadors) {
 
                 privades.add(baralla.getCartes().get(baralla.getCartesActuals() - 1));
@@ -55,16 +56,23 @@ public class ControladoraJoc {
         return privades;
     }
 
-    public void aixecarCartes(ArrayList<Jugador> jugadors, Baralla baralla, int numCartes) {
+    public ArrayList<Carta> aixecarCartes(ArrayList<Jugador> jugadors, Baralla baralla, int numCartes) {
+        ArrayList<Carta> publiques = new ArrayList<Carta>();
         for (int i = 0; i < numCartes; i++) {
+
+            publiques.add(baralla.getCartes().get(baralla.getCartesActuals() - 1));
             for (Jugador j : jugadors) {
                 if (j.isHaFetFold() == false) {
                     j.getMaActual().getCartes().add(baralla.getCartes().get(baralla.getCartesActuals() - 1));
                 }
             }
             baralla.setCartesActuals((baralla.getCartesActuals() - 1));
+
         }
+        
+        return publiques;
     }
+
 
     public void cremarCartes(Baralla baralla) {
         //baralla.getCartes().remove(baralla.getCartes().size() - 1);
@@ -95,14 +103,14 @@ public class ControladoraJoc {
         }
     }
 
-    public synchronized void ferCheck(Jugador jugador, Fase fase, int apostaMinima) {        
+    public synchronized void ferCheck(Jugador jugador, Fase fase, int apostaMinima) {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         if (quantitatAnterior == apostaMinima) {
             //no fa res. Ho hem fet volent
         }
     }
 
-    public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {       
+    public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         if (jugador.getFitxesActuals() >= (apostaMinima + dinersApostats) && (apostaMinima + dinersApostats) > quantitatAnterior) {
             apostar(jugador, (apostaMinima + dinersApostats), fase);
