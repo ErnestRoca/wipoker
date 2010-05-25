@@ -145,12 +145,19 @@ public class ControladoraGui {
         if (Fase.getNumFase() == 1) {
         } else if (Fase.getNumFase() == 2) {
             taulell.getJlCarta01().setIcon(publiques.get(0).getImatge());
+            taulell.getJlCarta01().setVisible(true);
+
             taulell.getJlCarta02().setIcon(publiques.get(1).getImatge());
+            taulell.getJlCarta02().setVisible(true);
+
             taulell.getJlCarta03().setIcon(publiques.get(2).getImatge());
+            taulell.getJlCarta03().setVisible(true);
         } else if (Fase.getNumFase() == 3) {
             taulell.getJlCarta04().setIcon(publiques.get(0).getImatge());
+            taulell.getJlCarta04().setVisible(true);
         } else if (Fase.getNumFase() == 4) {
             taulell.getJlCarta05().setIcon(publiques.get(0).getImatge());
+            taulell.getJlCarta05().setVisible(true);
         }
     }
 }
