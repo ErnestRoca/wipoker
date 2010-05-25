@@ -53,6 +53,28 @@ public class GuiTaulell {
     private JLabel jlCarta04;
     private JLabel jlCarta05;
     //
+    private JLabel jlNomCroupier;
+    private JLabel jlNom01;
+    private JLabel jlNom02;
+    private JLabel jlNom03;
+    private JLabel jlNom04;
+    private JLabel jlNom05;
+    private JLabel jlNom06;
+    private JLabel jlNom07;
+    private JLabel jlNom08;
+    private JLabel jlNom09;
+    //
+    private JLabel jlCroupier;
+    private JLabel jlAvatar01;
+    private JLabel jlAvatar02;
+    private JLabel jlAvatar03;
+    private JLabel jlAvatar04;
+    private JLabel jlAvatar05;
+    private JLabel jlAvatar06;
+    private JLabel jlAvatar07;
+    private JLabel jlAvatar08;
+    private JLabel jlAvatar09;
+    //
     private JLabel jlFitxes01;
     private JLabel jlFitxes02;
     private JLabel jlFitxes03;
@@ -63,17 +85,15 @@ public class GuiTaulell {
     private JLabel jlFitxes08;
     private JLabel jlFitxes09;
     //
-    private JLabel jlCroupier;
-    private JLabel jlNomCroupier;
-    private JLabel jlAvatar01;
-    private JLabel jlAvatar02;
-    private JLabel jlAvatar03;
-    private JLabel jlAvatar04;
-    private JLabel jlAvatar05;
-    private JLabel jlAvatar06;
-    private JLabel jlAvatar07;
-    private JLabel jlAvatar08;
-    private JLabel jlAvatar09;
+    private JLabel jlNumFitxes01;
+    private JLabel jlNumFitxes03;
+    private JLabel jlNumFitxes02;
+    private JLabel jlNumFitxes04;
+    private JLabel jlNumFitxes05;
+    private JLabel jlNumFitxes06;
+    private JLabel jlNumFitxes07;
+    private JLabel jlNumFitxes08;
+    private JLabel jlNumFitxes09;
     //
     private JButton jbCheck;
     private JButton jbRise;
@@ -94,7 +114,7 @@ public class GuiTaulell {
     public GuiTaulell() {
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
-       
+
 
     }
 
@@ -102,10 +122,8 @@ public class GuiTaulell {
         this.gui = gui;
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
-      
+
     }
-
-
 
     /** Crea objectes crear els components de la UI. */
     private void iniciarComponents() {
@@ -153,7 +171,6 @@ public class GuiTaulell {
 
         jPanelUsuari = new JPanel();
         jPanelUsuari.setOpaque(false);
-        jPanelUsuari.setBackground(Color.white);
         jPanelUsuari.setLayout(null);
         final int xjPanelUsari = 420;
         final int yjPanelUsari = 610;
@@ -165,7 +182,6 @@ public class GuiTaulell {
 
         jPanelCartesTaula = new JPanel();
         jPanelCartesTaula.setOpaque(false);
-        jPanelCartesTaula.setBackground(Color.white);
         jPanelCartesTaula.setLayout(null);
         jPanelCartesTaula.setBorder(null);
         final int xCartes = 310;
@@ -178,22 +194,18 @@ public class GuiTaulell {
 
         jPanelJugador01 = new JPanel();
         jPanelJugador01.setOpaque(false);
-        jPanelJugador01.setBackground(Color.white);
         jPanelJugador01.setLayout(null);
-        jPanelJugador01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x1 = 620;
         final int y1 = 0;
         final int w1 = 107;
-        final int h1 = 200;
+        final int h1 = 213;
         jPanelJugador01.setBounds(x1, y1, w1, h1);
         jPanelJugador01.setLayout(null);
         jPanelGlobal.add(jPanelJugador01);
 
         jPanelJugador02 = new JPanel();
         jPanelJugador02.setOpaque(false);
-        jPanelJugador02.setBackground(Color.white);
         jPanelJugador02.setLayout(null);
-        jPanelJugador02.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x2 = 750;
         final int y2 = 50;
         final int w2 = 200;
@@ -204,9 +216,7 @@ public class GuiTaulell {
 
         jPanelJugador03 = new JPanel();
         jPanelJugador03.setOpaque(false);
-        jPanelJugador03.setBackground(Color.white);
         jPanelJugador03.setLayout(null);
-        jPanelJugador03.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x3 = 750;
         final int y3 = 300;
         final int w3 = 200;
@@ -217,9 +227,7 @@ public class GuiTaulell {
 
         jPanelJugador04 = new JPanel();
         jPanelJugador04.setOpaque(false);
-        jPanelJugador04.setBackground(Color.white);
         jPanelJugador04.setLayout(null);
-        jPanelJugador04.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x4 = 620;
         final int y4 = 350;
         final int w4 = w1;
@@ -230,9 +238,7 @@ public class GuiTaulell {
 
         jPanelJugador05 = new JPanel();
         jPanelJugador05.setOpaque(false);
-        jPanelJugador05.setBackground(Color.white);
         jPanelJugador05.setLayout(null);
-        jPanelJugador05.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x5 = 460;
         final int y5 = 350;
         final int w5 = w1;
@@ -243,9 +249,7 @@ public class GuiTaulell {
 
         jPanelJugador06 = new JPanel();
         jPanelJugador06.setOpaque(false);
-        jPanelJugador06.setBackground(Color.white);
         jPanelJugador06.setLayout(null);
-        jPanelJugador06.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x6 = 310;
         final int y6 = 350;
         final int w6 = w1;
@@ -256,9 +260,7 @@ public class GuiTaulell {
 
         jPanelJugador07 = new JPanel();
         jPanelJugador07.setOpaque(false);
-        jPanelJugador07.setBackground(Color.white);
         jPanelJugador07.setLayout(null);
-        jPanelJugador07.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x7 = 60;
         final int y7 = 300;
         final int w7 = 200;
@@ -269,9 +271,7 @@ public class GuiTaulell {
 
         jPanelJugador08 = new JPanel();
         jPanelJugador08.setOpaque(false);
-        jPanelJugador08.setBackground(Color.white);
         jPanelJugador08.setLayout(null);
-        jPanelJugador08.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x8 = 80;
         final int y8 = 50;
         final int w8 = 200;
@@ -282,9 +282,7 @@ public class GuiTaulell {
 
         jPanelJugador09 = new JPanel();
         jPanelJugador09.setOpaque(false);
-        jPanelJugador09.setBackground(Color.white);
         jPanelJugador09.setLayout(null);
-        jPanelJugador09.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x9 = 310;
         final int y9 = 0;
         final int w9 = w1;
@@ -295,7 +293,6 @@ public class GuiTaulell {
 
         jPanelCrupier = new JPanel();
         jPanelCrupier.setOpaque(false);
-        jPanelCrupier.setBackground(Color.white);
         jPanelCrupier.setLayout(null);
         final int x10 = 450;
         final int y10 = 0;
@@ -307,9 +304,7 @@ public class GuiTaulell {
 
         jPanelBotons = new JPanel();
         jPanelBotons.setOpaque(false);
-        jPanelBotons.setBackground(Color.white);
         jPanelBotons.setLayout(null);
-        jPanelBotons.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         jPanelBotons.setBounds(5, 557, 236, 166);
         jPanelBotons.setLayout(null);
         jPanelGlobal.add(jPanelBotons);
@@ -360,12 +355,13 @@ public class GuiTaulell {
 
     private void crearControlsJPanelUsuari() {
         jlCarta01Usuari = new JLabel();
-        jlCarta01Usuari.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
+        jlCarta01Usuari.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/14s.gif")));
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 73;
         final int h1 = 97;
         jlCarta01Usuari.setBounds(x1, y1, w1, h1);
+        jlCarta01Usuari.setVisible(false);
         jPanelUsuari.add(jlCarta01Usuari);
 
         jlCarta02Usuari = new JLabel();
@@ -376,18 +372,20 @@ public class GuiTaulell {
         final int w2 = w1;
         final int h2 = h1;
         jlCarta02Usuari.setBounds(x2, y2, w2, h2);
+        jlCarta02Usuari.setVisible(false);
         jPanelUsuari.add(jlCarta02Usuari);
     }
 
     private void crearControlsJPanelCartesTaula() {
 
         jlCarta01 = new JLabel();
-        jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/as.gif")));
+        jlCarta01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/14s.gif")));
         final int x1 = 0;
         final int y1 = 0;
         final int w1 = 73;
         final int h1 = 97;
         jlCarta01.setBounds(x1, y1, w1, h1);
+        jlCarta01.setVisible(false);
         jPanelCartesTaula.add(jlCarta01);
 
         jlCarta02 = new JLabel();
@@ -398,6 +396,7 @@ public class GuiTaulell {
         final int w2 = w1;
         final int h2 = h1;
         jlCarta02.setBounds(x2, y2, w2, h2);
+        jlCarta02.setVisible(false);
         jPanelCartesTaula.add(jlCarta02);
 
         jlCarta03 = new JLabel();
@@ -408,26 +407,29 @@ public class GuiTaulell {
         final int w3 = w1;
         final int h3 = h1;
         jlCarta03.setBounds(x3, y3, w3, h3);
+        jlCarta03.setVisible(false);
         jPanelCartesTaula.add(jlCarta03);
 
         jlCarta04 = new JLabel();
-        jlCarta04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/kc.gif")));
+        jlCarta04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/" + "13" + "c" + ".gif")));
         final int sh34 = sh12;
         final int x4 = x3 + w3 + sh34;
         final int y4 = y1;
         final int w4 = w1;
         final int h4 = h1;
         jlCarta04.setBounds(x4, y4, w4, h4);
+        jlCarta04.setVisible(false);
         jPanelCartesTaula.add(jlCarta04);
 
         jlCarta05 = new JLabel();
-        jlCarta05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/ac.gif")));
+        jlCarta05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/cards/14c.gif")));
         final int sh45 = sh12;
         final int x5 = x4 + w4 + sh45;
         final int y5 = y1;
         final int w5 = w1;
         final int h5 = h1;
         jlCarta05.setBounds(x5, y5, w5, h5);
+        jlCarta05.setVisible(false);
         jPanelCartesTaula.add(jlCarta05);
     }
 
@@ -443,14 +445,34 @@ public class GuiTaulell {
         jPanelJugador01.add(jlAvatar01);
 
         jlFitxes01 = new JLabel();
-        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
-        jlFitxes01.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         final int x2 = 0;
-        final int y2 = jPanelJugador01.getHeight() - 80;
+        final int y2 = jPanelJugador01.getHeight() - 93;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes01.setBounds(x2, y2, w2, h2);
         jPanelJugador01.add(jlFitxes01);
+
+        jlNom01 = new JLabel();
+        jlNom01.setText("Jugador01");
+        jlNom01.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        jlNom01.setForeground(Color.WHITE);
+        final int x3 = 20;
+        final int y3 = h1;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom01.setBounds(x3, y3, w3, h3);
+        jPanelJugador01.add(jlNom01);
+
+        jlNumFitxes01 = new JLabel();
+        jlNumFitxes01.setText("1000 f.");
+        jlNumFitxes01.setForeground(Color.WHITE);
+        final int x4 = 20;
+        final int y4 = y2 + h2;
+        final int w4 = 100;
+        final int h4 = 13;
+        jlNumFitxes01.setBounds(x4, y4, w4, h4);
+        jPanelJugador01.add(jlNumFitxes01);
     }
 
     private void crearControlsJPanelFitxes02() {
@@ -468,11 +490,31 @@ public class GuiTaulell {
         jlFitxes02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         jlFitxes02.setOpaque(false);
         final int x2 = 0;
-        final int y2 = jPanelJugador02.getHeight() - 80;
+        final int y2 = jPanelJugador02.getHeight() - 93;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes02.setBounds(x2, y2, w2, h2);
         jPanelJugador02.add(jlFitxes02);
+
+        jlNom02 = new JLabel();
+        jlNom02.setText("Jugador02");
+        jlNom02.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        final int x3 = x1 + 20;
+        final int y3 = h1;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom02.setBounds(x3, y3, w3, h3);
+        jPanelJugador02.add(jlNom02);
+
+        jlNumFitxes02 = new JLabel();
+        jlNumFitxes02.setText("1000 f.");
+        jlNumFitxes02.setForeground(Color.WHITE);
+        final int x4 = x2 + 20;
+        final int y4 = y2 + h2;
+        final int w4 = 100;
+        final int h4 = 13;
+        jlNumFitxes02.setBounds(x4, y4, w4, h4);
+        jPanelJugador02.add(jlNumFitxes02);
     }
 
     private void crearControlsJPanelFitxes03() {
@@ -480,7 +522,7 @@ public class GuiTaulell {
         jlAvatar03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar03.setOpaque(false);
         final int x1 = 100;
-        final int y1 = 100;
+        final int y1 = 87;
         final int w1 = 100;
         final int h1 = 100;
         jlAvatar03.setBounds(x1, y1, w1, h1);
@@ -495,6 +537,26 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes03.setBounds(x2, y2, w2, h2);
         jPanelJugador03.add(jlFitxes03);
+
+        jlNom03 = new JLabel();
+        jlNom03.setText("Jugador03");
+        jlNom03.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        final int x3 = x1 + 20;
+        final int y3 = y1 + h1;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom03.setBounds(x3, y3, w3, h3);
+        jPanelJugador03.add(jlNom03);
+
+        jlNumFitxes03 = new JLabel();
+        jlNumFitxes03.setText("1000 f.");
+        jlNumFitxes03.setForeground(Color.WHITE);
+        final int x4 = x2 + 20;
+        final int y4 = y2 + h2;
+        final int w4 = 100;
+        final int h4 = 13;
+        jlNumFitxes03.setBounds(x4, y4, w4, h4);
+        jPanelJugador03.add(jlNumFitxes03);
     }
 
     private void crearControlsJPanelFitxes04() {
@@ -512,11 +574,31 @@ public class GuiTaulell {
         jlAvatar04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar04.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 150;
+        final int y2 = 137;
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar04.setBounds(x2, y2, w2, h2);
         jPanelJugador04.add(jlAvatar04);
+
+        jlNom04 = new JLabel();
+        jlNom04.setText("Jugador04");
+        jlNom04.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        final int x3 = x2 + 20;
+        final int y3 = y2 + h2;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom04.setBounds(x3, y3, w3, h3);
+        jPanelJugador04.add(jlNom04);
+
+        jlNumFitxes04 = new JLabel();
+        jlNumFitxes04.setText("1000 f.");
+        jlNumFitxes04.setForeground(Color.WHITE);
+        final int x4 = 20;
+        final int y4 = h1 + 10;
+        final int w4 = 100;
+        final int h4 = 13;
+        jlNumFitxes04.setBounds(x4, y4, w4, h4);
+        jPanelJugador04.add(jlNumFitxes04);
     }
 
     private void crearControlsJPanelFitxes05() {
@@ -534,11 +616,31 @@ public class GuiTaulell {
         jlAvatar05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar05.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 150;
+        final int y2 = 137;
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar05.setBounds(x2, y2, w2, h2);
         jPanelJugador05.add(jlAvatar05);
+
+        jlNom05 = new JLabel();
+        jlNom05.setText("Jugador05");
+        jlNom05.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        final int x3 = x2 + 20;
+        final int y3 = y2 + h2;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom05.setBounds(x3, y3, w3, h3);
+        jPanelJugador05.add(jlNom05);
+
+        jlNumFitxes05 = new JLabel();
+        jlNumFitxes05.setText("1000 f.");
+        jlNumFitxes05.setForeground(Color.WHITE);
+        final int x4 = 20;
+        final int y4 = h1 + 10;
+        final int w4 = 100;
+        final int h4 = 13;
+        jlNumFitxes05.setBounds(x4, y4, w4, h4);
+        jPanelJugador05.add(jlNumFitxes05);
     }
 
     private void crearControlsJPanelFitxes06() {
@@ -557,11 +659,31 @@ public class GuiTaulell {
         jlAvatar06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar06.setOpaque(false);
         final int x2 = 0;
-        final int y2 = 150;
+        final int y2 = 137;
         final int w2 = 100;
         final int h2 = 100;
         jlAvatar06.setBounds(x2, y2, w2, h2);
         jPanelJugador06.add(jlAvatar06);
+
+        jlNom06 = new JLabel();
+        jlNom06.setText("Jugador06");
+        jlNom06.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        final int x3 = x2 + 20;
+        final int y3 = y2 + h2;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom06.setBounds(x3, y3, w3, h3);
+        jPanelJugador06.add(jlNom06);
+
+        jlNumFitxes06 = new JLabel();
+        jlNumFitxes06.setText("1000 f.");
+        jlNumFitxes06.setForeground(Color.WHITE);
+        final int x4 = 20;
+        final int y4 = h1 + 10;
+        final int w4 = 100;
+        final int h4 = 13;
+        jlNumFitxes06.setBounds(x4, y4, w4, h4);
+        jPanelJugador06.add(jlNumFitxes06);
     }
 
     private void crearControlsJPanelFitxes07() {
@@ -584,6 +706,26 @@ public class GuiTaulell {
         final int h2 = 100;
         jlAvatar07.setBounds(x2, y2, w2, h2);
         jPanelJugador07.add(jlAvatar07);
+
+        jlNom07 = new JLabel();
+        jlNom07.setText("Jugador07");
+        jlNom07.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        final int x3 = 20;
+        final int y3 = y2 + h2;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom07.setBounds(x3, y3, w3, h3);
+        jPanelJugador07.add(jlNom07);
+
+        jlNumFitxes07 = new JLabel();
+        jlNumFitxes07.setText("1000 f.");
+        jlNumFitxes07.setForeground(Color.WHITE);
+        final int x4 = x1 + 20;
+        final int y4 = y1 + h1;
+        final int w4 = 100;
+        final int h4 = 13;
+        jlNumFitxes07.setBounds(x4, y4, w4, h4);
+        jPanelJugador07.add(jlNumFitxes07);
     }
 
     private void crearControlsJPanelFitxes08() {
@@ -606,6 +748,27 @@ public class GuiTaulell {
         final int h2 = 100;
         jlAvatar08.setBounds(x2, y2, w2, h2);
         jPanelJugador08.add(jlAvatar08);
+
+        jlNom08 = new JLabel();
+        jlNom08.setText("Jugador08");
+        jlNom08.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        jlNom08.setForeground(Color.GRAY);
+        final int x3 = x2+20;
+        final int y3 = y2 + h2;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom08.setBounds(x3, y3, w3, h3);
+        jPanelJugador08.add(jlNom08);
+
+        jlNumFitxes08 = new JLabel();
+        jlNumFitxes08.setText("1000 f.");
+        jlNumFitxes08.setForeground(Color.WHITE);
+        final int x4 = x1+20;
+        final int y4 = y1 + h1;
+        final int w4 = 100;
+        final int h4 = 12;
+        jlNumFitxes08.setBounds(x4, y4, w4, h4);
+        jPanelJugador08.add(jlNumFitxes08);
     }
 
     private void crearControlsJPanelFitxes09() {
@@ -621,20 +784,40 @@ public class GuiTaulell {
 
         jlFitxes09 = new JLabel();
         jlFitxes09.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
-        jlFitxes09.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         final int x2 = 0;
-        final int y2 = jPanelJugador09.getHeight() - 80;
+        final int y2 = jPanelJugador09.getHeight() - 93;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes09.setBounds(x2, y2, w2, h2);
         jPanelJugador09.add(jlFitxes09);
+
+        jlNom09 = new JLabel();
+        jlNom09.setText("Jugador09");
+        jlNom09.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        jlNom09.setForeground(Color.WHITE);
+        final int x3 = 20;
+        final int y3 = h1;
+        final int w3 = 100;
+        final int h3 = 13;
+        jlNom09.setBounds(x3, y3, w3, h3);
+        jPanelJugador09.add(jlNom09);
+
+        jlNumFitxes09 = new JLabel();
+        jlNumFitxes09.setText("1000 f.");
+        jlNumFitxes09.setForeground(Color.WHITE);
+        final int x4 = x2+20;
+        final int y4 = y2 + h2;
+        final int w4 = 100;
+        final int h4 = 12;
+        jlNumFitxes09.setBounds(x4, y4, w4, h4);
+        jPanelJugador09.add(jlNumFitxes09);
     }
 
     private void crearControlsJPanelCrupier() {
         jlNomCroupier = new JLabel("Crooupiera");
         jlNomCroupier.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
         jlNomCroupier.setForeground(Color.WHITE);
-        jlNomCroupier.setBounds(20, 100, 100, 10);
+        jlNomCroupier.setBounds(20, 100, 100, 13);
         jPanelCrupier.add(jlNomCroupier);
 
         jlCroupier = new JLabel();
@@ -759,9 +942,6 @@ public class GuiTaulell {
     }
 
     /** Crea l'objecte controlador del cas d'ús. */
-    
-         
-
     private void iniciarJFrame() {
         jFrame.setVisible(true);
     }
@@ -773,215 +953,6 @@ public class GuiTaulell {
     public void setjFrame(JFrame jFrame) {
         this.jFrame = jFrame;
     }
-
-    public JButton getJbCheck() {
-        return jbCheck;
-    }
-
-    public void setJbCheck(JButton jbCheck) {
-        this.jbCheck = jbCheck;
-    }
-
-    public JLabel getJlAvatar01() {
-        return jlAvatar01;
-    }
-
-    public void setJlAvatar01(JLabel jlAvatar01) {
-        this.jlAvatar01 = jlAvatar01;
-    }
-
-    public JLabel getJlAvatar02() {
-        return jlAvatar02;
-    }
-
-    public void setJlAvatar02(JLabel jlAvatar02) {
-        this.jlAvatar02 = jlAvatar02;
-    }
-
-    public JLabel getJlAvatar03() {
-        return jlAvatar03;
-    }
-
-    public void setJlAvatar03(JLabel jlAvatar03) {
-        this.jlAvatar03 = jlAvatar03;
-    }
-
-    public JLabel getJlAvatar04() {
-        return jlAvatar04;
-    }
-
-    public void setJlAvatar04(JLabel jlAvatar04) {
-        this.jlAvatar04 = jlAvatar04;
-    }
-
-    public JLabel getJlAvatar05() {
-        return jlAvatar05;
-    }
-
-    public void setJlAvatar05(JLabel jlAvatar05) {
-        this.jlAvatar05 = jlAvatar05;
-    }
-
-    public JLabel getJlAvatar06() {
-        return jlAvatar06;
-    }
-
-    public void setJlAvatar06(JLabel jlAvatar06) {
-        this.jlAvatar06 = jlAvatar06;
-    }
-
-    public JLabel getJlAvatar07() {
-        return jlAvatar07;
-    }
-
-    public void setJlAvatar07(JLabel jlAvatar07) {
-        this.jlAvatar07 = jlAvatar07;
-    }
-
-    public JLabel getJlAvatar08() {
-        return jlAvatar08;
-    }
-
-    public void setJlAvatar08(JLabel jlAvatar08) {
-        this.jlAvatar08 = jlAvatar08;
-    }
-
-    public JLabel getJlAvatar09() {
-        return jlAvatar09;
-    }
-
-    public void setJlAvatar09(JLabel jlAvatar09) {
-        this.jlAvatar09 = jlAvatar09;
-    }
-
-    public JLabel getJlCarta01() {
-        return jlCarta01;
-    }
-
-    public void setJlCarta01(JLabel jlCarta01) {
-        this.jlCarta01 = jlCarta01;
-    }
-
-    public JLabel getJlCarta02() {
-        return jlCarta02;
-    }
-
-    public void setJlCarta02(JLabel jlCarta02) {
-        this.jlCarta02 = jlCarta02;
-    }
-
-    public JLabel getJlCarta03() {
-        return jlCarta03;
-    }
-
-    public void setJlCarta03(JLabel jlCarta03) {
-        this.jlCarta03 = jlCarta03;
-    }
-
-    public JLabel getJlCarta04() {
-        return jlCarta04;
-    }
-
-    public void setJlCarta04(JLabel jlCarta04) {
-        this.jlCarta04 = jlCarta04;
-    }
-
-    public JLabel getJlCarta05() {
-        return jlCarta05;
-    }
-
-    public void setJlCarta05(JLabel jlCarta05) {
-        this.jlCarta05 = jlCarta05;
-    }
-
-    public JLabel getJlCroupier() {
-        return jlCroupier;
-    }
-
-    public void setJlCroupier(JLabel jlCroupier) {
-        this.jlCroupier = jlCroupier;
-    }
-
-    public JLabel getJlFitxes01() {
-        return jlFitxes01;
-    }
-
-    public void setJlFitxes01(JLabel jlFitxes01) {
-        this.jlFitxes01 = jlFitxes01;
-    }
-
-    public JLabel getJlFitxes02() {
-        return jlFitxes02;
-    }
-
-    public void setJlFitxes02(JLabel jlFitxes02) {
-        this.jlFitxes02 = jlFitxes02;
-    }
-
-    public JLabel getJlFitxes03() {
-        return jlFitxes03;
-    }
-
-    public void setJlFitxes03(JLabel jlFitxes03) {
-        this.jlFitxes03 = jlFitxes03;
-    }
-
-    public JLabel getJlFitxes04() {
-        return jlFitxes04;
-    }
-
-    public void setJlFitxes04(JLabel jlFitxes04) {
-        this.jlFitxes04 = jlFitxes04;
-    }
-
-    public JLabel getJlFitxes05() {
-        return jlFitxes05;
-    }
-
-    public void setJlFitxes05(JLabel jlFitxes05) {
-        this.jlFitxes05 = jlFitxes05;
-    }
-
-    public JLabel getJlFitxes06() {
-        return jlFitxes06;
-    }
-
-    public void setJlFitxes06(JLabel jlFitxes06) {
-        this.jlFitxes06 = jlFitxes06;
-    }
-
-    public JLabel getJlFitxes07() {
-        return jlFitxes07;
-    }
-
-    public void setJlFitxes07(JLabel jlFitxes07) {
-        this.jlFitxes07 = jlFitxes07;
-    }
-
-    public JLabel getJlFitxes08() {
-        return jlFitxes08;
-    }
-
-    public void setJlFitxes08(JLabel jlFitxes08) {
-        this.jlFitxes08 = jlFitxes08;
-    }
-
-    public JLabel getJlFitxes09() {
-        return jlFitxes09;
-    }
-
-    public void setJlFitxes09(JLabel jlFitxes09) {
-        this.jlFitxes09 = jlFitxes09;
-    }
-
-    public JLabel getJlNomCroupier() {
-        return jlNomCroupier;
-    }
-
-    public void setJlNomCroupier(JLabel jlNomCroupier) {
-        this.jlNomCroupier = jlNomCroupier;
-    }
-
 
     /**
      * Inicia el cas d'ús des del SO.
