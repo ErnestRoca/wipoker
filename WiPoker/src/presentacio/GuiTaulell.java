@@ -121,6 +121,7 @@ public class GuiTaulell {
         iniciarComponents(); // Automissatge per crear els components de la UI
         crearEscoltadors();
         gui.setTaulell(this);
+        gui.iniciarPartida();
     }
 
 

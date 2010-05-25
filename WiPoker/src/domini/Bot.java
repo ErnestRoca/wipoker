@@ -6,6 +6,7 @@
 package domini;
 
 import controladora.Torn;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,6 +28,8 @@ public class Bot extends Jugador {
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesInicials;
         this.posicioTaula = 2;
+        maActual = new Ma(new ArrayList<Carta>());
+        torn = new Torn();
     }
 
     public double jugadaBot() {

@@ -94,6 +94,9 @@ public class ControladoraPartida {
     }
 
     public void eventsPreFlop(int apostaMin, Fase fase, int boto) throws InterruptedException {
+       for (Jugador j : partida.getJugadors()) {           
+            j.setTorn(new Torn(j));
+        }
         if (partida.getJugadors().size() <= 2) {
             //cega petita i gran
             if (boto == 0) {
@@ -123,11 +126,7 @@ public class ControladoraPartida {
 
         int minima = apostaMin;
         int numJugadorsTornFinalitzat = 0;
-        for (Jugador j : partida.getJugadors()) {
-            System.out.println(j);
-            j.setTorn(new Torn(j));
-        }
-
+        
         boolean fi = false;
         while (!fi) {
             if (numJugadorsTornFinalitzat == partida.getJugadors().size()) {

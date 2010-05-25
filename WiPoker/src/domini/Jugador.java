@@ -1,6 +1,7 @@
 package domini;
 
 import controladora.Torn;
+import java.util.ArrayList;
 
 /*
  * To change this template, choose Tools | Templates
@@ -35,6 +36,7 @@ public class Jugador {
         this.edat = (byte) edat;
         this.telefon = telefon;
         this.posicioTaula = (byte) posicioTaula;
+        maActual = new Ma(new ArrayList<Carta>());
     }
 
     public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
@@ -44,6 +46,7 @@ public class Jugador {
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesInicials;       
         this.torn = new Torn(this);
+        maActual = new Ma(new ArrayList<Carta>());
     }
 
     public Jugador(String alias) {
@@ -52,6 +55,7 @@ public class Jugador {
         this.edat = 0;
         this.posicioTaula = 1;
         this.alias = alias;
+        maActual = new Ma(new ArrayList<Carta>());
     }
 
     public String getAlias() {
