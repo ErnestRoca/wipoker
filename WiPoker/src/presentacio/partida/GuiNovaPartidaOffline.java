@@ -36,8 +36,8 @@ public class GuiNovaPartidaOffline {
     private JPanel jpFons;
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
-    private JLabel jlMaxJ;
-    private JTextField jtfMAxJ;
+    private JLabel jlAlias;
+    private JTextField jtfAlias;
     private JLabel jlFInicials;
     private JTextField jtfFInicials;
     private JButton jbCrear;
@@ -53,8 +53,7 @@ public class GuiNovaPartidaOffline {
 
     public GuiNovaPartidaOffline(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
-        iniciarComponents();
-        gui.setCp(new ControladoraPartidaLocal(gui));
+        iniciarComponents();        
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -85,16 +84,16 @@ public class GuiNovaPartidaOffline {
         jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
         jlImatgeFons.setOpaque(false);
 
-        jlMaxJ = new JLabel();
-        jlMaxJ.setBounds(58, 130, 340, 104);
-        jlMaxJ.setText("Alias ");
-        jlMaxJ.setForeground(Color.red);
-        jlMaxJ.setLayout(null);
-        jpFons.add(jlMaxJ);
+        jlAlias = new JLabel();
+        jlAlias.setBounds(58, 130, 340, 104);
+        jlAlias.setText("Alias ");
+        jlAlias.setForeground(Color.red);
+        jlAlias.setLayout(null);
+        jpFons.add(jlAlias);
 
-        jtfMAxJ = new JTextField(20);
-        jtfMAxJ.setBounds(170, 170, 120, 24);
-        jpFons.add(jtfMAxJ);
+        jtfAlias = new JTextField(20);
+        jtfAlias.setBounds(170, 170, 120, 24);
+        jpFons.add(jtfAlias);
 
         jlFInicials = new JLabel();
         jlFInicials.setBounds(74, 210, 340, 104);
@@ -138,7 +137,7 @@ public class GuiNovaPartidaOffline {
             private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
-                gui.getCp().partida.getJugadors().add(new Jugador("local"));
+                gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText()));
                 taulell = new GuiTaulell(gui);                
                 jFrame.dispose();
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
