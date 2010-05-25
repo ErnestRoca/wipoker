@@ -29,8 +29,9 @@ public class ControladoraPartida {
     public ControladoraJoc controlJoc = new ControladoraJoc();
     private ControladoraGui gui;
 
-    public ControladoraPartida(int maxJugadors) {
+    public ControladoraPartida(int maxJugadors, ControladoraGui gui) {
         //super();
+        this.gui = gui;
         baralla = controlJoc.crearBaralla();
         taula = new Taula(maxJugadors, baralla);
         partida = new Partida(Calendar.getInstance());
@@ -72,7 +73,7 @@ public class ControladoraPartida {
         
         for (int i = 0; i < 4; i++) {
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 20);
-
+            this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
 
@@ -131,15 +132,19 @@ public class ControladoraPartida {
              j.setTorn(new Torn(j));
          }
          boolean fi = false;
-         while(fi){
+         while(!fi){
              if (numJugadorsTornFinalitzat == partida.getJugadors().size()) {
                  fi = true;
              } else {
                  for (Jugador j: partida.getJugadors()) {
-                     if (j.isHaFetFold() || j.getAposta().getQuantitat() >= minima) {
+                     if (j.isHaFetFold()) {
+                         numJugadorsTornFinalitzat++;                         
+                     } else if (j.getAposta().getQuantitat() >= minima) {
                          numJugadorsTornFinalitzat++;
+                         minima = (int) (j.getAposta().getQuantitat() > minima ? j.getAposta().getQuantitat() : minima);
+                         
                      } else {
-                         j.getTorn().pause();
+                         
                      }
                      
                  }
