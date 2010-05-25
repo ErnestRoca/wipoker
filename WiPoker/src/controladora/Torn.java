@@ -16,6 +16,7 @@ public class Torn implements Runnable {
     private boolean running;
     private boolean stop;
     private Jugador jugadorTorn;
+    
     public Torn(Jugador jugador) {
         this.jugadorTorn = jugador;
     }
