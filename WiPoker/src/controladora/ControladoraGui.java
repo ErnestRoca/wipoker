@@ -71,6 +71,7 @@ public class ControladoraGui {
         this.tornActual = tornActual;
     }   
 
+    @Deprecated
     public void comprovarLogin(GuiLoginJabberPartida guiNovaPartida) {
         if (!isLogin()) {
             //guiNovaPartida.getJbCrearPartida().setEnabled(false);
