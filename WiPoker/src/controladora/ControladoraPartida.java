@@ -134,6 +134,7 @@ public class ControladoraPartida {
             } else {
                 for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
@@ -146,6 +147,7 @@ public class ControladoraPartida {
                 }
                 for (int i = 0; i <= boto; i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
@@ -178,6 +180,7 @@ public class ControladoraPartida {
             } else {
                 for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
@@ -190,6 +193,7 @@ public class ControladoraPartida {
                 }
                 for (int i = 0; i <= boto; i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
@@ -222,6 +226,7 @@ public class ControladoraPartida {
             } else {
                 for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
@@ -234,6 +239,7 @@ public class ControladoraPartida {
                 }
                 for (int i = 0; i <= boto; i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
@@ -268,6 +274,7 @@ public class ControladoraPartida {
             } else {
                 for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
@@ -280,6 +287,7 @@ public class ControladoraPartida {
                 }
                 for (int i = 0; i <= boto; i++) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    gui.getTornActual().pause();
                     if (partida.getJugadors().get(i).isHaFetFold()) {
                         numJugadorsTornFinalitzat++;
                     } else if (partida.getJugadors().get(i).getAposta().getQuantitat() >= minima) {
