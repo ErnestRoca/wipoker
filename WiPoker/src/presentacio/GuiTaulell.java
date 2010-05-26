@@ -929,7 +929,7 @@ public class GuiTaulell {
 
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero
-                gui.doCheck(0);
+                gui.doCheck(10);
                 gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
             }
@@ -937,7 +937,7 @@ public class GuiTaulell {
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gui.doBet(0);
+                gui.doBet(10);
                 gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa bet");
             }
@@ -946,7 +946,7 @@ public class GuiTaulell {
         jbRise.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gui.doRise(0);
+                gui.doRise(30);
                 gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa rise");
             }
