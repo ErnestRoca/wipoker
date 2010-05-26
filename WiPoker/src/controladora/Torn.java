@@ -6,6 +6,8 @@
 package controladora;
 
 import domini.Jugador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,22 +36,20 @@ public class Torn implements Runnable {
     }
 
     public synchronized void run() {
-
-        
+        resume();
     }
 
     public void pause() {
-        while (true) {
-
+        while (running = false) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Torn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public void resume(String accio) {
-
+    public synchronized void resume() {
+        running = true;
     }
-
-    public void stop() {
-        
-    }
-
 }
