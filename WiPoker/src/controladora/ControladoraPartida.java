@@ -67,12 +67,7 @@ public class ControladoraPartida {
         novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
         Fase.setNumFase(0);
         determinarJugadorsEliminats();
-        novaRonda.getFases().clear();
-        for (Jugador j : partida.getJugadors()) {
-            System.out.println("\n\n" + j);
-            System.out.println(j.getMaActual().getCartes());
-            System.out.println("combinació Cartes:" + j.getMaActual().getCombinacio());
-        }
+        novaRonda.getFases().clear();    
         for (Jugador jugador : partida.getJugadors()) {
             jugador.getMaActual().getCartes().clear();
         }
