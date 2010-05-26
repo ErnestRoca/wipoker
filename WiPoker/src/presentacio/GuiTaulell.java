@@ -922,6 +922,7 @@ public class GuiTaulell {
                 //crear jlabel con dinero
                 gui.doCheck(0);
                 gui.getTornActual().resume();
+                System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
             }
         });
         jbBet.addActionListener(new ActionListener() {
@@ -929,6 +930,7 @@ public class GuiTaulell {
             public void actionPerformed(ActionEvent e) {
                 gui.doBet(0);
                 gui.getTornActual().resume();
+                System.out.println(gui.getTornActual().getJugadorTorn() + " fa bet");
             }
         });
 
@@ -937,6 +939,7 @@ public class GuiTaulell {
             public void actionPerformed(ActionEvent e) {
                 gui.doRise(0);
                 gui.getTornActual().resume();
+                System.out.println(gui.getTornActual().getJugadorTorn() + " fa rise");
             }
         });
         jbFold.addActionListener(new ActionListener() {
@@ -944,6 +947,7 @@ public class GuiTaulell {
             public void actionPerformed(ActionEvent e) {
                 gui.doFold();
                 gui.getTornActual().resume();
+                System.out.println(gui.getTornActual().getJugadorTorn() + " fa fold");
             }
         });
     }
