@@ -40,6 +40,7 @@ public class ControladoraPartida {
     }
 
     public void jugar() throws InterruptedException {
+        gui.mostrarAvatars(partida.getJugadors());
         Collections.sort(partida.getJugadors(), new Comparator() {
 
             public int compare(Object o1, Object o2) {
