@@ -96,7 +96,7 @@ public class ControladoraJoc {
         jugador.setHaFetFold(true);
     }
 
-    public synchronized void ferBet(Jugador jugador, Fase fase, int apostaMinima) {
+    public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         if (jugador.getFitxesActuals() >= quantitatAnterior) {
             apostar(jugador, (int) (apostaMinima - quantitatAnterior), fase);
