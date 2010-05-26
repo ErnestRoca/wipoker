@@ -918,12 +918,14 @@ public class GuiTaulell {
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero
                 gui.doCheck(0);
+                gui.getTornActual().resume();
             }
         });
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 gui.doBet(0);
+                gui.getTornActual().resume();
             }
         });
 
@@ -931,12 +933,14 @@ public class GuiTaulell {
 
             public void actionPerformed(ActionEvent e) {
                 gui.doRise(0);
+                gui.getTornActual().resume();
             }
         });
         jbFold.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 gui.doFold();
+                gui.getTornActual().resume();
             }
         });
     }
