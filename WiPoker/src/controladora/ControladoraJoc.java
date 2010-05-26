@@ -100,6 +100,7 @@ public class ControladoraJoc {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         if (jugador.getFitxesActuals() >= quantitatAnterior) {
             apostar(jugador, (int) (apostaMinima - quantitatAnterior), fase);
+            fase.setApostaMinima((int) (apostaMinima - quantitatAnterior));
         }
     }
 
@@ -112,8 +113,16 @@ public class ControladoraJoc {
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-        if (jugador.getFitxesActuals() >= (apostaMinima + dinersApostats) && (apostaMinima + dinersApostats) > quantitatAnterior) {
-            apostar(jugador, (apostaMinima + dinersApostats), fase);
+        System.out.println("quantitat anterior = " + quantitatAnterior);
+        System.out.println("aposta min" + apostaMinima);
+        boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior + dinersApostats);
+        boolean esSuficient = (apostaMinima - quantitatAnterior ) < dinersApostats;
+        if (teDiners && esSuficient) {
+            apostar(jugador,(int) (apostaMinima - quantitatAnterior + dinersApostats), fase);
+            System.out.println("aposta de " + (apostaMinima - quantitatAnterior + dinersApostats));
+            fase.setApostaMinima((int) (apostaMinima - quantitatAnterior  + dinersApostats));
+        } else {
+            System.out.println("no pot aposstar");
         }
     }
 

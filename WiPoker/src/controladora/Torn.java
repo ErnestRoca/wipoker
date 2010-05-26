@@ -44,7 +44,7 @@ public class Torn implements Runnable {
         }
     }
 
-    public void resume() {
+    public synchronized void resume() {
         this.continuar = true;
         
     }
