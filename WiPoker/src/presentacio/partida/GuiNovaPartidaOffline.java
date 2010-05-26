@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentacio.partida;
 
 import controladora.ControladoraGui;
@@ -31,6 +30,7 @@ import presentacio.dades.GuiMenuDades;
  * @author ula
  */
 public class GuiNovaPartidaOffline {
+
     private ControladoraGui gui;
     private JFrame jFrame;
     private JPanel jpFons;
@@ -47,13 +47,13 @@ public class GuiNovaPartidaOffline {
     private JButton jbUnirsePartida;
 
     //constructor de pruebas
-    public GuiNovaPartidaOffline() throws InterruptedException {        
-        iniciarComponents();        
+    public GuiNovaPartidaOffline() throws InterruptedException {
+        iniciarComponents();
     }
 
     public GuiNovaPartidaOffline(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
-        iniciarComponents();        
+        iniciarComponents();
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -137,9 +137,9 @@ public class GuiNovaPartidaOffline {
             private GuiTaulell taulell;
 
             public void actionPerformed(ActionEvent e) {
-                gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText()));
-                taulell = new GuiTaulell(gui);                
                 jFrame.dispose();
+                gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText()));
+                taulell = new GuiTaulell(gui);
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);
             }
@@ -161,7 +161,7 @@ public class GuiNovaPartidaOffline {
             }
         });
 
-        
+
     }
 
     public JFrame getjFrame() {
