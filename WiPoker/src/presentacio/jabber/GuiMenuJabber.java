@@ -137,7 +137,7 @@ public class GuiMenuJabber {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     iniciar = new GuiLoginJabber(gui);
                     iniciar.getjFrame().setLocation(jFrame.getLocation());
                     iniciar.getjFrame().setVisible(true);
