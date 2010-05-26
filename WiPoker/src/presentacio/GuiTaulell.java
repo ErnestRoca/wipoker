@@ -20,7 +20,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -922,14 +921,14 @@ public class GuiTaulell {
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero
                 gui.doCheck(0);
-                gui.getTornActual().notify();
+                gui.getTornActual().resume();
             }
         });
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 gui.doBet(0);
-                gui.getTornActual().notify();
+                gui.getTornActual().resume();
             }
         });
 
@@ -937,14 +936,14 @@ public class GuiTaulell {
 
             public void actionPerformed(ActionEvent e) {
                 gui.doRise(0);
-                gui.getTornActual().notify();
+                gui.getTornActual().resume();
             }
         });
         jbFold.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 gui.doFold();
-                gui.getTornActual().notify();
+                gui.getTornActual().resume();
             }
         });
     }
