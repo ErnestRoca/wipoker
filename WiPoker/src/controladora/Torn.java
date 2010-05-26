@@ -14,10 +14,9 @@ import java.util.logging.Logger;
  * @author wida45787385
  */
 public class Torn implements Runnable {
-
-    private boolean running;
-    private boolean stop;
+    
     private Jugador jugadorTorn;
+    private boolean continuar = false;
 
     public Torn() {
         
@@ -35,21 +34,24 @@ public class Torn implements Runnable {
         this.jugadorTorn = jugadorTorn;
     }
 
-    public synchronized void run() {
-        resume();
-    }
-
-    public void pause() {
-        while (running = false) {
+    public void pausa() {
+        while (continuar == false) {
             try {
                 Thread.sleep(1000);
+                System.out.println("pausa");
             } catch (InterruptedException ex) {
                 Logger.getLogger(Torn.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
-    public synchronized void resume() {
-        running = true;
+    public void resume() {
+        this.continuar = true;
+        
     }
+
+    public void run() {
+        pausa();
+    }
+
 }
