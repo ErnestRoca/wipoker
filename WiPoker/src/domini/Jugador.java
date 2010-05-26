@@ -42,18 +42,20 @@ public class Jugador {
     public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
         this(dni, nomComplet, alias, edat, telefon, posicioTaula);
         this.partidesGuanyades = (short) partidesGuanyades;
-        this.puntuacio = puntuacio;       
+        this.puntuacio = puntuacio;
         this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesInicials;       
+        this.fitxesActuals = fitxesInicials;
         this.torn = new Torn(this);
         maActual = new Ma(new ArrayList<Carta>());
     }
 
-    public Jugador(String alias) {
+    public Jugador(String alias, int fitxesInicials) {
         this.dni = "00000000A";
-        this.nomComplet= "local";
+        this.nomComplet = "local";
         this.edat = 0;
         this.posicioTaula = 1;
+        this.fitxesInicials = fitxesInicials;
+        this.fitxesActuals = fitxesInicials;
         this.alias = alias;
         maActual = new Ma(new ArrayList<Carta>());
     }
