@@ -138,7 +138,7 @@ public class GuiNovaPartidaOffline {
 
             public void actionPerformed(ActionEvent e) {
                 jFrame.dispose();
-                gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText()));
+                gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText())));
                 taulell = new GuiTaulell(gui);
                 taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                 taulell.getjFrame().setVisible(true);

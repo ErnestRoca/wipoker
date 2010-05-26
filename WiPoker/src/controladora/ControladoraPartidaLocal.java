@@ -13,9 +13,9 @@ import domini.Jugador;
  */
 public class ControladoraPartidaLocal extends ControladoraPartida {
     
-    public ControladoraPartidaLocal(ControladoraGui gui, String alias) {
+    public ControladoraPartidaLocal(ControladoraGui gui, String alias, int fitxesInicials) {
         super(2, gui);
-        super.partida.getJugadors().add(new Jugador(alias));
+        super.partida.getJugadors().add(new Jugador(alias, fitxesInicials));
         super.partida.getJugadors().add(new Bot("bot", 1000));        
     }
 

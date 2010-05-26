@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package domini;
 
 import controladora.Torn;
@@ -13,17 +12,17 @@ import java.util.ArrayList;
  * @author ula
  */
 public class Bot extends Jugador {
-    private final  String alias;
+
+    private final String alias;
     private int fitxesInicials;
     private int fitxesActuals;
-    private final  byte posicioTaula;
+    private final byte posicioTaula;
     private Ma maActual;
     private Aposta aposta;
     private Torn torn;
 
-
     public Bot(String alias, int fitxesInicials) {
-        super(alias);
+        super(alias, fitxesInicials);
         this.alias = alias;
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesInicials;
@@ -68,9 +67,4 @@ public class Bot extends Jugador {
     public void setMaActual(Ma maActual) {
         this.maActual = maActual;
     }
-
-
-
-
-
 }
