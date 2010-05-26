@@ -50,7 +50,7 @@ public class Jugador {
 
     public Jugador(String alias, int fitxesInicials) {
         this.dni = "00000000A";
-        this.nomComplet = "local";
+        this.nomComplet = alias;
         this.edat = 0;
         this.posicioTaula = 1;
         this.fitxesInicials = fitxesInicials;
