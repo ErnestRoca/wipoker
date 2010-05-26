@@ -36,6 +36,7 @@ public class Jugador {
         this.telefon = telefon;
         this.posicioTaula = (byte) posicioTaula;
         maActual = new Ma(new ArrayList<Carta>());
+        this.torn = new Torn(this);
     }
 
     public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
@@ -43,9 +44,9 @@ public class Jugador {
         this.partidesGuanyades = (short) partidesGuanyades;
         this.puntuacio = puntuacio;
         this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesInicials;
-        this.torn = new Torn(this);
+        this.fitxesActuals = fitxesInicials;       
         maActual = new Ma(new ArrayList<Carta>());
+        this.torn = new Torn(this);
     }
 
     public Jugador(String alias, int fitxesInicials) {
@@ -57,6 +58,7 @@ public class Jugador {
         this.fitxesActuals = fitxesInicials;
         this.alias = alias;
         maActual = new Ma(new ArrayList<Carta>());
+        this.torn = new Torn(this);
     }
 
     public String getAlias() {
