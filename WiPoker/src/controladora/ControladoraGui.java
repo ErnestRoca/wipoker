@@ -6,6 +6,7 @@ package controladora;
 
 import domini.Carta;
 import domini.Fase;
+import domini.Jugador;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -147,6 +148,14 @@ public class ControladoraGui {
     //Crea una conta Jabber
     public void crearContaJabber() {
         //
+    }
+
+    //Posa les imatges dels jugadors a la taula juntament amb els seus diners i nom.
+    public void mostrarAvatars(ArrayList<Jugador> jugadors){
+        for (int i = 0; i < jugadors.size(); i++) {
+            taulell.getAvatars().get(i).setIcon(jugadors.get(i).getImatge());
+            taulell.getAvatars().get(i).setVisible(true);
+        }
     }
 
     //Posa les cartes comunitaries damunt la taula.
