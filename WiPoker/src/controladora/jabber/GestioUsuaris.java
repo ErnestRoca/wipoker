@@ -4,6 +4,7 @@
  */
 package controladora.jabber;
 
+import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
@@ -11,7 +12,22 @@ import org.jivesoftware.smack.XMPPException;
  *
  * @author wida45787385
  */
-public class GestioUsuaris {
+public class GestioUsuaris implements ConnectionListener {
+
+    public void connectionClosed() {
+    }
+
+    public void connectionClosedOnError(Exception excptn) {
+    }
+
+    public void reconnectingIn(int i) {
+    }
+
+    public void reconnectionSuccessful() {
+    }
+
+    public void reconnectionFailed(Exception excptn) {
+    }
 
     protected void conectar(XMPPConnection connexio) throws XMPPException {
         if (!connexio.isConnected()) {
