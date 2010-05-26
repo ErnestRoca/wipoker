@@ -434,7 +434,7 @@ public class ControladoraCartes {
                     escala1.add(cartes.get(i));
                 }
                 //si la carta esta entre la 2 i la 6
-                if (i >= 1 && i <= 5 && cartes.size() >= 6) {
+                if (i >= 1 && i <= 5 && cartes.size() >= 6) {                
                     escala2.add(cartes.get(i));
                 }
                 //si la carta esta entre la 3 i la 7
@@ -494,7 +494,8 @@ public class ControladoraCartes {
                 }
             } else {
                 jugador.getMaActual().setCombinacio(0);
-                jugador.getMaActual().setValorMesAlt(escala2.get(0).getValor());
+                //jugador.getMaActual().setValorMesAlt(escala2.get(0).getValor());
+                
                 jugador.getMaActual().setValorDesempat(0);
             }
         }
