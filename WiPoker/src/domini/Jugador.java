@@ -28,8 +28,7 @@ public class Jugador {
     private boolean haFetFold = false;
     private Torn torn;
 
-    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula) {
-        System.out.println("poma2");
+    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula) {        
         this.dni = dni;
         this.nomComplet = nomComplet;
         this.alias = alias;
