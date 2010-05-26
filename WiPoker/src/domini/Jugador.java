@@ -2,6 +2,7 @@ package domini;
 
 import controladora.Torn;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /*
  * To change this template, choose Tools | Templates
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @author Andrés
  */
 public class Jugador {
-    
+
     private final String dni;
     private final String nomComplet;
     private final String alias;
@@ -27,8 +28,9 @@ public class Jugador {
     private Aposta aposta;
     private boolean haFetFold = false;
     private Torn torn;
+    private ImageIcon imatge;
 
-    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula) {        
+    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula , String avatar)  {
         this.dni = dni;
         this.nomComplet = nomComplet;
         this.alias = alias;
@@ -37,14 +39,19 @@ public class Jugador {
         this.posicioTaula = (byte) posicioTaula;
         maActual = new Ma(new ArrayList<Carta>());
         this.torn = new Torn(this);
+        try {
+            imatge = new ImageIcon(Carta.class.getResource("/serveis/imatges/avatar.png"));
+        } catch (Exception ex) {
+            System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
+        }
     }
 
-    public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula) {
-        this(dni, nomComplet, alias, edat, telefon, posicioTaula);
+    public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula, String avatar) {
+        this(dni, nomComplet, alias, edat, telefon, posicioTaula, avatar);
         this.partidesGuanyades = (short) partidesGuanyades;
         this.puntuacio = puntuacio;
         this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesInicials;       
+        this.fitxesActuals = fitxesInicials;
         maActual = new Ma(new ArrayList<Carta>());
         this.torn = new Torn(this);
     }
@@ -59,6 +66,11 @@ public class Jugador {
         this.alias = alias;
         maActual = new Ma(new ArrayList<Carta>());
         this.torn = new Torn(this);
+        try {
+            imatge = new ImageIcon(Carta.class.getResource("/serveis/imatges/avatar.png"));
+        } catch (Exception ex) {
+            System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
+        }
     }
 
     public String getAlias() {
@@ -151,6 +163,14 @@ public class Jugador {
 
     public void setTorn(Torn torn) {
         this.torn = torn;
+    }
+
+    /**
+     * Retorna el valor de l'atribut imatge.
+     * @return imatge associada a la pesa
+     */
+    public ImageIcon getImatge() {
+        return imatge;
     }
 
     @Override
