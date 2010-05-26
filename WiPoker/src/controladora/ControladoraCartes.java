@@ -494,7 +494,7 @@ public class ControladoraCartes {
                 }
             } else {
                 jugador.getMaActual().setCombinacio(0);
-                //jugador.getMaActual().setValorMesAlt(escala2.get(0).getValor());
+                jugador.getMaActual().setValorMesAlt(0);
                 
                 jugador.getMaActual().setValorDesempat(0);
             }
