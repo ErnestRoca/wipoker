@@ -843,7 +843,7 @@ public class GuiTaulell {
         jbCheck.setText("Check");
         jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbCheck.setCursor(cursor);
-        jbCheck.setToolTipText("Fa chek :)");
+        jbCheck.setToolTipText("No apostar");
         final int sv = 2;
         final int x1 = 0;
         final int y1 = 0;
@@ -859,7 +859,7 @@ public class GuiTaulell {
         jbRise.setText("Rise");
         jbRise.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbRise.setCursor(cursor);
-        jbRise.setToolTipText("Fa rise :)");
+        jbRise.setToolTipText("Apujar l'aposta");
         final int x2 = x1;
         final int y2 = y1 + h1 + sv;
         final int w2 = w1;
@@ -874,7 +874,7 @@ public class GuiTaulell {
         jbBet.setText("Bet");
         jbBet.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbBet.setCursor(cursor);
-        jbBet.setToolTipText("Fa bet :)");
+        jbBet.setToolTipText("Igualar aposta");
         final int x3 = x1;
         final int y3 = y2 + h2 + sv;
         final int w3 = w1;
@@ -889,7 +889,7 @@ public class GuiTaulell {
         jbFold.setText("Fold");
         jbFold.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbFold.setCursor(cursor);
-        jbFold.setToolTipText("Fa fold :)");
+        jbFold.setToolTipText("No jugar ronda actual");
         final int x4 = x1;
         final int y4 = y3 + h2 + sv;
         final int w4 = w1;
