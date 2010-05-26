@@ -37,8 +37,7 @@ public class Torn implements Runnable {
     public void pausa() {
         while (continuar == false) {
             try {
-                Thread.sleep(1000);
-                System.out.println("pausa");
+                Thread.sleep(1000);                
             } catch (InterruptedException ex) {
                 Logger.getLogger(Torn.class.getName()).log(Level.SEVERE, null, ex);
             }
