@@ -13,6 +13,8 @@ import domini.Ronda;
 import domini.Taula;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -38,6 +40,15 @@ public class ControladoraPartida {
     }
 
     public void jugar() throws InterruptedException {
+        Collections.sort(partida.getJugadors(), new Comparator() {
+
+            public int compare(Object o1, Object o2) {
+                Jugador j1 = (Jugador) o1;
+                Jugador j2 = (Jugador) o2;
+                return j1.getPosicioTaula() - j2.getPosicioTaula();
+            }
+        });
+        System.out.println(partida.getJugadors().get(0));
         while (partida.getJugadors().size() > 1) {
             int boto = 0;
             iniciarRonda(boto);
