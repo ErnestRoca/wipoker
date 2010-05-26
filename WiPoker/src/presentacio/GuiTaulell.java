@@ -117,11 +117,15 @@ public class GuiTaulell {
     }
 
     public GuiTaulell(ControladoraGui gui) {
-        this.gui = gui;
-        iniciarComponents(); // Automissatge per crear els components de la UI
-        crearEscoltadors();
-        gui.setTaulell(this);
-        gui.iniciarPartida();
+        try {
+            this.gui = gui;
+            iniciarComponents(); // Automissatge per crear els components de la UI
+            crearEscoltadors();
+            gui.setTaulell(this);
+            gui.iniciarPartida();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GuiTaulell.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 
