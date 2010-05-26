@@ -84,14 +84,19 @@ public class ControladoraGui {
     }
 
     //Iniciar la partida quan totes les plaçes estan ocupades.
-    public void iniciarPartida() {
-        try {
-            cp.jugar();
-            //
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ControladoraGui.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
+    public void iniciarPartida() throws InterruptedException {
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    cp.jugar();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ControladoraGui.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        t.start();
     }
 
     //Fa Check
