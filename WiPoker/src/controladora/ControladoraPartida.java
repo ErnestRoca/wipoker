@@ -51,9 +51,11 @@ public class ControladoraPartida {
         partida.getRondes().add(novaRonda);
         baralla = controlJoc.crearBaralla();
         controlJoc.barallar(baralla);
-
+        System.out.println("\n\n\n\n\n********************NOVA RONDA****************************");
         for (int i = 0; i < 4; i++) {
+
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 20);
+            System.out.println(novaFase.toString());
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
@@ -69,7 +71,7 @@ public class ControladoraPartida {
         for (Jugador j : partida.getJugadors()) {
             System.out.println("\n\n" + j);
             System.out.println(j.getMaActual().getCartes());
-            System.out.println("comb:" + j.getMaActual().getCombinacio());
+            System.out.println("combinació Cartes:" + j.getMaActual().getCombinacio());
         }
         for (Jugador jugador : partida.getJugadors()) {
             jugador.getMaActual().getCartes().clear();
@@ -169,7 +171,6 @@ public class ControladoraPartida {
         int minima = 0;
         int numJugadorsTornFinalitzat = 0;
         for (Jugador j : partida.getJugadors()) {
-            System.out.println(j);
             j.setTorn(new Torn(j));
         }
 
@@ -215,7 +216,6 @@ public class ControladoraPartida {
         int minima = 0;
         int numJugadorsTornFinalitzat = 0;
         for (Jugador j : partida.getJugadors()) {
-            System.out.println(j);
             j.setTorn(new Torn(j));
         }
 
@@ -263,7 +263,6 @@ public class ControladoraPartida {
         int minima = 0;
         int numJugadorsTornFinalitzat = 0;
         for (Jugador j : partida.getJugadors()) {
-            System.out.println(j);
             j.setTorn(new Torn(j));
         }
 
