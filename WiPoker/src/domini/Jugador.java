@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Andrés
  */
 public class Jugador {
-
+    
     private final String dni;
     private final String nomComplet;
     private final String alias;
