@@ -65,12 +65,18 @@ public class ControladoraPartida {
         controlJoc.barallar(baralla);
         System.out.println("\n\n\n\n\n********************NOVA RONDA****************************");
         for (int i = 0; i < 4; i++) {
-
-            Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 20);
+            gui.getFaseActual().setApostaMinima(0);
+            Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 0);
+            if (i == 0) {
+                novaFase.setApostaMinima(20);
+            }
             System.out.println(novaFase.toString());
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
+            for (Jugador j: partida.getJugadors()) {
+                j.getAposta().setQuantitat(0);
+            }
 
         }
         determinarCombinacio();
