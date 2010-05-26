@@ -937,7 +937,7 @@ public class GuiTaulell {
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gui.doBet(10);
+                gui.doCall(10);
                 gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa bet");
             }
