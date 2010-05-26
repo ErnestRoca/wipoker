@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import org.jivesoftware.smackx.packet.IBBExtensions.Close;
 import presentacio.jabber.GuiMenuJabber;
 import presentacio.partida.GuiLoginJabberPartida;
 
@@ -182,7 +183,7 @@ public class GuiMenu {
             public void actionPerformed(ActionEvent event) {
                 //
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     dades = new GuiMenuDades(gui);
                     dades.getjFrame().setLocation(jFrame.getLocation());
                     dades.getjFrame().setVisible(true);
@@ -195,7 +196,8 @@ public class GuiMenu {
         jbSortir.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent event) {
-                System.exit(0);
+                jFrame.setVisible(false);
+                jFrame.dispose();
             }
         });
 

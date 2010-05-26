@@ -160,7 +160,7 @@ public class GuiMenuDades {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     consultar = new GuiConsultarDades(gui);
                     consultar.getjFrame().setLocation(jFrame.getLocation());
                     consultar.getjFrame().setVisible(true);
@@ -174,7 +174,7 @@ public class GuiMenuDades {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     afegir = new GuiAfegirJugador(gui);
                     afegir.getjFrame().setLocation(jFrame.getLocation());
                     afegir.getjFrame().setVisible(true);
@@ -188,7 +188,7 @@ public class GuiMenuDades {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     editar = new GuiEditarJugador(gui);
                     editar.getjFrame().setLocation(jFrame.getLocation());
                     editar.getjFrame().setVisible(true);
@@ -202,7 +202,7 @@ public class GuiMenuDades {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     eliminar = new GuiEliminarJugador(gui);
                     eliminar.getjFrame().setLocation(jFrame.getLocation());
                     eliminar.getjFrame().setVisible(true);
@@ -216,7 +216,7 @@ public class GuiMenuDades {
 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.setVisible(false);
+                    jFrame.dispose();
                     menu = new GuiMenu(gui);
                     menu.getjFrame().setLocation(jFrame.getLocation());
                     menu.getjFrame().setVisible(true);
