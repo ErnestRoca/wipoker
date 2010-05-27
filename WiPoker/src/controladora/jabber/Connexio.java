@@ -2,43 +2,27 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controladora.jabber;
 
-import org.jivesoftware.smack.ConnectionConfiguration;
-import org.jivesoftware.smack.SASLAuthentication;
-import org.jivesoftware.smack.SmackConfiguration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
 
 /**
  *
  * @author wida45787385
  */
 public class Connexio {
-    
-    public Connexio(String servidor) {
-        registrarMecanismes();        
-    }
 
     public static XMPPConnection crearConnexio(String servidor) {
-        ConnectionConfiguration cc = new ConnectionConfiguration(servidor);
-        cc.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
-        cc.setDebuggerEnabled(false);
-        cc.setReconnectionAllowed(false);
-        cc.setSASLAuthenticationEnabled(true);
-        XMPPConnection connexio = new XMPPConnection(cc);
+
+        XMPPConnection connexio = null;
+        try {
+            connexio = new XMPPConnection(servidor, 5222);
+        } catch (XMPPException ex) {
+            Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return connexio;
     }
-
-    public static void registrarMecanismes() {
-        for (Class c: SASLAuthentication.getRegisterSASLMechanisms()) {
-            SmackConfiguration.addSaslMech(c.getSimpleName());
-            SASLAuthentication.supportSASLMechanism(c.getSimpleName());
-        }
-    }
-
-    public static void main(String[] args) {
-        new Connexio("jabberes.org");
-    }
-
 }
