@@ -161,12 +161,15 @@ public class ControladoraPartida {
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
 
         int minima = apostaMin;
+        int minimaAntiga = apostaMin;
         int numJugadorsTornFinalitzat = 0;
 
         boolean fi = false;
         while (!fi) {
+            System.out.println("num jug torn finalitzat: " + numJugadorsTornFinalitzat);
             if (numJugadorsTornFinalitzat >= partida.getJugadors().size() - 1) {
                 fi = true;
+                System.out.println("Mostra condicio1: " + fi);
             } else {
                 for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
                     if (numJugadorsTornFinalitzat == partida.getJugadors().size() - 1) {
@@ -175,25 +178,30 @@ public class ControladoraPartida {
 
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        System.out.println("aposta minima11= " + minima);
                         gui.getTornActual().run();
+                        
+                        
+                        System.out.println("aposta minima12= " + minima);
                         if (partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat++;
-                        } else if (partida.getJugadors().get(i).getAposta().getQuantitat() == minima) {
+                        } else if (partida.getJugadors().get(i).getAposta().getQuantitat() + minimaAntiga == minima) {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() + minimaAntiga != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             //minima = (int) partida.getJugadors().get(i).getAposta().getQuantitat();
-                            minima = fase.getApostaMinima();
-                            System.out.println("pooooooooooooooooma" + minima);
+                            //minima = fase.getApostaMinima();
                         }
-
+                        minimaAntiga = minima;
+                        minima = fase.getApostaMinima();
                     } else {
                         numJugadorsTornFinalitzat++;
                     }
 
                 }
+                System.out.println("num jug torn finalitzat: " + numJugadorsTornFinalitzat);
                 for (int i = 0; i <= boto; i++) {
                     if (numJugadorsTornFinalitzat == partida.getJugadors().size() - 1) {
                         break;
@@ -201,19 +209,25 @@ public class ControladoraPartida {
 
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        System.out.println("aposta minima21= " + minima);
                         gui.getTornActual().run();
+                        minimaAntiga = minima;
+                        
+                        
+                        System.out.println("quantitat apostada pel jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat());
                         if (partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat++;
-                        } else if (partida.getJugadors().get(i).getAposta().getQuantitat() == minima) {
+                        } else if (partida.getJugadors().get(i).getAposta().getQuantitat() + minimaAntiga == minima) {
                             numJugadorsTornFinalitzat++;
                         }
-
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() + minimaAntiga != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             //minima = (int) partida.getJugadors().get(i).getAposta().getQuantitat();
                             minima = fase.getApostaMinima();
-                            System.out.println("pooooooooooooooooma" + minima);
                         }
+                        minimaAntiga = minima;
+                        minima = fase.getApostaMinima();
+                        System.out.println("aposta minima22= " + minima);
 
                     } else {
                         numJugadorsTornFinalitzat++;
@@ -221,10 +235,15 @@ public class ControladoraPartida {
 
                 }
             }
-            if (!(partida.getJugadors().size() - numJugadorsTornFinalitzat == 1)) {
+            if ((partida.getJugadors().size() == numJugadorsTornFinalitzat)) {
                 fi = true;
+            } else {
+                for (Jugador j : partida.getJugadors()) {
+                    j.setTorn(new Torn(j));
+                }
             }
 
+            System.out.println("Mostra condicio2: " + fi);
         }
     }
 
