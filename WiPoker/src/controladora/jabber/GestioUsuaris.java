@@ -4,7 +4,6 @@
  */
 package controladora.jabber;
 
-import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
@@ -16,9 +15,9 @@ public class GestioUsuaris {
 
     public void conectar(XMPPConnection connexio) throws XMPPException {
         if (!connexio.isConnected()) {
-            
+            connexio.connect();
         } else {
-            //sacar en gui un mensaje ya estas conectado
+            System.out.println("Ja estas conectat");
         }
     }
 
@@ -28,9 +27,9 @@ public class GestioUsuaris {
 
     public void desconnectar(XMPPConnection connexio) {
         if (connexio.isConnected()) {
-            connexio.close();
+            connexio.disconnect();
         } else {
-            //sacar en gui un mensaje ya estas desconectado
+            System.out.println("no estas conectat");
         }
     }
 
@@ -38,9 +37,11 @@ public class GestioUsuaris {
         if (connexio.getAccountManager().supportsAccountCreation()) {
             if (password1.equals(password2)) {
                 connexio.getAccountManager().createAccount(nom, password1);
+            } else {
+                System.out.println("les contrasenyes no coincideixen");
             }
         } else {
-            //sacar mensaje servidor no soporta creacion cuentas
+            System.out.println("aquest servidor no suporta la creacio de comptes");
         }
     }
 }
