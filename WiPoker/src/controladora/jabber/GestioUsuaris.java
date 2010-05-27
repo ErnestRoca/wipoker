@@ -12,22 +12,7 @@ import org.jivesoftware.smack.XMPPException;
  *
  * @author wida45787385
  */
-public class GestioUsuaris implements ConnectionListener {
-
-    public void connectionClosed() {
-    }
-
-    public void connectionClosedOnError(Exception excptn) {
-    }
-
-    public void reconnectingIn(int i) {
-    }
-
-    public void reconnectionSuccessful() {
-    }
-
-    public void reconnectionFailed(Exception excptn) {
-    }
+public class GestioUsuaris {
 
     protected void conectar(XMPPConnection connexio) throws XMPPException {
         if (!connexio.isConnected()) {
