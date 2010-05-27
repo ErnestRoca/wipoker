@@ -119,4 +119,16 @@ public class ControladoraJabber implements PacketListener, ParticipantStatusList
 
       
     }
+
+    public void kicked(String arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void banned(String arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void nicknameChanged(String arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
