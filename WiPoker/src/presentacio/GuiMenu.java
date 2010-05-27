@@ -5,7 +5,7 @@
 package presentacio;
 
 import controladora.ControladoraGui;
-import java.awt.AWTEventMulticaster;
+import java.awt.event.WindowEvent;
 import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
@@ -44,22 +45,54 @@ public class GuiMenu {
     private JLabel jlBarra;
     private JLabel jlBarra2;
     private ControladoraGui gui;
+    private SortirListener sortirListener;
 
     public GuiMenu() throws InterruptedException {
+        sortirListener = new SortirListener(this);
         gui = new ControladoraGui();
         iniciarComponents();
     }
 
-    public GuiMenu(ControladoraGui gui) throws InterruptedException {        
+    public GuiMenu(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
         iniciarComponents();
     }
 
-
-
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
-        jFrame.addWindowListener(new SortirListener(this));
+        jFrame.addWindowListener(new WindowListener() {
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (JOptionPane.showConfirmDialog(jFrame, "Esta segur que vol sortir?", "Sortir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    jFrame.dispose();
+                }
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("WiPoker");
@@ -171,7 +204,7 @@ public class GuiMenu {
                     jFrame.dispose();
                     partida = new GuiLoginJabberPartida(gui);
                     partida.getjFrame().setLocation(jFrame.getLocation());
-                    partida.getjFrame().setVisible(true);                    
+                    partida.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -197,7 +230,15 @@ public class GuiMenu {
             }
         });
 
-        jbSortir.addActionListener(new SortirListener(this));
+        jbSortir.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (JOptionPane.showConfirmDialog(jFrame, "Esta segur que vol sortir?", "Sortir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    jFrame.dispose();
+                }
+            }
+        });
 
     }
 
