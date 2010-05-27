@@ -5,12 +5,15 @@
 package controladora;
 
 import controladora.jabber.Connexio;
+
 import controladora.jabber.GestioUsuaris;
+
 import domini.Ronda;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
@@ -33,6 +36,18 @@ public class ControladoraJabber {
     public void crearSala() throws XMPPException {
         if (connexio.isConnected()) {
             sala = new MultiUserChat(connexio, "wipoker");
+            sala.create("andres");
+            sala.createMessage();
+            Message m = sala.createMessage();
+            sala.join("peracho87", "apa45787385c");
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            ControladoraJabber cj = new ControladoraJabber("jabberes.org");
+        } catch (XMPPException ex) {
+            Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
