@@ -97,7 +97,6 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
-        System.out.println("poooooooma");
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior);
         if (teDiners) {
