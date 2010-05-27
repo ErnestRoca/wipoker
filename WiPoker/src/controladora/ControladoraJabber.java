@@ -8,12 +8,14 @@ import controladora.jabber.Connexio;
 
 import controladora.jabber.GestioUsuaris;
 
+import domini.Aposta;
 import domini.Ronda;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smackx.muc.InvitationListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
@@ -30,16 +32,18 @@ public class ControladoraJabber {
     public ControladoraJabber(String servidor) throws XMPPException {
         connexio = Connexio.crearConnexio(servidor);
         gu = new GestioUsuaris();
+        gu.conectar(connexio);
+        gu.ferLogin(connexio, "perachoandres", "apa45787385c");
     }
     //metodo de packetListener
 
     public void crearSala() throws XMPPException {
         if (connexio.isConnected()) {
             sala = new MultiUserChat(connexio, "wipoker");
-            sala.create("andres");
-            sala.createMessage();
             Message m = sala.createMessage();
-            sala.join("peracho87", "apa45787385c");
+            
+
+            //sala.join("peracho87", "apa45787385c");
         }
     }
 
@@ -52,6 +56,8 @@ public class ControladoraJabber {
             System.out.println(cj.connexio.getAccountManager().supportsAccountCreation());
             //cj.connexio.getAccountManager().createAccount("perachoandres", "apa45787385c");
             cj.connexio.login("perachoandres", "apa45787385c");
+            cj.crearSala();
+            
         } catch (XMPPException ex) {
             Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
         }
