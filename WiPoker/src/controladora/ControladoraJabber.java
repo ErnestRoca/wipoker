@@ -107,19 +107,6 @@ public class ControladoraJabber implements PacketListener, ParticipantStatusList
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public static void main(String[] args) {
-        try {
-            ControladoraJabber cj = new ControladoraJabber("jabberes.org");
-            cj.crearSala();
-            cj.connexio.login("peracho87", "apa45787385c");
-        } catch (XMPPException ex) {
-            Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex.getMessage());
-        }
-
-      
-    }
-
     public void kicked(String arg0) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -130,5 +117,19 @@ public class ControladoraJabber implements PacketListener, ParticipantStatusList
 
     public void nicknameChanged(String arg0) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+
+       public static void main(String[] args) {
+        try {
+            ControladoraJabber cj = new ControladoraJabber("jabber-hispano.org");
+            
+            cj.connexio.login("peracho87", "apa45787385c");
+        } catch (XMPPException ex) {
+            Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+
+
     }
 }
