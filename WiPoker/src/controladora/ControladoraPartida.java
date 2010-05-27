@@ -168,8 +168,7 @@ public class ControladoraPartida {
             if (numJugadorsTornFinalitzat >= partida.getJugadors().size() - 1) {
                 fi = true;
             } else {
-                for (int i = boto + 1; i <
-                        partida.getJugadors().size(); i++) {
+                for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
                     if (numJugadorsTornFinalitzat == partida.getJugadors().size() - 1) {
                         break;
                     }
@@ -183,10 +182,11 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
-                            minima =
-                                    (int) partida.getJugadors().get(i).getAposta().getQuantitat();
+                            //minima = (int) partida.getJugadors().get(i).getAposta().getQuantitat();
+                            minima = fase.getApostaMinima();
+                            System.out.println("pooooooooooooooooma" + minima);
                         }
 
                     } else {
@@ -194,8 +194,7 @@ public class ControladoraPartida {
                     }
 
                 }
-                for (int i = 0; i <=
-                        boto; i++) {
+                for (int i = 0; i <= boto; i++) {
                     if (numJugadorsTornFinalitzat == partida.getJugadors().size() - 1) {
                         break;
                     }
@@ -209,10 +208,11 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
-                            minima =
-                                    (int) partida.getJugadors().get(i).getAposta().getQuantitat();
+                            //minima = (int) partida.getJugadors().get(i).getAposta().getQuantitat();
+                            minima = fase.getApostaMinima();
+                            System.out.println("pooooooooooooooooma" + minima);
                         }
 
                     } else {
@@ -258,7 +258,7 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             minima =
                                     (int) partida.getJugadors().get(i).getAposta().getQuantitat();
@@ -284,7 +284,7 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             minima =
                                     (int) partida.getJugadors().get(i).getAposta().getQuantitat();
@@ -333,7 +333,7 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             minima =
                                     (int) partida.getJugadors().get(i).getAposta().getQuantitat();
@@ -359,7 +359,7 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             minima =
                                     (int) partida.getJugadors().get(i).getAposta().getQuantitat();
@@ -409,7 +409,7 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             minima =
                                     (int) partida.getJugadors().get(i).getAposta().getQuantitat();
@@ -435,7 +435,7 @@ public class ControladoraPartida {
                             numJugadorsTornFinalitzat++;
                         }
 
-                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima) {
+                        if (partida.getJugadors().get(i).getAposta().getQuantitat() != minima && !partida.getJugadors().get(i).isHaFetFold()) {
                             numJugadorsTornFinalitzat = 0;
                             minima =
                                     (int) partida.getJugadors().get(i).getAposta().getQuantitat();
