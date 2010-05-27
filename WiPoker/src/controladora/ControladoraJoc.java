@@ -90,6 +90,7 @@ public class ControladoraJoc {
         jugador.setFitxesActuals(jugador.getFitxesActuals() - quantitat);
         fase.getApostes().add(aposta);
         fase.getRonda().setPot(fase.getRonda().getPot() + quantitat);
+        System.out.println("Aposta Minima Actualitzada: " + fase.getApostaMinima());
     }
 
     public synchronized void ferFold(Jugador jugador) {
