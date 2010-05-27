@@ -81,6 +81,7 @@ public class ControladoraPartida {
         }
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
+        System.out.println("POT RONDA: " + novaRonda.getPot());
         controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
         novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
         Fase.setNumFase(0);
