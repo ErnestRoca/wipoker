@@ -117,7 +117,7 @@ public class ControladoraGui {
 
     //Fa bet
     public void doCall() {
-        cp.controlJoc.ferCall(tornActual.getJugadorTorn(), faseActual);
+        cp.controlJoc.ferCall(tornActual.getJugadorTorn(), faseActual, faseActual.getApostaMinima());
     }
 
     //Registra un jugador a la base de dades (No Jabber).
