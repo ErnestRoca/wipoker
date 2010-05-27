@@ -8,6 +8,7 @@ import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SASLAuthentication;
 import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
  *
@@ -34,6 +35,11 @@ public class Connexio {
             SmackConfiguration.addSaslMech(c.getSimpleName());
             SASLAuthentication.supportSASLMechanism(c.getSimpleName());
         }
+    }
+
+    public MultiUserChat crearSala(XMPPConnection connexio, String servidor) {
+        MultiUserChat muc = new MultiUserChat(connexio, servidor);
+        return muc;
     }
 }
 
