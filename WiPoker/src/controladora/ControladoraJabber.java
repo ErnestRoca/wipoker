@@ -46,6 +46,12 @@ public class ControladoraJabber {
     public static void main(String[] args) {
         try {
             ControladoraJabber cj = new ControladoraJabber("jabberes.org");
+            cj.connexio.connect();
+            System.out.println(cj.connexio.getHost() + cj.connexio.getPort());
+            System.out.println(cj.connexio.getServiceName());
+            System.out.println(cj.connexio.getAccountManager().supportsAccountCreation());
+            //cj.connexio.getAccountManager().createAccount("perachoandres", "apa45787385c");
+            cj.connexio.login("perachoandres", "apa45787385c");
         } catch (XMPPException ex) {
             Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
         }
