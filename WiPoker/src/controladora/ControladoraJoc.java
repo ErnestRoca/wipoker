@@ -97,10 +97,14 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
+        System.out.println("poooooooma");
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-        if (jugador.getFitxesActuals() >= quantitatAnterior) {
-            apostar(jugador, (int) (apostaMinima - quantitatAnterior), fase);
-            fase.setApostaMinima((int) (apostaMinima - quantitatAnterior));
+        boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior);
+        if (teDiners) {
+            apostar(jugador,(int) (apostaMinima - quantitatAnterior), fase);
+            System.out.println("igualada l'aposta minima +" + (apostaMinima - quantitatAnterior));
+        } else {
+            System.out.println("no pot aposstar");
         }
     }
 
