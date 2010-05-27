@@ -101,7 +101,7 @@ public class ControladoraJoc {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior);
         if (teDiners) {
-            apostar(jugador,(int) (apostaMinima - quantitatAnterior), fase);
+            apostar(jugador,(int) (apostaMinima), fase);
             fase.setApostaMinima(apostaMinima);
         } else {
             System.out.println("no pot aposstar");
