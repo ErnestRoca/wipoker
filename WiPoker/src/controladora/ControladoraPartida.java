@@ -72,7 +72,6 @@ public class ControladoraPartida {
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 0);
             if (i == 0) {
                 novaFase.setApostaMinima(20);
-
             }
 
             System.out.println(novaFase.toString());
