@@ -16,7 +16,7 @@ public class GestioUsuaris {
 
     public void conectar(XMPPConnection connexio) throws XMPPException {
         if (!connexio.isConnected()) {
-            connexio.connect();
+            
         } else {
             //sacar en gui un mensaje ya estas conectado
         }
@@ -28,7 +28,7 @@ public class GestioUsuaris {
 
     public void desconnectar(XMPPConnection connexio) {
         if (connexio.isConnected()) {
-            connexio.disconnect();
+            connexio.close();
         } else {
             //sacar en gui un mensaje ya estas desconectado
         }
