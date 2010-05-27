@@ -1,4 +1,4 @@
-/*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -36,35 +36,49 @@ public class Bot extends Jugador {
         return 0.0;
     }
 
+    @Override
     public Aposta getAposta() {
         return aposta;
     }
 
+    @Override
     public void setAposta(Aposta aposta) {
         this.aposta = aposta;
     }
 
+    @Override
     public int getFitxesActuals() {
         return fitxesActuals;
     }
 
+    @Override
     public void setFitxesActuals(int fitxesActuals) {
         this.fitxesActuals = fitxesActuals;
     }
 
+    @Override
     public int getFitxesInicials() {
         return fitxesInicials;
     }
 
+    @Override
     public void setFitxesInicials(int fitxesInicials) {
         this.fitxesInicials = fitxesInicials;
     }
 
+    @Override
     public Ma getMaActual() {
         return maActual;
     }
 
+    @Override
     public void setMaActual(Ma maActual) {
         this.maActual = maActual;
+    }
+
+    @Override
+    public String toString() {
+        String str = "El bot " + alias + " amb " + fitxesActuals + "fitxes";
+        return str;
     }
 }
