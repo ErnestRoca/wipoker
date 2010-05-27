@@ -7,13 +7,14 @@ package controladora;
 import controladora.jabber.Connexio;
 import controladora.jabber.GestioUsuaris;
 import domini.Ronda;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.jivesoftware.smackx.muc.ParticipantStatusListener;
-import org.jivesoftware.smackx.muc.UserStatusListener;
 
 /**
  *
@@ -26,9 +27,10 @@ public class ControladoraJabber implements PacketListener, ParticipantStatusList
     public Ronda ronda = new Ronda();
     MultiUserChat sala;
 
-    public ControladoraJabber(String servidor) {
+    public ControladoraJabber(String servidor) throws XMPPException {
         connexio = Connexio.crearConnexio(servidor);
         gu = new GestioUsuaris();
+        gu.conectar(connexio);
 
     }
     //metodo de packetListener
@@ -41,7 +43,7 @@ public class ControladoraJabber implements PacketListener, ParticipantStatusList
         if (connexio.isConnected()) {
             sala = new MultiUserChat(connexio, "wipoker");
         }
-        sala.join("peracho87");
+        
     }
 
     //metodo de participantStatusListener
@@ -106,7 +108,15 @@ public class ControladoraJabber implements PacketListener, ParticipantStatusList
     }
 
     public static void main(String[] args) {
-        ControladoraJabber cj = new ControladoraJabber("jabberes.org");
+        try {
+            ControladoraJabber cj = new ControladoraJabber("jabberes.org");
+            cj.crearSala();
+            cj.connexio.login("peracho87", "apa45787385c");
+        } catch (XMPPException ex) {
+            Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
 
+      
     }
 }
