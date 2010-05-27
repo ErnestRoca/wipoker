@@ -5,6 +5,7 @@
 package presentacio;
 
 import controladora.ControladoraGui;
+import java.awt.AWTEventMulticaster;
 import presentacio.dades.GuiMenuDades;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -12,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -48,7 +50,7 @@ public class GuiMenu {
         iniciarComponents();
     }
 
-    public GuiMenu(ControladoraGui gui) throws InterruptedException {
+    public GuiMenu(ControladoraGui gui) throws InterruptedException {        
         this.gui = gui;
         iniciarComponents();
     }
@@ -57,11 +59,12 @@ public class GuiMenu {
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
+        jFrame.addWindowListener(new SortirListener(this));
         jFrame.setSize(new Dimension(338, 629));
         jFrame.setLocationRelativeTo(null);
         jFrame.setTitle("WiPoker");
         jFrame.setLayout(null);
-        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         jFrame.setResizable(false);
 
         jpFons = new JPanel();
@@ -180,6 +183,7 @@ public class GuiMenu {
 
             private GuiMenuDades dades;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 //
                 try {
@@ -193,13 +197,7 @@ public class GuiMenu {
             }
         });
 
-        jbSortir.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent event) {
-                jFrame.setVisible(false);
-                jFrame.dispose();
-            }
-        });
+        jbSortir.addActionListener(new SortirListener(this));
 
     }
 
@@ -210,6 +208,7 @@ public class GuiMenu {
     public static void main(final String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 try {
                     new GuiMenu();
