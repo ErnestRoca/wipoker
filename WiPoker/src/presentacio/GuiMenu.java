@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
-import org.jivesoftware.smackx.packet.IBBExtensions.Close;
+
 import presentacio.jabber.GuiMenuJabber;
 import presentacio.partida.GuiLoginJabberPartida;
 
