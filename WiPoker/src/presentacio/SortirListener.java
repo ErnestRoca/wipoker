@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author wida53312560
  */
+@Deprecated
 public class SortirListener implements WindowListener, ActionListener {
 
     private GuiMenu menu;
@@ -20,21 +21,16 @@ public class SortirListener implements WindowListener, ActionListener {
 
     @Override
     public void windowOpened(WindowEvent e) {
-
-        System.out.println("window opened");
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        System.out.println("window closing");
         ActionEvent a0 = new ActionEvent(e.getSource(), 0, "");
         actionPerformed(a0);
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-
-        System.out.println("window closed");
     }
 
     @Override
@@ -55,9 +51,7 @@ public class SortirListener implements WindowListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (JOptionPane.showConfirmDialog(menu.getjFrame(),
-                "Esta segur que vol sortir?", "Sortir",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(menu.getjFrame(), "Esta segur que vol sortir?", "Sortir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             menu.getjFrame().dispose();
         }
     }
