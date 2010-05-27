@@ -14,7 +14,7 @@ import org.jivesoftware.smack.XMPPException;
  */
 public class GestioUsuaris {
 
-    protected void conectar(XMPPConnection connexio) throws XMPPException {
+    public void conectar(XMPPConnection connexio) throws XMPPException {
         if (!connexio.isConnected()) {
             connexio.connect();
         } else {
@@ -22,11 +22,11 @@ public class GestioUsuaris {
         }
     }
 
-    protected void ferLogin(XMPPConnection connexio, String user, String password) throws XMPPException {
+    public void ferLogin(XMPPConnection connexio, String user, String password) throws XMPPException {
         connexio.login(user, password);
     }
 
-    protected void desconnectar(XMPPConnection connexio) {
+    public void desconnectar(XMPPConnection connexio) {
         if (connexio.isConnected()) {
             connexio.disconnect();
         } else {
@@ -34,7 +34,7 @@ public class GestioUsuaris {
         }
     }
 
-    protected void crearCompte(XMPPConnection connexio, String nom, String password1, String password2, String mail) throws XMPPException {
+    public void crearCompte(XMPPConnection connexio, String nom, String password1, String password2, String mail) throws XMPPException {
         if (connexio.getAccountManager().supportsAccountCreation()) {
             if (password1.equals(password2)) {
                 connexio.getAccountManager().createAccount(nom, password1);
