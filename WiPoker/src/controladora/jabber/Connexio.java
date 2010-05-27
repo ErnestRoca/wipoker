@@ -37,7 +37,7 @@ public class Connexio {
         }
     }
 
-    public MultiUserChat crearSala(XMPPConnection connexio, String servidor) {
+    public static MultiUserChat crearSala(XMPPConnection connexio, String servidor) {
         MultiUserChat muc = new MultiUserChat(connexio, servidor);
         return muc;
     }
