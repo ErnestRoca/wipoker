@@ -20,7 +20,7 @@ public class Connexio {
     }
 
     public static XMPPConnection crearConnexio(String servidor) {
-        ConnectionConfiguration cc = new ConnectionConfiguration(servidor);
+        ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
         cc.setDebuggerEnabled(false);
         cc.setReconnectionAllowed(false);
@@ -34,10 +34,6 @@ public class Connexio {
             SmackConfiguration.addSaslMech(c.getSimpleName());
             SASLAuthentication.supportSASLMechanism(c.getSimpleName());
         }
-    }
-
-    public static void main(String[] args) {
-        new Connexio("jabberes.org");
     }
 }
 
