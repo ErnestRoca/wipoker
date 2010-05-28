@@ -26,7 +26,7 @@ public class ControladoraPartida {
     public Baralla baralla;
     public Partida partida;
     public ControladoraCartes controlCartes = new ControladoraCartes();
-    public ControladoraIA controlIA = new ControladoraIA();
+    public ControladoraIA controlIA = new ControladoraIA(partida, controlCartes);
     public ControladoraJoc controlJoc = new ControladoraJoc();
     public ControladoraGui gui;
 
