@@ -162,6 +162,8 @@ public class ControladoraPartida {
 
 
         boolean fi = false;
+        //num vegades que fa la mateixa fase (igualant les apostes)
+        int countFase = 0;
         while (!fi) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
@@ -175,9 +177,17 @@ public class ControladoraPartida {
             }
             //Primer bucle
             for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
             //Mira si hi tothom menys un han fet fold
@@ -192,12 +202,20 @@ public class ControladoraPartida {
             }
             //Segon bucle
             for (int i = 0; i <= boto; i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
-
+            //Mira SI algun jugador (que no a fet fold) a apostat diferent
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
@@ -216,6 +234,7 @@ public class ControladoraPartida {
                 for (Jugador j : partida.getJugadors()) {
                     j.setTorn(new Torn(j));
                 }
+                countFase++;
             }
         }
     }
@@ -224,13 +243,14 @@ public class ControladoraPartida {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 3);
         gui.mostrarCartesComunitaries(publiques);
-        int minima = 0;
-        int numJugadorsTornFinalitzat = 0;
+
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
         }
 
         boolean fi = false;
+        //num vegades que fa la mateixa fase (igualant les apostes)
+        int countFase = 0;
         while (!fi) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
@@ -244,9 +264,17 @@ public class ControladoraPartida {
             }
             //Primer bucle
             for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
             //Mira si hi tothom menys un han fet fold
@@ -261,12 +289,20 @@ public class ControladoraPartida {
             }
             //Segon bucle
             for (int i = 0; i <= boto; i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
-
+            //Mira SI algun jugador (que no a fet fold) a apostat diferent
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
@@ -285,6 +321,7 @@ public class ControladoraPartida {
                 for (Jugador j : partida.getJugadors()) {
                     j.setTorn(new Torn(j));
                 }
+                countFase++;
             }
         }
     }
@@ -293,13 +330,14 @@ public class ControladoraPartida {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
         gui.mostrarCartesComunitaries(publiques);
-        int minima = 0;
-        int numJugadorsTornFinalitzat = 0;
+
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
         }
 
         boolean fi = false;
+        //num vegades que fa la mateixa fase (igualant les apostes)
+        int countFase = 0;
         while (!fi) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
@@ -313,9 +351,17 @@ public class ControladoraPartida {
             }
             //Primer bucle
             for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
             //Mira si hi tothom menys un han fet fold
@@ -330,12 +376,20 @@ public class ControladoraPartida {
             }
             //Segon bucle
             for (int i = 0; i <= boto; i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
-
+            //Mira SI algun jugador (que no a fet fold) a apostat diferent
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
@@ -354,6 +408,7 @@ public class ControladoraPartida {
                 for (Jugador j : partida.getJugadors()) {
                     j.setTorn(new Torn(j));
                 }
+                countFase++;
             }
         }
     }
@@ -363,13 +418,13 @@ public class ControladoraPartida {
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
         gui.mostrarCartesComunitaries(publiques);
 
-        int minima = 0;
-        int numJugadorsTornFinalitzat = 0;
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
         }
 
         boolean fi = false;
+        //num vegades que fa la mateixa fase (igualant les apostes)
+        int countFase = 0;
         while (!fi) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
@@ -383,9 +438,17 @@ public class ControladoraPartida {
             }
             //Primer bucle
             for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
             //Mira si hi tothom menys un han fet fold
@@ -400,12 +463,20 @@ public class ControladoraPartida {
             }
             //Segon bucle
             for (int i = 0; i <= boto; i++) {
-                gui.setTornActual(partida.getJugadors().get(i).getTorn());
-                if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                    gui.getTornActual().run();
+                //Si no es la primera vegada que el jugador aposta en la fase
+                if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
+                } else if (countFase == 0) {
+                    gui.setTornActual(partida.getJugadors().get(i).getTorn());
+                    if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        gui.getTornActual().run();
+                    }
                 }
             }
-
+            //Mira SI algun jugador (que no a fet fold) a apostat diferent
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
@@ -424,6 +495,7 @@ public class ControladoraPartida {
                 for (Jugador j : partida.getJugadors()) {
                     j.setTorn(new Torn(j));
                 }
+                countFase++;
             }
         }
     }
@@ -445,60 +517,53 @@ public class ControladoraPartida {
     }
 
     public ArrayList<Jugador> determinarGuanyador() {
-
+        for (Jugador j : partida.getJugadors()) {
+            System.out.println("EL " + j.getAlias() + " te: ");
+            System.out.println(j.getMaActual().getCartes());
+        }
         ArrayList<Jugador> posiblesGuanyadors = new ArrayList<Jugador>();
         int comb = 0;
-        for (int i = 0; i
-                < partida.getJugadors().size(); i++) {
-            if (partida.getJugadors().get(i).getMaActual().getCombinacio() > comb) {
+        for (int i = 0; i < partida.getJugadors().size(); i++) {
+            if (partida.getJugadors().get(i).getMaActual().getCombinacio() > comb && !partida.getJugadors().get(i).isHaFetFold()) {
                 comb = partida.getJugadors().get(i).getMaActual().getCombinacio();
             }
-
         }
         for (Jugador j : partida.getJugadors()) {
-            if (j.getMaActual().getCombinacio() == comb) {
+            if (j.getMaActual().getCombinacio() == comb && !j.isHaFetFold()) {
                 posiblesGuanyadors.add(j);
             }
-
         }
         comb = 0;
         if (posiblesGuanyadors.size() > 1) {
             ArrayList<Jugador> jug = new ArrayList<Jugador>();
-            for (int i = 0; i
-                    < posiblesGuanyadors.size(); i++) {
+            for (int i = 0; i < posiblesGuanyadors.size(); i++) {
                 if (posiblesGuanyadors.get(i).getMaActual().getValorMesAlt() > comb) {
                     comb = posiblesGuanyadors.get(i).getMaActual().getValorMesAlt();
                 }
-
             }
             for (Jugador j : posiblesGuanyadors) {
                 if (j.getMaActual().getValorMesAlt() != comb) { //Calcula els jugadors perdedors
                     jug.add(j);
                 }
-
             }
             posiblesGuanyadors.removeAll(jug);//Eliminem els jugadors perdedors.
             jug.clear();
             if (posiblesGuanyadors.size() > 1) {
                 comb = 0;
-                for (int i = 0; i
-                        < posiblesGuanyadors.size(); i++) {
+                for (int i = 0; i < posiblesGuanyadors.size(); i++) {
                     if (posiblesGuanyadors.get(i).getMaActual().getValorDesempat() > comb) {
                         comb = posiblesGuanyadors.get(i).getMaActual().getValorDesempat();
                     }
-
                 }
                 for (Jugador j : posiblesGuanyadors) {
                     if (j.getMaActual().getValorDesempat() != comb) {
                         jug.add(j);
                     }
-
                 }
-
                 posiblesGuanyadors.removeAll(jug);
             }
-
         }
+        System.out.println("Guanyador: " + posiblesGuanyadors.get(0));
         return posiblesGuanyadors;
     }
 
