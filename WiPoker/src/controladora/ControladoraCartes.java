@@ -34,7 +34,7 @@ public class ControladoraCartes {
         if (esEscalaReial) {
             jugador.getMaActual().setCombinacio(10);
             jugador.getMaActual().setValorMesAlt(14);
-            jugador.getMaActual().setValorDesempat(14);
+            //jugador.getMaActual().setValorDesempat(0);
         } else if (!esEscalaReial) {
             jugador.getMaActual().setCombinacio(0);
             jugador.getMaActual().setValorMesAlt(0);
@@ -471,7 +471,7 @@ public class ControladoraCartes {
                     if (valorCartaDuplicada > escala2.get(0).getValor()) {
                         jugador.getMaActual().setValorDesempat(valorCartaDuplicada);
                     } else {
-                        jugador.getMaActual().setValorDesempat(escala2.get(0).getValor());
+                        jugador.getMaActual().setValorDesempat(escala2.get(4).getValor());
                     }
                 } else {
                     jugador.getMaActual().setValorDesempat(valorCartaDuplicada);
@@ -570,15 +570,15 @@ public class ControladoraCartes {
         for (int i = 0; i < cartes.size(); i++) {
             for (int j = i + 1; j < cartes.size(); j++) {
                 if (cartes.get(i).getValor() == cartes.get(j).getValor()) {
-                    if (valorParella1 == -1) {
+                    if (valorParella1 == -1 ) {
                         valorParella1 = cartes.get(i).getValor();
                         numParelles++;
 
-                    } else if (valorParella2 == -1 && valorParella1 != -1) {
+                    } else if (valorParella2 == -1 && valorParella1 != -1 && cartes.get(i).getValor() != valorParella1) {
                         valorParella2 = cartes.get(i).getValor();
                         numParelles++;
 
-                    } else if (valorParella3 == -1 && valorParella2 != -1) {
+                    } else if (valorParella3 == -1 && valorParella2 != -1 && cartes.get(i).getValor() != valorParella2) {
                         valorParella3 = cartes.get(i).getValor();
                         numParelles++;
                     }
@@ -658,5 +658,31 @@ public class ControladoraCartes {
         jugador.getMaActual().setCombinacio(1);
         jugador.getMaActual().setValorMesAlt(num);
         return true;
+    }
+
+    //PROJECTES/////////////////////////////////////////////////////////////////
+
+    public boolean projecteColor(Jugador jugador) {
+        boolean esProjecteColor = false;
+        //SI tens dos cartes PRE-FLOP
+        if (jugador.getMaActual().getCartes().size() == 2) {
+            if (jugador.getMaActual().getCartes().get(0).getPal() == jugador.getMaActual().getCartes().get(1).getPal()) {
+                esProjecteColor = true;
+            }
+        }
+        return esProjecteColor;
+    }
+
+    public boolean projecteEscala(Jugador jugador) {
+        boolean esProjecteEscala = false;
+        ArrayList<Carta> cartes = new ArrayList<Carta>(jugador.getMaActual().getCartes());
+        Collections.sort(cartes);
+        Collections.reverse(cartes);
+        if (cartes.size() == 2) {
+            if (cartes.get(0).getValor() == cartes.get(1).getValor() - 1) {
+                esProjecteEscala = true;
+            }
+        }
+        return esProjecteEscala;
     }
 }
