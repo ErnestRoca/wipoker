@@ -131,7 +131,13 @@ public class ControladoraJoc {
 
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
         for (Jugador j : jugadors) {
+            System.out.println("pot del jugador: " + j.getAlias() + ", " + j.getFitxesActuals());
+        }
+        for (Jugador j : jugadors) {
             j.setFitxesActuals((j.getFitxesActuals() + (pot / jugadors.size())));
+        }
+        for (Jugador j : jugadors) {
+            System.out.println("NOU pot del jugador: " + j.getAlias() + ", " + j.getFitxesActuals());
         }
     }
 }
