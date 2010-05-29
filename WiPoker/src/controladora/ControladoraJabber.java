@@ -27,7 +27,7 @@ public class ControladoraJabber {
     public XMPPConnection connexio;
     public GestioUsuaris gu;
     public Ronda ronda = new Ronda();
-    MultiUserChat sala;
+    private MultiUserChat sala;
 
     public ControladoraJabber(String servidor) throws XMPPException {
         connexio = Connexio.crearConnexio(servidor);
@@ -37,26 +37,27 @@ public class ControladoraJabber {
     }
     //metodo de packetListener
 
-    public void crearSala() throws XMPPException {
-        if (connexio.isConnected()) {
-            sala = new MultiUserChat(connexio, "wipoker");
-            Message m = sala.createMessage();
-            
-
-            //sala.join("peracho87", "apa45787385c");
-        }
+    public void prepararSala() {
+        sala = Connexio.crearSala(connexio, "sala@conf.jabberes.org/andres");
+        
     }
 
     public static void main(String[] args) {
         try {
             ControladoraJabber cj = new ControladoraJabber("jabberes.org");
-            cj.connexio.connect();
+            cj.gu.desconnectar(cj.connexio);
+            cj.gu.conectar(cj.connexio);
+            //cj.connexio.connect();
             System.out.println(cj.connexio.getHost() + cj.connexio.getPort());
             System.out.println(cj.connexio.getServiceName());
             System.out.println(cj.connexio.getAccountManager().supportsAccountCreation());
             //cj.connexio.getAccountManager().createAccount("perachoandres", "apa45787385c");
             cj.connexio.login("perachoandres", "apa45787385c");
-            cj.crearSala();
+            cj.prepararSala();
+            cj.sala.create("sala@conf.jabberes.org/andres");
+            MultiUserChat.isServiceEnabled(cj.connexio, "andres");
+            cj.sala.join("perachoandres", "apa45787385c");
+            System.out.println(cj.sala.getMembers().isEmpty());
             
         } catch (XMPPException ex) {
             Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
