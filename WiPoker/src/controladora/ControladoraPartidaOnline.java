@@ -7,6 +7,9 @@ package controladora;
 
 import domini.Jugador;
 import domini.Ma;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jivesoftware.smack.XMPPException;
 
 /**
  *
@@ -14,8 +17,15 @@ import domini.Ma;
  */
 public class ControladoraPartidaOnline extends ControladoraPartida {
 
+    public ControladoraJabber cj;
+
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui) {
         super(maxJugadors, gui);
+        try {
+            cj = new ControladoraJabber("jabberes.org");
+        } catch (XMPPException ex) {
+            Logger.getLogger(ControladoraPartidaOnline.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public boolean taulaIsFull() {
