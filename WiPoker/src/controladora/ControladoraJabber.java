@@ -8,14 +8,11 @@ import controladora.jabber.Connexio;
 
 import controladora.jabber.GestioUsuaris;
 
-import domini.Aposta;
 import domini.Ronda;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smackx.muc.InvitationListener;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
@@ -38,8 +35,11 @@ public class ControladoraJabber {
     //metodo de packetListener
 
     public void prepararSala() {
-        sala = Connexio.crearSala(connexio, "sala@conf.jabberes.org/andres");
-        
+        sala = Connexio.crearSalaChat(connexio, "sala@conf.jabberes.org/andres");        
+    }
+
+    public void crearJoc() {
+        Connexio.crearSalaJoc("sala@conf.jabberes.org/andres");
     }
 
     public static void main(String[] args) {
