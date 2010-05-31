@@ -4,7 +4,6 @@
  */
 package controladora.jabber;
 
-import org.jivesoftware.smack.ConnectionCreationListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
@@ -12,7 +11,7 @@ import org.jivesoftware.smack.XMPPException;
  *
  * @author wida45787385
  */
-public class GestioUsuaris implements ConnectionCreationListener {
+public class GestioUsuaris {
 
     public void conectar(XMPPConnection connexio) throws XMPPException {
         if (!connexio.isConnected()) {
@@ -44,9 +43,5 @@ public class GestioUsuaris implements ConnectionCreationListener {
         } else {
             System.out.println("aquest servidor no suporta la creacio de comptes");
         }
-    }
-
-    public void connectionCreated(XMPPConnection xmppc) {
-        System.out.println("compte creada");
     }
 }
