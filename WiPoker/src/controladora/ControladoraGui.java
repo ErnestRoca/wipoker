@@ -10,6 +10,7 @@ import domini.Jugador;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jivesoftware.smack.XMPPException;
 import presentacio.GuiTaulell;
 import presentacio.partida.GuiLoginJabberPartida;
 
@@ -21,6 +22,7 @@ public class ControladoraGui {
 
     private boolean login;
     private ControladoraPartida cp;
+    private ControladoraJabber cj;
     private Torn tornActual = new Torn();
     private Fase faseActual = new Fase();
     /** Pseudoatribut per implementar visibilitat d'atribut. */
@@ -34,6 +36,13 @@ public class ControladoraGui {
         login = false;
         faseActual = new Fase();
         this.cp = cp;
+        if (cp instanceof ControladoraPartidaOnline) {
+            try {
+                cj = new ControladoraJabber("jabberes.org");
+            } catch (XMPPException ex) {
+                Logger.getLogger(ControladoraGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public ControladoraPartida getCp() {
@@ -43,6 +52,16 @@ public class ControladoraGui {
     public void setCp(ControladoraPartida cp) {
         this.cp = cp;
     }
+
+    public ControladoraJabber getCj() {
+        return cj;
+    }
+
+    public void setCj(ControladoraJabber cj) {
+        this.cj = cj;
+    }
+
+    
 
     public void setLoginTrue() {
         login = true;
