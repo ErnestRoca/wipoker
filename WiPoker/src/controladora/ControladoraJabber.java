@@ -29,12 +29,9 @@ public class ControladoraJabber {
     public JID jid;
 
     public ControladoraJabber(String servidor) throws XMPPException {
-        connexio = Connexio.crearConnexio(servidor);
-        GestioUsuaris.conectar(connexio);
-        GestioUsuaris.ferLogin(connexio, "perachoandres", "apa45787385c");
-        logat = true;
+        connexio = Connexio.crearConnexio(servidor);         
+        
     }
-    //metodo de packetListener
 
     public void prepararSala(String nomSala, String direccioSala, String alias) {
         //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
