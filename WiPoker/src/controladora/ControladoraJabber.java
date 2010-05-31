@@ -12,6 +12,7 @@ import controladora.jabber.JID;
 import domini.Ronda;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jivesoftware.smack.ConnectionCreationListener;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
@@ -23,7 +24,7 @@ import org.jivesoftware.smackx.muc.UserStatusListener;
  *
  * @author wida45787385
  */
-public class ControladoraJabber implements ConnectionListener, UserStatusListener {
+public class ControladoraJabber implements ConnectionListener, ConnectionCreationListener, UserStatusListener {
 
     public XMPPConnection connexio;
     public GestioUsuaris gu;
@@ -62,7 +63,7 @@ public class ControladoraJabber implements ConnectionListener, UserStatusListene
             cj.connexio.login("perachoandres", "apa45787385c");
             cj.prepararSala();
             cj.sala.create("sala@conf.jabberes.org/andres");
-            MultiUserChat.isServiceEnabled(cj.connexio, "andres");
+            //MultiUserChat.isServiceEnabled(cj.connexio, "andres");
             cj.sala.join("perachoandres", "apa45787385c");
             System.out.println(cj.sala.getMembers().isEmpty());
             
@@ -137,5 +138,9 @@ public class ControladoraJabber implements ConnectionListener, UserStatusListene
 
     public void adminRevoked() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void connectionCreated(XMPPConnection xmppc) {
+        System.out.println("connectat");
     }
 }
