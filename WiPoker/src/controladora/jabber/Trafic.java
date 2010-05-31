@@ -8,11 +8,9 @@ package controladora.jabber;
 import domini.Aposta;
 import domini.Carta;
 import domini.Jugador;
-import java.util.ArrayList;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
-import sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte0;
 
 /**
  *
@@ -51,7 +49,7 @@ public class Trafic {
         Message m = new Message(destinatari, Message.Type.normal);
         m.setProperty("tipus", Aposta.class);
         m.setProperty("jugador", aposta.getJugador());
-        m.setProperty("quanitat", aposta.getQuantitat());
+        m.setProperty("quantitat", aposta.getQuantitat());
         return m;
     }
 
