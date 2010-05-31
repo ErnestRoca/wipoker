@@ -16,16 +16,13 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
  */
 public class Connexio {
 
-    public Connexio(String servidor) {
-        registrarMecanismes();
-    }
-
     public static XMPPConnection crearConnexio(String servidor) {
         ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
         cc.setDebuggerEnabled(false);
         cc.setReconnectionAllowed(false);
         cc.setSASLAuthenticationEnabled(true);
+        registrarMecanismes();
         XMPPConnection connexio = new XMPPConnection(cc);
         return connexio;
     }
