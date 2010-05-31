@@ -6,7 +6,6 @@ package presentacio.partida;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraPartidaLocal;
-import domini.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -136,17 +136,23 @@ public class GuiNovaPartidaOffline {
 
             private GuiTaulell taulell;
 
+            @Override
             public void actionPerformed(ActionEvent e) {
-                jFrame.dispose();
-                gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText())));
-                taulell = new GuiTaulell(gui);
-                taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                new Runnable() {
+                if (!jtfFInicials.getText().equals("")&&(!jtfAlias.getText().equals(""))) {
+                    jFrame.dispose();
+                    gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText())));
+                    taulell = new GuiTaulell(gui);
+                    taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                    new Runnable() {
 
-                    public void run() {
-                        taulell.getjFrame().setVisible(true);
-                    }
-                };
+                        @Override
+                        public void run() {
+                            taulell.getjFrame().setVisible(true);
+                        }
+                    };
+                } else {
+                    JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                }
                 
             }
         });
