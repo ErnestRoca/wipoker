@@ -5,6 +5,8 @@
 package presentacio.jabber;
 
 import controladora.ControladoraGui;
+import controladora.ControladoraJabber;
+import controladora.jabber.GestioUsuaris;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -22,6 +24,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import org.jivesoftware.smack.XMPPException;
 
 /**
  *
@@ -36,10 +39,10 @@ public class GuiLoginJabber {
     private JLabel jlImatgeFons;
     private JLabel jlNom;
     private JLabel jlPassword;
-    private JLabel jlPassword2;
+    private JLabel jlServidor;
     private JTextField jtfNom;
     private JTextField jtfPassword;
-    private JTextField jtfPassword2;
+    private JTextField jtfServidor;
     private JLabel jlCorreu;
     private JTextField jtfCorreu;
     private JButton jbTornar;
@@ -97,15 +100,15 @@ public class GuiLoginJabber {
         jtfPassword.setBounds(170, 210, 120, 24);
         jpFons.add(jtfPassword);
 
-        jlPassword2 = new JLabel();
-        jlPassword2.setBounds(30, 240, 340, 104);
-        jlPassword2.setText("Repeteix contrasenya");
-        jlPassword2.setForeground(Color.red);
-        jpFons.add(jlPassword2);
+        jlServidor = new JLabel();
+        jlServidor.setBounds(30, 240, 340, 104);
+        jlServidor.setText("Servidor");
+        jlServidor.setForeground(Color.red);
+        jpFons.add(jlServidor);
 
-        jtfPassword2 = new JPasswordField();
-        jtfPassword2.setBounds(170, 280, 120, 24);
-        jpFons.add(jtfPassword2);
+        jtfServidor = new JTextField();
+        jtfServidor.setBounds(170, 280, 120, 24);
+        jpFons.add(jtfServidor);
 
         jlCorreu = new JLabel();
         jlCorreu.setBounds(30, 310, 340, 104);
@@ -156,7 +159,14 @@ public class GuiLoginJabber {
 
             public void actionPerformed(ActionEvent event) {
                 if (!gui.isLogin()) {
-                    gui.setLoginTrue();
+                    try {
+                        gui.setLoginTrue();
+                        gui.setCj(new ControladoraJabber(jtfServidor.getText()));
+                        GestioUsuaris.conectar(gui.getCj().connexio);
+                        GestioUsuaris.ferLogin(gui.getCj().connexio, jtfNom.getText(), jtfPassword.getText());
+                    } catch (XMPPException ex) {
+                        Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
