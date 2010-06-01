@@ -133,6 +133,7 @@ public class ControladoraIA {
                 //Flop-->Carta alta
             } else {
                 //fer FOLD                
+                System.out.println();
                 cp.controlJoc.ferFold(jugador);
             }
             //TURN
