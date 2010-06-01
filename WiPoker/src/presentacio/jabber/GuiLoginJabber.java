@@ -6,6 +6,7 @@ package presentacio.jabber;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraJabber;
+import controladora.jabber.Connexio;
 import controladora.jabber.GestioUsuaris;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -159,10 +160,11 @@ public class GuiLoginJabber {
 
             public void actionPerformed(ActionEvent event) {
                 if (!gui.isLogin()) {
-                    try {                        
-                        gui.setCj(new ControladoraJabber(jtfServidor.getText()));
-                        GestioUsuaris.conectar(gui.getCj().connexio);
-                        GestioUsuaris.ferLogin(gui.getCj().connexio, jtfNom.getText(), jtfPassword.getText());
+                    try {
+                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                        GestioUsuaris.conectar(gui.getCjabber().getConnexio());
+                        GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
+                        System.out.println(gui.getCjabber().getConnexio().isAuthenticated());
                         gui.setLogin(true);
                     } catch (XMPPException ex) {
                         gui.setLogin(true);

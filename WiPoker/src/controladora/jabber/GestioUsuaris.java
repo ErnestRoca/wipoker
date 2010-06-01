@@ -22,7 +22,7 @@ public class GestioUsuaris {
             public void run() {
                 if (!connexio.isConnected()) {
                     try {
-                        connexio.connect();
+                        connexio.connect();                        
                     } catch (XMPPException ex) {
                         Logger.getLogger(GestioUsuaris.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -41,14 +41,14 @@ public class GestioUsuaris {
             public void run() {
                 if (!connexio.isAuthenticated() && connexio.isConnected()) {
                     try {
-                        connexio.login(user, password);
-                    } catch (XMPPException ex) {
+                        connexio.login(user, password);                        
+                    } catch (XMPPException ex) {                        
                         Logger.getLogger(GestioUsuaris.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
         };
-        t.start();
+        t.start();       
     }
 
     public static void desconnectar(XMPPConnection connexio) {
