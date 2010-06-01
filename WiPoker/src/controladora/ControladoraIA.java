@@ -22,6 +22,7 @@ public class ControladoraIA {
     public ControladoraIA(Partida partida, ControladoraCartes cc, ControladoraPartida cp) {
         this.partida = partida;
         this.cc = cc;
+        this.cp = cp;
     }
 
     public void calcularAposta(Bot jugador, Fase fase) {
@@ -131,7 +132,7 @@ public class ControladoraIA {
                 }
                 //Flop-->Carta alta
             } else {
-                //fer FOLD
+                //fer FOLD                
                 cp.controlJoc.ferFold(jugador);
             }
             //TURN
