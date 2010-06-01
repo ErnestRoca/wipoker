@@ -36,7 +36,11 @@ public class ControladoraJabber {
     public void setConnexio(XMPPConnection connexio) {
         this.connexio = connexio;
     }
-   
+
+    public MultiUserChat getSala() {
+        return sala;
+    }
+    
     public void prepararSala(String nomSala, String direccioSala, String alias) {
         //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
         String cad = nomSala + "@" + direccioSala + "/" + alias;
