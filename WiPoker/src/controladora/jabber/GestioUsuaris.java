@@ -15,6 +15,16 @@ import org.jivesoftware.smack.XMPPException;
  */
 public class GestioUsuaris {
 
+    public static void connectar(XMPPConnection c) {
+        if (!c.isConnected()) {
+            try {
+                c.connect();
+            } catch (XMPPException ex) {
+                Logger.getLogger(GestioUsuaris.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
     public static void ferLogin(final XMPPConnection connexio, final String user, final String password) throws XMPPException {
         if (connexio.isConnected()) {
             connexio.login(user, password);
