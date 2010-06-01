@@ -162,7 +162,7 @@ public class ControladoraPartida {
 
         }
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
-
+        determinarCombinacioPreFlop();
 
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
@@ -184,6 +184,7 @@ public class ControladoraPartida {
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
+                        
                         gui.getTornActual().run();
                     }
                 } else if (countFase == 0) {
@@ -246,6 +247,7 @@ public class ControladoraPartida {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 3);
         gui.mostrarCartesComunitaries(publiques);
+        determinarCombinacio();
 
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
@@ -366,6 +368,7 @@ public class ControladoraPartida {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
         gui.mostrarCartesComunitaries(publiques);
+        determinarCombinacio();
 
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
@@ -391,12 +394,28 @@ public class ControladoraPartida {
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().resume();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 } else if (countFase == 0) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().resume();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 }
             }
@@ -416,12 +435,29 @@ public class ControladoraPartida {
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().resume();
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 } else if (countFase == 0) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().resume();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 }
             }
@@ -453,7 +489,8 @@ public class ControladoraPartida {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(partida.getJugadors(), baralla, 1);
         gui.mostrarCartesComunitaries(publiques);
-
+        determinarCombinacio();
+        
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
         }
@@ -478,12 +515,28 @@ public class ControladoraPartida {
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().resume();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 } else if (countFase == 0) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().resume();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 }
             }
@@ -503,12 +556,29 @@ public class ControladoraPartida {
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().resume();
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 } else if (countFase == 0) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().resume();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 }
             }
@@ -549,6 +619,15 @@ public class ControladoraPartida {
             } else if (controlCartes.esParella(j)) {
             } else if (controlCartes.valorMesAlt(j)) {
             }
+        }
+    }
+
+    public void determinarCombinacioPreFlop() {
+        for (Jugador j : partida.getJugadors()) {
+            if (controlCartes.esParella(j)) {
+            } else if (controlCartes.projecteColor(j)) {
+            } else if (controlCartes.projecteEscala(j)) {
+            } else if (controlCartes.valorMesAlt(j)) {}
         }
     }
 
