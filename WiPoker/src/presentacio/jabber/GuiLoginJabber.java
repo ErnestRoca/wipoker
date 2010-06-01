@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -158,16 +159,16 @@ public class GuiLoginJabber {
 
         jbLogin.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event) {               
                 if (!gui.isLogin()) {
-                    try {
-                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                        GestioUsuaris.conectar(gui.getCjabber().getConnexio());
-                        GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
-                        System.out.println(gui.getCjabber().getConnexio().isAuthenticated());
+                    try {                        
+                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));                        
+                        GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());                        
                         gui.setLogin(true);
+                        JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
+                        jbTornar.doClick();
                     } catch (XMPPException ex) {
-                        gui.setLogin(true);
+                        gui.setLogin(false);
                         Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }

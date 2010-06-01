@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -39,8 +40,8 @@ public class GuiCrearCompteJabber {
     private JTextField jtfNom;
     private JTextField jtfPassword;
     private JTextField jtfPassword2;
-    private JLabel jlCorreu;
-    private JTextField jtfCorreu;
+    private JLabel jlServidor;
+    private JTextField jtfServidor;
     private JButton jbTornar;
     private JButton jbCrear;
     private JLabel jlBarra;
@@ -111,16 +112,16 @@ public class GuiCrearCompteJabber {
         jtfPassword2.setBounds(170, 280, 120, 24);
         jpFons.add(jtfPassword2);
 
-        jlCorreu = new JLabel();
-        jlCorreu.setBounds(30, 310, 340, 104);
-        jlCorreu.setText("Correu electrónic");
-        jlCorreu.setForeground(Color.red);
-        jlCorreu.setLayout(null);
-        jpFons.add(jlCorreu);
+        jlServidor = new JLabel();
+        jlServidor.setBounds(30, 310, 340, 104);
+        jlServidor.setText("Servidor");
+        jlServidor.setForeground(Color.red);
+        jlServidor.setLayout(null);
+        jpFons.add(jlServidor);
 
-        jtfCorreu = new JTextField(20);
-        jtfCorreu.setBounds(170, 350, 120, 24);
-        jpFons.add(jtfCorreu);
+        jtfServidor = new JTextField(20);
+        jtfServidor.setBounds(170, 350, 120, 24);
+        jpFons.add(jtfServidor);
 
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
@@ -156,6 +157,18 @@ public class GuiCrearCompteJabber {
         jpFons.add(jlImatgeFons);
 
         jFrame.setVisible(true);
+
+        jbCrear.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (gui.getCjabber().getConnexio().getAccountManager().supportsAccountCreation()) {
+
+                } else {
+                    JOptionPane.showMessageDialog(jFrame, "Aquest servidor no suporta la creació de comptes");
+                }
+
+            }
+        } );
 
         jbTornar.addActionListener(new ActionListener() {
             private GuiMenuJabber menu;
