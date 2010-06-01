@@ -61,14 +61,8 @@ public class ControladoraGui {
         this.cj = cj;
     }
 
-    
-
-    public void setLoginTrue() {
-        login = true;
-    }
-
-    public void setLoginFalse() {
-        login = false;
+    public void setLogin(boolean login) {
+        this.login = login;
     }
 
     public boolean isLogin() {

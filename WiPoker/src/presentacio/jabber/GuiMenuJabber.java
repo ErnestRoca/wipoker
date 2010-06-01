@@ -168,7 +168,7 @@ public class GuiMenuJabber {
 
             public void actionPerformed(ActionEvent event) {
                 if (gui.isLogin()) {
-                    gui.setLoginFalse();
+                    gui.setLogin(false);
                 }
             }
         });
