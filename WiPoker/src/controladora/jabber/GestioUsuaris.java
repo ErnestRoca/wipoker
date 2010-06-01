@@ -4,6 +4,8 @@
  */
 package controladora.jabber;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
@@ -13,20 +15,40 @@ import org.jivesoftware.smack.XMPPException;
  */
 public class GestioUsuaris {
 
-    public static void conectar(XMPPConnection connexio) throws XMPPException {
-        Thread t = new Thread();
-        t
-        if (!connexio.isConnected()) {
-            connexio.connect();
-        } else {
-            System.out.println("Ja estas conectat");
-        }
+    public static void conectar(final XMPPConnection connexio) throws XMPPException {
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                if (!connexio.isConnected()) {
+                    try {
+                        connexio.connect();
+                    } catch (XMPPException ex) {
+                        Logger.getLogger(GestioUsuaris.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    System.out.println("Ja estas conectat");
+                }
+            }
+        };
+        t.start();
     }
 
-    public static void ferLogin(XMPPConnection connexio, String user, String password) throws XMPPException {
-        if (!connexio.isAuthenticated() && connexio.isConnected()) {
-            connexio.login(user, password);
-        }         
+    public static void ferLogin(final XMPPConnection connexio, final String user, final String password) throws XMPPException {
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                if (!connexio.isAuthenticated() && connexio.isConnected()) {
+                    try {
+                        connexio.login(user, password);
+                    } catch (XMPPException ex) {
+                        Logger.getLogger(GestioUsuaris.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        };
+        t.start();
     }
 
     public static void desconnectar(XMPPConnection connexio) {

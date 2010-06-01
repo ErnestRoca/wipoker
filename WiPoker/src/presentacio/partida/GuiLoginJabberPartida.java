@@ -201,7 +201,7 @@ public class GuiLoginJabberPartida {
 
             public void actionPerformed(ActionEvent event) {
                 if (!gui.isLogin()) {
-                    gui.setLoginTrue();
+                    gui.setLogin(true);
                 }
                 if (gui.isLogin()) {
                     try {

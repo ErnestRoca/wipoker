@@ -159,12 +159,13 @@ public class GuiLoginJabber {
 
             public void actionPerformed(ActionEvent event) {
                 if (!gui.isLogin()) {
-                    try {
-                        gui.setLoginTrue();
+                    try {                        
                         gui.setCj(new ControladoraJabber(jtfServidor.getText()));
                         GestioUsuaris.conectar(gui.getCj().connexio);
                         GestioUsuaris.ferLogin(gui.getCj().connexio, jtfNom.getText(), jtfPassword.getText());
+                        gui.setLogin(true);
                     } catch (XMPPException ex) {
+                        gui.setLogin(true);
                         Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
