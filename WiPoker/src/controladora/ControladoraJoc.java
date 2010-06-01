@@ -120,7 +120,16 @@ public class ControladoraJoc {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior + dinersApostats);
         boolean esSuficient = (apostaMinima - quantitatAnterior ) < dinersApostats;
+        double dinersMinJug = -1;
+        for (Jugador j: fase.getRonda().getPartida().getJugadors()) {
+            if (j.getFitxesActuals() < dinersMinJug ||dinersMinJug < 0) {
+                dinersMinJug = j.getFitxesActuals();
+            }
+        }
         if (teDiners && esSuficient) {
+            if (dinersMinJug < dinersApostats) {
+                dinersApostats = (int) dinersMinJug;
+            }
             apostar(jugador,(int) (apostaMinima - quantitatAnterior + dinersApostats), fase);
             System.out.println("aposta de " + (apostaMinima - quantitatAnterior + dinersApostats));
             fase.setApostaMinima((int) (apostaMinima + dinersApostats));
