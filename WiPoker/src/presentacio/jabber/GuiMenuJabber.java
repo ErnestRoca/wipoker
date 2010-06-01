@@ -5,6 +5,7 @@
 package presentacio.jabber;
 
 import controladora.ControladoraGui;
+import controladora.jabber.GestioUsuaris;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -45,7 +46,7 @@ public class GuiMenuJabber {
 
     public GuiMenuJabber(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
-        iniciarComponents();        
+        iniciarComponents();
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -167,8 +168,13 @@ public class GuiMenuJabber {
         jbTancarSessio.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent event) {
-                if (gui.isLogin()) {
+                if (gui.isLogin() && gui.getCjabber() != null) {
                     gui.setLogin(false);
+                }
+                if (gui.getCjabber().getConnexio() != null) {
+                    System.out.println(gui.getCjabber() == null);
+                    System.out.println(gui.getCjabber().getConnexio() == null);
+                    GestioUsuaris.desconnectar(gui.getCjabber().getConnexio());
                 }
             }
         });
