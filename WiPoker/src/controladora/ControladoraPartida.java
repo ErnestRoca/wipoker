@@ -272,10 +272,11 @@ public class ControladoraPartida {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
-                            System.out.println(partida.getJugadors().get(i) instanceof Bot);
-                            Bot bot = (Bot) partida.getJugadors().get(i);                         
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getJbcheck().doClick();
                             bot.jugadaBot(controlIA, fase);
-                            gui.getTornActual().resume();
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
                         } else {
                             gui.getTornActual().run();
                         }
@@ -285,9 +286,10 @@ public class ControladoraPartida {
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
-                            gui.getTornActual().run();
+                            gui.getJbcheck().doClick();
                             bot.jugadaBot(controlIA, fase);
-                            gui.getTornActual().resume();
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
                         } else {
                             gui.getTornActual().run();
                         }
@@ -312,9 +314,11 @@ public class ControladoraPartida {
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
-                            gui.getTornActual().run();
+                            
                             bot.jugadaBot(controlIA, fase);
-                            gui.getTornActual().resume();
+                            gui.getJbcheck().doClick();
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
                         } else {
                             gui.getTornActual().run();
                         }
@@ -324,9 +328,10 @@ public class ControladoraPartida {
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
-                            gui.getTornActual().run();
+                            gui.getJbcheck().doClick();
                             bot.jugadaBot(controlIA, fase);
-                            gui.getTornActual().resume();
+                            gui.getTornActual().run();
+                            //gui.getTornActual().resume();
                         } else {
                             gui.getTornActual().run();
                         }
