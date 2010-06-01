@@ -15,47 +15,18 @@ import org.jivesoftware.smack.XMPPException;
  */
 public class GestioUsuaris {
 
-    public static void conectar(final XMPPConnection connexio) throws XMPPException {
-        Thread t = new Thread() {
-
-            @Override
-            public void run() {
-                if (!connexio.isConnected()) {
-                    try {
-                        connexio.connect();                        
-                    } catch (XMPPException ex) {
-                        Logger.getLogger(GestioUsuaris.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    System.out.println("Ja estas conectat");
-                }
-            }
-        };
-        t.start();
-    }
-
     public static void ferLogin(final XMPPConnection connexio, final String user, final String password) throws XMPPException {
-        Thread t = new Thread() {
-
-            @Override
-            public void run() {
-                if (!connexio.isAuthenticated() && connexio.isConnected()) {
-                    try {
-                        connexio.login(user, password);                        
-                    } catch (XMPPException ex) {                        
-                        Logger.getLogger(GestioUsuaris.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        };
-        t.start();       
+        if (connexio.isConnected()) {
+            connexio.login(user, password);
+        } else {
+            connexio.connect();
+            connexio.login(user, password);
+        }
     }
 
     public static void desconnectar(XMPPConnection connexio) {
         if (connexio.isConnected()) {
             connexio.disconnect();
-        } else {
-            System.out.println("no estas conectat");
         }
     }
 
@@ -66,6 +37,7 @@ public class GestioUsuaris {
             } else {
                 System.out.println("les contrasenyes no coincideixen");
             }
+
         } else {
             System.out.println("aquest servidor no suporta la creacio de comptes");
         }
