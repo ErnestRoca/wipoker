@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author wida45787385
  */
-public class Torn implements Runnable {
+public class Torn  {
     
     private Jugador jugadorTorn;
     private boolean continuar = false;
