@@ -933,19 +933,20 @@ public class GuiTaulell {
                 //crear jlabel con dinero
                 if (!(gui.getTornActual().getJugadorTorn() instanceof Bot) && !(Fase.getNumFase() == 2)) {
                     gui.doCheck(10);
+                    System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
                 }
-                
+
                 gui.getTornActual().resume();
-                System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
+
             }
         });
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 //if (!(gui.getTornActual().getJugadorTorn() instanceof Bot)) {
-                    gui.doCall();
+                gui.doCall();
                 //}
-                
+
                 gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa bet");
             }
