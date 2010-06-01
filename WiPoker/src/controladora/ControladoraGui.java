@@ -10,6 +10,7 @@ import domini.Jugador;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import org.jivesoftware.smack.XMPPException;
 import presentacio.GuiTaulell;
 import presentacio.partida.GuiLoginJabberPartida;
@@ -27,12 +28,17 @@ public class ControladoraGui {
     private Fase faseActual = new Fase();
     /** Pseudoatribut per implementar visibilitat d'atribut. */
     private GuiTaulell taulell;
+    private JButton jbcheck;
+    private JButton jbBet;
+    private JButton jbFold;
+    private JButton jbRise;
 
     public ControladoraGui() {
 
     }
 
     public ControladoraGui(ControladoraPartida cp) {
+
         login = false;
         faseActual = new Fase();
         this.cp = cp;
@@ -44,6 +50,8 @@ public class ControladoraGui {
             }
         }
     }
+
+
 
     public ControladoraPartida getCp() {
         return cp;
@@ -79,6 +87,10 @@ public class ControladoraGui {
 
     public void setTaulell (GuiTaulell t) {
         this.taulell = t;
+        jbcheck = taulell.getJbCheck();
+        jbBet = taulell.getJbBet();
+        jbFold = taulell.getJbFold();
+        jbRise = taulell.getJbRise();
     }
 
     public Torn getTornActual() {
