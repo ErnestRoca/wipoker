@@ -272,8 +272,8 @@ public class ControladoraPartida {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
-                            Bot bot = (Bot) partida.getJugadors().get(i);
-                            gui.getTornActual().run();
+                            System.out.println(partida.getJugadors().get(i) instanceof Bot);
+                            Bot bot = (Bot) partida.getJugadors().get(i);                         
                             bot.jugadaBot(controlIA, fase);
                             gui.getTornActual().resume();
                         } else {
