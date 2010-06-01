@@ -5,6 +5,7 @@
 package controladora;
 
 import domini.Baralla;
+import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
@@ -26,7 +27,7 @@ public class ControladoraPartida {
     public Baralla baralla;
     public Partida partida;
     public ControladoraCartes controlCartes = new ControladoraCartes();
-    public ControladoraIA controlIA = new ControladoraIA(partida, controlCartes);
+    public ControladoraIA controlIA;
     public ControladoraJoc controlJoc = new ControladoraJoc();
     public ControladoraGui gui;
 
@@ -35,8 +36,10 @@ public class ControladoraPartida {
         baralla = controlJoc.crearBaralla();
         taula = new Taula(maxJugadors, baralla);
         partida = new Partida(Calendar.getInstance());
+
         taula.setPartidaActual(partida);
         partida.setJugadors(new ArrayList<Jugador>(maxJugadors));
+        controlIA = new ControladoraIA(partida, controlCartes, this);
     }
 
     public void jugar() throws InterruptedException {
@@ -268,12 +271,26 @@ public class ControladoraPartida {
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().run();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 } else if (countFase == 0) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().run();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 }
             }
@@ -293,12 +310,26 @@ public class ControladoraPartida {
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().run();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 } else if (countFase == 0) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
-                        gui.getTornActual().run();
+                        if (partida.getJugadors().get(i) instanceof Bot) {
+                            Bot bot = (Bot) partida.getJugadors().get(i);
+                            gui.getTornActual().run();
+                            bot.jugadaBot(controlIA, fase);
+                            gui.getTornActual().resume();
+                        } else {
+                            gui.getTornActual().run();
+                        }
                     }
                 }
             }
