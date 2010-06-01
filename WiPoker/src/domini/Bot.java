@@ -4,6 +4,7 @@
  */
 package domini;
 
+import controladora.ControladoraIA;
 import controladora.Torn;
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class Bot extends Jugador {
     private Ma maActual;
     private Aposta aposta;
     private Torn torn;
+    private boolean haFetFold = false;
 
     public Bot(String alias, int fitxesInicials) {
         super(alias, fitxesInicials);
@@ -31,9 +33,17 @@ public class Bot extends Jugador {
         torn = new Torn();
     }
 
-    public double jugadaBot() {
+    public void jugadaBot(ControladoraIA ci, Fase fase) {
+        ci.calcularAposta(this, fase);
+    }
 
-        return 0.0;
+    @Override
+    public boolean isHaFetFold() {
+        return haFetFold;
+    }
+
+    public void setHaFetFold(Boolean haFetFold) {
+        this.haFetFold = haFetFold;
     }
 
     @Override
