@@ -273,7 +273,7 @@ public class ControladoraPartida {
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
-                            gui.getJbcheck().doClick();
+                            gui.getTornActual().resume();
                             bot.jugadaBot(controlIA, fase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -286,7 +286,7 @@ public class ControladoraPartida {
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
-                            gui.getJbcheck().doClick();
+                            gui.getTornActual().resume();
                             bot.jugadaBot(controlIA, fase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -316,7 +316,7 @@ public class ControladoraPartida {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             
                             bot.jugadaBot(controlIA, fase);
-                            gui.getJbcheck().doClick();
+                            gui.getTornActual().resume();
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
                         } else {
@@ -328,7 +328,7 @@ public class ControladoraPartida {
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
-                            gui.getJbcheck().doClick();
+                            gui.getTornActual().resume();
                             bot.jugadaBot(controlIA, fase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
