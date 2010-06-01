@@ -1,6 +1,8 @@
 package presentacio;
 
 import controladora.ControladoraGui;
+import domini.Bot;
+import domini.Fase;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -929,7 +931,10 @@ public class GuiTaulell {
 
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero
-                gui.doCheck(10);
+                if (!(gui.getTornActual().getJugadorTorn() instanceof Bot) && !(Fase.getNumFase() == 2)) {
+                    gui.doCheck(10);
+                }
+                
                 gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
             }
@@ -937,7 +942,10 @@ public class GuiTaulell {
         jbBet.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                gui.doCall();
+                //if (!(gui.getTornActual().getJugadorTorn() instanceof Bot)) {
+                    gui.doCall();
+                //}
+                
                 gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa bet");
             }
