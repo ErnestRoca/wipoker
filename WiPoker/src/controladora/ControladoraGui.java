@@ -51,7 +51,25 @@ public class ControladoraGui {
         }
     }
 
+    public JButton getJbBet() {
+        return jbBet;
+    }
 
+    public JButton getJbFold() {
+        return jbFold;
+    }
+
+    public JButton getJbRise() {
+        return jbRise;
+    }
+
+    public JButton getJbcheck() {
+        return jbcheck;
+    }
+
+    public GuiTaulell getTaulell() {
+        return taulell;
+    }
 
     public ControladoraPartida getCp() {
         return cp;
