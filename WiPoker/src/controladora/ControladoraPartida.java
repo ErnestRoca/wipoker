@@ -47,6 +47,7 @@ public class ControladoraPartida {
         fiPartida = false;
         gui.ocultarPanellsJugadors();
         gui.mostrarAvatars(partida.getJugadors());
+        gui.gestionarFitxes(partida.getJugadors());
         Collections.sort(partida.getJugadors(), new Comparator() {
 
             @Override
@@ -92,6 +93,7 @@ public class ControladoraPartida {
             for (Jugador j : partida.getJugadors()) {
                 j.getAposta().setQuantitat(0);
             }
+            gui.gestionarFitxes(partida.getJugadors());
             int numJugadorsFold = 0;
             for (Jugador j : partida.getJugadors()) {
                 if (j.isHaFetFold()) {
