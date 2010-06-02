@@ -10,7 +10,9 @@ import domini.Jugador;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import presentacio.GuiTaulell;
 import presentacio.partida.GuiLoginJabberPartida;
@@ -195,6 +197,25 @@ public class ControladoraGui {
         ArrayList<JPanel> panells = taulell.getPanellsJugadors();
         for (int i = 0; i < panells.size(); i++) {
             panells.get(i).setVisible(false);
+        }
+    }
+
+    //Posa les imatges dels jugadors a la taula juntament amb els seus diners i nom.
+    public void gestionarFitxes(ArrayList<Jugador> jugadors) {
+        ArrayList<JLabel> fitxes = taulell.getFitxesjugadors();
+        for (int i = 0; i < jugadors.size(); i++) {//a<= x && x<= b
+            if (jugadors.get(i).getFitxesActuals() <= ((25 * jugadors.get(0).getFitxesInicials()) / 100)) {
+                fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
+
+            } else if (((25 * jugadors.get(0).getFitxesInicials()) / 100) <= jugadors.get(i).getFitxesActuals() && jugadors.get(i).getFitxesActuals() <= ((50 * jugadors.get(0).getFitxesInicials()) / 100)) {
+                fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 2 + ".png")));
+
+            } else if (((50 * jugadors.get(0).getFitxesInicials()) / 100) <= jugadors.get(i).getFitxesActuals() && jugadors.get(i).getFitxesActuals() <= ((75 * jugadors.get(0).getFitxesInicials()) / 100)) {
+                fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 3 + ".png")));
+
+            } else if (((75 * jugadors.get(0).getFitxesInicials()) / 100) <= jugadors.get(i).getFitxesActuals() && jugadors.get(i).getFitxesActuals() <= ((100 * jugadors.get(0).getFitxesInicials()) / 100)) {
+                fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
+            }
         }
     }
 
