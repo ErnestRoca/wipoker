@@ -5,6 +5,8 @@
 package presentacio.jabber;
 
 import controladora.ControladoraGui;
+import controladora.jabber.Connexio;
+import controladora.jabber.GestioUsuaris;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -23,6 +25,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import org.jivesoftware.smack.XMPPException;
 
 /**
  *
@@ -55,8 +58,6 @@ public class GuiCrearCompteJabber {
         this.gui = gui;
         iniciarComponents();
     }
-
-
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -161,16 +162,35 @@ public class GuiCrearCompteJabber {
         jbCrear.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if (gui.getCjabber().getConnexio().getAccountManager().supportsAccountCreation()) {
-
+                if (gui.getCjabber().getConnexio() == null) {
+                    if (jtfServidor.getText() == null || jtfServidor.getText().equals("")) {
+                        String servidor = JOptionPane.showInputDialog("A quin servidor creem el compte?");
+                        gui.getCjabber().setConnexio(Connexio.crearConnexio(servidor));
+                        GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                    } else {
+                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                        GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(jFrame, "Aquest servidor no suporta la creació de comptes");
+                    if (gui.getCjabber().getConnexio().getAccountManager().supportsAccountCreation()) {
+                        if (jtfPassword.getText().equals(jtfPassword2.getText())) {
+                            try {
+                                gui.getCjabber().getConnexio().getAccountManager().createAccount(jtfNom.getText(), jtfPassword.getText());
+                            } catch (XMPPException ex) {
+                                Logger.getLogger(GuiCrearCompteJabber.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(jFrame, "Les contrasenyes no coincideixen");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(jFrame, "Aquest servidor no suporta la creació de comptes");
+                    }
                 }
-
             }
-        } );
+        });
 
         jbTornar.addActionListener(new ActionListener() {
+
             private GuiMenuJabber menu;
 
             public void actionPerformed(ActionEvent event) {
