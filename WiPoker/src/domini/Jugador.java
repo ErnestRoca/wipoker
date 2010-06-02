@@ -30,7 +30,7 @@ public class Jugador {
     private Torn torn;
     private ImageIcon imatge;
 
-    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula , String avatar)  {
+    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula, String avatar) {
         this.dni = dni;
         this.nomComplet = nomComplet;
         this.alias = alias;
@@ -40,7 +40,7 @@ public class Jugador {
         maActual = new Ma(new ArrayList<Carta>());
         this.torn = new Torn(this);
         try {
-            imatge = new ImageIcon(Carta.class.getResource("/serveis/imatges/avatar.png"));
+            imatge = new ImageIcon(Carta.class.getResource("/serveis/imatges/" + avatar + ".png"));
         } catch (Exception ex) {
             System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
         }
