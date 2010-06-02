@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import presentacio.GuiTaulell;
 import presentacio.partida.GuiLoginJabberPartida;
 
@@ -185,7 +186,15 @@ public class ControladoraGui {
     public void mostrarAvatars(ArrayList<Jugador> jugadors) {
         for (int i = 0; i < jugadors.size(); i++) {
             taulell.getAvatars().get(i).setIcon(jugadors.get(i).getImatge());
-            taulell.getAvatars().get(i).setVisible(true);
+            taulell.getPanellsJugadors().get(i).setVisible(true);
+        }
+    }
+
+    //Posa les imatges dels jugadors a la taula juntament amb els seus diners i nom.
+    public void ocultarPanellsJugadors() {
+        ArrayList<JPanel> panells = taulell.getPanellsJugadors();
+        for (int i = 0; i < panells.size(); i++) {
+            panells.get(i).setVisible(false);
         }
     }
 

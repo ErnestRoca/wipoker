@@ -30,7 +30,8 @@ import javax.swing.SwingConstants;
  */
 public class GuiTaulell {
 
-    ArrayList<JLabel> Avatars = new ArrayList<JLabel>();
+    ArrayList<JLabel> avatars = new ArrayList<JLabel>();
+    ArrayList<JPanel> panellsJugadors = new ArrayList<JPanel>();
     private JFrame jFrame;
     private JPanel jPanelGlobal;
     private JPanel jPanelBotons;
@@ -171,7 +172,6 @@ public class GuiTaulell {
         jPanelGlobal = new JPanelGlobal();
         jPanelGlobal.setBackground(Color.WHITE);
         jPanelGlobal.setLayout(null);
-        jPanelGlobal.setBorder(null);
         jPanelGlobal.setBounds(0, 25, 1024, 761);
         jFrame.add(jPanelGlobal);
 
@@ -189,7 +189,6 @@ public class GuiTaulell {
         jPanelCartesTaula = new JPanel();
         jPanelCartesTaula.setOpaque(false);
         jPanelCartesTaula.setLayout(null);
-        jPanelCartesTaula.setBorder(null);
         final int xCartes = 310;
         final int yCartes = 250;
         final int wCartes = 375;
@@ -207,6 +206,7 @@ public class GuiTaulell {
         final int h1 = 213;
         jPanelJugador01.setBounds(x1, y1, w1, h1);
         jPanelJugador01.setLayout(null);
+        panellsJugadors.add(jPanelJugador01);
         jPanelGlobal.add(jPanelJugador01);
 
         jPanelJugador02 = new JPanel();
@@ -218,6 +218,7 @@ public class GuiTaulell {
         final int h2 = 200;
         jPanelJugador02.setBounds(x2, y2, w2, h2);
         jPanelJugador02.setLayout(null);
+        panellsJugadors.add(jPanelJugador02);
         jPanelGlobal.add(jPanelJugador02);
 
         jPanelJugador03 = new JPanel();
@@ -229,6 +230,7 @@ public class GuiTaulell {
         final int h3 = 200;
         jPanelJugador03.setBounds(x3, y3, w3, h3);
         jPanelJugador03.setLayout(null);
+        panellsJugadors.add(jPanelJugador03);
         jPanelGlobal.add(jPanelJugador03);
 
         jPanelJugador04 = new JPanel();
@@ -240,6 +242,7 @@ public class GuiTaulell {
         final int h4 = 250;
         jPanelJugador04.setBounds(x4, y4, w4, h4);
         jPanelJugador04.setLayout(null);
+        panellsJugadors.add(jPanelJugador04);
         jPanelGlobal.add(jPanelJugador04);
 
         jPanelJugador05 = new JPanel();
@@ -251,6 +254,7 @@ public class GuiTaulell {
         final int h5 = 250;
         jPanelJugador05.setBounds(x5, y5, w5, h5);
         jPanelJugador05.setLayout(null);
+        panellsJugadors.add(jPanelJugador05);
         jPanelGlobal.add(jPanelJugador05);
 
         jPanelJugador06 = new JPanel();
@@ -262,6 +266,7 @@ public class GuiTaulell {
         final int h6 = 250;
         jPanelJugador06.setBounds(x6, y6, w6, h6);
         jPanelJugador06.setLayout(null);
+        panellsJugadors.add(jPanelJugador06);
         jPanelGlobal.add(jPanelJugador06);
 
         jPanelJugador07 = new JPanel();
@@ -273,6 +278,7 @@ public class GuiTaulell {
         final int h7 = h1;
         jPanelJugador07.setBounds(x7, y7, w7, h7);
         jPanelJugador07.setLayout(null);
+        panellsJugadors.add(jPanelJugador07);
         jPanelGlobal.add(jPanelJugador07);
 
         jPanelJugador08 = new JPanel();
@@ -284,6 +290,7 @@ public class GuiTaulell {
         final int h8 = h1;
         jPanelJugador08.setBounds(x8, y8, w8, h8);
         jPanelJugador08.setLayout(null);
+        panellsJugadors.add(jPanelJugador08);
         jPanelGlobal.add(jPanelJugador08);
 
         jPanelJugador09 = new JPanel();
@@ -295,6 +302,7 @@ public class GuiTaulell {
         final int h9 = h1;
         jPanelJugador09.setBounds(x9, y9, w9, h9);
         jPanelJugador09.setLayout(null);
+        panellsJugadors.add(jPanelJugador09);
         jPanelGlobal.add(jPanelJugador09);
 
         jPanelCrupier = new JPanel();
@@ -366,7 +374,6 @@ public class GuiTaulell {
         final int w1 = 73;
         final int h1 = 97;
         jlCarta01Usuari.setBounds(x1, y1, w1, h1);
-        jlCarta01Usuari.setVisible(false);
         jPanelUsuari.add(jlCarta01Usuari);
 
         jlCarta02Usuari = new JLabel();
@@ -376,7 +383,6 @@ public class GuiTaulell {
         final int w2 = w1;
         final int h2 = h1;
         jlCarta02Usuari.setBounds(x2, y2, w2, h2);
-        jlCarta02Usuari.setVisible(false);
         jPanelUsuari.add(jlCarta02Usuari);
     }
 
@@ -441,7 +447,7 @@ public class GuiTaulell {
         jlAvatar01.setBounds(x1, y1, w1, h1);
         jPanelJugador01.add(jlAvatar01);
         jlAvatar01.setVisible(false);
-        Avatars.add(jlAvatar01);
+        avatars.add(jlAvatar01);
 
         jlFitxes01 = new JLabel();
         jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
@@ -484,8 +490,7 @@ public class GuiTaulell {
         final int h1 = 100;
         jlAvatar02.setBounds(x1, y1, w1, h1);
         jPanelJugador02.add(jlAvatar02);
-        jlAvatar02.setVisible(false);
-        Avatars.add(jlAvatar02);
+        avatars.add(jlAvatar02);
 
         jlFitxes02 = new JLabel();
         jlFitxes02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
@@ -528,8 +533,7 @@ public class GuiTaulell {
         final int h1 = 100;
         jlAvatar03.setBounds(x1, y1, w1, h1);
         jPanelJugador03.add(jlAvatar03);
-        jlAvatar03.setVisible(false);
-        Avatars.add(jlAvatar03);
+        avatars.add(jlAvatar03);
 
         jlFitxes03 = new JLabel();
         jlFitxes03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
@@ -582,8 +586,7 @@ public class GuiTaulell {
         final int h2 = 100;
         jlAvatar04.setBounds(x2, y2, w2, h2);
         jPanelJugador04.add(jlAvatar04);
-        jlAvatar04.setVisible(false);
-        Avatars.add(jlAvatar04);
+        avatars.add(jlAvatar04);
 
         jlNom04 = new JLabel();
         jlNom04.setText("Jugador04");
@@ -626,8 +629,7 @@ public class GuiTaulell {
         final int h2 = 100;
         jlAvatar05.setBounds(x2, y2, w2, h2);
         jPanelJugador05.add(jlAvatar05);
-        jlAvatar05.setVisible(false);
-        Avatars.add(jlAvatar05);
+        avatars.add(jlAvatar05);
 
         jlNom05 = new JLabel();
         jlNom05.setText("Jugador05");
@@ -670,8 +672,7 @@ public class GuiTaulell {
         final int h2 = 100;
         jlAvatar06.setBounds(x2, y2, w2, h2);
         jPanelJugador06.add(jlAvatar06);
-        jlAvatar06.setVisible(false);
-        Avatars.add(jlAvatar06);
+        avatars.add(jlAvatar06);
 
         jlNom06 = new JLabel();
         jlNom06.setText("Jugador06");
@@ -714,8 +715,7 @@ public class GuiTaulell {
         final int h2 = 100;
         jlAvatar07.setBounds(x2, y2, w2, h2);
         jPanelJugador07.add(jlAvatar07);
-        jlAvatar07.setVisible(false);
-        Avatars.add(jlAvatar07);
+        avatars.add(jlAvatar07);
 
         jlNom07 = new JLabel();
         jlNom07.setText("Jugador07");
@@ -758,8 +758,7 @@ public class GuiTaulell {
         final int h2 = 100;
         jlAvatar08.setBounds(x2, y2, w2, h2);
         jPanelJugador08.add(jlAvatar08);
-        jlAvatar08.setVisible(false);
-        Avatars.add(jlAvatar08);
+        avatars.add(jlAvatar08);
 
         jlNom08 = new JLabel();
         jlNom08.setText("Jugador08");
@@ -793,8 +792,7 @@ public class GuiTaulell {
         final int h1 = 100;
         jlAvatar09.setBounds(x1, y1, w1, h1);
         jPanelJugador09.add(jlAvatar09);
-        jlAvatar09.setVisible(false);
-        Avatars.add(jlAvatar09);
+        avatars.add(jlAvatar09);
 
         jlFitxes09 = new JLabel();
         jlFitxes09.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
@@ -915,6 +913,7 @@ public class GuiTaulell {
 
             private GuiMenu menu;
 
+            @Override
             public void actionPerformed(final ActionEvent evt) {
                 try {
                     jFrame.dispose();
@@ -929,6 +928,7 @@ public class GuiTaulell {
 
         jbCheck.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero
                 if (!(gui.getTornActual().getJugadorTorn() instanceof Bot) && !(Fase.getNumFase() == 2)) {
@@ -942,6 +942,7 @@ public class GuiTaulell {
         });
         jbBet.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 //if (!(gui.getTornActual().getJugadorTorn() instanceof Bot)) {
                 gui.doCall();
@@ -954,6 +955,7 @@ public class GuiTaulell {
 
         jbRise.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 gui.doRise(30);
                 gui.getTornActual().resume();
@@ -962,6 +964,7 @@ public class GuiTaulell {
         });
         jbFold.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 gui.doFold();
                 gui.getTornActual().resume();
@@ -1376,11 +1379,19 @@ public class GuiTaulell {
     }
 
     public ArrayList<JLabel> getAvatars() {
-        return Avatars;
+        return avatars;
     }
 
     public void setAvatars(ArrayList<JLabel> Avatars) {
-        this.Avatars = Avatars;
+        this.avatars = Avatars;
+    }
+
+    public ArrayList<JPanel> getPanellsJugadors() {
+        return panellsJugadors;
+    }
+
+    public void setPanellsJugadors(ArrayList<JPanel> panellsJugadors) {
+        this.panellsJugadors = panellsJugadors;
     }
 
     /**
@@ -1390,6 +1401,7 @@ public class GuiTaulell {
     public static void main(final String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new GuiTaulell();
             }

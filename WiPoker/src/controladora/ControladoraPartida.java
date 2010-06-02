@@ -43,9 +43,11 @@ public class ControladoraPartida {
     }
 
     public void jugar() throws InterruptedException {
+        gui.ocultarPanellsJugadors();
         gui.mostrarAvatars(partida.getJugadors());
         Collections.sort(partida.getJugadors(), new Comparator() {
 
+            @Override
             public int compare(Object o1, Object o2) {
                 Jugador j1 = (Jugador) o1;
                 Jugador j2 = (Jugador) o2;
