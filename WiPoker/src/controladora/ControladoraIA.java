@@ -32,7 +32,6 @@ public class ControladoraIA {
         //Ronda ultimaRonda = cp.partida.getRondes().get(cp.partida.getRondes().size() -1);
         Fase ultimafase = fase;
         double apostaMinima = ultimafase.getApostaMinima();
-        System.out.println("hola");
         //PRE-FLOP
         if (Fase.getNumFase() == 1) {
             if (valorCombinacio == 2) {
@@ -71,7 +70,7 @@ public class ControladoraIA {
                 if (jugador.getFitxesActuals() >= apostaMinima) {
                     cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
                 }
-            } else if (valorCombinacio == 1) {
+            } else  {
                 if (apostaMinima < jugador.getFitxesActuals() / 5) {
                     if (valorMesAlt >= 10) {
                         cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
@@ -138,8 +137,112 @@ public class ControladoraIA {
             }
             //TURN
         } else if (Fase.getNumFase() == 3) {
+            if (valorCombinacio >= 4) {
+                if (apostaMinima > 0) {
+                    if (jugador.getFitxesActuals() >= apostaMinima * 5) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 5));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 4) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 4));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 3) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 3));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 2) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 2));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima) {
+                        cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
+                    }
+                } else {
+                    cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, jugador.getFitxesActuals());
+                }
+            } else if (valorCombinacio == 3) {
+                if (apostaMinima > 0) {
+                    if (jugador.getFitxesActuals() >= apostaMinima * 3) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 3));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 2) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 2));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima) {
+                        cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
+                    }
+                } else {
+                    cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, jugador.getFitxesActuals() / 2);
+                }
+
+            } else if (valorCombinacio == 2) {
+                if (apostaMinima > 0) {
+                    if (apostaMinima < jugador.getFitxesActuals() / 4) {
+                        if (valorMesAlt >= 10) {
+                            cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
+                        } else {
+                            cp.controlJoc.ferFold(jugador);
+                        }
+                    } else {
+                        cp.controlJoc.ferFold(jugador);
+                    }
+                } else {
+                    cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
+                }
+
+            } else {
+                if (apostaMinima > 0) {
+                    cp.controlJoc.ferFold(jugador);
+                } else {
+                    cp.controlJoc.ferCheck(jugador, fase,(int) apostaMinima);
+                }
+
+            }
             //RIVER
         } else if (Fase.getNumFase() == 4) {
+            if (valorCombinacio >= 4) {
+                if (apostaMinima > 0) {
+                    if (jugador.getFitxesActuals() >= apostaMinima * 5) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 5));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 4) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 4));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 3) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 3));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 2) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 2));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima) {
+                        cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
+                    }
+                } else {
+                    cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, jugador.getFitxesActuals());
+                }
+            } else if (valorCombinacio == 3) {
+                if (apostaMinima > 0) {
+                    if (jugador.getFitxesActuals() >= apostaMinima * 3) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 3));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima * 2) {
+                        cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, (int) (apostaMinima * 2));
+                    } else if (jugador.getFitxesActuals() >= apostaMinima) {
+                        cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
+                    }
+                } else {
+                    cp.controlJoc.ferRaise(jugador, fase, (int) apostaMinima, jugador.getFitxesActuals() / 2);
+                }
+
+            } else if (valorCombinacio == 2) {
+                if (apostaMinima > 0) {
+                    if (apostaMinima < jugador.getFitxesActuals() / 4) {
+                        if (valorMesAlt >= 10) {
+                            cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
+                        } else {
+                            cp.controlJoc.ferFold(jugador);
+                        }
+                    } else {
+                        cp.controlJoc.ferFold(jugador);
+                    }
+                } else {
+                    cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
+                }
+
+            } else {
+                if (apostaMinima > 0) {
+                    cp.controlJoc.ferFold(jugador);
+                } else {
+                    cp.controlJoc.ferCheck(jugador, fase,(int) apostaMinima);
+                }
+
+            }
         }
     }
 }
