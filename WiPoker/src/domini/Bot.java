@@ -32,19 +32,19 @@ public class Bot extends Jugador {
         torn = new Torn();
     }
 
-    public void jugadaBot(ControladoraIA ci, Fase fase) {
-        ci.calcularAposta(this, fase);
+    public void jugadaBot(ControladoraIA ci, Fase fase, int numVegadesFase) {
+        ci.calcularAposta(this, fase, numVegadesFase);
     }
 
-    @Override
-    public Aposta getAposta() {
-        return aposta;
-    }
-
-    @Override
-    public void setAposta(Aposta aposta) {
-        this.aposta = aposta;
-    }
+//    @Override
+//    public Aposta getAposta() {
+//        return aposta;
+//    }
+//
+//    @Override
+//    public void setAposta(Aposta aposta) {
+//        this.aposta = aposta;
+//    }
 
     @Override
     public int getFitxesActuals() {
