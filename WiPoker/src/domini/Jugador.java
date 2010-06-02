@@ -28,9 +28,9 @@ public class Jugador {
     private Aposta aposta;
     private boolean haFetFold = false;
     private Torn torn;
-    private ImageIcon imatge;
+    private ImageIcon avatar;
 
-    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula, String avatar) {
+    public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula, String nomAvatar) {
         this.dni = dni;
         this.nomComplet = nomComplet;
         this.alias = alias;
@@ -40,7 +40,7 @@ public class Jugador {
         maActual = new Ma(new ArrayList<Carta>());
         this.torn = new Torn(this);
         try {
-            imatge = new ImageIcon(Carta.class.getResource("/serveis/imatges/" + avatar + ".png"));
+            avatar = new ImageIcon(Carta.class.getResource("/serveis/imatges/" + nomAvatar + ".png"));
         } catch (Exception ex) {
             System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
         }
@@ -67,7 +67,7 @@ public class Jugador {
         maActual = new Ma(new ArrayList<Carta>());
         this.torn = new Torn(this);
         try {
-            imatge = new ImageIcon(Carta.class.getResource("/serveis/imatges/bot.png"));
+            avatar = new ImageIcon(Carta.class.getResource("/serveis/imatges/bot.png"));
         } catch (Exception ex) {
             System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
         }
@@ -169,8 +169,12 @@ public class Jugador {
      * Retorna el valor de l'atribut imatge.
      * @return imatge associada a la pesa
      */
-    public ImageIcon getImatge() {
-        return imatge;
+    public ImageIcon getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(ImageIcon avatar) {
+        this.avatar = avatar;
     }
 
     @Override

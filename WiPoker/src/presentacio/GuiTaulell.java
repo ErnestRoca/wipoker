@@ -1,8 +1,6 @@
 package presentacio;
 
 import controladora.ControladoraGui;
-import domini.Bot;
-import domini.Fase;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
