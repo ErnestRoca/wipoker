@@ -115,6 +115,7 @@ public class ControladoraPartida {
                 jugador.setHaFetFold(false);
 
             }
+            jugador.getAposta().setQuantitat(0.0);
         }
     }
 
