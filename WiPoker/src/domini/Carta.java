@@ -5,13 +5,14 @@
 package domini;
 
 // Per implementar associacions i navegabilitats
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author ernest
  */
-public class Carta implements Comparable {
+public class Carta implements Comparable, Serializable {
 
     private final byte pal;
     private final byte valor;
