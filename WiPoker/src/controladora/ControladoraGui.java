@@ -4,6 +4,7 @@
  */
 package controladora;
 
+import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
@@ -189,7 +190,7 @@ public class ControladoraGui {
     //Posa les imatges dels jugadors a la taula juntament amb els seus diners i nom.
     public void mostrarAvatars(ArrayList<Jugador> jugadors) {
         for (int i = 0; i < jugadors.size(); i++) {
-            taulell.getAvatars().get(i).setIcon(jugadors.get(i).getImatge());
+            taulell.getAvatars().get(i).setIcon(jugadors.get(i).getAvatar());
             taulell.getPanellsJugadors().get(i).setVisible(true);
         }
     }
@@ -242,12 +243,28 @@ public class ControladoraGui {
         }
     }
 
+    //Posa les cartes comunitaries damunt la taula.
     public void ocultarCartesComunitaries() {
-            taulell.getJlCarta01().setVisible(false);
-            taulell.getJlCarta02().setVisible(false);
-            taulell.getJlCarta03().setVisible(false);
-            taulell.getJlCarta04().setVisible(false);
-            taulell.getJlCarta05().setVisible(false);
+        taulell.getJlCarta01().setVisible(false);
+        taulell.getJlCarta02().setVisible(false);
+        taulell.getJlCarta03().setVisible(false);
+        taulell.getJlCarta04().setVisible(false);
+        taulell.getJlCarta05().setVisible(false);
+    }
+
+    //Posa les cartes comunitaries damunt la taula.
+    public void setAvatarJugadorActiu(Jugador jugador) {
+        if (jugador instanceof Bot) {
+            taulell.getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/botActiu.png")));
+        }
+
+    }
+
+    //Posa les cartes comunitaries damunt la taula.
+    public void setAvatarJugadorInActiu(Jugador jugador) {
+        if (jugador instanceof Bot) {
+            taulell.getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/bot.png")));
+        }
 
     }
 }
