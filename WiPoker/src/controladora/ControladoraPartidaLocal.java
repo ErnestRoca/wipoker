@@ -16,13 +16,13 @@ public class ControladoraPartidaLocal extends ControladoraPartida {
     public ControladoraPartidaLocal(ControladoraGui gui, String alias, int fitxesInicials) {
         super(8, gui);
         super.partida.getJugadors().add(new Jugador("324", alias, alias, 0, 0, fitxesInicials, alias, fitxesInicials, 0, "avatar"));
-        super.partida.getJugadors().add(new Bot("bot1", fitxesInicials));
-        super.partida.getJugadors().add(new Bot("bot2", fitxesInicials));
-        super.partida.getJugadors().add(new Bot("bot3", fitxesInicials));
-        super.partida.getJugadors().add(new Bot("bot4", fitxesInicials));
-        super.partida.getJugadors().add(new Bot("bot5", fitxesInicials));
-        super.partida.getJugadors().add(new Bot("bot6", fitxesInicials));
-        super.partida.getJugadors().add(new Bot("bot7", fitxesInicials));
+        super.partida.getJugadors().add(new Bot("bot1", fitxesInicials, 1));
+        super.partida.getJugadors().add(new Bot("bot2", fitxesInicials, 2));
+        super.partida.getJugadors().add(new Bot("bot3", fitxesInicials, 3));
+        super.partida.getJugadors().add(new Bot("bot4", fitxesInicials, 4));
+        super.partida.getJugadors().add(new Bot("bot5", fitxesInicials, 5));
+        super.partida.getJugadors().add(new Bot("bot6", fitxesInicials, 6));
+        super.partida.getJugadors().add(new Bot("bot7", fitxesInicials, 7));
         //super.partida.getJugadors().add(new Bot("bot8", fitxesInicials));
     }   
 }

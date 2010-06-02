@@ -22,12 +22,12 @@ public class Bot extends Jugador {
     private Aposta aposta;
     private Torn torn;
 
-    public Bot(String alias, int fitxesInicials) {
+    public Bot(String alias, int fitxesInicials, int posicioTaula) {
         super(alias, fitxesInicials);
         this.alias = alias;
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesInicials;
-        this.posicioTaula = 2;
+        this.posicioTaula = (byte) posicioTaula;
         maActual = new Ma(new ArrayList<Carta>());
         torn = new Torn();
     }
