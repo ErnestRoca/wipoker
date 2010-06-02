@@ -30,6 +30,7 @@ public class ControladoraPartida {
     public ControladoraIA controlIA;
     public ControladoraJoc controlJoc = new ControladoraJoc();
     public ControladoraGui gui;
+    private boolean fiPartida = false;
 
     public ControladoraPartida(int maxJugadors, ControladoraGui gui) {
         this.gui = gui;
@@ -55,7 +56,7 @@ public class ControladoraPartida {
             }
         });
         System.out.println(partida.getJugadors().get(0));
-        while (partida.getJugadors().size() > 1) {
+        while (partida.getJugadors().size() > 1 && fiPartida != true) {
             int boto = 0;
             iniciarRonda(boto);
             boto++;
@@ -169,7 +170,7 @@ public class ControladoraPartida {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
         int countFase = 0;
-        while (!fi) {
+        while (!fi || fiPartida == false) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
@@ -285,7 +286,7 @@ public class ControladoraPartida {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
         int countFase = 0;
-        while (!fi) {
+        while (!fi || fiPartida == false) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
@@ -406,7 +407,7 @@ public class ControladoraPartida {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
         int countFase = 0;
-        while (!fi) {
+        while (!fi || fiPartida == false) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
@@ -720,4 +721,12 @@ public class ControladoraPartida {
         }
         partida.getJugadors().removeAll(jug);
     }
+
+    public boolean isFi() {
+        return fiPartida;
+    }
+
+    public void setFi(boolean fi) {
+        this.fiPartida = fi;
+    }    
 }
