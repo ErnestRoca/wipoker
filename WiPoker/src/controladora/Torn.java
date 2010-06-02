@@ -34,7 +34,7 @@ public class Torn  {
         this.jugadorTorn = jugadorTorn;
     }
 
-    public void pausa() {
+    public synchronized void pausa() {
         while (continuar == false) {
             try {
                 Thread.sleep(1000);                
@@ -44,7 +44,7 @@ public class Torn  {
         }
     }
 
-    public synchronized void resume() {
+    public void resume() {
         this.continuar = true;
         
     }
