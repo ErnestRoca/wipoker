@@ -30,8 +30,11 @@ import javax.swing.SwingConstants;
  */
 public class GuiTaulell {
 
-    ArrayList<JLabel> avatars = new ArrayList<JLabel>();
     ArrayList<JPanel> panellsJugadors = new ArrayList<JPanel>();
+    ArrayList<JLabel> avatars = new ArrayList<JLabel>();
+    ArrayList<JLabel> fitxesjugadors = new ArrayList<JLabel>();
+    ArrayList<JLabel> nomsJugadors = new ArrayList<JLabel>();
+
     private JFrame jFrame;
     private JPanel jPanelGlobal;
     private JPanel jPanelBotons;
@@ -456,6 +459,7 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes01.setBounds(x2, y2, w2, h2);
         jPanelJugador01.add(jlFitxes01);
+        fitxesjugadors.add(jlFitxes01);
 
         jlNom01 = new JLabel();
         jlNom01.setText("Jugador01");
@@ -467,6 +471,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom01.setBounds(x3, y3, w3, h3);
         jPanelJugador01.add(jlNom01);
+        nomsJugadors.add(jlNom01);
 
         jlNumFitxes01 = new JLabel();
         jlNumFitxes01.setText("1000 f.");
@@ -500,6 +505,7 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes02.setBounds(x2, y2, w2, h2);
         jPanelJugador02.add(jlFitxes02);
+        fitxesjugadors.add(jlFitxes02);
 
         jlNom02 = new JLabel();
         jlNom02.setText("Jugador02");
@@ -510,6 +516,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom02.setBounds(x3, y3, w3, h3);
         jPanelJugador02.add(jlNom02);
+        nomsJugadors.add(jlNom02);
 
         jlNumFitxes02 = new JLabel();
         jlNumFitxes02.setText("1000 f.");
@@ -543,6 +550,7 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes03.setBounds(x2, y2, w2, h2);
         jPanelJugador03.add(jlFitxes03);
+        fitxesjugadors.add(jlFitxes03);
 
         jlNom03 = new JLabel();
         jlNom03.setText("Jugador03");
@@ -553,6 +561,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom03.setBounds(x3, y3, w3, h3);
         jPanelJugador03.add(jlNom03);
+        nomsJugadors.add(jlNom03);
 
         jlNumFitxes03 = new JLabel();
         jlNumFitxes03.setText("1000 f.");
@@ -575,6 +584,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes04.setBounds(x1, y1, w1, h1);
         jPanelJugador04.add(jlFitxes04);
+        fitxesjugadors.add(jlFitxes04);
 
         jlAvatar04 = new JLabel();
         jlAvatar04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -596,6 +606,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom04.setBounds(x3, y3, w3, h3);
         jPanelJugador04.add(jlNom04);
+        nomsJugadors.add(jlNom04);
 
         jlNumFitxes04 = new JLabel();
         jlNumFitxes04.setText("1000 f.");
@@ -618,6 +629,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes05.setBounds(x1, y1, w1, h1);
         jPanelJugador05.add(jlFitxes05);
+        fitxesjugadors.add(jlFitxes05);
 
         jlAvatar05 = new JLabel();
         jlAvatar05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -639,6 +651,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom05.setBounds(x3, y3, w3, h3);
         jPanelJugador05.add(jlNom05);
+        nomsJugadors.add(jlNom05);
 
         jlNumFitxes05 = new JLabel();
         jlNumFitxes05.setText("1000 f.");
@@ -661,6 +674,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes06.setBounds(x1, y1, w1, h1);
         jPanelJugador06.add(jlFitxes06);
+        fitxesjugadors.add(jlFitxes06);
 
         jlAvatar06 = new JLabel();
         jlAvatar06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -682,6 +696,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom06.setBounds(x3, y3, w3, h3);
         jPanelJugador06.add(jlNom06);
+        nomsJugadors.add(jlNom06);
 
         jlNumFitxes06 = new JLabel();
         jlNumFitxes06.setText("1000 f.");
@@ -704,6 +719,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes07.setBounds(x1, y1, w1, h1);
         jPanelJugador07.add(jlFitxes07);
+        fitxesjugadors.add(jlFitxes07);
 
         jlAvatar07 = new JLabel();
         jlAvatar07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -725,6 +741,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom07.setBounds(x3, y3, w3, h3);
         jPanelJugador07.add(jlNom07);
+        nomsJugadors.add(jlNom07);
 
         jlNumFitxes07 = new JLabel();
         jlNumFitxes07.setText("1000 f.");
@@ -747,6 +764,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes08.setBounds(x1, y1, w1, h1);
         jPanelJugador08.add(jlFitxes08);
+        fitxesjugadors.add(jlFitxes08);
 
         jlAvatar08 = new JLabel();
         jlAvatar08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -769,6 +787,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom08.setBounds(x3, y3, w3, h3);
         jPanelJugador08.add(jlNom08);
+        nomsJugadors.add(jlNom08);
 
         jlNumFitxes08 = new JLabel();
         jlNumFitxes08.setText("1000 f.");
@@ -801,6 +820,7 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes09.setBounds(x2, y2, w2, h2);
         jPanelJugador09.add(jlFitxes09);
+        fitxesjugadors.add(jlFitxes09);
 
         jlNom09 = new JLabel();
         jlNom09.setText("Jugador09");
@@ -812,6 +832,7 @@ public class GuiTaulell {
         final int h3 = 13;
         jlNom09.setBounds(x3, y3, w3, h3);
         jPanelJugador09.add(jlNom09);
+        nomsJugadors.add(jlNom09);
 
         jlNumFitxes09 = new JLabel();
         jlNumFitxes09.setText("1000 f.");
@@ -1393,6 +1414,23 @@ public class GuiTaulell {
     public void setPanellsJugadors(ArrayList<JPanel> panellsJugadors) {
         this.panellsJugadors = panellsJugadors;
     }
+
+    public ArrayList<JLabel> getFitxesjugadors() {
+        return fitxesjugadors;
+    }
+
+    public void setFitxesjugadors(ArrayList<JLabel> fitxesjugadors) {
+        this.fitxesjugadors = fitxesjugadors;
+    }
+
+    public ArrayList<JLabel> getNomsJugadors() {
+        return nomsJugadors;
+    }
+
+    public void setNomsJugadors(ArrayList<JLabel> nomsJugadors) {
+        this.nomsJugadors = nomsJugadors;
+    }
+    
 
     /**
      * Inicia el cas d'ús des del SO.
