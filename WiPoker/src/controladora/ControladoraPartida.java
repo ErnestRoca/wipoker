@@ -123,6 +123,7 @@ public class ControladoraPartida {
             }
             jugador.getAposta().setQuantitat(0.0);
         }
+        gui.ocultarCartesComunitaries();
     }
 
     public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
@@ -173,6 +174,7 @@ public class ControladoraPartida {
 
         }
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
+
         determinarCombinacioPreFlop();
 
         boolean fi = false;
@@ -266,8 +268,7 @@ public class ControladoraPartida {
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
-                    System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat() +
-                            partida.getJugadors().get(i));
+                    System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat() + " " + partida.getJugadors().get(i).getAlias());
                     if (!(fase.getApostaMinima() == partida.getJugadors().get(i).getAposta().getQuantitat())) {
                         hanApostatDiferent = true;
                     }
@@ -300,7 +301,7 @@ public class ControladoraPartida {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
         int countFase = 0;
-        while (!fi || fiPartida == false) {
+        while (!fi) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
@@ -385,12 +386,12 @@ public class ControladoraPartida {
                 }
             }
             //Mira SI algun jugador (que no a fet fold) a apostat diferent
-            boolean hanApostatDiferent = false;
+            boolean hanApostatDiferent = true;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
-                    System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat());
-                    if (!(fase.getApostaMinima() == partida.getJugadors().get(i).getAposta().getQuantitat())) {
-                        hanApostatDiferent = true;
+                    System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat() + " " + partida.getJugadors().get(i).getAlias());
+                    if ((fase.getApostaMinima() == partida.getJugadors().get(i).getAposta().getQuantitat())) {
+                        hanApostatDiferent = false;
                     }
                 }
             }
@@ -421,7 +422,7 @@ public class ControladoraPartida {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
         int countFase = 0;
-        while (!fi || fiPartida == false) {
+        while (!fi) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
@@ -542,7 +543,7 @@ public class ControladoraPartida {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
         int countFase = 0;
-        while (!fi || fiPartida == false) {
+        while (!fi) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
