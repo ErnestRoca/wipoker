@@ -147,11 +147,13 @@ public class ControladoraGui {
     //Fa rise
     public void doRise(int dinersAfegits) {
         cp.controlJoc.ferRaise(tornActual.getJugadorTorn(), faseActual, faseActual.getApostaMinima(), dinersAfegits);
+        gestionarFitxes(cp.partida.getJugadors());
     }
 
     //Fa bet
     public void doCall() {
         cp.controlJoc.ferCall(tornActual.getJugadorTorn(), faseActual, faseActual.getApostaMinima());
+        gestionarFitxes(cp.partida.getJugadors());
     }
 
     //Registra un jugador a la base de dades (No Jabber).
@@ -238,5 +240,14 @@ public class ControladoraGui {
             taulell.getJlCarta05().setIcon(publiques.get(0).getImatge());
             taulell.getJlCarta05().setVisible(true);
         }
+    }
+
+    public void ocultarCartesComunitaries() {
+            taulell.getJlCarta01().setVisible(false);
+            taulell.getJlCarta02().setVisible(false);
+            taulell.getJlCarta03().setVisible(false);
+            taulell.getJlCarta04().setVisible(false);
+            taulell.getJlCarta05().setVisible(false);
+
     }
 }
