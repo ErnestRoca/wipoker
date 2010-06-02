@@ -56,12 +56,16 @@ public class ControladoraPartida {
                 return j1.getPosicioTaula() - j2.getPosicioTaula();
             }
         });
-        System.out.println(partida.getJugadors().get(0));        
+        System.out.println(partida.getJugadors().get(0));
+        int boto = 0;
         while (partida.getJugadors().size() > 1 && fiPartida != true) {
-            int boto = 0;
+            if (boto == partida.getJugadors().size()) {
+                boto = 0;
+            }
             iniciarRonda(boto);
             boto++;
         }
+
     }
 
     public void iniciarRonda(int boto) throws InterruptedException {
@@ -185,7 +189,7 @@ public class ControladoraPartida {
             }
             //Primer bucle
             for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
-                //Si no es la primera vegada que el jugador aposta en la fase
+                //Si no es la primera vegada que el jugador aposta en la fase               
                 if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                     gui.setTornActual(partida.getJugadors().get(i).getTorn());
                     if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
@@ -255,7 +259,8 @@ public class ControladoraPartida {
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
-                    System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat());
+                    System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat() +
+                            partida.getJugadors().get(i));
                     if (!(fase.getApostaMinima() == partida.getJugadors().get(i).getAposta().getQuantitat())) {
                         hanApostatDiferent = true;
                     }
