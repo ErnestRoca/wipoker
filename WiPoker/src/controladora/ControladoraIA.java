@@ -89,9 +89,10 @@ public class ControladoraIA {
             } else {
                 if (valorCarta > 10) {
                     //fer RISE doblar l'aposta minima
-                    if (jugador.getFitxesActuals() == apostaMinima * 2) {
+                    if (jugador.getFitxesActuals() >= apostaMinima * 2) {
+                        System.out.println("aposta rise carta alta major de 10");
                         cp.controlJoc.ferRaise(jugador, ultimafase, (int) apostaMinima, (int) apostaMinima * 2);
-                    } else if (jugador.getFitxesActuals() > apostaMinima) {
+                    } else if (jugador.getFitxesActuals() < apostaMinima) {
                         cp.controlJoc.ferRaise(jugador, ultimafase, (int) apostaMinima, jugador.getFitxesActuals());
                     }
                 } else if (valorCarta > 7) {
