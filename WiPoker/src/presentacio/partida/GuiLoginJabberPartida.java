@@ -223,7 +223,7 @@ public class GuiLoginJabberPartida {
 
             public void actionPerformed(ActionEvent event) {
 
-                try {
+                try {                    
                     jFrame.dispose();
                     novaPartidaOffline = new GuiNovaPartidaOffline(gui);
                     novaPartidaOffline.getjFrame().setLocation(jFrame.getLocation());

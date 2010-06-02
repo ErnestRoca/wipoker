@@ -44,6 +44,7 @@ public class ControladoraPartida {
     }
 
     public void jugar() throws InterruptedException {
+        fiPartida = false;
         gui.ocultarPanellsJugadors();
         gui.mostrarAvatars(partida.getJugadors());
         Collections.sort(partida.getJugadors(), new Comparator() {
@@ -55,7 +56,7 @@ public class ControladoraPartida {
                 return j1.getPosicioTaula() - j2.getPosicioTaula();
             }
         });
-        System.out.println(partida.getJugadors().get(0));
+        System.out.println(partida.getJugadors().get(0));        
         while (partida.getJugadors().size() > 1 && fiPartida != true) {
             int boto = 0;
             iniciarRonda(boto);
@@ -528,7 +529,7 @@ public class ControladoraPartida {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
         int countFase = 0;
-        while (!fi) {
+        while (!fi || fiPartida == false) {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
