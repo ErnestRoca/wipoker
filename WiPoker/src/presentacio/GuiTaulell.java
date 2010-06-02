@@ -446,7 +446,6 @@ public class GuiTaulell {
         final int h1 = 100;
         jlAvatar01.setBounds(x1, y1, w1, h1);
         jPanelJugador01.add(jlAvatar01);
-        jlAvatar01.setVisible(false);
         avatars.add(jlAvatar01);
 
         jlFitxes01 = new JLabel();
