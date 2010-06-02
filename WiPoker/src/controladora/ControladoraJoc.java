@@ -95,6 +95,7 @@ public class ControladoraJoc {
 
     public synchronized void ferFold(Jugador jugador) {
         jugador.setHaFetFold(true);
+        System.out.println(jugador.getAlias() + " fa FOLD");
     }
 
     public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
@@ -103,6 +104,7 @@ public class ControladoraJoc {
         if (teDiners) {
             apostar(jugador,(int) (apostaMinima), fase);
             fase.setApostaMinima(apostaMinima);
+            System.out.println(jugador.getAlias() + " fa BET");
         } else {
             System.out.println("no pot aposstar CALL");
         }
@@ -112,7 +114,7 @@ public class ControladoraJoc {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         if (quantitatAnterior == apostaMinima) {
             //no fa res. Ho hem fet volent
-            System.out.println("Aposta Minima Actualitzada: " + fase.getApostaMinima());
+            System.out.println(jugador.getAlias() + " fa CHECK");
         }
     }
 
@@ -131,8 +133,8 @@ public class ControladoraJoc {
                 dinersApostats = (int) dinersMinJug;
             }
             apostar(jugador,(int) (apostaMinima + dinersApostats), fase);
-            System.out.println("aposta de " + (apostaMinima - quantitatAnterior + dinersApostats));
             fase.setApostaMinima((int) (apostaMinima + dinersApostats));
+            System.out.println(jugador.getAlias() + " fa RAISE");
         } else {
             System.out.println("no pot aposstar RISE: " + (apostaMinima - quantitatAnterior ) + " < " + dinersApostats);
             System.out.println(jugador.getMaActual().getCartes());
