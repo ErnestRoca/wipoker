@@ -235,7 +235,7 @@ public class GuiMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (JOptionPane.showConfirmDialog(jFrame, "Esta segur que vol sortir?", "Sortir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    jFrame.dispose();
+                    System.exit(0);
                 }
             }
         });
