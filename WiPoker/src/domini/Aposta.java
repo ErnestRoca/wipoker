@@ -1,5 +1,7 @@
 package domini;
 
+import java.io.Serializable;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -8,7 +10,7 @@ package domini;
  *
  * @author Andrés
  */
-public class Aposta {
+public class Aposta implements Serializable {
 
     private Jugador jugador;
     private double quantitat;
