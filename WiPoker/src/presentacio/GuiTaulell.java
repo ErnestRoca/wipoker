@@ -34,7 +34,6 @@ public class GuiTaulell {
     ArrayList<JLabel> avatars = new ArrayList<JLabel>();
     ArrayList<JLabel> fitxesjugadors = new ArrayList<JLabel>();
     ArrayList<JLabel> nomsJugadors = new ArrayList<JLabel>();
-
     private JFrame jFrame;
     private JPanel jPanelGlobal;
     private JPanel jPanelBotons;
@@ -951,26 +950,21 @@ public class GuiTaulell {
 
             @Override
             public void actionPerformed(final ActionEvent evt) {
-                //crear jlabel con dinero
-                if (!(gui.getTornActual().getJugadorTorn() instanceof Bot) && !(Fase.getNumFase() == 2)) {
-                    gui.doCheck(10);
-                    System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
-                }
-
+                //crear jlabel con dinero               
+                gui.doCheck(10);
+                System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
                 gui.getTornActual().resume();
-
             }
         });
+
         jbBet.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //if (!(gui.getTornActual().getJugadorTorn() instanceof Bot)) {
+            public void actionPerformed(ActionEvent e) {                
                 gui.doCall();
-                //}
-
-                gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa bet");
+                gui.getTornActual().resume();
+                
             }
         });
 
@@ -978,18 +972,20 @@ public class GuiTaulell {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.doRise(30);
-                gui.getTornActual().resume();
+                gui.doRise(30);                
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa rise");
+                gui.getTornActual().resume();
             }
         });
+        
         jbFold.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 gui.doFold();
-                gui.getTornActual().resume();
                 System.out.println(gui.getTornActual().getJugadorTorn() + " fa fold");
+                gui.getTornActual().resume();
+                
             }
         });
     }
@@ -1430,7 +1426,6 @@ public class GuiTaulell {
     public void setNomsJugadors(ArrayList<JLabel> nomsJugadors) {
         this.nomsJugadors = nomsJugadors;
     }
-    
 
     /**
      * Inicia el cas d'ús des del SO.
