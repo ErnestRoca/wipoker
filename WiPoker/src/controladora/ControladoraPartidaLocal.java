@@ -20,7 +20,7 @@ public class ControladoraPartidaLocal extends ControladoraPartida {
     public ControladoraPartidaLocal(ControladoraGui gui, String alias, int fitxesInicials, int numJugadors) {
         super(numJugadors, gui);
         Arrays.sort(nomBots);
-        super.partida.getJugadors().add(new Jugador(alias, fitxesInicials, 0));
+        super.partida.getJugadors().add(new Jugador(alias, fitxesInicials, 0, "avatar"));
         for (int i = 1; i < numJugadors;i++) {
             super.partida.getJugadors().add(new Bot(nomBots[i], fitxesInicials, i));
         }

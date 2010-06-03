@@ -98,7 +98,7 @@ public class ControladoraGui {
     public void setTaulell(GuiTaulell t) {
         this.taulell = t;
         jbcheck = taulell.getJbCheck();
-        jbBet = taulell.getJbBet();
+        jbBet = taulell.getJbCall();
         jbFold = taulell.getJbFold();
         jbRise = taulell.getJbRise();
     }
@@ -192,21 +192,25 @@ public class ControladoraGui {
         for (int i = 0; i < jugadors.size(); i++) {
             taulell.getAvatars().get(i).setIcon(jugadors.get(i).getAvatar());
             taulell.getPanellsJugadors().get(i).setVisible(true);
+            taulell.getNomsJugadors().get(i).setText(jugadors.get(i).getAlias());
         }
+        
     }
 
-    //Posa les imatges dels jugadors a la taula juntament amb els seus diners i nom.
+    
     public void ocultarPanellsJugadors() {
         ArrayList<JPanel> panells = taulell.getPanellsJugadors();
         for (int i = 0; i < panells.size(); i++) {
             panells.get(i).setVisible(false);
         }
+        taulell.getjPanelMissatges().setVisible(false);
     }
 
-    //Posa les imatges dels jugadors a la taula juntament amb els seus diners i nom.
+    //Posa les imatges de les fitxes dels jugadors i el seu valor al jlabel
     public void gestionarFitxes(ArrayList<Jugador> jugadors) {
-        ArrayList<JLabel> fitxes = taulell.getFitxesjugadors();
+        ArrayList<JLabel> fitxes = taulell.getFitxesJugadors();
         for (int i = 0; i < jugadors.size(); i++) {//a<= x && x<= b
+            taulell.getNumFitxesJugadors().get(i).setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
             if (jugadors.get(i).getFitxesActuals() <= ((25 * jugadors.get(0).getFitxesInicials()) / 100)) {
                 fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
 
@@ -216,7 +220,7 @@ public class ControladoraGui {
             } else if (((50 * jugadors.get(0).getFitxesInicials()) / 100) <= jugadors.get(i).getFitxesActuals() && jugadors.get(i).getFitxesActuals() <= ((75 * jugadors.get(0).getFitxesInicials()) / 100)) {
                 fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 3 + ".png")));
 
-            } else if (((75 * jugadors.get(0).getFitxesInicials()) / 100) <= jugadors.get(i).getFitxesActuals() && jugadors.get(i).getFitxesActuals() <= ((100 * jugadors.get(0).getFitxesInicials()) / 100)) {
+            } else if (((75 * jugadors.get(0).getFitxesInicials()) / 100) <= jugadors.get(i).getFitxesActuals()) {
                 fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
             }
         }
@@ -268,15 +272,26 @@ public class ControladoraGui {
 
     }
 
-    public void setNomJugadors() {
-        //
-    }
-
-    public void setFitxesJugadors() {
+    public void setNomJugadors(ArrayList<Jugador> jugadors) {
         //
     }
 
     public void setCartesPrivades() {
-        //
+        for (Jugador jugador : cp.partida.getJugadors()) {
+            if (!(jugador instanceof Bot)) {
+                taulell.getJlCarta01Usuari().setIcon(jugador.getMaActual().getCartes().get(0).getImatge());
+                taulell.getJlCarta02Usuari().setIcon(jugador.getMaActual().getCartes().get(1).getImatge());
+            }
+        }
+    }
+
+    public void mostrarMissatge(String missatge) {
+        try {
+            taulell.getjPanelMissatges().setVisible(true);
+            Thread.sleep(3500);
+            taulell.getjPanelMissatges().setVisible(false);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ControladoraGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

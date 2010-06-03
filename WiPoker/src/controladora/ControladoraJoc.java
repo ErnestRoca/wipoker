@@ -105,7 +105,7 @@ public class ControladoraJoc {
         if (teDiners) {
             apostar(jugador,(int) (apostaMinima), fase);
             fase.setApostaMinima(apostaMinima);
-            System.out.println(jugador.getAlias() + " fa BET");
+            System.out.println(jugador.getAlias() + " fa CALL");
         } else {
             System.out.println("no pot aposstar CALL");
         }
