@@ -68,7 +68,6 @@ public class ControladoraCartes {
                         //Afageix la carta que no es del color a cartes duplicades
                         cartesDuplicades.add(cartes.get(i));
                     } else if (cartes.get(i).getPal() != colorFinal && cartes.get(i + 1).getPal() != colorFinal) {
-                        System.out.println(cartes.get(i) + " " + cartes.get(i + 1));
                         cartesDuplicades.add(cartes.get(i));
                         cartesDuplicades.add(cartes.get(i + 1));
                     }
@@ -84,8 +83,6 @@ public class ControladoraCartes {
 
             //Elimina les cartes repetides
             cartes.removeAll(cartesDuplicades);
-            System.out.println("cartes: " + cartes);
-            System.out.println("cartes d: " + cartesDuplicades);
             //contindra la posible primer escala
             ArrayList<Carta> escala1 = new ArrayList<Carta>();
             byte numEscala1 = 0;

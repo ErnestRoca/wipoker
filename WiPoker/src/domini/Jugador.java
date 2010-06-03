@@ -60,7 +60,24 @@ public class Jugador {
         this.dni = "00000000A";
         this.nomComplet = alias;
         this.edat = 0;
-        this.posicioTaula = 1;
+        this.posicioTaula = 0;
+        this.fitxesInicials = fitxesInicials;
+        this.fitxesActuals = fitxesInicials;
+        this.alias = alias;
+        maActual = new Ma(new ArrayList<Carta>());
+        this.torn = new Torn(this);
+        try {
+            avatar = new ImageIcon(Carta.class.getResource("/serveis/imatges/bot.png"));
+        } catch (Exception ex) {
+            System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
+        }
+    }
+
+    public Jugador(String alias, int fitxesInicials, int posicioTaula) {
+        this.dni = "00000000A";
+        this.nomComplet = alias;
+        this.edat = 0;
+        this.posicioTaula = (byte) posicioTaula;
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesInicials;
         this.alias = alias;

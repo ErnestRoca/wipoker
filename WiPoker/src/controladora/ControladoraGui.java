@@ -142,7 +142,7 @@ public class ControladoraGui {
 
     //Fa Fold
     public void doFold() {
-        cp.controlJoc.ferFold(tornActual.getJugadorTorn());
+        cp.controlJoc.ferFold(tornActual.getJugadorTorn(), faseActual);
     }
 
     //Fa rise
