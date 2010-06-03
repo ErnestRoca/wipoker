@@ -56,24 +56,7 @@ public class Jugador {
         this.torn = new Torn(this);
     }
 
-    public Jugador(String alias, int fitxesInicials) {
-        this.dni = "00000000A";
-        this.nomComplet = alias;
-        this.edat = 0;
-        this.posicioTaula = 0;
-        this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesInicials;
-        this.alias = alias;
-        maActual = new Ma(new ArrayList<Carta>());
-        this.torn = new Torn(this);
-        try {
-            avatar = new ImageIcon(Carta.class.getResource("/serveis/imatges/bot.png"));
-        } catch (Exception ex) {
-            System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
-        }
-    }
-
-    public Jugador(String alias, int fitxesInicials, int posicioTaula) {
+    public Jugador(String alias, int fitxesInicials, int posicioTaula, String nomAvatar) {
         this.dni = "00000000A";
         this.nomComplet = alias;
         this.edat = 0;
@@ -84,7 +67,7 @@ public class Jugador {
         maActual = new Ma(new ArrayList<Carta>());
         this.torn = new Torn(this);
         try {
-            avatar = new ImageIcon(Carta.class.getResource("/serveis/imatges/bot.png"));
+            avatar = new ImageIcon(Carta.class.getResource("/serveis/imatges/" + nomAvatar + ".png"));
         } catch (Exception ex) {
             System.out.println("No s'ha trobat la imatge" + " associada amb el valor: avatar");
         }

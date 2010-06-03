@@ -5,8 +5,7 @@
 package domini;
 
 import controladora.ControladoraIA;
-import controladora.Torn;
-import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -14,17 +13,10 @@ import java.util.ArrayList;
  */
 public class Bot extends Jugador {
 
-    private final String alias;
-    private int fitxesInicials;
-    private int fitxesActuals;
-    private Ma maActual;
+    private ImageIcon avatar;
 
     public Bot(String alias, int fitxesInicials, int posicioTaula) {
-        super(alias, fitxesInicials, posicioTaula);
-        this.alias = alias;
-        this.fitxesInicials = fitxesInicials;
-        this.fitxesActuals = fitxesInicials;
-        maActual = new Ma(new ArrayList<Carta>());
+        super(alias, fitxesInicials, posicioTaula, "bot");
     }
 
     public void jugadaBot(ControladoraIA ci, Fase fase, int numVegadesFase) {
@@ -42,38 +34,8 @@ public class Bot extends Jugador {
 //    }
 
     @Override
-    public int getFitxesActuals() {
-        return fitxesActuals;
-    }
-
-    @Override
-    public void setFitxesActuals(int fitxesActuals) {
-        this.fitxesActuals = fitxesActuals;
-    }
-
-    @Override
-    public int getFitxesInicials() {
-        return fitxesInicials;
-    }
-
-    @Override
-    public void setFitxesInicials(int fitxesInicials) {
-        this.fitxesInicials = fitxesInicials;
-    }
-
-    @Override
-    public Ma getMaActual() {
-        return maActual;
-    }
-
-    @Override
-    public void setMaActual(Ma maActual) {
-        this.maActual = maActual;
-    }
-
-    @Override
     public String toString() {
-        String str = "El bot " + alias + " amb " + fitxesActuals + "fitxes";
+        String str = "El bot " + getAlias() + " amb " + getFitxesActuals() + "fitxes";
         return str;
     }
 }

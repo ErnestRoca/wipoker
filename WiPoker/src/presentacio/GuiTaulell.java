@@ -29,9 +29,10 @@ import javax.swing.SwingConstants;
 public class GuiTaulell {
 
     ArrayList<JPanel> panellsJugadors = new ArrayList<JPanel>();
-    ArrayList<JLabel> avatars = new ArrayList<JLabel>();
-    ArrayList<JLabel> fitxesjugadors = new ArrayList<JLabel>();
     ArrayList<JLabel> nomsJugadors = new ArrayList<JLabel>();
+    ArrayList<JLabel> avatars = new ArrayList<JLabel>();
+    ArrayList<JLabel> fitxesJugadors = new ArrayList<JLabel>();
+    ArrayList<JLabel> numFitxesJugadors = new ArrayList<JLabel>();
     private JFrame jFrame;
     private JPanel jPanelGlobal;
     private JPanel jPanelBotons;
@@ -47,7 +48,10 @@ public class GuiTaulell {
     private JPanel jPanelJugador08;
     private JPanel jPanelJugador09;
     private JPanel jPanelCrupier;
+    private JPanel jPanelMissatges;
     //
+    private JLabel jlMissatge;
+    private JLabel jlMissatge2;
     private JLabel jlCarta01Usuari;
     private JLabel jlCarta02Usuari;
     //
@@ -101,7 +105,7 @@ public class GuiTaulell {
     //
     private JButton jbCheck;
     private JButton jbRise;
-    private JButton jbBet;
+    private JButton jbCall;
     private JButton jbFold;
     //
     private JMenuBar jMenuBar;
@@ -170,7 +174,7 @@ public class GuiTaulell {
         jFrame.add(jMenuBar);
 
         jPanelGlobal = new JPanelGlobal();
-        jPanelGlobal.setBackground(Color.WHITE);
+        jPanelGlobal.setBackground(Color.GREEN);
         jPanelGlobal.setLayout(null);
         jPanelGlobal.setBounds(0, 25, 1024, 761);
         jFrame.add(jPanelGlobal);
@@ -323,6 +327,15 @@ public class GuiTaulell {
         jPanelBotons.setLayout(null);
         jPanelGlobal.add(jPanelBotons);
 
+        jPanelMissatges = new JPanel();
+        jPanelMissatges.setOpaque(true);
+        jPanelMissatges.setLayout(null);
+        jPanelMissatges.setBackground(Color.BLACK);
+        jPanelMissatges.setBounds(390, 250, 220, 70);
+        jPanelMissatges.setLayout(null);
+        //jPanelMissatges.setVisible(false);
+        jPanelGlobal.add(jPanelMissatges);
+
     }
 
     private void crearControls() {
@@ -340,6 +353,7 @@ public class GuiTaulell {
         crearControlsJPanelFitxes09();
         crearControlsJPanelCrupier();
         crearControlsJPanelBotons();
+        crearControlsJPanelMissatges();
     }
 
     private void crearControlsJMenuBar() {
@@ -393,7 +407,6 @@ public class GuiTaulell {
         final int w1 = 73;
         final int h1 = 97;
         jlCarta01.setBounds(x1, y1, w1, h1);
-        jlCarta01.setVisible(false);
         jPanelCartesTaula.add(jlCarta01);
 
         jlCarta02 = new JLabel();
@@ -403,7 +416,6 @@ public class GuiTaulell {
         final int w2 = w1;
         final int h2 = h1;
         jlCarta02.setBounds(x2, y2, w2, h2);
-        jlCarta02.setVisible(false);
         jPanelCartesTaula.add(jlCarta02);
 
         jlCarta03 = new JLabel();
@@ -413,7 +425,6 @@ public class GuiTaulell {
         final int w3 = w1;
         final int h3 = h1;
         jlCarta03.setBounds(x3, y3, w3, h3);
-        jlCarta03.setVisible(false);
         jPanelCartesTaula.add(jlCarta03);
 
         jlCarta04 = new JLabel();
@@ -423,7 +434,6 @@ public class GuiTaulell {
         final int w4 = w1;
         final int h4 = h1;
         jlCarta04.setBounds(x4, y4, w4, h4);
-        jlCarta04.setVisible(false);
         jPanelCartesTaula.add(jlCarta04);
 
         jlCarta05 = new JLabel();
@@ -433,7 +443,6 @@ public class GuiTaulell {
         final int w5 = w1;
         final int h5 = h1;
         jlCarta05.setBounds(x5, y5, w5, h5);
-        jlCarta05.setVisible(false);
         jPanelCartesTaula.add(jlCarta05);
     }
 
@@ -449,14 +458,13 @@ public class GuiTaulell {
         avatars.add(jlAvatar01);
 
         jlFitxes01 = new JLabel();
-        jlFitxes01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 4 + ".png")));
         final int x2 = 0;
         final int y2 = jPanelJugador01.getHeight() - 93;
         final int w2 = 107;
         final int h2 = 80;
         jlFitxes01.setBounds(x2, y2, w2, h2);
         jPanelJugador01.add(jlFitxes01);
-        fitxesjugadors.add(jlFitxes01);
+        fitxesJugadors.add(jlFitxes01);
 
         jlNom01 = new JLabel();
         jlNom01.setText("Jugador01");
@@ -479,6 +487,7 @@ public class GuiTaulell {
         final int h4 = 13;
         jlNumFitxes01.setBounds(x4, y4, w4, h4);
         jPanelJugador01.add(jlNumFitxes01);
+        numFitxesJugadors.add(jlNumFitxes01);
     }
 
     private void crearControlsJPanelFitxes02() {
@@ -502,7 +511,7 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes02.setBounds(x2, y2, w2, h2);
         jPanelJugador02.add(jlFitxes02);
-        fitxesjugadors.add(jlFitxes02);
+        fitxesJugadors.add(jlFitxes02);
 
         jlNom02 = new JLabel();
         jlNom02.setText("Jugador02");
@@ -524,6 +533,7 @@ public class GuiTaulell {
         final int h4 = 13;
         jlNumFitxes02.setBounds(x4, y4, w4, h4);
         jPanelJugador02.add(jlNumFitxes02);
+        numFitxesJugadors.add(jlNumFitxes02);
     }
 
     private void crearControlsJPanelFitxes03() {
@@ -547,7 +557,7 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes03.setBounds(x2, y2, w2, h2);
         jPanelJugador03.add(jlFitxes03);
-        fitxesjugadors.add(jlFitxes03);
+        fitxesJugadors.add(jlFitxes03);
 
         jlNom03 = new JLabel();
         jlNom03.setText("Jugador03");
@@ -569,6 +579,7 @@ public class GuiTaulell {
         final int h4 = 13;
         jlNumFitxes03.setBounds(x4, y4, w4, h4);
         jPanelJugador03.add(jlNumFitxes03);
+        numFitxesJugadors.add(jlNumFitxes03);
     }
 
     private void crearControlsJPanelFitxes04() {
@@ -581,7 +592,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes04.setBounds(x1, y1, w1, h1);
         jPanelJugador04.add(jlFitxes04);
-        fitxesjugadors.add(jlFitxes04);
+        fitxesJugadors.add(jlFitxes04);
 
         jlAvatar04 = new JLabel();
         jlAvatar04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -614,6 +625,7 @@ public class GuiTaulell {
         final int h4 = 13;
         jlNumFitxes04.setBounds(x4, y4, w4, h4);
         jPanelJugador04.add(jlNumFitxes04);
+        numFitxesJugadors.add(jlNumFitxes04);
     }
 
     private void crearControlsJPanelFitxes05() {
@@ -626,7 +638,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes05.setBounds(x1, y1, w1, h1);
         jPanelJugador05.add(jlFitxes05);
-        fitxesjugadors.add(jlFitxes05);
+        fitxesJugadors.add(jlFitxes05);
 
         jlAvatar05 = new JLabel();
         jlAvatar05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -659,6 +671,7 @@ public class GuiTaulell {
         final int h4 = 13;
         jlNumFitxes05.setBounds(x4, y4, w4, h4);
         jPanelJugador05.add(jlNumFitxes05);
+        numFitxesJugadors.add(jlNumFitxes05);
     }
 
     private void crearControlsJPanelFitxes06() {
@@ -671,7 +684,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes06.setBounds(x1, y1, w1, h1);
         jPanelJugador06.add(jlFitxes06);
-        fitxesjugadors.add(jlFitxes06);
+        fitxesJugadors.add(jlFitxes06);
 
         jlAvatar06 = new JLabel();
         jlAvatar06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -704,6 +717,7 @@ public class GuiTaulell {
         final int h4 = 13;
         jlNumFitxes06.setBounds(x4, y4, w4, h4);
         jPanelJugador06.add(jlNumFitxes06);
+        numFitxesJugadors.add(jlNumFitxes06);
     }
 
     private void crearControlsJPanelFitxes07() {
@@ -716,7 +730,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes07.setBounds(x1, y1, w1, h1);
         jPanelJugador07.add(jlFitxes07);
-        fitxesjugadors.add(jlFitxes07);
+        fitxesJugadors.add(jlFitxes07);
 
         jlAvatar07 = new JLabel();
         jlAvatar07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -749,6 +763,7 @@ public class GuiTaulell {
         final int h4 = 13;
         jlNumFitxes07.setBounds(x4, y4, w4, h4);
         jPanelJugador07.add(jlNumFitxes07);
+        numFitxesJugadors.add(jlNumFitxes07);
     }
 
     private void crearControlsJPanelFitxes08() {
@@ -761,7 +776,7 @@ public class GuiTaulell {
         final int h1 = 80;
         jlFitxes08.setBounds(x1, y1, w1, h1);
         jPanelJugador08.add(jlFitxes08);
-        fitxesjugadors.add(jlFitxes08);
+        fitxesJugadors.add(jlFitxes08);
 
         jlAvatar08 = new JLabel();
         jlAvatar08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
@@ -795,6 +810,7 @@ public class GuiTaulell {
         final int h4 = 12;
         jlNumFitxes08.setBounds(x4, y4, w4, h4);
         jPanelJugador08.add(jlNumFitxes08);
+        numFitxesJugadors.add(jlNumFitxes08);
     }
 
     private void crearControlsJPanelFitxes09() {
@@ -817,7 +833,7 @@ public class GuiTaulell {
         final int h2 = 80;
         jlFitxes09.setBounds(x2, y2, w2, h2);
         jPanelJugador09.add(jlFitxes09);
-        fitxesjugadors.add(jlFitxes09);
+        fitxesJugadors.add(jlFitxes09);
 
         jlNom09 = new JLabel();
         jlNom09.setText("Jugador09");
@@ -840,6 +856,7 @@ public class GuiTaulell {
         final int h4 = 12;
         jlNumFitxes09.setBounds(x4, y4, w4, h4);
         jPanelJugador09.add(jlNumFitxes09);
+        numFitxesJugadors.add(jlNumFitxes09);
     }
 
     private void crearControlsJPanelCrupier() {
@@ -893,20 +910,20 @@ public class GuiTaulell {
         jbRise.setBounds(x2, y2, w2, h2);
         jPanelBotons.add(jbRise);
 
-        jbBet = new JButton();
-        jbBet.setIconTextGap(-180);
-        jbBet.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbBet.setMnemonic('B');
-        jbBet.setText("Bet");
-        jbBet.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbBet.setCursor(cursor);
-        jbBet.setToolTipText("Igualar aposta");
+        jbCall = new JButton();
+        jbCall.setIconTextGap(-180);
+        jbCall.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCall.setMnemonic('C');
+        jbCall.setText("Call");
+        jbCall.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCall.setCursor(cursor);
+        jbCall.setToolTipText("Igualar aposta");
         final int x3 = x1;
         final int y3 = y2 + h2 + sv;
         final int w3 = w1;
         final int h3 = h1;
-        jbBet.setBounds(x3, y3, w3, h3);
-        jPanelBotons.add(jbBet);
+        jbCall.setBounds(x3, y3, w3, h3);
+        jPanelBotons.add(jbCall);
 
         jbFold = new JButton();
         jbFold.setIconTextGap(-180);
@@ -922,6 +939,20 @@ public class GuiTaulell {
         final int h4 = h1;
         jbFold.setBounds(x4, y4, w4, h4);
         jPanelBotons.add(jbFold);
+    }
+
+    private void crearControlsJPanelMissatges() {
+        jlMissatge = new JLabel();
+        jlMissatge.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
+        jlMissatge.setForeground(Color.WHITE);
+        jlMissatge.setBounds(5, 10, 210, 20);
+        jPanelMissatges.add(jlMissatge);
+
+        jlMissatge2 = new JLabel();
+        jlMissatge2.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
+        jlMissatge2.setForeground(Color.WHITE);
+        jlMissatge2.setBounds(5, 35, 210, 20);
+        jPanelMissatges.add(jlMissatge2);
     }
 
     private void crearEscoltadors() {
@@ -950,19 +981,17 @@ public class GuiTaulell {
             public void actionPerformed(final ActionEvent evt) {
                 //crear jlabel con dinero               
                 gui.doCheck(10);
-                System.out.println(gui.getTornActual().getJugadorTorn() + " fa check");
                 gui.getTornActual().resume();
             }
         });
 
-        jbBet.addActionListener(new ActionListener() {
+        jbCall.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {                
+            public void actionPerformed(ActionEvent e) {
                 gui.doCall();
-                System.out.println(gui.getTornActual().getJugadorTorn() + " fa bet");
                 gui.getTornActual().resume();
-                
+
             }
         });
 
@@ -970,20 +999,18 @@ public class GuiTaulell {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.doRise(30);                
-                System.out.println(gui.getTornActual().getJugadorTorn() + " fa rise");
+                gui.doRise(30);
                 gui.getTornActual().resume();
             }
         });
-        
+
         jbFold.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 gui.doFold();
-                System.out.println(gui.getTornActual().getJugadorTorn() + " fa fold");
                 gui.getTornActual().resume();
-                
+
             }
         });
     }
@@ -1001,12 +1028,12 @@ public class GuiTaulell {
         this.jFrame = jFrame;
     }
 
-    public JButton getJbBet() {
-        return jbBet;
+    public JButton getJbCall() {
+        return jbCall;
     }
 
-    public void setJbBet(JButton jbBet) {
-        this.jbBet = jbBet;
+    public void setJbBet(JButton jbCall) {
+        this.jbCall = jbCall;
     }
 
     public JButton getJbCheck() {
@@ -1393,6 +1420,32 @@ public class GuiTaulell {
         this.jlNumFitxes09 = jlNumFitxes09;
     }
 
+    public JPanel getjPanelMissatges() {
+        return jPanelMissatges;
+    }
+
+    public void setjPanelMissatges(JPanel jPanelMissatges) {
+        this.jPanelMissatges = jPanelMissatges;
+    }
+
+    public JLabel getJlMissatge() {
+        return jlMissatge;
+    }
+
+    public void setJlMissatge(JLabel jlMissatge) {
+        this.jlMissatge = jlMissatge;
+    }
+
+    public JLabel getJlMissatge2() {
+        return jlMissatge2;
+    }
+
+    public void setJlMissatge2(JLabel jlMissatge2) {
+        this.jlMissatge2 = jlMissatge2;
+    }
+
+
+
     public ArrayList<JLabel> getAvatars() {
         return avatars;
     }
@@ -1409,12 +1462,12 @@ public class GuiTaulell {
         this.panellsJugadors = panellsJugadors;
     }
 
-    public ArrayList<JLabel> getFitxesjugadors() {
-        return fitxesjugadors;
+    public ArrayList<JLabel> getFitxesJugadors() {
+        return fitxesJugadors;
     }
 
-    public void setFitxesjugadors(ArrayList<JLabel> fitxesjugadors) {
-        this.fitxesjugadors = fitxesjugadors;
+    public void setFitxesJugadors(ArrayList<JLabel> fitxesJugadors) {
+        this.fitxesJugadors = fitxesJugadors;
     }
 
     public ArrayList<JLabel> getNomsJugadors() {
@@ -1423,6 +1476,14 @@ public class GuiTaulell {
 
     public void setNomsJugadors(ArrayList<JLabel> nomsJugadors) {
         this.nomsJugadors = nomsJugadors;
+    }
+
+    public ArrayList<JLabel> getNumFitxesJugadors() {
+        return numFitxesJugadors;
+    }
+
+    public void setNumFitxesJugadors(ArrayList<JLabel> numFitxesJugadors) {
+        this.numFitxesJugadors = numFitxesJugadors;
     }
 
     /**

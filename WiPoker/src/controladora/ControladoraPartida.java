@@ -47,8 +47,8 @@ public class ControladoraPartida {
     public void jugar() throws InterruptedException {
         fiPartida = false;
         gui.ocultarPanellsJugadors();
-        gui.mostrarAvatars(partida.getJugadors());
         gui.gestionarFitxes(partida.getJugadors());
+        gui.mostrarAvatars(partida.getJugadors());
         Collections.sort(partida.getJugadors(), new Comparator() {
 
             @Override
@@ -94,12 +94,10 @@ public class ControladoraPartida {
             for (Jugador j : partida.getJugadors()) {
                 if (j.getAposta() != null) {
                     j.getAposta().setQuantitat(0);
-                }
-                else {
+                } else {
                     j.setAposta(new Aposta(j, 0));
                 }
             }
-            gui.gestionarFitxes(partida.getJugadors());
             int numJugadorsFold = 0;
             for (Jugador j : partida.getJugadors()) {
                 if (j.isHaFetFold()) {
@@ -113,6 +111,7 @@ public class ControladoraPartida {
         }
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
+        
         System.out.println("POT RONDA: " + novaRonda.getPot());
         controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
         novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
@@ -130,6 +129,7 @@ public class ControladoraPartida {
             //jugador.getAposta().setQuantitat(0.0);
         }
         gui.ocultarCartesComunitaries();
+        gui.mostrarMissatge("hola");
     }
 
     public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
@@ -180,7 +180,7 @@ public class ControladoraPartida {
 
         }
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
-
+        gui.setCartesPrivades();
         determinarCombinacioPreFlop();
 
         boolean fi = false;
@@ -205,17 +205,18 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        
                         if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                             Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                         } else {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
-
+                        gui.gestionarFitxes(partida.getJugadors());
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
@@ -223,13 +224,14 @@ public class ControladoraPartida {
                             if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                                 Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                             } else {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
@@ -251,17 +253,17 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
-
                         if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                             Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                         } else {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                        gui.gestionarFitxes(partida.getJugadors());
 
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
@@ -270,13 +272,14 @@ public class ControladoraPartida {
                             if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                                 Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                             } else {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
@@ -339,7 +342,7 @@ public class ControladoraPartida {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -347,6 +350,7 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                        gui.gestionarFitxes(partida.getJugadors());
 
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
@@ -355,7 +359,7 @@ public class ControladoraPartida {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                                 //gui.getTornActual().resume();
@@ -363,6 +367,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
@@ -387,7 +392,7 @@ public class ControladoraPartida {
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -395,6 +400,7 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                        gui.gestionarFitxes(partida.getJugadors());
 
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
@@ -403,7 +409,7 @@ public class ControladoraPartida {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                                 //gui.getTornActual().resume();
@@ -411,6 +417,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
@@ -470,11 +477,10 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
-
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -482,6 +488,7 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                        gui.gestionarFitxes(partida.getJugadors());
 
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
@@ -490,7 +497,7 @@ public class ControladoraPartida {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                                 //gui.getTornActual().resume();
@@ -498,6 +505,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
@@ -519,11 +527,10 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
-
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -531,6 +538,7 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                        gui.gestionarFitxes(partida.getJugadors());
 
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
@@ -539,7 +547,7 @@ public class ControladoraPartida {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                                 //gui.getTornActual().resume();
@@ -547,6 +555,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
@@ -606,11 +615,10 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
-
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -618,6 +626,7 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                        gui.gestionarFitxes(partida.getJugadors());
 
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
@@ -626,7 +635,7 @@ public class ControladoraPartida {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                                 //gui.getTornActual().resume();
@@ -634,6 +643,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
@@ -655,11 +665,10 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
-
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
-                            Thread.sleep(3000);
+                            Thread.sleep(2500);
                             bot.jugadaBot(controlIA, fase, countFase);
                             gui.getTornActual().run();
                             //gui.getTornActual().resume();
@@ -667,6 +676,7 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                         }
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                        gui.gestionarFitxes(partida.getJugadors());
 
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
@@ -675,7 +685,7 @@ public class ControladoraPartida {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
                                 gui.getTornActual().resume();
-                                Thread.sleep(3000);
+                                Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
                                 //gui.getTornActual().resume();
@@ -683,6 +693,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
+                            gui.gestionarFitxes(partida.getJugadors());
                         }
                     }
                 }
