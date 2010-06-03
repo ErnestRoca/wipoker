@@ -17,19 +17,14 @@ public class Bot extends Jugador {
     private final String alias;
     private int fitxesInicials;
     private int fitxesActuals;
-    private final byte posicioTaula;
     private Ma maActual;
-    private Aposta aposta;
-    private Torn torn;
 
     public Bot(String alias, int fitxesInicials, int posicioTaula) {
-        super(alias, fitxesInicials);
+        super(alias, fitxesInicials, posicioTaula);
         this.alias = alias;
         this.fitxesInicials = fitxesInicials;
         this.fitxesActuals = fitxesInicials;
-        this.posicioTaula = (byte) posicioTaula;
         maActual = new Ma(new ArrayList<Carta>());
-        torn = new Torn();
     }
 
     public void jugadaBot(ControladoraIA ci, Fase fase, int numVegadesFase) {

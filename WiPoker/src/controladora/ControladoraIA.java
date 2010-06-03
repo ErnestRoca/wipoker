@@ -77,10 +77,10 @@ public class ControladoraIA {
                         if (valorMesAlt >= 10) {
                             cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
                         } else {
-                            cp.controlJoc.ferFold(jugador);
+                            cp.controlJoc.ferFold(jugador, fase);
                         }
                     } else {
-                        cp.controlJoc.ferFold(jugador);
+                        cp.controlJoc.ferFold(jugador, fase);
                     }
                 }
                 //FLOP
@@ -120,10 +120,10 @@ public class ControladoraIA {
                             if (valorMesAlt >= 10) {
                                 cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
                             } else {
-                                cp.controlJoc.ferFold(jugador);
+                                cp.controlJoc.ferFold(jugador, fase);
                             }
                         } else {
-                            cp.controlJoc.ferFold(jugador);
+                            cp.controlJoc.ferFold(jugador, fase);
                         }
                     } else {
                         cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
@@ -131,7 +131,7 @@ public class ControladoraIA {
 
                 } else {
                     if (apostaMinima > 0) {
-                        cp.controlJoc.ferFold(jugador);
+                        cp.controlJoc.ferFold(jugador, fase);
                     } else {
                         cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
                     }
@@ -174,10 +174,10 @@ public class ControladoraIA {
                             if (valorMesAlt >= 10) {
                                 cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
                             } else {
-                                cp.controlJoc.ferFold(jugador);
+                                cp.controlJoc.ferFold(jugador, fase);
                             }
                         } else {
-                            cp.controlJoc.ferFold(jugador);
+                            cp.controlJoc.ferFold(jugador, fase);
                         }
                     } else {
                         cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
@@ -185,7 +185,7 @@ public class ControladoraIA {
 
                 } else {
                     if (apostaMinima > 0) {
-                        cp.controlJoc.ferFold(jugador);
+                        cp.controlJoc.ferFold(jugador, fase);
                     } else {
                         cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
                     }
@@ -228,10 +228,10 @@ public class ControladoraIA {
                             if (valorMesAlt >= 10) {
                                 cp.controlJoc.ferCall(jugador, fase, (int) apostaMinima);
                             } else {
-                                cp.controlJoc.ferFold(jugador);
+                                cp.controlJoc.ferFold(jugador, fase);
                             }
                         } else {
-                            cp.controlJoc.ferFold(jugador);
+                            cp.controlJoc.ferFold(jugador, fase);
                         }
                     } else {
                         cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
@@ -239,7 +239,7 @@ public class ControladoraIA {
 
                 } else {
                     if (apostaMinima > 0) {
-                        cp.controlJoc.ferFold(jugador);
+                        cp.controlJoc.ferFold(jugador, fase);
                     } else {
                         cp.controlJoc.ferCheck(jugador, fase, (int) apostaMinima);
                     }

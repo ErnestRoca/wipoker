@@ -93,8 +93,9 @@ public class ControladoraJoc {
         
     }
 
-    public synchronized void ferFold(Jugador jugador) {
+    public synchronized void ferFold(Jugador jugador, Fase fase) {
         jugador.setHaFetFold(true);
+        apostar(jugador, 0, fase);
         System.out.println(jugador.getAlias() + " fa FOLD");
     }
 
@@ -113,7 +114,6 @@ public class ControladoraJoc {
     public synchronized void ferCheck(Jugador jugador, Fase fase, int apostaMinima) {
         //double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         double quantitatAnterior = jugador.getAposta().getQuantitat();
-        System.out.println("Quantitat anterior: " + quantitatAnterior + ", aposta minima: " + apostaMinima);
         if (quantitatAnterior == apostaMinima) {
             //no fa res. Ho hem fet volent
             fase.setApostaMinima(apostaMinima);
