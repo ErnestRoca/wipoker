@@ -267,4 +267,16 @@ public class ControladoraGui {
         }
 
     }
+
+    public void setNomJugadors() {
+        //
+    }
+
+    public void setFitxesJugadors() {
+        //
+    }
+
+    public void setCartesPrivades() {
+        //
+    }
 }
