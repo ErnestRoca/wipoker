@@ -25,10 +25,8 @@ public class ControladoraIA {
     }
 
     public void calcularAposta(Bot jugador, Fase fase, int numVegadesFase) {
-        double aposta = 0.0;
         double valorCombinacio = jugador.getMaActual().getCombinacio();
         double valorMesAlt = jugador.getMaActual().getValorMesAlt();
-        //Ronda ultimaRonda = cp.partida.getRondes().get(cp.partida.getRondes().size() -1);
         Fase ultimafase = fase;
         double apostaMinima = ultimafase.getApostaMinima();
         //PRE-FLOP
