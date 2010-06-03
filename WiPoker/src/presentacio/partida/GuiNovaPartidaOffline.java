@@ -45,6 +45,8 @@ public class GuiNovaPartidaOffline {
     private JButton jbContraMaquina;
     private JButton jbCrearPartida;
     private JButton jbUnirsePartida;
+    private JLabel jlFNumJugadors;
+    private JTextField jtfFNumJugadors;
 
     //constructor de pruebas
     public GuiNovaPartidaOffline() throws InterruptedException {
@@ -85,8 +87,8 @@ public class GuiNovaPartidaOffline {
         jlImatgeFons.setOpaque(false);
 
         jlAlias = new JLabel();
-        jlAlias.setBounds(58, 130, 340, 104);
-        jlAlias.setText("Alias ");
+        jlAlias.setBounds(77, 130, 340, 104);
+        jlAlias.setText("Nom jugador ");
         jlAlias.setForeground(Color.red);
         jlAlias.setLayout(null);
         jpFons.add(jlAlias);
@@ -106,11 +108,22 @@ public class GuiNovaPartidaOffline {
         jtfFInicials.setBounds(170, 250, 120, 24);
         jpFons.add(jtfFInicials);
 
+        jlFNumJugadors = new JLabel();
+        jlFNumJugadors.setBounds(52, 290, 340, 104);
+        jlFNumJugadors.setText("Numero Jugadors ");
+        jlFNumJugadors.setForeground(Color.red);
+        jlFNumJugadors.setLayout(null);
+        jpFons.add(jlFNumJugadors);
+
+        jtfFNumJugadors = new JTextField(20);
+        jtfFNumJugadors.setBounds(170, 330, 120, 24);
+        jpFons.add(jtfFNumJugadors);
+
         jbCrear = new JButton("CREAR");
         jbCrear.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbCrear.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbCrear.setLayout(null);
-        jbCrear.setBounds(100, 350, 120, 24);
+        jbCrear.setBounds(100, 430, 120, 24);
         jbCrear.setIconTextGap(-260);
         jbCrear.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbCrear.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
@@ -121,7 +134,7 @@ public class GuiNovaPartidaOffline {
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         jbTornar.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
         jbTornar.setLayout(null);
-        jbTornar.setBounds(100, 420, 120, 24);
+        jbTornar.setBounds(100, 480, 120, 24);
         jbTornar.setIconTextGap(-260);
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
@@ -140,7 +153,7 @@ public class GuiNovaPartidaOffline {
             public void actionPerformed(ActionEvent e) {
                 if (!jtfFInicials.getText().equals("")&&(!jtfAlias.getText().equals(""))) {
                     jFrame.dispose();
-                    gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText())));
+                    gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), Integer.parseInt(jtfFNumJugadors.getText())));
                     taulell = new GuiTaulell(gui);
                     taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                     new Runnable() {
