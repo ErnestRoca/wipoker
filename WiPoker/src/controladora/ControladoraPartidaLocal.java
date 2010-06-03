@@ -6,24 +6,23 @@ package controladora;
 
 import domini.Bot;
 import domini.Jugador;
+import java.util.Arrays;
 
 /**
  *
  * @author wida45787385
  */
 public class ControladoraPartidaLocal extends ControladoraPartida {
+    String[] nomBots = {"Joan", "Marc", "Oriol", "Ramona", "Abelardo", "Messi",
+    "Josep", "Bush", "Kennedy", "MoneyMaker", "Negreanu", "Reymer", "Minieri",
+    "Humberto", "Greenstein", "Pagano", "Victoria", "Hansen"};
     
-    public ControladoraPartidaLocal(ControladoraGui gui, String alias, int fitxesInicials) {
-        super(9, gui);
-        super.partida.getJugadors().add(new Jugador("324", alias, alias, 0, 0, fitxesInicials, alias, fitxesInicials, 0, "avatar"));
-        super.partida.getJugadors().add(new Bot("bot1", fitxesInicials, 1));
-        super.partida.getJugadors().add(new Bot("bot2", fitxesInicials, 2));
-        super.partida.getJugadors().add(new Bot("bot3", fitxesInicials, 3));
-        super.partida.getJugadors().add(new Bot("bot4", fitxesInicials, 4));
-        super.partida.getJugadors().add(new Bot("bot5", fitxesInicials, 5));
-        super.partida.getJugadors().add(new Bot("bot6", fitxesInicials, 6));
-        super.partida.getJugadors().add(new Bot("bot7", fitxesInicials, 7));
-        super.partida.getJugadors().add(new Bot("bot8", fitxesInicials, 8));
-
+    public ControladoraPartidaLocal(ControladoraGui gui, String alias, int fitxesInicials, int numJugadors) {
+        super(numJugadors, gui);
+        Arrays.sort(nomBots);
+        super.partida.getJugadors().add(new Jugador(alias, fitxesInicials, 0));
+        for (int i = 1; i < numJugadors;i++) {
+            super.partida.getJugadors().add(new Bot(nomBots[i], fitxesInicials, i));
+        }
     }   
 }
