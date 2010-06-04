@@ -274,10 +274,14 @@ public class ControladoraGui {
             taulell.getJbCallCheck().setEnabled(true);
             taulell.getJbFold().setEnabled(true);
             taulell.getJbRise().setEnabled(true);
-            if (tornActual.getJugadorTorn().getAposta().getQuantitat() < faseActual.getApostaMinima()) {//Fem que el boto call sigui call
+            if (getTornActual().getJugadorTorn().getAposta() != null) {
+                if (tornActual.getJugadorTorn().getAposta().getQuantitat() < faseActual.getApostaMinima()) {//Fem que el boto call sigui call
+                    taulell.getJbCallCheck().setText("Call");
+                } else if (tornActual.getJugadorTorn().getAposta().getQuantitat() == faseActual.getApostaMinima()) {//Fem que el boto call sigui check
+                    taulell.getJbCallCheck().setText("Check");
+                }
+            } else {
                 taulell.getJbCallCheck().setText("Call");
-            } else if (tornActual.getJugadorTorn().getAposta().getQuantitat() == faseActual.getApostaMinima()) {//Fem que el boto call sigui check
-                taulell.getJbCallCheck().setText("Check");
             }
         } else {
             taulell.getJbCallCheck().setEnabled(false);
