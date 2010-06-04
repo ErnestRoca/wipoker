@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import presentacio.GuiTaulell;
@@ -30,10 +29,6 @@ public class ControladoraGui {
     private Fase faseActual = new Fase();
     /** Pseudoatribut per implementar visibilitat d'atribut. */
     private GuiTaulell taulell;
-    private JButton jbcheck;
-    private JButton jbBet;
-    private JButton jbFold;
-    private JButton jbRise;
     private ControladoraJabber cjabber;
 
     public ControladoraGui() {
@@ -45,22 +40,6 @@ public class ControladoraGui {
         faseActual = new Fase();
         this.cp = cp;
         cjabber = new ControladoraJabber();
-    }
-
-    public JButton getJbBet() {
-        return jbBet;
-    }
-
-    public JButton getJbFold() {
-        return jbFold;
-    }
-
-    public JButton getJbRise() {
-        return jbRise;
-    }
-
-    public JButton getJbcheck() {
-        return jbcheck;
     }
 
     public GuiTaulell getTaulell() {
@@ -97,10 +76,6 @@ public class ControladoraGui {
 
     public void setTaulell(GuiTaulell t) {
         this.taulell = t;
-        jbcheck = taulell.getJbCheck();
-        jbBet = taulell.getJbCall();
-        jbFold = taulell.getJbFold();
-        jbRise = taulell.getJbRise();
     }
 
     public Torn getTornActual() {
@@ -136,8 +111,8 @@ public class ControladoraGui {
     }
 
     //Fa Check
-    public void doCheck(int quantitat) {
-        cp.controlJoc.ferCheck(tornActual.getJugadorTorn(), faseActual, quantitat);
+    public void doCheck() {
+        cp.controlJoc.ferCheck(tornActual.getJugadorTorn(), faseActual, faseActual.getApostaMinima());
     }
 
     //Fa Fold
@@ -272,9 +247,6 @@ public class ControladoraGui {
 
     }
 
-    public void setNomJugadors(ArrayList<Jugador> jugadors) {
-        //
-    }
 
     public void setCartesPrivades() {
         for (Jugador jugador : cp.partida.getJugadors()) {
@@ -285,13 +257,40 @@ public class ControladoraGui {
         }
     }
 
-    public void mostrarMissatge(String missatge) {
+    public void mostrarMissatge(String missatge, String missatge2) {
         try {
             taulell.getjPanelMissatges().setVisible(true);
-            Thread.sleep(3500);
+            taulell.getJtaMissatge().setText(missatge);
+            taulell.getJlMissatge2().setText(missatge2);
+            Thread.sleep(5000);
             taulell.getjPanelMissatges().setVisible(false);
         } catch (InterruptedException ex) {
             Logger.getLogger(ControladoraGui.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    //Canvi del nom del boto call a check, i ocultar el boto check per posarhi un input
+    public void actualitzaBotons(Jugador jugador, Fase faseActual) {
+        if (!(jugador instanceof Bot)) {
+            if (jugador.getAposta().getQuantitat() < faseActual.getApostaMinima()) {//Fem que el boto call sigui call
+                
+            } else if(jugador.getAposta().getQuantitat() == faseActual.getApostaMinima()){//Fem que el boto call sigui check
+
+            }
+        } else {
+            taulell.getJbCallCheck().setEnabled(false);
+            taulell.getJbFold().setEnabled(false);
+            taulell.getJbRise().setEnabled(false);
+        }
+    }
+
+    //Accio del boto checkcall
+
+    public void accioCheckCall()  {
+        if(getFaseActual().getApostaMinima() == getTornActual().getJugadorTorn().getAposta().getQuantitat()){
+                    doCheck();
+                } else{
+                    doCall();
+                }
     }
 }
