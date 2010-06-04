@@ -11,8 +11,13 @@ import controladora.jabber.JID;
 import controladora.jabber.Listeners;
 import controladora.jabber.Trafic;
 import domini.Ronda;
+
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.filter.AndFilter;
+import org.jivesoftware.smack.filter.FromContainsFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
+import org.jivesoftware.smack.filter.PacketTypeFilter;
+import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
@@ -23,9 +28,8 @@ public class ControladoraJabber {
 
     private XMPPConnection connexio;
     private Ronda ronda = new Ronda();
-    private MultiUserChat sala;
-    private PacketFilter pf;
-    private JID jid;
+    private MultiUserChat muc;
+    private JID room;
     private Listeners listeners;
     private Trafic trafic;
 
@@ -42,14 +46,43 @@ public class ControladoraJabber {
         this.connexio = connexio;
     }
 
-    public MultiUserChat getSala() {
-        return sala;
+    public JID getJid() {
+        return room;
     }
-    
-    public void prepararSala(String nomSala, String direccioSala, String alias) {
+
+    public MultiUserChat getMuc() {
+        return muc;
+    }
+
+    public void crearSala(JID jid) {
         //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
-        String cad = nomSala + "@" + direccioSala + "/" + alias;
-        sala = Connexio.crearSalaChat(connexio, cad);
-        jid = new JID(cad);
+        room = jid;
+        muc = new MultiUserChat(connexio, jid.getJID());
+        try {
+            muc.create(room.getNick());
+            muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
+            muc.changeSubject("sala per al joc wipoker");
+        } catch (Exception e) {
+            System.out.println("error creant sala");
+        }
+        try {
+            if (!muc.isJoined()) {
+                muc.join(room.getNick());
+            }
+        } catch (Exception e) {
+            System.out.println("error entrant sala");
+        }
+        if (muc != null) {
+            try {
+                muc.addParticipantStatusListener(listeners);
+                muc.addUserStatusListener(listeners);
+                PacketFilter pf = new AndFilter(new PacketTypeFilter(muc.createMessage().getClass()),
+                        new FromContainsFilter(muc.getRoom()));
+                connexio.createPacketCollector(pf);
+                connexio.addPacketListener(listeners, pf);
+            } catch (Exception e) {
+                System.out.println("error afegint escoltadors");
+            }
+        }
     }
 }
