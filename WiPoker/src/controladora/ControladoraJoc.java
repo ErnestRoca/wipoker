@@ -107,7 +107,7 @@ public class ControladoraJoc {
             fase.setApostaMinima(apostaMinima);
             System.out.println(jugador.getAlias() + " fa CALL");
         } else {
-            System.out.println("no pot aposstar CALL");
+            System.out.println(jugador.getAlias() + " no pot aposstar CALL");
         }
     }
 
@@ -140,7 +140,7 @@ public class ControladoraJoc {
             fase.setApostaMinima((int) (apostaMinima + dinersApostats));
             System.out.println(jugador.getAlias() + " fa RAISE");
         } else {
-            System.out.println("no pot aposstar RISE: " + (apostaMinima - quantitatAnterior ) + " < " + dinersApostats);
+            System.out.println(jugador.getAlias() + " no pot aposstar RISE: " + (apostaMinima - quantitatAnterior ) + " < " + dinersApostats);
             System.out.println(jugador.getMaActual().getCartes());
         }
     }
