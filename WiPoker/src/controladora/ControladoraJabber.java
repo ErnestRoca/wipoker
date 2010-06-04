@@ -8,6 +8,8 @@ import controladora.jabber.Connexio;
 
 import controladora.jabber.JID;
 
+import controladora.jabber.Listeners;
+import controladora.jabber.Trafic;
 import domini.Ronda;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.filter.PacketFilter;
@@ -24,9 +26,12 @@ public class ControladoraJabber {
     private MultiUserChat sala;
     private PacketFilter pf;
     private JID jid;
+    private Listeners listeners;
+    private Trafic trafic;
 
-    public ControladoraJabber() {             
-        
+    public ControladoraJabber() {
+        listeners = new Listeners();
+        trafic = new Trafic();
     }
 
     public XMPPConnection getConnexio() {
