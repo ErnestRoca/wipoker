@@ -44,6 +44,11 @@ public class ControladoraPartida {
         controlIA = new ControladoraIA(partida, controlCartes, this);
     }
 
+    public boolean taulaIsFull() {
+        boolean completa = taula.getPlaces() - taula.getCadiresOcupades() == 0;
+        return completa;
+    }
+
     public void jugar() throws InterruptedException {
         fiPartida = false;
         gui.ocultarPanellsJugadors();
@@ -60,14 +65,15 @@ public class ControladoraPartida {
         });
         System.out.println(partida.getJugadors().get(0));
         int boto = 0;
-        while (partida.getJugadors().size() > 1 && fiPartida != true) {
-            if (boto == partida.getJugadors().size()) {
-                boto = 0;
+        if (taulaIsFull()) {
+            while (partida.getJugadors().size() > 1 && fiPartida != true) {
+                if (boto == partida.getJugadors().size()) {
+                    boto = 0;
+                }
+                iniciarRonda(boto);
+                boto++;
             }
-            iniciarRonda(boto);
-            boto++;
         }
-
     }
 
     public void iniciarRonda(int boto) throws InterruptedException {
@@ -111,7 +117,7 @@ public class ControladoraPartida {
         }
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
-        
+
         System.out.println("POT RONDA: " + novaRonda.getPot());
         controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
         novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
@@ -205,7 +211,7 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
-                        
+
                         if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                             Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                             gui.getTornActual().resume();

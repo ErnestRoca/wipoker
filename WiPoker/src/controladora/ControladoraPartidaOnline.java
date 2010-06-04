@@ -16,12 +16,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
 
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui) {
         super(maxJugadors, gui);       
-    }
-
-    public boolean taulaIsFull() {
-        boolean completa = super.taula.getPlaces() - super.taula.getCadiresOcupades() == 0;
-        return completa;
-    }
+    }    
 
     public void afegirJugador(Jugador nouJugador) {
         if (!taulaIsFull()) {
