@@ -209,7 +209,7 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
-
+                        gui.actualitzaBotons();
                         if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                             Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                             gui.getTornActual().resume();
@@ -224,6 +224,7 @@ public class ControladoraPartida {
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        gui.actualitzaBotons();
                         if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                             if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                                 Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
@@ -257,6 +258,7 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        gui.actualitzaBotons();
                         if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                             Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                             gui.getTornActual().resume();
@@ -272,6 +274,7 @@ public class ControladoraPartida {
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        gui.actualitzaBotons();
                         if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                             if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                                 Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
@@ -343,6 +346,7 @@ public class ControladoraPartida {
                     if (countFase >= 1 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        gui.actualitzaBotons();
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
@@ -359,6 +363,7 @@ public class ControladoraPartida {
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        gui.actualitzaBotons();
                         if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
@@ -393,6 +398,7 @@ public class ControladoraPartida {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        gui.actualitzaBotons();
                         if (partida.getJugadors().get(i) instanceof Bot) {
                             Bot bot = (Bot) partida.getJugadors().get(i);
                             gui.getTornActual().resume();
@@ -409,6 +415,7 @@ public class ControladoraPartida {
                     } else if (countFase == 0) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
+                        gui.actualitzaBotons();
                         if (!gui.getTornActual().getJugadorTorn().isHaFetFold()) {
                             if (partida.getJugadors().get(i) instanceof Bot) {
                                 Bot bot = (Bot) partida.getJugadors().get(i);
