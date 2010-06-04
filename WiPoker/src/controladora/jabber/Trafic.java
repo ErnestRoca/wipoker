@@ -18,22 +18,11 @@ import org.jivesoftware.smack.packet.Packet;
  * @author wida45787385
  */
 public class Trafic {
-    
-    private XMPPConnection con;
-    
-    public Trafic(String s) {
+            
+    public Trafic() {
         
     }
     
-    public Packet enviarCartes(ArrayList<Carta> cartes, String destinatari) {
-        Message m = new Message(destinatari, Message.Type.normal);
-        
-       
-        
-        return m;
-    }
-
-
     public Packet enviarCarta(Carta carta, String destinatari, boolean privada) {
         Message m = new Message(destinatari, Message.Type.normal);
         m.setProperty("tipus", Carta.class);
