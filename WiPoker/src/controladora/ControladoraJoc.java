@@ -113,13 +113,13 @@ public class ControladoraJoc {
 
     public synchronized void ferCheck(Jugador jugador, Fase fase, int apostaMinima) {
         //double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-        double quantitatAnterior = jugador.getAposta().getQuantitat();
-        if (quantitatAnterior == apostaMinima) {
+        //double quantitatAnterior = jugador.getAposta().getQuantitat();
+        //if (quantitatAnterior == apostaMinima) {
             //no fa res. Ho hem fet volent
             fase.setApostaMinima(apostaMinima);
             apostar(jugador,(int) (apostaMinima), fase);
             System.out.println(jugador.getAlias() + " fa CHECK");
-        }
+        //}
     }
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
