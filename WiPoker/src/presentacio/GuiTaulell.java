@@ -19,7 +19,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 /**
@@ -50,7 +52,7 @@ public class GuiTaulell {
     private JPanel jPanelCrupier;
     private JPanel jPanelMissatges;
     //
-    private JLabel jlMissatge;
+    private JTextArea jtaMissatge;
     private JLabel jlMissatge2;
     private JLabel jlCarta01Usuari;
     private JLabel jlCarta02Usuari;
@@ -103,9 +105,9 @@ public class GuiTaulell {
     private JLabel jlNumFitxes08;
     private JLabel jlNumFitxes09;
     //
-    private JButton jbCheck;
+    private JScrollBar jsbEntradaFitxes;
     private JButton jbRise;
-    private JButton jbCall;
+    private JButton jbCallCheck;
     private JButton jbFold;
     //
     private JMenuBar jMenuBar;
@@ -117,6 +119,7 @@ public class GuiTaulell {
     private JSeparator jseSeparador;
     //
     private ControladoraGui gui;
+    private JLabel jlMinScrollBar;
 
     /** Constructor. */
     public GuiTaulell() {
@@ -879,21 +882,18 @@ public class GuiTaulell {
 
     private void crearControlsJPanelBotons() {
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
-        jbCheck = new JButton();
-        jbCheck.setIconTextGap(-180);
-        jbCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbCheck.setMnemonic('C');
-        jbCheck.setText("Check");
-        jbCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbCheck.setCursor(cursor);
-        jbCheck.setToolTipText("No apostar");
+        jlMinScrollBar = new JLabel();
+
+
+        jsbEntradaFitxes = new JScrollBar(SwingConstants.HORIZONTAL, 0, 0, 0, 100);
+        jsbEntradaFitxes.setOpaque(false);
         final int sv = 2;
-        final int x1 = 0;
-        final int y1 = 0;
-        final int w1 = 236;
-        final int h1 = 40;
-        jbCheck.setBounds(x1, y1, w1, h1);
-        jPanelBotons.add(jbCheck);
+        final int x1 = 6;
+        final int y1 = 20;
+        final int w1 = 220;
+        final int h1 = 20;
+        jsbEntradaFitxes.setBounds(x1, y1, w1, h1);
+        jPanelBotons.add(jsbEntradaFitxes);
 
         jbRise = new JButton();
         jbRise.setIconTextGap(-180);
@@ -903,27 +903,27 @@ public class GuiTaulell {
         jbRise.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbRise.setCursor(cursor);
         jbRise.setToolTipText("Apujar l'aposta");
-        final int x2 = x1;
-        final int y2 = y1 + h1 + sv;
-        final int w2 = w1;
-        final int h2 = h1;
+        final int x2 = 0;
+        final int y2 = 0 + 40 + sv;
+        final int w2 = 236;
+        final int h2 = 40;
         jbRise.setBounds(x2, y2, w2, h2);
         jPanelBotons.add(jbRise);
 
-        jbCall = new JButton();
-        jbCall.setIconTextGap(-180);
-        jbCall.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbCall.setMnemonic('C');
-        jbCall.setText("Call");
-        jbCall.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbCall.setCursor(cursor);
-        jbCall.setToolTipText("Igualar aposta");
-        final int x3 = x1;
+        jbCallCheck = new JButton();
+        jbCallCheck.setIconTextGap(-180);
+        jbCallCheck.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCallCheck.setMnemonic('C');
+        jbCallCheck.setText("Call");
+        jbCallCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCallCheck.setCursor(cursor);
+        jbCallCheck.setToolTipText("Igualar aposta");
+        final int x3 = x2;
         final int y3 = y2 + h2 + sv;
-        final int w3 = w1;
-        final int h3 = h1;
-        jbCall.setBounds(x3, y3, w3, h3);
-        jPanelBotons.add(jbCall);
+        final int w3 = w2;
+        final int h3 = h2;
+        jbCallCheck.setBounds(x3, y3, w3, h3);
+        jPanelBotons.add(jbCallCheck);
 
         jbFold = new JButton();
         jbFold.setIconTextGap(-180);
@@ -933,20 +933,21 @@ public class GuiTaulell {
         jbFold.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbFold.setCursor(cursor);
         jbFold.setToolTipText("No jugar ronda actual");
-        final int x4 = x1;
+        final int x4 = x2;
         final int y4 = y3 + h2 + sv;
-        final int w4 = w1;
-        final int h4 = h1;
+        final int w4 = w2;
+        final int h4 = h2;
         jbFold.setBounds(x4, y4, w4, h4);
         jPanelBotons.add(jbFold);
     }
 
     private void crearControlsJPanelMissatges() {
-        jlMissatge = new JLabel();
-        jlMissatge.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
-        jlMissatge.setForeground(Color.WHITE);
-        jlMissatge.setBounds(5, 10, 210, 20);
-        jPanelMissatges.add(jlMissatge);
+        jtaMissatge = new JTextArea();
+        jtaMissatge.setRows(5);
+        jtaMissatge.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
+        jtaMissatge.setForeground(Color.WHITE);
+        jtaMissatge.setBounds(5, 10, 210, 20);
+        jPanelMissatges.add(jtaMissatge);
 
         jlMissatge2 = new JLabel();
         jlMissatge2.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
@@ -975,21 +976,11 @@ public class GuiTaulell {
             }
         });
 
-        jbCheck.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(final ActionEvent evt) {
-                //crear jlabel con dinero               
-                gui.doCheck(10);
-                gui.getTornActual().resume();
-            }
-        });
-
-        jbCall.addActionListener(new ActionListener() {
+        jbCallCheck.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.doCall();
+                gui.accioCheckCall();
                 gui.getTornActual().resume();
 
             }
@@ -1028,20 +1019,20 @@ public class GuiTaulell {
         this.jFrame = jFrame;
     }
 
-    public JButton getJbCall() {
-        return jbCall;
+    public JButton getJbCallCheck() {
+        return jbCallCheck;
     }
 
-    public void setJbBet(JButton jbCall) {
-        this.jbCall = jbCall;
+    public void setJbCallCheck(JButton jbCallCheck) {
+        this.jbCallCheck = jbCallCheck;
     }
 
-    public JButton getJbCheck() {
-        return jbCheck;
+    public JScrollBar getJsbEntradaFitxes() {
+        return jsbEntradaFitxes;
     }
 
-    public void setJbCheck(JButton jbCheck) {
-        this.jbCheck = jbCheck;
+    public void setJsbEntradaFitxes(JScrollBar jsbEntradaFitxes) {
+        this.jsbEntradaFitxes = jsbEntradaFitxes;
     }
 
     public JButton getJbFold() {
@@ -1428,12 +1419,12 @@ public class GuiTaulell {
         this.jPanelMissatges = jPanelMissatges;
     }
 
-    public JLabel getJlMissatge() {
-        return jlMissatge;
+    public JTextArea getJtaMissatge() {
+        return jtaMissatge;
     }
 
-    public void setJlMissatge(JLabel jlMissatge) {
-        this.jlMissatge = jlMissatge;
+    public void setJtaMissatge(JTextArea jtaMissatge) {
+        this.jtaMissatge = jtaMissatge;
     }
 
     public JLabel getJlMissatge2() {
@@ -1443,8 +1434,6 @@ public class GuiTaulell {
     public void setJlMissatge2(JLabel jlMissatge2) {
         this.jlMissatge2 = jlMissatge2;
     }
-
-
 
     public ArrayList<JLabel> getAvatars() {
         return avatars;
