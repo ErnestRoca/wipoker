@@ -94,6 +94,7 @@ public class GuiNovaPartidaOffline {
         jpFons.add(jlAlias);
 
         jtfAlias = new JTextField(20);
+        jtfAlias.setText("JugadorNoInteligent");
         jtfAlias.setBounds(170, 170, 120, 24);
         jpFons.add(jtfAlias);
 
@@ -105,6 +106,7 @@ public class GuiNovaPartidaOffline {
         jpFons.add(jlFInicials);
 
         jtfFInicials = new JTextField(20);
+        jtfFInicials.setText("1000");
         jtfFInicials.setBounds(170, 250, 120, 24);
         jpFons.add(jtfFInicials);
 
@@ -116,6 +118,7 @@ public class GuiNovaPartidaOffline {
         jpFons.add(jlFNumJugadors);
 
         jtfFNumJugadors = new JTextField(20);
+        jtfFNumJugadors.setText("5");
         jtfFNumJugadors.setBounds(170, 330, 120, 24);
         jpFons.add(jtfFNumJugadors);
 
