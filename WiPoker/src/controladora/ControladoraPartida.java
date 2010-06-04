@@ -50,6 +50,7 @@ public class ControladoraPartida {
     }
 
     public void jugar() throws InterruptedException {
+        System.out.println("---------********NOVA PARTIDA******---------");
         fiPartida = false;
         gui.ocultarPanellsJugadors();
         gui.gestionarFitxes(partida.getJugadors());
@@ -63,9 +64,7 @@ public class ControladoraPartida {
                 return j1.getPosicioTaula() - j2.getPosicioTaula();
             }
         });
-        System.out.println(partida.getJugadors().get(0));
         int boto = 0;
-        if (taulaIsFull()) {
             while (partida.getJugadors().size() > 1 && fiPartida != true) {
                 if (boto == partida.getJugadors().size()) {
                     boto = 0;
@@ -74,7 +73,6 @@ public class ControladoraPartida {
                 boto++;
             }
         }
-    }
 
     public void iniciarRonda(int boto) throws InterruptedException {
         //Crea ronda
@@ -135,7 +133,7 @@ public class ControladoraPartida {
             //jugador.getAposta().setQuantitat(0.0);
         }
         gui.ocultarCartesComunitaries();
-        gui.mostrarMissatge("hola");
+        gui.mostrarMissatge(jugadorsGuanyadors.toString(), "Ha/n guanyat la ronda");
     }
 
     public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
