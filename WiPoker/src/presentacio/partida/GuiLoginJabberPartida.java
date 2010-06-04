@@ -5,6 +5,8 @@
 package presentacio.partida;
 
 import controladora.ControladoraGui;
+import controladora.jabber.Connexio;
+import controladora.jabber.GestioUsuaris;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -17,11 +19,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import org.jivesoftware.smack.XMPPException;
 import presentacio.GuiMenu;
 import presentacio.jabber.GuiLoginJabber;
 
@@ -38,10 +42,10 @@ public class GuiLoginJabberPartida {
     private JLabel jlImatgeFons;
     private JLabel jlNom;
     private JLabel jlPassword;
-    private JLabel jlPassword2;
+    private JLabel jlServidor;
     private JTextField jtfNom;
     private JTextField jtfPassword;
-    private JTextField jtfPassword2;
+    private JTextField jtfServidor;
     private JLabel jlCorreu;
     private JTextField jtfCorreu;
     private JButton jbTornar;
@@ -128,15 +132,15 @@ public class GuiLoginJabberPartida {
         jtfPassword.setBounds(170, 210, 120, 24);
         jpFons.add(jtfPassword);
 
-        jlPassword2 = new JLabel();
-        jlPassword2.setBounds(30, 240, 340, 104);
-        jlPassword2.setText("Repeteix contrasenya");
-        jlPassword2.setForeground(Color.red);
-        jpFons.add(jlPassword2);
+        jlServidor = new JLabel();
+        jlServidor.setBounds(30, 240, 340, 104);
+        jlServidor.setText("Servidor");
+        jlServidor.setForeground(Color.red);
+        jpFons.add(jlServidor);
 
-        jtfPassword2 = new JPasswordField();
-        jtfPassword2.setBounds(170, 280, 120, 24);
-        jpFons.add(jtfPassword2);
+        jtfServidor = new JPasswordField();
+        jtfServidor.setBounds(170, 280, 120, 24);
+        jpFons.add(jtfServidor);
 
         jlCorreu = new JLabel();
         jlCorreu.setBounds(30, 310, 340, 104);
@@ -201,7 +205,16 @@ public class GuiLoginJabberPartida {
 
             public void actionPerformed(ActionEvent event) {
                 if (!gui.isLogin()) {
-                    gui.setLogin(true);
+                    try {
+                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                        GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
+                        gui.setLogin(true);
+                        JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
+                        jbTornar.doClick();
+                    } catch (XMPPException ex) {
+                        gui.setLogin(false);
+                        Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 if (gui.isLogin()) {
                     try {
@@ -223,7 +236,7 @@ public class GuiLoginJabberPartida {
 
             public void actionPerformed(ActionEvent event) {
 
-                try {                    
+                try {
                     jFrame.dispose();
                     novaPartidaOffline = new GuiNovaPartidaOffline(gui);
                     novaPartidaOffline.getjFrame().setLocation(jFrame.getLocation());
