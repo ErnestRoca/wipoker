@@ -45,7 +45,7 @@ public class Listeners implements ConnectionListener, ConnectionCreationListener
     //ConnectionCreationListener: detecta cuando se ha conectado a un servidor
 
     public void connectionCreated(XMPPConnection arg0) {
-        
+        System.out.println("s'ha creat una connexio");
     }
 
     //PacketListener: fa una accio quan enftra un paquet
