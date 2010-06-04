@@ -13,12 +13,14 @@ import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smackx.muc.ParticipantStatusListener;
+import org.jivesoftware.smackx.muc.UserStatusListener;
 
 /**
  *
  * @author wida45787385
  */
-public class Listeners implements ConnectionListener, ConnectionCreationListener, PacketListener, ParticipantStatusListener {
+public class Listeners implements ConnectionListener, ConnectionCreationListener, PacketListener, 
+        ParticipantStatusListener, UserStatusListener {
 
     //connectionlistener: escucha la conexion para detectar caidas
 
@@ -119,6 +121,56 @@ public class Listeners implements ConnectionListener, ConnectionCreationListener
     public void afegirFiltre(XMPPConnection connexio, Class claseFiltre) {
         PacketFilter pf = new PacketTypeFilter(claseFiltre);
         connexio.createPacketCollector(pf);
+    }
+
+    //userstatuslisteners
+
+    public void kicked(String arg0, String arg1) {
+        System.out.println("jugador afegit");
+    }
+
+    public void voiceGranted() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void voiceRevoked() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void banned(String arg0, String arg1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void membershipGranted() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void membershipRevoked() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void moderatorGranted() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void moderatorRevoked() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void ownershipGranted() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void ownershipRevoked() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void adminGranted() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void adminRevoked() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
