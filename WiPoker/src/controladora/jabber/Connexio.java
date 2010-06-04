@@ -33,14 +33,5 @@ public class Connexio {
             SASLAuthentication.supportSASLMechanism(c.getSimpleName());
         }
     }
-
-    public static MultiUserChat crearSalaChat(XMPPConnection connexio, String servidor) {
-        MultiUserChat muc = new MultiUserChat(connexio, servidor);
-        return muc;
-    }
-
-    public static JID crearSalaJoc(String param) {
-        return new JID(param);
-    }
 }
 
