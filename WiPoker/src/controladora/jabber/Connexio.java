@@ -20,8 +20,8 @@ public class Connexio {
         ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
         cc.setDebuggerEnabled(false);
-        cc.setReconnectionAllowed(false);
-        cc.setSASLAuthenticationEnabled(true);
+        cc.setReconnectionAllowed(true);
+        //cc.setSASLAuthenticationEnabled(true);
         registrarMecanismes();
         XMPPConnection connexio = new XMPPConnection(cc);
         return connexio;
