@@ -18,12 +18,12 @@ public class Connexio {
 
     public static XMPPConnection crearConnexio(String servidor) {
         ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
-        cc.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
+        cc.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
         cc.setDebuggerEnabled(false);
         cc.setReconnectionAllowed(true);
-        //cc.setSASLAuthenticationEnabled(true);
-        registrarMecanismes();
+        cc.setSASLAuthenticationEnabled(true);        
         XMPPConnection connexio = new XMPPConnection(cc);
+        registrarMecanismes();
         return connexio;
     }
 
