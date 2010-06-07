@@ -86,7 +86,7 @@ public class ControladoraJoc {
         //modificar cuando este hecha gui
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         jugador.setFitxesActuals((int) ((jugador.getFitxesActuals() - quantitat) + quantitatAnterior));
-        Aposta aposta = new Aposta(jugador, quantitat);
+        Aposta aposta = new Aposta(jugador, quantitat - quantitatAnterior);
         jugador.setAposta(aposta);
         
         fase.getApostes().add(aposta);
