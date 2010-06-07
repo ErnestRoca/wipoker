@@ -144,7 +144,7 @@ public class ControladoraJoc {
 
             if (teDiners && esSuficient) {
 
-                apostar(jugador, (int) (quantitatAnterior + dinersApostats), fase);
+                apostar(jugador,(int) ((int) (apostaMinima + dinersApostats) - quantitatAnterior), fase);
                 fase.setApostaMinima((int) (apostaMinima + dinersApostats));
                 System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
             } else {
