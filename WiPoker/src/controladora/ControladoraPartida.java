@@ -65,7 +65,7 @@ public class ControladoraPartida {
             }
         });
         int boto = 0;
-        
+
         while (partida.getJugadors().size() > 1 && fiPartida != true) {
             if (boto == partida.getJugadors().size()) {
                 boto = 0;
@@ -161,26 +161,34 @@ public class ControladoraPartida {
         if (partida.getJugadors().size() <= 2) {
             //cega petita i gran
             if (boto == 0) {
-                controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
+                controlJoc.ferBlind(partida.getJugadors().get(1), fase, apostaMin / 2);
+                //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                controlJoc.ferBlind(partida.getJugadors().get(0), fase, apostaMin);
             } else if (boto == 1) {
-                controlJoc.apostar(partida.getJugadors().get(0), (apostaMin / 2), fase);        //Cega Petita
-                controlJoc.apostar(partida.getJugadors().get(1), apostaMin, fase);  //Cega Gran
+                controlJoc.ferBlind(partida.getJugadors().get(0), fase, apostaMin / 2);
+                //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                controlJoc.ferBlind(partida.getJugadors().get(1), fase, apostaMin);
             }
 
         } else {
             if (boto == partida.getJugadors().size() - 1 || boto == partida.getJugadors().size() - 2) {
                 if (boto == partida.getJugadors().size() - 1) {
-                    controlJoc.apostar(partida.getJugadors().get(0), apostaMin / 2, fase);
-                    controlJoc.apostar(partida.getJugadors().get(1), apostaMin, fase);
+                    controlJoc.ferBlind(partida.getJugadors().get(0), fase, apostaMin / 2);
+                    //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                    controlJoc.ferBlind(partida.getJugadors().get(1), fase, apostaMin);
                 } else if (boto == partida.getJugadors().size() - 2) {
-                    controlJoc.apostar(partida.getJugadors().get(boto + 1), apostaMin / 2, fase);
-                    controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);
+                    //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
+                    controlJoc.ferBlind(partida.getJugadors().get(boto + 1), fase, apostaMin / 2);
+                    //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                    controlJoc.ferBlind(partida.getJugadors().get(0), fase, apostaMin);
                 }
 
             } else {
-                controlJoc.apostar(partida.getJugadors().get(boto + 1), apostaMin / 2, fase);
-                controlJoc.apostar(partida.getJugadors().get(boto + 2), apostaMin, fase);
+                //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
+                controlJoc.ferBlind(partida.getJugadors().get(boto + 1), fase, apostaMin / 2);
+                //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                controlJoc.ferBlind(partida.getJugadors().get(boto + 2), fase, apostaMin);
             }
 
         }
@@ -336,7 +344,7 @@ public class ControladoraPartida {
                 //return;
             }
             //Primer bucle
-            for (int i = boto + 1; i < partida.getJugadors().size(); i++) {
+            for (int i = boto + 3; i < partida.getJugadors().size(); i++) {
                 //Si no es la primera vegada que el jugador aposta en la fase
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
@@ -385,7 +393,7 @@ public class ControladoraPartida {
                 break;
             }
             //Segon bucle
-            for (int i = 0; i <= boto; i++) {
+            for (int i = 0; i <= boto + 2; i++) {
                 //Si no es la primera vegada que el jugador aposta en la fase
                 if (!partida.getJugadors().get(i).isHaFetFold()) {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
@@ -955,6 +963,7 @@ public class ControladoraPartida {
         for (Jugador j : partida.getJugadors()) {
             if (j.getFitxesActuals() <= 0) {
                 jug.add(j);
+                gui.gestionarJugadorEliminat(j);
             }
 
         }
