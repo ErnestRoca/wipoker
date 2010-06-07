@@ -162,12 +162,12 @@ public class GuiLoginJabber {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                if (!jtfServidor.getText().equals("") && (!jtfNom.getText().equals("")) && (!jtfPassword.getText().equals(""))) {
+                //if (!jtfServidor.getText().equals("") && (!jtfNom.getText().equals("")) && (!jtfPassword.getText().equals(""))) {
                     if (!gui.isLogin()) {
                         try {
                             System.out.println(gui.getCjabber() == null);
                             gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                            GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                            //GestioUsuaris.connectar(gui.getCjabber().getConnexio());
                             GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
                             gui.setLogin(true);
                             JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
@@ -177,7 +177,7 @@ public class GuiLoginJabber {
                             Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                }
+                //}
             }
         });
 
