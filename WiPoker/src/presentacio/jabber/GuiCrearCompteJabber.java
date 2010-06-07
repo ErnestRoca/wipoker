@@ -167,10 +167,10 @@ public class GuiCrearCompteJabber {
                     if (jtfServidor.getText() == null || jtfServidor.getText().equals("")) {
                         String servidor = JOptionPane.showInputDialog("A quin servidor creem el compte?");
                         gui.getCjabber().setConnexio(Connexio.crearConnexio(servidor));
-                        gui.getCjabber().getGu().connectar(gui.getCjabber().getConnexio());
+                        GestioUsuaris.connectar(gui.getCjabber().getConnexio());
                     } else {
                         gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                         gui.getCjabber().getGu().connectar(gui.getCjabber().getConnexio());
+                        GestioUsuaris.connectar(gui.getCjabber().getConnexio());
                     }
                 } else {
                     if (gui.getCjabber().getConnexio().getAccountManager().supportsAccountCreation()) {

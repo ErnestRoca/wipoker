@@ -174,7 +174,7 @@ public class GuiMenuJabber {
                 if (gui.getCjabber().getConnexio() != null) {
                     System.out.println(gui.getCjabber() == null);
                     System.out.println(gui.getCjabber().getConnexio() == null);
-                     gui.getCjabber().getGu().desconnectar(gui.getCjabber().getConnexio());
+                     GestioUsuaris.desconnectar(gui.getCjabber().getConnexio());
                 }
             }
         });
