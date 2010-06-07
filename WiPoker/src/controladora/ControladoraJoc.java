@@ -85,10 +85,10 @@ public class ControladoraJoc {
     public void apostar(Jugador jugador, int quantitat, Fase fase) {
         //modificar cuando este hecha gui
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-        jugador.setFitxesActuals((int) ((jugador.getFitxesActuals() - quantitat) + quantitatAnterior));
-        Aposta aposta = new Aposta(jugador, quantitat - quantitatAnterior);
+        jugador.setFitxesActuals((int) ((int) jugador.getFitxesActuals() - (quantitat - quantitatAnterior)));
+        Aposta aposta = new Aposta(jugador, quantitat);
         jugador.setAposta(aposta);
-        
+
         fase.getApostes().add(aposta);
         fase.getRonda().setPot(fase.getRonda().getPot() + quantitat);
 
@@ -101,16 +101,22 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
-        double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-        boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior);
-        if (teDiners) {
-            fase.setApostaMinima(apostaMinima);
-            int aposta = (int) (apostaMinima);
-            apostar(jugador, aposta, fase);
-            System.out.println(jugador.getAlias() + " fa CALL");
+        if (jugador.getFitxesActuals() < apostaMinima) {
+            ferFold(jugador, fase);
+            System.out.println("He fet fold pq no tinc fitxes");
         } else {
-            System.out.println(jugador.getAlias() + " no pot aposstar CALL");
+            double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
+            boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior);
+            if (teDiners) {
+                fase.setApostaMinima(apostaMinima);
+                int aposta = (int) (apostaMinima);
+                apostar(jugador, aposta, fase);
+                System.out.println(jugador.getAlias() + " fa CALL");
+            } else {
+                System.out.println(jugador.getAlias() + " no pot aposstar CALL");
+            }
         }
+
 
 
     }
@@ -127,18 +133,23 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
-        double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-        boolean teDiners = jugador.getFitxesActuals() >= ((apostaMinima - quantitatAnterior) + dinersApostats);
-        boolean esSuficient = apostaMinima < quantitatAnterior + dinersApostats;
-        
-        
-        if (teDiners && esSuficient) {
-            
-            apostar(jugador, (int) (quantitatAnterior + dinersApostats), fase);
-            fase.setApostaMinima((int) (apostaMinima + dinersApostats));
-            System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
+        if (jugador.getFitxesActuals() < apostaMinima) {
+            ferFold(jugador, fase);
+            System.out.println("He fet fold pq no tinc fitxes");
         } else {
-            System.out.println(jugador.getAlias() + " no pot aposstar RISE: " + (apostaMinima - quantitatAnterior) + " < " + dinersApostats);
+            double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
+            boolean teDiners = jugador.getFitxesActuals() >= ((apostaMinima - quantitatAnterior) + dinersApostats);
+            boolean esSuficient = apostaMinima < quantitatAnterior + dinersApostats;
+
+
+            if (teDiners && esSuficient) {
+
+                apostar(jugador, (int) (quantitatAnterior + dinersApostats), fase);
+                fase.setApostaMinima((int) (apostaMinima + dinersApostats));
+                System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
+            } else {
+                System.out.println(jugador.getAlias() + " no pot aposstar RISE: " + (apostaMinima - quantitatAnterior) + " < " + dinersApostats);
+            }
         }
     }
 
