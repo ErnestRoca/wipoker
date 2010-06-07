@@ -165,14 +165,15 @@ public class ControladoraJoc {
     }
 
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
-        for (Jugador j : jugadors) {
-            System.out.println("pot del jugador: " + j.getAlias() + ", " + j.getFitxesActuals());
-        }
-        for (Jugador j : jugadors) {
-            j.setFitxesActuals((j.getFitxesActuals() + (pot / jugadors.size())));
-        }
-        for (Jugador j : jugadors) {
-            System.out.println("NOU pot del jugador: " + j.getAlias() + ", " + j.getFitxesActuals());
+        if (jugadors.size() == 1) {
+            jugadors.get(0).setFitxesActuals((jugadors.get(0).getFitxesActuals() + pot));
+        } else if (jugadors.size() > 1) {
+            for (int i = 0; i < jugadors.size(); i++) {
+                double percentatgeGuanys = jugadors.get(i).getAposta().getQuantitat() * 1000 / 100;
+                int premi = (int) ((pot * percentatgeGuanys / 100));
+                jugadors.get(i).setFitxesActuals(premi);
+                System.out.println("El " + jugadors.get(i).getAlias() + " guanya: " + premi);
+            }
         }
     }
 }
