@@ -47,6 +47,7 @@ public class GuiNovaPartidaOffline {
     private JButton jbUnirsePartida;
     private JLabel jlFNumJugadors;
     private JTextField jtfFNumJugadors;
+    private JLabel jlBarra;
 
     //constructor de pruebas
     public GuiNovaPartidaOffline() throws InterruptedException {
@@ -144,6 +145,11 @@ public class GuiNovaPartidaOffline {
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
 
+        jlBarra = new JLabel("Menú Principal/Jugar/Partida Offline");
+        jlBarra.setForeground(Color.white);
+        jlBarra.setBounds(2, 578, 340, 30);
+        jpFons.add(jlBarra);
+
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
 
@@ -154,22 +160,26 @@ public class GuiNovaPartidaOffline {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!jtfFInicials.getText().equals("")&&(!jtfAlias.getText().equals(""))) {
-                    jFrame.dispose();
-                    gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), Integer.parseInt(jtfFNumJugadors.getText())));
-                    taulell = new GuiTaulell(gui);
-                    taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                    new Runnable() {
+                if (!jtfFInicials.getText().isEmpty() && (!jtfAlias.getText().isEmpty()) && (!jtfFNumJugadors.getText().isEmpty())) {
+                    try {
+                        jFrame.dispose();
+                        gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), Integer.parseInt(jtfFNumJugadors.getText())));
+                        taulell = new GuiTaulell(gui);
+                        taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                        new Runnable() {
 
-                        @Override
-                        public void run() {
-                            taulell.getjFrame().setVisible(true);
-                        }
-                    };
+                            @Override
+                            public void run() {
+                                taulell.getjFrame().setVisible(true);
+                            }
+                        };
+                    } catch (NumberFormatException exception) {
+                        JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en numero de jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             }
         });
 

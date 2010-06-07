@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -51,6 +52,7 @@ public class GuiNovaPartidaOnline {
     private ButtonGroup bp;
     private JRadioButton jrbOnline;
     private JRadioButton jrbUnir;
+    private JLabel jlBarra;
 
     //constructor de pruebas
     public GuiNovaPartidaOnline() throws InterruptedException {
@@ -61,7 +63,7 @@ public class GuiNovaPartidaOnline {
 
     public GuiNovaPartidaOnline(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
-        iniciarComponents();        
+        iniciarComponents();
     }
 
     public void iniciarComponents() throws InterruptedException {
@@ -177,6 +179,11 @@ public class GuiNovaPartidaOnline {
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
 
+        jlBarra = new JLabel("Menú Principal/Jugar/Partida Online");
+        jlBarra.setForeground(Color.white);
+        jlBarra.setBounds(2, 578, 340, 30);
+        jpFons.add(jlBarra);
+
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
 
@@ -185,12 +192,21 @@ public class GuiNovaPartidaOnline {
 
             private GuiTaulell taulell;
 
+            @Override
             public void actionPerformed(ActionEvent e) {
-                gui.setCp(new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui));
-                taulell = new GuiTaulell(gui);
-                jFrame.dispose();
-                taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                taulell.getjFrame().setVisible(true);
+                if (!jtfMAxJ.getText().isEmpty()) {
+                    try {
+                        gui.setCp(new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui));
+                        taulell = new GuiTaulell(gui);
+                        jFrame.dispose();
+                        taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                        taulell.getjFrame().setVisible(true);
+                    } catch (NumberFormatException exception) {
+                            JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -198,6 +214,7 @@ public class GuiNovaPartidaOnline {
 
             private GuiLoginJabberPartida menu;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -212,6 +229,7 @@ public class GuiNovaPartidaOnline {
 
         jrbOnline.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 jtfNom.setEnabled(true);
                 jtfMAxJ.setEnabled(true);
@@ -224,6 +242,7 @@ public class GuiNovaPartidaOnline {
 
         jrbUnir.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 jtfNom.setEnabled(true);
                 jtfMAxJ.setEnabled(false);

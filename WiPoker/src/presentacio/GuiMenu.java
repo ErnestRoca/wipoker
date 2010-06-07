@@ -164,12 +164,12 @@ public class GuiMenu {
         jbSortir.setBounds(40, 465, 260, 40);
         jpFons.add(jbSortir);
 
-        jlBarra = new JLabel("Voleu posar alguna cosa aqui?¿?¿?");
+        jlBarra = new JLabel("Menú Principal");
         jlBarra.setForeground(Color.white);
         jlBarra.setBounds(2, 578, 340, 30);
         jpFons.add(jlBarra);
 
-        jlBarra2 = new JLabel("b.1.3");
+        jlBarra2 = new JLabel("v.1.0");
         jlBarra2.setForeground(Color.white);
         jlBarra2.setBounds(300, 578, 340, 30);
         jpFons.add(jlBarra2);

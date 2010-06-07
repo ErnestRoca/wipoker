@@ -138,7 +138,7 @@ public class GuiLoginJabberPartida {
         jlServidor.setForeground(Color.red);
         jpFons.add(jlServidor);
 
-        jtfServidor = new JPasswordField();
+        jtfServidor = new JTextField();
         jtfServidor.setBounds(170, 280, 120, 24);
         jpFons.add(jtfServidor);
 
@@ -190,7 +190,7 @@ public class GuiLoginJabberPartida {
         jbTornar.setBounds(100, 545, 120, 24);
         jpFons.add(jbTornar);
 
-        jlBarra = new JLabel("Menú Principal/Login");
+        jlBarra = new JLabel("Menú Principal/Jugar");
         jlBarra.setForeground(Color.white);
         jlBarra.setBounds(2, 578, 340, 30);
         jpFons.add(jlBarra);
@@ -203,29 +203,40 @@ public class GuiLoginJabberPartida {
 
             private GuiNovaPartidaOnline novaPartidaOnline;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
-                if (!gui.isLogin()) {
-                    try {
-                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                        GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
-                        gui.setLogin(true);
-                        JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
-                        jbTornar.doClick();
-                    } catch (XMPPException ex) {
-                        gui.setLogin(false);
-                        Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                if (gui.isLogin()) {
-                    try {
-                        jFrame.dispose();
-                        novaPartidaOnline = new GuiNovaPartidaOnline(gui);
-                        novaPartidaOnline.getjFrame().setLocation(jFrame.getLocation());
-                        novaPartidaOnline.getjFrame().setVisible(true);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                if (!jtfServidor.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfPassword.getText().isEmpty()) {
+                    if (!gui.isLogin()) {
+                        try {
+                            gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                            GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
+                            gui.setLogin(true);
+                            JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
 
+                            jFrame.dispose();
+                            novaPartidaOnline = new GuiNovaPartidaOnline(gui);
+                            novaPartidaOnline.getjFrame().setLocation(jFrame.getLocation());
+                            novaPartidaOnline.getjFrame().setVisible(true);
+                        } catch (InterruptedException ex) {
+                            gui.setLogin(false);
+                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (XMPPException ex) {
+                            gui.setLogin(false);
+                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else if (gui.isLogin()) {
+                        try {
+                            jFrame.dispose();
+                            novaPartidaOnline = new GuiNovaPartidaOnline(gui);
+                            novaPartidaOnline.getjFrame().setLocation(jFrame.getLocation());
+                            novaPartidaOnline.getjFrame().setVisible(true);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    }
+                } else {
+                    JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -235,7 +246,10 @@ public class GuiLoginJabberPartida {
             private GuiNovaPartidaOffline novaPartidaOffline;
 
             public void actionPerformed(ActionEvent event) {
-
+                if (gui.isLogin()) {
+                    GestioUsuaris.desconnectar(gui.getCjabber().getConnexio());
+                    gui.setLogin(false);
+                }
                 try {
                     jFrame.dispose();
                     novaPartidaOffline = new GuiNovaPartidaOffline(gui);
