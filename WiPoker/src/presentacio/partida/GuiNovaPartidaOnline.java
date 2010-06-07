@@ -6,6 +6,8 @@ package presentacio.partida;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraPartidaOnline;
+import controladora.jabber.JID;
+import domini.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -53,6 +55,8 @@ public class GuiNovaPartidaOnline {
     private JRadioButton jrbOnline;
     private JRadioButton jrbUnir;
     private JLabel jlBarra;
+    private JLabel jlAlias;
+    private JTextField jtfAlias;
 
     //constructor de pruebas
     public GuiNovaPartidaOnline() throws InterruptedException {
@@ -135,26 +139,26 @@ public class GuiNovaPartidaOnline {
         jpFons.add(jtfMAxJ);
 
         jlFInicials = new JLabel();
-        jlFInicials.setBounds(74, 330, 340, 104);
+        jlFInicials.setBounds(74, 300, 340, 104);
         jlFInicials.setText("Fitxes Inicials ");
         jlFInicials.setForeground(Color.red);
         jlFInicials.setLayout(null);
         jpFons.add(jlFInicials);
 
         jtfFInicials = new JTextField(20);
-        jtfFInicials.setBounds(170, 370, 120, 24);
+        jtfFInicials.setBounds(170, 340, 120, 24);
         jpFons.add(jtfFInicials);
 
-//        jlDNI = new JLabel();
-//        jlDNI.setBounds(120, 310, 340, 104);
-//        jlDNI.setText("DNI ");
-//        jlDNI.setForeground(Color.red);
-//        jlDNI.setLayout(null);
-//        jpFons.add(jlDNI);
-//
-//        jtfDNI = new JTextField(20);
-//        jtfDNI.setBounds(170, 350, 120, 24);
-//        jpFons.add(jtfDNI);
+        jlAlias = new JLabel();
+        jlAlias.setBounds(74, 390, 340, 24);
+        jlAlias.setText("Alias jugador ");
+        jlAlias.setForeground(Color.red);
+        jlAlias.setLayout(null);
+        jpFons.add(jlAlias);
+
+        jtfAlias = new JTextField(20);
+        jtfAlias.setBounds(170, 390, 120, 24);
+        jpFons.add(jtfAlias);
 
 
         jbCrear = new JButton("CREAR");
@@ -194,18 +198,27 @@ public class GuiNovaPartidaOnline {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!jtfMAxJ.getText().isEmpty()) {
-                    try {
-                        gui.setCp(new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui));
-                        taulell = new GuiTaulell(gui);
-                        jFrame.dispose();
-                        taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                        taulell.getjFrame().setVisible(true);
-                    } catch (NumberFormatException exception) {
+                if (jrbOnline.isSelected()) {
+                    if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty() &&
+                            !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
+                        try {                            
+                            
+                            ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
+                            gui.setCp(cpo);
+                            gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org" +  jtfAlias.getText()));
+                            gui.getCjabber().getConnexio().addConnectionListener(gui.getCjabber().getListeners());
+                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText())
+                                    , 1, "avatar"));
+                            taulell = new GuiTaulell(gui);
+                            jFrame.dispose();
+                            taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                            taulell.getjFrame().setVisible(true);
+                        } catch (NumberFormatException exception) {
                             JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
