@@ -46,8 +46,6 @@ public class GuiLoginJabberPartida {
     private JTextField jtfNom;
     private JTextField jtfPassword;
     private JTextField jtfServidor;
-    private JLabel jlCorreu;
-    private JTextField jtfCorreu;
     private JButton jbTornar;
     private JButton jbLogin;
     private JLabel jlBarra;
@@ -142,16 +140,6 @@ public class GuiLoginJabberPartida {
         jtfServidor.setBounds(170, 280, 120, 24);
         jpFons.add(jtfServidor);
 
-        jlCorreu = new JLabel();
-        jlCorreu.setBounds(30, 310, 340, 104);
-        jlCorreu.setText("Correu electrónic");
-        jlCorreu.setForeground(Color.red);
-        jpFons.add(jlCorreu);
-
-        jtfCorreu = new JTextField();
-        jtfCorreu.setBounds(170, 350, 120, 24);
-        jpFons.add(jtfCorreu);
-
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
         jbLogin = new JButton("LOGIN");
@@ -245,6 +233,7 @@ public class GuiLoginJabberPartida {
 
             private GuiNovaPartidaOffline novaPartidaOffline;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 if (gui.isLogin()) {
                     GestioUsuaris.desconnectar(gui.getCjabber().getConnexio());
@@ -267,6 +256,7 @@ public class GuiLoginJabberPartida {
 
             private GuiMenu menu;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -287,6 +277,7 @@ public class GuiLoginJabberPartida {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 try {
                     new GuiLoginJabberPartida();
