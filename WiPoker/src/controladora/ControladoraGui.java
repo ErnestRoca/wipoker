@@ -184,7 +184,27 @@ public class ControladoraGui {
     public void gestionarFitxes(ArrayList<Jugador> jugadors) {
         ArrayList<JLabel> fitxes = taulell.getFitxesJugadors();
         for (int i = 0; i < jugadors.size(); i++) {//a<= x && x<= b
-            taulell.getNumFitxesJugadors().get(i).setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            //taulell.getNumFitxesJugadors().get(i).setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            if (jugadors.get(i).getPosicioTaula() == 0) {
+                taulell.getJlNumFitxes01().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            } else if (jugadors.get(i).getPosicioTaula() == 1) {
+                taulell.getJlNumFitxes02().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }else if (jugadors.get(i).getPosicioTaula() == 2) {
+                taulell.getJlNumFitxes03().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }else if (jugadors.get(i).getPosicioTaula() == 3) {
+                taulell.getJlNumFitxes04().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }else if (jugadors.get(i).getPosicioTaula() == 4) {
+                taulell.getJlNumFitxes05().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }else if (jugadors.get(i).getPosicioTaula() == 5) {
+                taulell.getJlNumFitxes06().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }else if (jugadors.get(i).getPosicioTaula() == 6) {
+                taulell.getJlNumFitxes07().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }else if (jugadors.get(i).getPosicioTaula() == 7) {
+                taulell.getJlNumFitxes08().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }else if (jugadors.get(i).getPosicioTaula() == 8) {
+                taulell.getJlNumFitxes09().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
+            }
+
             if (jugadors.get(i).getFitxesActuals() <= ((25 * jugadors.get(0).getFitxesInicials()) / 100)) {
                 fitxes.get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/fitxes" + 1 + ".png")));
 
@@ -265,6 +285,55 @@ public class ControladoraGui {
         } catch (InterruptedException ex) {
             Logger.getLogger(ControladoraGui.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void gestionarJugadorEliminat(Jugador jugador) {
+        if (jugador.getPosicioTaula() == 0) {
+                taulell.getJlFitxes01().setVisible(false);
+                taulell.getJlAvatar01().setVisible(false);
+                taulell.getJlNom01().setVisible(false);
+                taulell.getJlNumFitxes01().setVisible(false);
+            } else if (jugador.getPosicioTaula() == 1) {
+                taulell.getJlFitxes02().setVisible(false);
+                taulell.getJlAvatar02().setVisible(false);
+                taulell.getJlNom02().setVisible(false);
+                taulell.getJlNumFitxes02().setVisible(false);
+            }else if (jugador.getPosicioTaula() == 2) {
+                taulell.getJlFitxes03().setVisible(false);
+                taulell.getJlAvatar03().setVisible(false);
+                taulell.getJlNom03().setVisible(false);
+                taulell.getJlNumFitxes03().setVisible(false);
+            }else if (jugador.getPosicioTaula() == 3) {
+                taulell.getJlFitxes04().setVisible(false);
+                taulell.getJlAvatar04().setVisible(false);
+                taulell.getJlNom04().setVisible(false);
+                taulell.getJlNumFitxes04().setVisible(false);
+            }else if (jugador.getPosicioTaula() == 4) {
+                taulell.getJlFitxes05().setVisible(false);
+                taulell.getJlAvatar05().setVisible(false);
+                taulell.getJlNom05().setVisible(false);
+                taulell.getJlNumFitxes05().setVisible(false);
+            }else if (jugador.getPosicioTaula() == 5) {
+                taulell.getJlFitxes06().setVisible(false);
+                taulell.getJlAvatar06().setVisible(false);
+                taulell.getJlNom06().setVisible(false);
+                taulell.getJlNumFitxes06().setVisible(false);
+            }else if (jugador.getPosicioTaula() == 6) {
+                taulell.getJlFitxes07().setVisible(false);
+                taulell.getJlAvatar07().setVisible(false);
+                taulell.getJlNom07().setVisible(false);
+                taulell.getJlNumFitxes07().setVisible(false);
+            }else if (jugador.getPosicioTaula() == 7) {
+                taulell.getJlFitxes08().setVisible(false);
+                taulell.getJlAvatar08().setVisible(false);
+                taulell.getJlNom08().setVisible(false);
+                taulell.getJlNumFitxes08().setVisible(false);
+            }else if (jugador.getPosicioTaula() == 8) {
+                taulell.getJlFitxes09().setVisible(false);
+                taulell.getJlAvatar09().setVisible(false);
+                taulell.getJlNom09().setVisible(false);
+                taulell.getJlNumFitxes09().setVisible(false);
+            }
     }
 
     //Canvi del nom del boto call a check, i ocultar el boto check per posarhi un input
