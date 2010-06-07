@@ -25,6 +25,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
 /**
@@ -189,25 +190,29 @@ public class GuiCrearCompteJabber {
             }
         });
 
-        jbTornar.addActionListener(new ActionListener() {
+        jbTornar.addActionListener(
+                new ActionListener() {
 
-            private GuiMenuJabber menu;
+                    private GuiMenuJabber menu;
 
-            public void actionPerformed(ActionEvent event) {
-                try {
-                    jFrame.dispose();
-                    menu = new GuiMenuJabber(gui);
-                    menu.getjFrame().setLocation(jFrame.getLocation());
-                    menu.getjFrame().setVisible(true);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+                    public void actionPerformed(ActionEvent event) {
+                        try {
+                            jFrame.dispose();
+                            menu = new GuiMenuJabber(gui);
+                            menu.getjFrame().setLocation(jFrame.getLocation());
+                            menu.getjFrame().setVisible(true);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+
     }
 
     public JFrame getjFrame() {
         return jFrame;
+
+
     }
 
     public static void main(String[] args) {
@@ -216,10 +221,16 @@ public class GuiCrearCompteJabber {
             public void run() {
                 try {
                     new GuiCrearCompteJabber();
+
+
+
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+
             }
         });
+
     }
 }
