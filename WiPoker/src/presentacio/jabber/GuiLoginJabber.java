@@ -32,6 +32,7 @@ import org.jivesoftware.smack.XMPPException;
  *
  * @author wida45787385
  */
+@Deprecated
 public class GuiLoginJabber {
 
     private ControladoraGui gui;
@@ -159,19 +160,22 @@ public class GuiLoginJabber {
 
         jbLogin.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent event) {               
-                if (!gui.isLogin()) {
-                    try {
-                        System.out.println(gui.getCjabber() == null);
-                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                        GestioUsuaris.connectar(gui.getCjabber().getConnexio());
-                        GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
-                        gui.setLogin(true);
-                        JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
-                        jbTornar.doClick();
-                    } catch (XMPPException ex) {
-                        gui.setLogin(false);
-                        Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                if (!jtfServidor.getText().equals("") && (!jtfNom.getText().equals("")) && (!jtfPassword.getText().equals(""))) {
+                    if (!gui.isLogin()) {
+                        try {
+                            System.out.println(gui.getCjabber() == null);
+                            gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                            GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                            GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
+                            gui.setLogin(true);
+                            JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
+                            jbTornar.doClick();
+                        } catch (XMPPException ex) {
+                            gui.setLogin(false);
+                            Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }
@@ -181,6 +185,7 @@ public class GuiLoginJabber {
 
             private GuiMenuJabber menu;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -201,6 +206,7 @@ public class GuiLoginJabber {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 try {
                     new GuiLoginJabber();

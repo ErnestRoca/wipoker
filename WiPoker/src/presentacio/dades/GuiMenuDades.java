@@ -146,10 +146,9 @@ public class GuiMenuDades {
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
 
-        jlRuta = new JLabel("Menu Principal/MenuDades");
-        jlRuta.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
-        jlRuta.setLayout(null);
-        jlRuta.setBounds(0, 930, 340, 20);
+        jlRuta = new JLabel("Menu Principal/MenuDades ... Part no implementada");
+        jlRuta.setForeground(Color.white);
+        jlRuta.setBounds(2, 578, 340, 30);
         jpFons.add(jlRuta);
 
         jpFons.add(jlImatgeFons);
@@ -158,6 +157,7 @@ public class GuiMenuDades {
 
         jbConsultar.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -172,6 +172,7 @@ public class GuiMenuDades {
 
         jbAfegir.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -186,6 +187,7 @@ public class GuiMenuDades {
 
         jbEditar.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -200,6 +202,7 @@ public class GuiMenuDades {
 
         jbEliminar.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -214,6 +217,7 @@ public class GuiMenuDades {
 
         jbTornar.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -234,6 +238,7 @@ public class GuiMenuDades {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 try {
                     new GuiMenuDades();

@@ -35,8 +35,6 @@ public class GuiMenuJabber {
     private JLabel jlTitol;
     private JLabel jlImatgeFons;
     private JButton jbCrearCompte;
-    private JButton jbTancarSessio;
-    private JButton jbIniciarSessio;
     private JButton jbTornar;
     private JLabel jlBarra;
 
@@ -75,18 +73,6 @@ public class GuiMenuJabber {
 
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
-        jbIniciarSessio = new JButton("Iniciar sessió a Jabber");
-        jbIniciarSessio.setMnemonic('I');
-        jbIniciarSessio.setCursor(cursor);
-        jbIniciarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbIniciarSessio.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbIniciarSessio.setBounds(40, 135, 260, 40);
-        jbIniciarSessio.setIconTextGap(-260);
-        jbIniciarSessio.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbIniciarSessio.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbIniciarSessio.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbIniciarSessio);
-
         jbCrearCompte = new JButton("Crea el teu compte Jabber");
         jbCrearCompte.setMnemonic('C');
         jbCrearCompte.setCursor(cursor);
@@ -98,18 +84,6 @@ public class GuiMenuJabber {
         jbCrearCompte.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbCrearCompte.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbCrearCompte);
-
-        jbTancarSessio = new JButton("Tanca la sessió");
-        jbTancarSessio.setMnemonic('T');
-        jbTancarSessio.setCursor(cursor);
-        jbTancarSessio.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbTancarSessio.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbTancarSessio.setBounds(40, 315, 260, 40);
-        jbTancarSessio.setIconTextGap(-260);
-        jbTancarSessio.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbTancarSessio.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbTancarSessio.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbTancarSessio);
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setMnemonic('r');
@@ -132,27 +106,11 @@ public class GuiMenuJabber {
 
         jFrame.setVisible(true);
 
-        jbIniciarSessio.addActionListener(new ActionListener() {
-
-            private GuiLoginJabber iniciar;
-
-            public void actionPerformed(ActionEvent event) {
-                try {
-                    jFrame.dispose();
-                    iniciar = new GuiLoginJabber(gui);
-                    iniciar.getjFrame().setLocation(jFrame.getLocation());
-                    iniciar.getjFrame().setVisible(true);
-
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuJabber.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-
         jbCrearCompte.addActionListener(new ActionListener() {
 
             private GuiCrearCompteJabber crear;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -165,22 +123,11 @@ public class GuiMenuJabber {
             }
         });
 
-        jbTancarSessio.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent event) {
-                if (gui.isLogin() && gui.getCjabber() != null) {
-                    gui.setLogin(false);
-                }
-                if (gui.getCjabber().getConnexio() != null) {
-                    GestioUsuaris.desconnectar(gui.getCjabber().getConnexio());
-                }
-            }
-        });
-
         jbTornar.addActionListener(new ActionListener() {
 
             private GuiMenu menu;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -202,6 +149,7 @@ public class GuiMenuJabber {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 try {
                     new GuiMenuJabber();
