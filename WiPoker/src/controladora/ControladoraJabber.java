@@ -5,6 +5,7 @@
 package controladora;
 
 import controladora.jabber.Connexio;
+import controladora.jabber.GestioUsuaris;
 
 import controladora.jabber.JID;
 
@@ -32,10 +33,12 @@ public class ControladoraJabber {
     private JID room;
     private Listeners listeners;
     private Trafic trafic;
+    private GestioUsuaris gu;
 
     public ControladoraJabber() {
         listeners = new Listeners();
         trafic = new Trafic();
+        gu = new GestioUsuaris();
     }
 
     public XMPPConnection getConnexio() {
@@ -53,6 +56,12 @@ public class ControladoraJabber {
     public MultiUserChat getMuc() {
         return muc;
     }
+
+    public GestioUsuaris getGu() {
+        return gu;
+    }
+
+    
 
     public void crearSala(JID jid) {
         //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
