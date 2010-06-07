@@ -59,7 +59,7 @@ public class Listeners implements ConnectionListener,  PacketListener,
     //ParticipantStatusListener: detecta modificacions en entrades, sortides i permisssos dels jugadors
 
     public void joined(String arg0) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("jugador afegit");
     }
 
     public void left(String arg0) {
