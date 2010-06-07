@@ -8,8 +8,6 @@ package controladora.jabber;
 import domini.Aposta;
 import domini.Carta;
 import domini.Jugador;
-import java.util.ArrayList;
-import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
 
