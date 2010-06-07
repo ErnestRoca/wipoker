@@ -65,6 +65,8 @@ public class ControladoraIA {
                             if (apostaMinima < ultimAposta * 3) {
                                 //fes CALL
                                 cp.controlJoc.ferCall(jugador, fase, apostaMinima);
+                            } else {
+                                cp.controlJoc.ferFold(jugador, fase);
                             }
                         } else {
                             //fes FOLD
