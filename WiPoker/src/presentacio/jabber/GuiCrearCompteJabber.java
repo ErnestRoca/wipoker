@@ -165,12 +165,22 @@ public class GuiCrearCompteJabber {
             public void actionPerformed(ActionEvent e) {
                 if (gui.getCjabber().getConnexio() == null) {
                     if (jtfServidor.getText() == null || jtfServidor.getText().equals("")) {
-                        String servidor = JOptionPane.showInputDialog("A quin servidor creem el compte?");
-                        gui.getCjabber().setConnexio(Connexio.crearConnexio(servidor));
-                        GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                        try {
+                            String servidor = JOptionPane.showInputDialog("A quin servidor creem el compte?");
+                            gui.getCjabber().setConnexio(Connexio.crearConnexio(servidor));
+                            //GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                        } catch (XMPPException ex) {
+                            Logger.getLogger(GuiCrearCompteJabber.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        //GestioUsuaris.connectar(gui.getCjabber().getConnexio());
                     } else {
-                        gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                        GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                        try {
+                            gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                            //GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                        } catch (XMPPException ex) {
+                            Logger.getLogger(GuiCrearCompteJabber.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        //GestioUsuaris.connectar(gui.getCjabber().getConnexio());
                     }
                 } else {
                     if (gui.getCjabber().getConnexio().getAccountManager().supportsAccountCreation()) {
