@@ -162,7 +162,7 @@ public class GuiLoginJabber {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                //if (!jtfServidor.getText().equals("") && (!jtfNom.getText().equals("")) && (!jtfPassword.getText().equals(""))) {
+                if (!jtfServidor.getText().equals("") && (!jtfNom.getText().equals("")) && (!jtfPassword.getText().equals(""))) {
                     if (!gui.isLogin()) {
                         try {
                             System.out.println(gui.getCjabber() == null);
@@ -177,7 +177,7 @@ public class GuiLoginJabber {
                             Logger.getLogger(GuiLoginJabber.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                //}
+                }
             }
         });
 
