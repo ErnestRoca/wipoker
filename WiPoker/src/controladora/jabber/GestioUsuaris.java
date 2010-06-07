@@ -14,7 +14,7 @@ import org.jivesoftware.smack.XMPPException;
  * @author wida45787385
  */
 public class GestioUsuaris {    
-
+/*
     public static void connectar(XMPPConnection c) {
         if (!c.isConnected()) {
             try {
@@ -24,19 +24,19 @@ public class GestioUsuaris {
             }
         }
     }
-
+*/
     public static void ferLogin(final XMPPConnection connexio, final String user, final String password) throws XMPPException {
         if (connexio.isConnected()) {
             connexio.login(user, password);
-        } else {
+        } /*else {
             connexio.connect();
             connexio.login(user, password);
-        }
+        }*/
     }
 
     public static void desconnectar(XMPPConnection connexio) {
         if (connexio.isConnected()) {
-            connexio.disconnect();
+            connexio.close();
         }
     }
 
