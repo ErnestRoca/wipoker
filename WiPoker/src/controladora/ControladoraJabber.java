@@ -37,7 +37,8 @@ public class ControladoraJabber {
 
     public ControladoraJabber() {
         listeners = new Listeners();
-        trafic = new Trafic();        
+        trafic = new Trafic();
+        room = new JID();
     }
 
     public XMPPConnection getConnexio() {
@@ -52,10 +53,18 @@ public class ControladoraJabber {
         return room;
     }
 
+    public void setRoom(JID room) {
+        this.room = room;
+    }
+    
     public MultiUserChat getMuc() {
         return muc;
-    }   
+    }
 
+    public Listeners getListeners() {
+        return listeners;
+    }
+    
     public void crearSala(JID jid) {
         //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
         room = jid;
@@ -66,6 +75,7 @@ public class ControladoraJabber {
             muc.changeSubject("sala per al joc wipoker");
         } catch (Exception e) {
             System.out.println("error creant sala");
+            System.out.println(e);
         }
         try {
             if (!muc.isJoined()) {
