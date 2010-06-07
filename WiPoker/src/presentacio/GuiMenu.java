@@ -182,6 +182,7 @@ public class GuiMenu {
 
             private GuiMenuJabber jabber;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();
@@ -199,6 +200,7 @@ public class GuiMenu {
 
             private GuiLoginJabberPartida partida;
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.dispose();

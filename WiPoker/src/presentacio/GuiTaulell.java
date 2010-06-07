@@ -164,7 +164,7 @@ public class GuiTaulell {
 
         @Override
         public void paintComponent(Graphics g) {
-            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/taulaMenu.gif"));
+            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/fons.png"));
             g.drawImage(imatgeFons.getImage(), 0, 0, 1016, 733, null);
             setOpaque(true);
         }
@@ -945,13 +945,13 @@ public class GuiTaulell {
         jtaMissatge = new JTextArea();
         jtaMissatge.setRows(5);
         jtaMissatge.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
-        jtaMissatge.setForeground(Color.WHITE);
+        jtaMissatge.setForeground(Color.BLACK);
         jtaMissatge.setBounds(5, 10, 210, 20);
         jPanelMissatges.add(jtaMissatge);
 
         jlMissatge2 = new JLabel();
         jlMissatge2.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
-        jlMissatge2.setForeground(Color.WHITE);
+        jlMissatge2.setForeground(Color.BLACK);
         jlMissatge2.setBounds(5, 35, 210, 20);
         jPanelMissatges.add(jlMissatge2);
     }
