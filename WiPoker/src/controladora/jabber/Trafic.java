@@ -24,7 +24,7 @@ public class Trafic {
     }
     
     public Packet enviarCarta(Carta carta, String destinatari, boolean privada) {
-        Message m = new Message(destinatari, Message.Type.normal);
+        Message m = new Message(destinatari, Message.Type.NORMAL);
         m.setProperty("tipus", Carta.class);
         if (privada) {
             m.setProperty("privada", true);
@@ -45,7 +45,7 @@ public class Trafic {
     }
 
     public Packet enviarAposta(Aposta aposta, String destinatari) {
-        Message m = new Message(destinatari, Message.Type.normal);
+        Message m = new Message(destinatari, Message.Type.NORMAL);
         m.setProperty("tipus", Aposta.class);
         m.setProperty("jugador", aposta.getJugador());
         m.setProperty("quantitat", aposta.getQuantitat());

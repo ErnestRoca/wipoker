@@ -5,7 +5,7 @@
 
 package controladora.jabber;
 
-import org.jivesoftware.smack.ConnectionCreationListener;
+
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
@@ -19,7 +19,7 @@ import org.jivesoftware.smackx.muc.UserStatusListener;
  *
  * @author wida45787385
  */
-public class Listeners implements ConnectionListener, ConnectionCreationListener, PacketListener, 
+public class Listeners implements ConnectionListener,  PacketListener, 
         ParticipantStatusListener, UserStatusListener {
 
     //connectionlistener: escucha la conexion para detectar caidas
@@ -170,6 +170,18 @@ public class Listeners implements ConnectionListener, ConnectionCreationListener
     }
 
     public void adminRevoked() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void kicked(String arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void banned(String arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void nicknameChanged(String arg0) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
