@@ -132,6 +132,17 @@ public class ControladoraJoc {
         //}
     }
 
+    public synchronized void ferBlind(Jugador jugador, Fase fase, int dinersApostats) {
+        boolean teDiners = jugador.getFitxesActuals() >= dinersApostats;
+        if (teDiners) {
+            apostar(jugador, dinersApostats, fase);
+            fase.setApostaMinima((int) (dinersApostats));
+            System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
+        } else {
+            System.out.println(jugador.getAlias() + " no pot aposstar BLIND: " + dinersApostats);
+        }
+    }
+
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         if (jugador.getFitxesActuals() < apostaMinima) {
             ferFold(jugador, fase);
@@ -144,7 +155,7 @@ public class ControladoraJoc {
 
             if (teDiners && esSuficient) {
 
-                apostar(jugador,(int) ((int) (apostaMinima + dinersApostats) - quantitatAnterior), fase);
+                apostar(jugador, (int) ((int) (apostaMinima + dinersApostats) - quantitatAnterior), fase);
                 fase.setApostaMinima((int) (apostaMinima + dinersApostats));
                 System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
             } else {
