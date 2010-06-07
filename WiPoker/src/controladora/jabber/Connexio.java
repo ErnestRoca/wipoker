@@ -17,7 +17,7 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
 public class Connexio {
 
     public static XMPPConnection crearConnexio(String servidor) {
-        ConnectionConfiguration cc = new ConnectionConfiguration("jabberes.org", 5222);
+        ConnectionConfiguration cc = new ConnectionConfiguration(servidor, 5222);
         cc.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
         cc.setDebuggerEnabled(false);
         cc.setReconnectionAllowed(true);
