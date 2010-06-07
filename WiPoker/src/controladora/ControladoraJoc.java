@@ -96,7 +96,7 @@ public class ControladoraJoc {
 
     public synchronized void ferFold(Jugador jugador, Fase fase) {
         jugador.setHaFetFold(true);
-        apostar(jugador, 0, fase);
+        //apostar(jugador, 0, fase);
         System.out.println(jugador.getAlias() + " fa FOLD");
     }
 
