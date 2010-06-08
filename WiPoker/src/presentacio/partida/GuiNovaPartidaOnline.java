@@ -26,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import org.jivesoftware.smack.XMPPException;
 import presentacio.GuiTaulell;
 import presentacio.dades.GuiMenuDades;
 
@@ -199,20 +200,23 @@ public class GuiNovaPartidaOnline {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (jrbOnline.isSelected()) {
-                    if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty() &&
-                            !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
-                        try {                            
-                            
+                    if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty()
+                            && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
+                        try {
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
-                            gui.setCp(cpo);
-                            gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org/" +  jtfAlias.getText()));
-                            
-                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText())
-                                    , 1, "avatar"));
+                            gui.setCp(cpo);                   
+
+                            gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org/" + jtfAlias.getText()));
+
+                            gui.getCjabber().getMuc().join("/" + jtfAlias.getText());
+
+                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             taulell = new GuiTaulell(gui);
                             jFrame.dispose();
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
+                        } catch (XMPPException ex) {
+                            Logger.getLogger(GuiNovaPartidaOnline.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (NumberFormatException exception) {
                             JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                         }
