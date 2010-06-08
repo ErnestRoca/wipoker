@@ -104,18 +104,19 @@ public class ControladoraJoc {
         if (jugador.getFitxesActuals() < apostaMinima) {
             ferFold(jugador, fase);
             System.out.println("He fet fold pq no tinc fitxes");
-        } else {
-            double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-            boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior);
-            if (teDiners) {
-                fase.setApostaMinima(apostaMinima);
-                int aposta = (int) (apostaMinima);
-                apostar(jugador, aposta, fase);
-                System.out.println(jugador.getAlias() + " fa CALL");
-            } else {
-                System.out.println(jugador.getAlias() + " no pot aposstar CALL");
-            }
         }
+//        } else {
+        double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
+        boolean teDiners = jugador.getFitxesActuals() >= (apostaMinima - quantitatAnterior);
+        // if (teDiners) {
+        fase.setApostaMinima(apostaMinima);
+        int aposta = (int) (apostaMinima);
+        apostar(jugador, aposta, fase);
+        System.out.println(jugador.getAlias() + " fa CALL");
+//            } else {
+//                System.out.println(jugador.getAlias() + " no pot aposstar CALL");
+//            }
+        //}
 
 
 
@@ -133,44 +134,43 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferBlind(Jugador jugador, Fase fase, int dinersApostats) {
-        boolean teDiners = jugador.getFitxesActuals() >= dinersApostats;
-        if (teDiners) {
-            apostar(jugador, dinersApostats, fase);
-            fase.setApostaMinima((int) (dinersApostats));
-            System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
-        } else {
-            System.out.println(jugador.getAlias() + " no pot aposstar BLIND: " + dinersApostats);
-        }
+        apostar(jugador, dinersApostats, fase);
+        fase.setApostaMinima((int) (dinersApostats));
+        System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
     }
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         if (jugador.getFitxesActuals() < apostaMinima) {
-            ferFold(jugador, fase);
-            System.out.println("He fet fold pq no tinc fitxes");
-        } else {
-            double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-            boolean teDiners = jugador.getFitxesActuals() >= ((apostaMinima - quantitatAnterior) + dinersApostats);
-            boolean esSuficient = apostaMinima < quantitatAnterior + dinersApostats;
-
-
-            if (teDiners && esSuficient) {
-
-                apostar(jugador, (int) ((int) (apostaMinima + dinersApostats) - quantitatAnterior), fase);
-                fase.setApostaMinima((int) (apostaMinima + dinersApostats));
-                System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
-            } else {
-                System.out.println(jugador.getAlias() + " no pot aposstar RISE: " + (apostaMinima - quantitatAnterior) + " < " + dinersApostats);
-            }
+            System.out.println("Fa Allin");
         }
+        double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
+        boolean teDiners = jugador.getFitxesActuals() >= ((apostaMinima - quantitatAnterior) + dinersApostats);
+        boolean esSuficient = apostaMinima < quantitatAnterior + dinersApostats;
+        //if (teDiners && esSuficient) {
+        apostar(jugador, (int) ((int) (apostaMinima + dinersApostats) - quantitatAnterior), fase);
+        fase.setApostaMinima((int) (apostaMinima + dinersApostats));
+        System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
+        //} else {
+        //    System.out.println(jugador.getAlias() + " no pot aposstar RISE: " + (apostaMinima - quantitatAnterior) + " < " + dinersApostats);
+        //}
     }
 
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
         if (jugadors.size() == 1) {
             jugadors.get(0).setFitxesActuals((jugadors.get(0).getFitxesActuals() + pot));
         } else if (jugadors.size() > 1) {
+            int pot2 = pot;
             for (int i = 0; i < jugadors.size(); i++) {
-                double percentatgeGuanys = jugadors.get(i).getAposta().getQuantitat() * 1000 / 100;
-                int premi = (int) ((pot * percentatgeGuanys / 100));
+                pot2 -= jugadors.get(i).getAposta().getQuantitat();
+            }
+            int percentatgeTotal = 0;
+            for (int i = 0; i < jugadors.size(); i++) {
+                percentatgeTotal += jugadors.get(i).getAposta().getQuantitat() * pot / 100;
+            }
+            for (int i = 0; i < jugadors.size(); i++) {
+                double percentatgeGuanys = jugadors.get(i).getAposta().getQuantitat() * pot / 100;
+                double percentatgeGuanys2 = 100 * percentatgeGuanys / percentatgeTotal;
+                int premi = (int) ((pot2 * percentatgeGuanys2 / 100));
                 jugadors.get(i).setFitxesActuals(premi);
                 System.out.println("El " + jugadors.get(i).getAlias() + " guanya: " + premi);
             }
