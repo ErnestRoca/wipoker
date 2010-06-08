@@ -68,14 +68,14 @@ public class ControladoraJabber {
     public void crearSala(JID jid) {
         //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
         room = jid;
-        muc = new MultiUserChat(connexio, jid.getJID());
+        muc = new MultiUserChat(connexio, jid.getFullJID());
         try {
             muc.create(room.getNick());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
             muc.changeSubject("sala per al joc wipoker");
         } catch (Exception e) {
             System.out.println("error creant sala");
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         try {
             if (!muc.isJoined()) {
