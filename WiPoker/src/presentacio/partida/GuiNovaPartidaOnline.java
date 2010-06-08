@@ -205,8 +205,8 @@ public class GuiNovaPartidaOnline {
                             
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
-                            gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org" +  jtfAlias.getText()));
-                            gui.getCjabber().getConnexio().addConnectionListener(gui.getCjabber().getListeners());
+                            gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org/" +  jtfAlias.getText()));
+                            
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText())
                                     , 1, "avatar"));
                             taulell = new GuiTaulell(gui);
