@@ -206,7 +206,7 @@ public class GuiNovaPartidaOnline {
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);                   
 
-                            gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org/" + jtfAlias.getText()));
+                            //gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org/" + jtfAlias.getText()));
 
                             gui.getCjabber().getMuc().join("/" + jtfAlias.getText());
 
