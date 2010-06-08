@@ -137,6 +137,7 @@ public class ControladoraPartida {
         }
         gui.ocultarCartesComunitaries();
         gui.mostrarMissatge(jugadorsGuanyadors.toString(), "Ha/n guanyat la ronda");
+        gui.gestionarFitxes(partida.getJugadors());
     }
 
     public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
