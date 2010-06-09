@@ -6,6 +6,7 @@ package presentacio.partida;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraPartidaOnline;
+import controladora.jabber.Connexio;
 import controladora.jabber.JID;
 import domini.Jugador;
 import java.awt.Color;
@@ -204,19 +205,19 @@ public class GuiNovaPartidaOnline {
                             && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
                         try {
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
-                            gui.setCp(cpo);                   
-
-                            //gui.getCjabber().crearSala(new JID(jtfNom.getText() + "@" + "sala@conf.jabberes.org/" + jtfAlias.getText()));
-
-                            gui.getCjabber().getMuc().join("/" + jtfAlias.getText());
-
-                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
+                            gui.setCp(cpo);
+                            JID jid = new JID();
+                            jid.setName(jtfNom.getText());
+                            jid.setServer("conf.jabberes.org/");
+                            jid.setNick(jtfAlias.getText());
+                            gui.getCjabber().setMuc(Connexio.crearSala(jid, gui.getCjabber().getConnexio()));
+                            gui.getCjabber().getMuc().addUserStatusListener(gui.getCjabber().getListeners());
+                            gui.getCjabber().getMuc().addParticipantStatusListener(gui.getCjabber().getListeners());
+                            Connexio.unirseSala(gui.getCjabber().getMuc(), jid);                            
                             taulell = new GuiTaulell(gui);
                             jFrame.dispose();
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
-                        } catch (XMPPException ex) {
-                            Logger.getLogger(GuiNovaPartidaOnline.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (NumberFormatException exception) {
                             JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                         }
