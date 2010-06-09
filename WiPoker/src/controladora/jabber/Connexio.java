@@ -31,7 +31,7 @@ public class Connexio {
             muc = new MultiUserChat(con, jid.getJID());
             muc.create(jid.getNick());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
-            muc.changeSubject("sala per al joc wipoker");                 
+            muc.changeSubject("sala per al joc wipoker");      
         } catch (XMPPException ex) {
             Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error creant sala");
