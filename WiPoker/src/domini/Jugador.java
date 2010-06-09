@@ -28,6 +28,7 @@ public class Jugador {
     private Aposta aposta;
     private boolean haFetFold = false;
     private boolean haFetAllin = false;
+    private boolean eliminat = false;
     private Torn torn;
     private ImageIcon avatar;
 
@@ -166,7 +167,13 @@ public class Jugador {
         this.haFetAllin = haFetAllin;
     }
 
+    public boolean isEliminat() {
+        return eliminat;
+    }
 
+    public void setEliminat(boolean eliminat) {
+        this.eliminat = eliminat;
+    }
 
     public Torn getTorn() {
         return torn;
