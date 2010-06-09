@@ -965,7 +965,7 @@ public class GuiTaulell {
             @Override
             public void actionPerformed(final ActionEvent evt) {
                 try {
-                    gui.getCp().setFi(true);
+                    //gui.getCp().setFi(true);
                     jFrame.dispose();
                     menu = new GuiMenu(gui);
                     menu.getjFrame().setVisible(true);
