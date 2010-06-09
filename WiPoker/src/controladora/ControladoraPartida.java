@@ -63,8 +63,8 @@ public class ControladoraPartida {
             }
         });
         int boto = 0;
-
-        while (partida.getJugadors().size() > 1) {
+        int numJugadorsActius = partida.getJugadors().size();
+        while (numJugadorsActius > 1) {
             System.out.println("Tamany array jugadors: " + partida.getJugadors().size());
             if (boto == partida.getJugadors().size()) {
                 boto = 0;
@@ -73,6 +73,12 @@ public class ControladoraPartida {
             determinarJugadorsEliminats();
             System.out.println("Tamany array jugadors: " + partida.getJugadors().size());
             boto++;
+            numJugadorsActius = 0;
+            for (int i = 0; i < partida.getJugadors().size();i++) {
+                if (!partida.getJugadors().get(i).isEliminat()) {
+                    numJugadorsActius++;
+                }
+            }
         }
     }
 
@@ -130,8 +136,10 @@ public class ControladoraPartida {
             jugador.getMaActual().getCartes().clear();
             if (jugador.isHaFetFold()) {
                 jugador.setHaFetFold(false);
-                jugador.setHaFetAllin(false);
+                
 
+            } else if (jugador.isAllin()) {
+                jugador.setHaFetAllin(false);
             }
             //jugador.getAposta().setQuantitat(0.0);
         }

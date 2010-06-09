@@ -268,7 +268,7 @@ public class ControladoraGui {
 
     public void setCartesPrivades() {
         for (Jugador jugador : cp.partida.getJugadors()) {
-            if (!(jugador instanceof Bot)) {
+            if (!(jugador instanceof Bot) && !jugador.isEliminat()) {
                 taulell.getJlCarta01Usuari().setIcon(jugador.getMaActual().getCartes().get(0).getImatge());
                 taulell.getJlCarta02Usuari().setIcon(jugador.getMaActual().getCartes().get(1).getImatge());
             }
