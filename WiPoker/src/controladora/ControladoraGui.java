@@ -121,8 +121,8 @@ public class ControladoraGui {
     }
 
     //Fa rise
-    public void doRise(int dinersAfegits) {
-        cp.controlJoc.ferRaise(tornActual.getJugadorTorn(), faseActual, faseActual.getApostaMinima(), dinersAfegits);
+    public void doRise() {
+        cp.controlJoc.ferRaise(tornActual.getJugadorTorn(), faseActual, faseActual.getApostaMinima(), taulell.getjSldrEntradaFitxes().getValue());
         gestionarFitxes(cp.partida.getJugadors());
     }
 
@@ -189,19 +189,19 @@ public class ControladoraGui {
                 taulell.getJlNumFitxes01().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
             } else if (jugadors.get(i).getPosicioTaula() == 1) {
                 taulell.getJlNumFitxes02().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-            }else if (jugadors.get(i).getPosicioTaula() == 2) {
+            } else if (jugadors.get(i).getPosicioTaula() == 2) {
                 taulell.getJlNumFitxes03().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-            }else if (jugadors.get(i).getPosicioTaula() == 3) {
+            } else if (jugadors.get(i).getPosicioTaula() == 3) {
                 taulell.getJlNumFitxes04().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-            }else if (jugadors.get(i).getPosicioTaula() == 4) {
+            } else if (jugadors.get(i).getPosicioTaula() == 4) {
                 taulell.getJlNumFitxes05().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-            }else if (jugadors.get(i).getPosicioTaula() == 5) {
+            } else if (jugadors.get(i).getPosicioTaula() == 5) {
                 taulell.getJlNumFitxes06().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-            }else if (jugadors.get(i).getPosicioTaula() == 6) {
+            } else if (jugadors.get(i).getPosicioTaula() == 6) {
                 taulell.getJlNumFitxes07().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-            }else if (jugadors.get(i).getPosicioTaula() == 7) {
+            } else if (jugadors.get(i).getPosicioTaula() == 7) {
                 taulell.getJlNumFitxes08().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-            }else if (jugadors.get(i).getPosicioTaula() == 8) {
+            } else if (jugadors.get(i).getPosicioTaula() == 8) {
                 taulell.getJlNumFitxes09().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
             }
 
@@ -289,60 +289,64 @@ public class ControladoraGui {
 
     public void gestionarJugadorEliminat(Jugador jugador) {
         if (jugador.getPosicioTaula() == 0) {
-                taulell.getJlFitxes01().setVisible(false);
-                taulell.getJlAvatar01().setVisible(false);
-                taulell.getJlNom01().setVisible(false);
-                taulell.getJlNumFitxes01().setVisible(false);
-            } else if (jugador.getPosicioTaula() == 1) {
-                taulell.getJlFitxes02().setVisible(false);
-                taulell.getJlAvatar02().setVisible(false);
-                taulell.getJlNom02().setVisible(false);
-                taulell.getJlNumFitxes02().setVisible(false);
-            }else if (jugador.getPosicioTaula() == 2) {
-                taulell.getJlFitxes03().setVisible(false);
-                taulell.getJlAvatar03().setVisible(false);
-                taulell.getJlNom03().setVisible(false);
-                taulell.getJlNumFitxes03().setVisible(false);
-            }else if (jugador.getPosicioTaula() == 3) {
-                taulell.getJlFitxes04().setVisible(false);
-                taulell.getJlAvatar04().setVisible(false);
-                taulell.getJlNom04().setVisible(false);
-                taulell.getJlNumFitxes04().setVisible(false);
-            }else if (jugador.getPosicioTaula() == 4) {
-                taulell.getJlFitxes05().setVisible(false);
-                taulell.getJlAvatar05().setVisible(false);
-                taulell.getJlNom05().setVisible(false);
-                taulell.getJlNumFitxes05().setVisible(false);
-            }else if (jugador.getPosicioTaula() == 5) {
-                taulell.getJlFitxes06().setVisible(false);
-                taulell.getJlAvatar06().setVisible(false);
-                taulell.getJlNom06().setVisible(false);
-                taulell.getJlNumFitxes06().setVisible(false);
-            }else if (jugador.getPosicioTaula() == 6) {
-                taulell.getJlFitxes07().setVisible(false);
-                taulell.getJlAvatar07().setVisible(false);
-                taulell.getJlNom07().setVisible(false);
-                taulell.getJlNumFitxes07().setVisible(false);
-            }else if (jugador.getPosicioTaula() == 7) {
-                taulell.getJlFitxes08().setVisible(false);
-                taulell.getJlAvatar08().setVisible(false);
-                taulell.getJlNom08().setVisible(false);
-                taulell.getJlNumFitxes08().setVisible(false);
-            }else if (jugador.getPosicioTaula() == 8) {
-                taulell.getJlFitxes09().setVisible(false);
-                taulell.getJlAvatar09().setVisible(false);
-                taulell.getJlNom09().setVisible(false);
-                taulell.getJlNumFitxes09().setVisible(false);
-            }
+            taulell.getJlFitxes01().setVisible(false);
+            taulell.getJlAvatar01().setVisible(false);
+            taulell.getJlNom01().setVisible(false);
+            taulell.getJlNumFitxes01().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 1) {
+            taulell.getJlFitxes02().setVisible(false);
+            taulell.getJlAvatar02().setVisible(false);
+            taulell.getJlNom02().setVisible(false);
+            taulell.getJlNumFitxes02().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 2) {
+            taulell.getJlFitxes03().setVisible(false);
+            taulell.getJlAvatar03().setVisible(false);
+            taulell.getJlNom03().setVisible(false);
+            taulell.getJlNumFitxes03().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 3) {
+            taulell.getJlFitxes04().setVisible(false);
+            taulell.getJlAvatar04().setVisible(false);
+            taulell.getJlNom04().setVisible(false);
+            taulell.getJlNumFitxes04().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 4) {
+            taulell.getJlFitxes05().setVisible(false);
+            taulell.getJlAvatar05().setVisible(false);
+            taulell.getJlNom05().setVisible(false);
+            taulell.getJlNumFitxes05().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 5) {
+            taulell.getJlFitxes06().setVisible(false);
+            taulell.getJlAvatar06().setVisible(false);
+            taulell.getJlNom06().setVisible(false);
+            taulell.getJlNumFitxes06().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 6) {
+            taulell.getJlFitxes07().setVisible(false);
+            taulell.getJlAvatar07().setVisible(false);
+            taulell.getJlNom07().setVisible(false);
+            taulell.getJlNumFitxes07().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 7) {
+            taulell.getJlFitxes08().setVisible(false);
+            taulell.getJlAvatar08().setVisible(false);
+            taulell.getJlNom08().setVisible(false);
+            taulell.getJlNumFitxes08().setVisible(false);
+        } else if (jugador.getPosicioTaula() == 8) {
+            taulell.getJlFitxes09().setVisible(false);
+            taulell.getJlAvatar09().setVisible(false);
+            taulell.getJlNom09().setVisible(false);
+            taulell.getJlNumFitxes09().setVisible(false);
+        }
     }
 
-    //Canvi del nom del boto call a check, i ocultar el boto check per posarhi un input
+    //Canvi del nom del boto call a check, i ocultar el boto check per posar-hi un input
+    //Fa clicables
     public void actualitzaBotons() {
 
         if (!(tornActual.getJugadorTorn() instanceof Bot)) {
+            taulell.getjSldrEntradaFitxes().setEnabled(true);
             taulell.getJbCallCheck().setEnabled(true);
             taulell.getJbFold().setEnabled(true);
             taulell.getJbRise().setEnabled(true);
+            taulell.getjSldrEntradaFitxes().setMinimum(faseActual.getApostaMinima());
+            taulell.getjSldrEntradaFitxes().setMaximum(tornActual.getJugadorTorn().getFitxesActuals());
             if (getTornActual().getJugadorTorn().getAposta() != null) {
                 if (tornActual.getJugadorTorn().getAposta().getQuantitat() < faseActual.getApostaMinima()) {//Fem que el boto call sigui call
                     taulell.getJbCallCheck().setText("Call");
@@ -353,6 +357,7 @@ public class ControladoraGui {
                 taulell.getJbCallCheck().setText("Call");
             }
         } else {
+            taulell.getjSldrEntradaFitxes().setEnabled(false);
             taulell.getJbCallCheck().setEnabled(false);
             taulell.getJbFold().setEnabled(false);
             taulell.getJbRise().setEnabled(false);
