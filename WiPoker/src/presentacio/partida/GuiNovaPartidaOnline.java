@@ -210,14 +210,16 @@ public class GuiNovaPartidaOnline {
                             jid.setName(jtfNom.getText());
                             jid.setServer("conf.jabberes.org");
                             jid.setNick(jtfAlias.getText());
+                            gui.getCjabber().setRoom(jid);
                             gui.getCjabber().setMuc(Connexio.crearSala(jid, gui.getCjabber().getConnexio()));
-                            gui.getCjabber().getMuc().addUserStatusListener(gui.getCjabber().getListeners());
-                            gui.getCjabber().getMuc().addParticipantStatusListener(gui.getCjabber().getListeners());
-                            Connexio.unirseSala(gui.getCjabber().getMuc(), jid);                            
+                            gui.getCjabber().prepararEscoltadors();
+                            Connexio.unirseSala(gui.getCjabber().getMuc(), jid);
+                            cpo.afegirJugador(new Jugador(jtfAlias.getText(),Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             taulell = new GuiTaulell(gui);
                             jFrame.dispose();
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
+                            
                         } catch (NumberFormatException exception) {
                             JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                         }

@@ -37,7 +37,7 @@ public class ControladoraJabber {
     public ControladoraJabber() {
         listeners = new Listeners();
         trafic = new Trafic();
-        room = new JID();
+        room = new JID();        
     }
 
     public XMPPConnection getConnexio() {
@@ -66,5 +66,11 @@ public class ControladoraJabber {
 
     public Listeners getListeners() {
         return listeners;
+    }
+
+    public void prepararEscoltadors() {
+        connexio.addConnectionListener(listeners);
+        muc.addParticipantListener(listeners);
+        muc.addUserStatusListener(listeners);
     }
 }
