@@ -6,6 +6,8 @@ package controladora.jabber;
 
 
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.Form;
@@ -23,26 +25,28 @@ public class Connexio {
     }
 
     public static MultiUserChat crearSala(JID jid, XMPPConnection con) {
-        //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
-        
-        MultiUserChat muc = new MultiUserChat(con, jid.getFullJID());
+        MultiUserChat muc = null;
         try {
-            muc.create(jid.name);
+            //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
+            muc = new MultiUserChat(con, jid.getJID());
+            muc.create(jid.getName());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
-            muc.changeSubject("sala per al joc wipoker");
-        } catch (Exception e) {
+            muc.changeSubject("sala per al joc wipoker");                 
+        } catch (XMPPException ex) {
+            Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error creant sala");
-            System.out.println(e.getMessage());
+            System.out.println(ex.getMessage());
         }
-        try {
-            if (!muc.isJoined()) {
-                muc.join(jid.getNick());
-            }
-        } catch (Exception e) {
-            System.out.println("error entrant sala");
-        }
-        
         return muc;
+    }
+
+    public static void unirseSala(MultiUserChat muc, JID jid) {
+        try {
+            muc.join(jid.getNick());
+        } catch (XMPPException ex) {
+            Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error afegint jugador");
+        }
     }
 }
 

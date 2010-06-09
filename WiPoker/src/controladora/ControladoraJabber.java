@@ -60,6 +60,10 @@ public class ControladoraJabber {
         return muc;
     }
 
+    public void setMuc(MultiUserChat muc) {
+        this.muc = muc;
+    }
+
     public Listeners getListeners() {
         return listeners;
     }
