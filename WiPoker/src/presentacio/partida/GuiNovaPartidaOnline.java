@@ -208,7 +208,7 @@ public class GuiNovaPartidaOnline {
                             gui.setCp(cpo);
                             JID jid = new JID();
                             jid.setName(jtfNom.getText());
-                            jid.setServer("conf.jabberes.org/");
+                            jid.setServer("conf.jabberes.org");
                             jid.setNick(jtfAlias.getText());
                             gui.getCjabber().setMuc(Connexio.crearSala(jid, gui.getCjabber().getConnexio()));
                             gui.getCjabber().getMuc().addUserStatusListener(gui.getCjabber().getListeners());

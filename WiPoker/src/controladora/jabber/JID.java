@@ -88,6 +88,7 @@ public class JID implements Comparable {
         return j;
     }
 
+    @Override
     public String toString() {
         return getFullJID();
     }
