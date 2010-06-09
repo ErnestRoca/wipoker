@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -28,6 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smackx.muc.MultiUserChat;
 import presentacio.GuiTaulell;
 import presentacio.dades.GuiMenuDades;
 
@@ -215,10 +217,13 @@ public class GuiNovaPartidaOnline {
                             gui.getCjabber().prepararEscoltadors();
                             Connexio.unirseSala(gui.getCjabber().getMuc(), jid);
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(),Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
+                                                        
+                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             taulell = new GuiTaulell(gui);
                             jFrame.dispose();
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
+                            
                             
                         } catch (NumberFormatException exception) {
                             JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
@@ -226,6 +231,13 @@ public class GuiNovaPartidaOnline {
                     } else {
                         JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
+                } else if (jrbUnir.isSelected()) {
+                    try {
+                        MultiUserChat.getRoomInfo(gui.getCjabber().getConnexio(), gui.getCjabber().getJid().getName());
+                    } catch (XMPPException ex) {
+                        Logger.getLogger(GuiNovaPartidaOnline.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                 }
             }
         });
