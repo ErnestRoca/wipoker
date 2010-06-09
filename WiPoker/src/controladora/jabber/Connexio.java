@@ -29,7 +29,7 @@ public class Connexio {
         try {
             //cadena completa per servidor jabberes.org sala@conf.jabberes.org/andres
             muc = new MultiUserChat(con, jid.getJID());
-            muc.create(jid.getName());
+            muc.create(jid.getNick());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
             muc.changeSubject("sala per al joc wipoker");                 
         } catch (XMPPException ex) {
@@ -42,7 +42,7 @@ public class Connexio {
 
     public static void unirseSala(MultiUserChat muc, JID jid) {
         try {
-            muc.join(jid.getNick());
+            muc.join(jid.getName());
         } catch (XMPPException ex) {
             Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error afegint jugador");
