@@ -84,13 +84,22 @@ public class ControladoraJoc {
 
     public void apostar(Jugador jugador, int quantitat, Fase fase) {
         //modificar cuando este hecha gui
-        double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
-        jugador.setFitxesActuals((int) ((int) jugador.getFitxesActuals() - (quantitat - quantitatAnterior)));
-        Aposta aposta = new Aposta(jugador, quantitat);
-        jugador.setAposta(aposta);
+        
+        if (jugador.getFitxesActuals() < fase.getApostaMinima() + quantitat) {
+            Aposta aposta = new Aposta(jugador, jugador.getFitxesActuals());
+            jugador.setFitxesActuals(0);
+            jugador.setAposta(aposta);
+            fase.getApostes().add(aposta);
+            fase.getRonda().setPot(fase.getRonda().getPot() + quantitat);
+        } else {
+            double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
+            jugador.setFitxesActuals((int) ((int) (jugador.getFitxesActuals() - quantitat) + quantitatAnterior));
+            Aposta aposta = new Aposta(jugador, quantitat);
+            jugador.setAposta(aposta);
 
-        fase.getApostes().add(aposta);
-        fase.getRonda().setPot(fase.getRonda().getPot() + quantitat);
+            fase.getApostes().add(aposta);
+            fase.getRonda().setPot(fase.getRonda().getPot() + quantitat);
+        }
 
     }
 
@@ -139,13 +148,14 @@ public class ControladoraJoc {
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         if (jugador.getFitxesActuals() < apostaMinima) {
             jugador.setHaFetAllin(true);
+
             System.out.println("Fa Allin");
         }
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         boolean teDiners = jugador.getFitxesActuals() >= ((apostaMinima - quantitatAnterior) + dinersApostats);
         boolean esSuficient = apostaMinima < quantitatAnterior + dinersApostats;
         //if (teDiners && esSuficient) {
-        apostar(jugador, (int) ((int) (apostaMinima + dinersApostats)), fase);
+        apostar(jugador, (int) ((int) (apostaMinima + dinersApostats) - quantitatAnterior), fase);
         fase.setApostaMinima((int) (apostaMinima + dinersApostats));
         System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
         //} else {
