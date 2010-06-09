@@ -19,10 +19,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JSeparator;
+import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -105,7 +107,7 @@ public class GuiTaulell {
     private JLabel jlNumFitxes08;
     private JLabel jlNumFitxes09;
     //
-    private JScrollBar jsbEntradaFitxes;
+    private JSlider jSldrEntradaFitxes;
     private JButton jbRise;
     private JButton jbCallCheck;
     private JButton jbFold;
@@ -119,7 +121,7 @@ public class GuiTaulell {
     private JSeparator jseSeparador;
     //
     private ControladoraGui gui;
-    private JLabel jlMinScrollBar;
+    private JLabel jlSortidaJSlider;
 
     /** Constructor. */
     public GuiTaulell() {
@@ -882,18 +884,25 @@ public class GuiTaulell {
 
     private void crearControlsJPanelBotons() {
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
-        jlMinScrollBar = new JLabel();
+        jlSortidaJSlider = new JLabel();
+        jlSortidaJSlider.setForeground(Color.red);
+        jlSortidaJSlider.setBounds(110, 0, 220, 20);
+        jPanelBotons.add(jlSortidaJSlider);
 
 
-        jsbEntradaFitxes = new JScrollBar(SwingConstants.HORIZONTAL, 0, 0, 0, 100);
-        jsbEntradaFitxes.setOpaque(false);
+        jSldrEntradaFitxes = new JSlider();
+        jSldrEntradaFitxes.setForeground(Color.red);
+        jSldrEntradaFitxes.setOpaque(false);
+        jSldrEntradaFitxes.setMajorTickSpacing(20);
+        jSldrEntradaFitxes.setMinorTickSpacing(5);
+        jSldrEntradaFitxes.setPaintTicks(true);
         final int sv = 2;
         final int x1 = 6;
         final int y1 = 20;
         final int w1 = 220;
         final int h1 = 20;
-        jsbEntradaFitxes.setBounds(x1, y1, w1, h1);
-        jPanelBotons.add(jsbEntradaFitxes);
+        jSldrEntradaFitxes.setBounds(x1, y1, w1, h1);
+        jPanelBotons.add(jSldrEntradaFitxes);
 
         jbRise = new JButton();
         jbRise.setIconTextGap(-180);
@@ -943,21 +952,31 @@ public class GuiTaulell {
 
     private void crearControlsJPanelMissatges() {
         jtaMissatge = new JTextArea();
-        jtaMissatge.setRows(5);
-        jtaMissatge.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
-        jtaMissatge.setForeground(Color.BLACK);
-        jtaMissatge.setBounds(5, 10, 210, 20);
+        jtaMissatge.setEditable(false);
+        jtaMissatge.setRows(3);
+        jtaMissatge.setText("ggggggg\nf\nn");
+        jtaMissatge.setBackground(Color.BLACK);
+        jtaMissatge.setForeground(Color.WHITE);
+        jtaMissatge.setBounds(5, 5, 210, 45);
         jPanelMissatges.add(jtaMissatge);
 
         jlMissatge2 = new JLabel();
-        jlMissatge2.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaa");
-        jlMissatge2.setForeground(Color.BLACK);
-        jlMissatge2.setBounds(5, 35, 210, 20);
+        jlMissatge2.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaa");
+        jlMissatge2.setForeground(Color.WHITE);
+        jlMissatge2.setBounds(5, 50, 210, 13);
         jPanelMissatges.add(jlMissatge2);
     }
 
     private void crearEscoltadors() {
-        //pendiente crear control que recoja la cantidad apostada
+
+        jSldrEntradaFitxes.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                jlSortidaJSlider.setText(""+jSldrEntradaFitxes.getValue());
+            }
+        });
+
         jmiSortir.addActionListener(new ActionListener() {
 
             private GuiMenu menu;
@@ -990,7 +1009,7 @@ public class GuiTaulell {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.doRise(30);
+                gui.doRise();
                 gui.getTornActual().resume();
             }
         });
@@ -1027,12 +1046,12 @@ public class GuiTaulell {
         this.jbCallCheck = jbCallCheck;
     }
 
-    public JScrollBar getJsbEntradaFitxes() {
-        return jsbEntradaFitxes;
+    public JSlider getjSldrEntradaFitxes() {
+        return jSldrEntradaFitxes;
     }
 
-    public void setJsbEntradaFitxes(JScrollBar jsbEntradaFitxes) {
-        this.jsbEntradaFitxes = jsbEntradaFitxes;
+    public void setjSldrEntradaFitxes(JSlider jSldrEntradaFitxes) {
+        this.jSldrEntradaFitxes = jSldrEntradaFitxes;
     }
 
     public JButton getJbFold() {
@@ -1434,6 +1453,16 @@ public class GuiTaulell {
     public void setJlMissatge2(JLabel jlMissatge2) {
         this.jlMissatge2 = jlMissatge2;
     }
+
+    public JLabel getJlSortidaJSlider() {
+        return jlSortidaJSlider;
+    }
+
+    public void setJlSortidaJSlider(JLabel jlSortidaJSlider) {
+        this.jlSortidaJSlider = jlSortidaJSlider;
+    }
+
+    
 
     public ArrayList<JLabel> getAvatars() {
         return avatars;
