@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import org.jivesoftware.smack.XMPPException;
 import presentacio.GuiMenu;
+import presentacio.jabber.BuscarSala;
 import presentacio.jabber.GuiLoginJabber;
 
 /**
@@ -189,8 +190,6 @@ public class GuiLoginJabberPartida {
 
         jbLogin.addActionListener(new ActionListener() {
 
-            private GuiNovaPartidaOnline novaPartidaOnline;
-
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (!jtfServidor.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfPassword.getText().isEmpty()) {
@@ -200,29 +199,29 @@ public class GuiLoginJabberPartida {
                             gui.getCjabber().getConnexio().addConnectionListener(gui.getCjabber().getListeners());
                             gui.getCjabber().getConnexio().addConnectionListener(gui.getCjabber().getListeners());
                             GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
-                            gui.setLogin(true);                            
+                            gui.setLogin(true);
                             JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
+                            Thread t = new Thread() {
 
-                            jFrame.dispose();
-                            novaPartidaOnline = new GuiNovaPartidaOnline(gui);
-                            novaPartidaOnline.getjFrame().setLocation(jFrame.getLocation());
-                            novaPartidaOnline.getjFrame().setVisible(true);
-                        } catch (InterruptedException ex) {
-                            gui.setLogin(false);
-                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                                @Override
+                                public void run() {
+                                    BuscarSala buscarSala = new BuscarSala(gui, jFrame, true);
+                                }
+                            };
+                            t.start();
                         } catch (XMPPException ex) {
                             gui.setLogin(false);
                             Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else if (gui.isLogin()) {
-                        try {
-                            jFrame.dispose();
-                            novaPartidaOnline = new GuiNovaPartidaOnline(gui);
-                            novaPartidaOnline.getjFrame().setLocation(jFrame.getLocation());
-                            novaPartidaOnline.getjFrame().setVisible(true);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        Thread t = new Thread() {
+
+                            @Override
+                            public void run() {
+                                BuscarSala buscarSala = new BuscarSala(gui, jFrame, true);
+                            }
+                        };
+                        t.start();
 
                     }
                 } else {

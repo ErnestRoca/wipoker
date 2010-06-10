@@ -219,7 +219,7 @@ public class GuiNovaPartidaOnline {
 
                                 @Override
                                 public void run() {
-                                    BuscarSala sala = new BuscarSala(jFrame, true);
+                                    BuscarSala sala = new BuscarSala(gui, jFrame, true);
                                     if (sala.func) {
                                         gui.getCjabber().setSala(sala.room);
                                     }
