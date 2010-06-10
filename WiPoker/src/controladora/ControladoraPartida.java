@@ -66,8 +66,8 @@ public class ControladoraPartida {
         int numJugadorsActius = partida.getJugadors().size();
         while (numJugadorsActius > 1) {
             System.out.println("Tamany array jugadors: " + partida.getJugadors().size());
-            
-            
+
+
             iniciarRonda(boto);
             determinarJugadorsEliminats();
             System.out.println("Tamany array jugadors: " + partida.getJugadors().size());
@@ -187,104 +187,42 @@ public class ControladoraPartida {
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
         }
-        if (partida.getJugadors().size() <= 2) {
-            //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-            controlJoc.ferBlind(partida.getJugadors().get(boto), fase, apostaMin);
-            boolean trobat1 = false;
-            for (int i = 0; i < partida.getJugadors().size() && !trobat1; i++) {
+        int posicioSmallBlind = 0;
+        boolean trobat = false;
+        //desde Boto fins lultim jugador
+        for (int i = boto; i < partida.getJugadors().size() && !trobat; i++) {
+            if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
+                //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
+                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
+                posicioSmallBlind = i;
+                trobat = true;
+            }
+        }
+        if (!trobat) {
+            for (int i = 0; i < boto && !trobat; i++) {
                 if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
                     //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
                     controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
-                    trobat1 = true;
+                    posicioSmallBlind = i;
+                    trobat = true;
                 }
             }
-        } else {
-            if (boto == partida.getJugadors().size() - 1 || boto == partida.getJugadors().size() - 2) {
-                //Boto a la ultima pos
-                if (boto == partida.getJugadors().size() - 1) {
-                    int posicioSmallBlind = 0;
-                    boolean trobat2 = false;
-                    for (int i = 0; i < partida.getJugadors().size() && !trobat2; i++) {
-                        if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
-                            //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                            controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
-                            posicioSmallBlind = i;
-                            trobat2 = true;
-                        }
-                    }
-                    trobat2 = false;
-                    for (int i = posicioSmallBlind + 1; i < partida.getJugadors().size() && !trobat2; i++) {
-                        if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
-                            //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                            controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
-                            trobat2 = true;
-                        }
-                    }
-                } else if (boto == partida.getJugadors().size() - 2) {
-                    if (!partida.getJugadors().get(boto + 1).isEliminat()) {
-                        //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                        controlJoc.ferBlind(partida.getJugadors().get(boto + 1), fase, apostaMin / 2);
-                    } else {
-                        int posicioSmallBlind = 0;
-                        boolean trobat3 = false;
-                        for (int i = 0; i < partida.getJugadors().size() && !trobat3; i++) {
-                            if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
-                                //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
-                                posicioSmallBlind = i;
-                                trobat3 = true;
-                            }
-                        }
-                        trobat3 = false;
-                        for (int i = posicioSmallBlind + 1; i < partida.getJugadors().size() && !trobat3; i++) {
-                            if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
-                                //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
-                                trobat3 = true;
-                            }
-                        }
-                    }
-                }
+        }
+        trobat = false;
+        for (int i = posicioSmallBlind; i < partida.getJugadors().size() && !trobat; i++) {
+            if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
+                //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                trobat = true;
+            }
+        }
 
-            } else {
-                System.out.println("boto: " + boto);
-                int posicioSmallBlind = 0;
-                boolean trobat3 = false;
-                for (int i = boto + 1; i < partida.getJugadors().size() && !trobat3; i++) {
-                    if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
-                        //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                        controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
-                        posicioSmallBlind = i;
-                        trobat3 = true;
-                    }
-                }
-                if (!trobat3) {
-                    for (int i = 0; i < boto && !trobat3; i++) {
-                        if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
-                            //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                            controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
-                            posicioSmallBlind = i;
-                            trobat3 = true;
-                        }
-                    }
-                }
-                trobat3 = false;
-                for (int i = posicioSmallBlind; i < partida.getJugadors().size() && !trobat3; i++) {
-                    if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
-                        //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                        controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
-                        trobat3 = true;
-                    }
-                }
-
-                if (!trobat3) {
-                    for (int i = 0; i < boto && !trobat3; i++) {
-                        if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
-                            //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                            controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
-                            trobat3 = true;
-                        }
-                    }
+        if (!trobat) {
+            for (int i = 0; i < posicioSmallBlind && !trobat; i++) {
+                if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
+                    //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
+                    controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                    trobat = true;
                 }
             }
         }
