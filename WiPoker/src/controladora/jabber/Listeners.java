@@ -176,7 +176,7 @@ public class Listeners implements ConnectionListener,  PacketListener,
     }
 
     public void kicked(String arg0) {
-        
+        System.out.println("kicked " + arg0);
     }
 
     public void banned(String arg0) {

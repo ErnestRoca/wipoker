@@ -18,6 +18,7 @@ import org.jivesoftware.smack.filter.AndFilter;
 import org.jivesoftware.smack.filter.FromContainsFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
+import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
@@ -37,7 +38,8 @@ public class ControladoraJabber {
     public ControladoraJabber() {
         listeners = new Listeners();
         trafic = new Trafic();
-        room = new JID();        
+        room = new JID();
+        
     }
 
     public XMPPConnection getConnexio() {
@@ -68,8 +70,14 @@ public class ControladoraJabber {
         return listeners;
     }
 
-    public void prepararEscoltadors() {
+    public void prepararEscoltadorsConnexio() {
         connexio.addConnectionListener(listeners);
+        connexio.addConnectionListener(listeners);
+        connexio.addPacketListener(listeners, new PacketTypeFilter(Message.class));
+        
+    }
+
+    public void prepararEscoltadorsSala() {
         muc.addParticipantListener(listeners);
         muc.addUserStatusListener(listeners);
     }

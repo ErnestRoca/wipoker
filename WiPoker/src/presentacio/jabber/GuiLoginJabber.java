@@ -168,6 +168,7 @@ public class GuiLoginJabber {
                             System.out.println(gui.getCjabber() == null);
                             gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
                             //GestioUsuaris.connectar(gui.getCjabber().getConnexio());
+                            gui.getCjabber().prepararEscoltadorsConnexio();
                             GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
                             gui.setLogin(true);
                             JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");

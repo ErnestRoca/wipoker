@@ -20,7 +20,7 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
 public class Connexio {
 
     public static XMPPConnection crearConnexio(String servidor) throws XMPPException {       
-        XMPPConnection connexio = new XMPPConnection(servidor, 5222);       
+        XMPPConnection connexio = new XMPPConnection(servidor, 5222);    
         return connexio;
     }
 
@@ -42,7 +42,8 @@ public class Connexio {
 
     public static void unirseSala(MultiUserChat muc, JID jid) {
         try {
-            muc.join(jid.getName());
+            System.out.println(jid.toString());
+            muc.join(jid.getNick());
         } catch (XMPPException ex) {
             Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error afegint jugador");
