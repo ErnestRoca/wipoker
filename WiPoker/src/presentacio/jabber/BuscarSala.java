@@ -4,6 +4,7 @@
  */
 package presentacio.jabber;
 
+import controladora.ControladoraGui;
 import controladora.jabber.JID;
 import java.awt.Color;
 import java.awt.Font;
@@ -26,6 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+import presentacio.GuiTaulell;
+import presentacio.GuiTaulell;
 
 /**
  *
@@ -33,6 +36,7 @@ import javax.swing.border.BevelBorder;
  */
 public class BuscarSala extends javax.swing.JDialog {
 
+    private ControladoraGui gui;
     private final static String[] servidors = {"conf.jabberes.org",
         "muc.jabber.upc.es", "conferencia.jabber-hispano.org",
         "conference.seunet.org", "conference.jabber.org"};
@@ -47,8 +51,9 @@ public class BuscarSala extends javax.swing.JDialog {
     private JLabel jlAlias;
     private JTextField jtfAlias;
 
-    public BuscarSala(Frame owner, boolean modal) {
+    public BuscarSala(ControladoraGui gui, Frame owner, boolean modal) {
         super(owner, "Buscar sala", modal);
+        this.gui = gui;
         iniciarComponents();
         crearEscoltadors();
         llistarServidors();
@@ -137,6 +142,7 @@ public class BuscarSala extends javax.swing.JDialog {
     private void crearEscoltadors() {
 
         jbEntrar.addActionListener(new ActionListener() {
+            private GuiTaulell taulell;
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -161,7 +167,10 @@ public class BuscarSala extends javax.swing.JDialog {
                     return;
                 }
                 func = true;
+                taulell = new GuiTaulell(gui);
                 dispose();
+                taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                taulell.getjFrame().setVisible(true);
             }
         });
 

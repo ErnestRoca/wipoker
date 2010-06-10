@@ -179,7 +179,6 @@ public class GuiTaulell {
         jFrame.add(jMenuBar);
 
         jPanelGlobal = new JPanelGlobal();
-        jPanelGlobal.setBackground(Color.GREEN);
         jPanelGlobal.setLayout(null);
         jPanelGlobal.setBounds(0, 25, 1024, 761);
         jFrame.add(jPanelGlobal);
