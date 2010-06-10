@@ -13,6 +13,7 @@ import controladora.jabber.Listeners;
 import controladora.jabber.Trafic;
 import domini.Ronda;
 
+import javax.swing.JFrame;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.filter.AndFilter;
 import org.jivesoftware.smack.filter.FromContainsFilter;
@@ -21,6 +22,7 @@ import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.MultiUserChat;
+import presentacio.jabber.BuscarSala;
 
 /**
  *
@@ -39,7 +41,7 @@ public class ControladoraJabber {
         listeners = new Listeners();
         trafic = new Trafic();
         room = new JID();
-        
+
     }
 
     public XMPPConnection getConnexio() {
@@ -73,13 +75,51 @@ public class ControladoraJabber {
     public void prepararEscoltadorsConnexio() {
         connexio.addConnectionListener(listeners);
         connexio.addConnectionListener(listeners);
-        connexio.addPacketListener(listeners, new PacketTypeFilter(Message.class));    
+        connexio.addPacketListener(listeners, new PacketTypeFilter(Message.class));
     }
 
     public void prepararEscoltadorsSala() {
         muc.addParticipantListener(listeners);
         muc.addUserStatusListener(listeners);
         muc.addParticipantStatusListener(listeners);
+        if (muc != null) {
+            try {
+                muc.addUserStatusListener(listeners);
+                muc.addParticipantStatusListener(listeners);
 
+                PacketFilter filter = new AndFilter(new PacketTypeFilter(muc.createMessage().getClass()), new FromContainsFilter(
+                        muc.getRoom()));
+                connexio.createPacketCollector(filter);
+                connexio.addPacketListener(listeners, filter);
+            } catch (Exception ex) {
+                muc = null;
+            }
+        }
     }
+
+    public void setSala(JID r) {
+        
+        if (muc != null) {
+            connexio.removePacketListener(listeners);
+            muc.leave();
+        }
+        room = r;
+        muc = new MultiUserChat(connexio, r.getJID());
+
+        try {
+            muc.create(r.getNick());
+            muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
+            muc.changeSubject("Sala dedicada al juego WiPPoker");
+        } catch (Exception ex) {
+        }
+
+        if (!muc.isJoined()) {
+            try {
+                muc.join(r.getNick());
+            } catch (Exception ex) {
+                muc = null;
+            }
+        }
+    }
+
 }
