@@ -224,7 +224,7 @@ public class GuiLoginJabberPartida {
                             @Override
                             public void run() {
                                 BuscarSala buscarSala = new BuscarSala(gui, jFrame, true);
-                                buscarSala.setVisible(false);
+                                //buscarSala.setVisible(false);
                             }
                         };
                         t.start();
