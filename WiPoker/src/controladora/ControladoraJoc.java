@@ -124,15 +124,24 @@ public class ControladoraJoc {
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
         } else {
-            apostar(jugador, dinersApostats, fase);
-            fase.setApostaMinima((dinersApostats));
+            double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
+            jugador.setFitxesActuals((int) ((int) (jugador.getFitxesActuals() - dinersApostats) + quantitatAnterior));
+            jugador.setApostaTotalRonda((int) ((jugador.getApostaTotalRonda() + dinersApostats) - quantitatAnterior));
+            Aposta aposta = new Aposta(jugador, dinersApostats);
+            jugador.setAposta(aposta);
+            fase.getApostes().add(aposta);
+            fase.getRonda().setPot((fase.getRonda().getPot()) + dinersApostats);
+            fase.setApostaMinima(dinersApostats);
             System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
         }
-
     }
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
+            jugador.setHaFetAllin(true);
+            apostar(jugador, jugador.getFitxesActuals(), fase);
+            System.out.println(jugador.getAlias() + "Fa Allin");
+        } else if (jugador.getFitxesActuals() < (apostaMinima + dinersApostats)) {
             jugador.setHaFetAllin(true);
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
@@ -167,7 +176,7 @@ public class ControladoraJoc {
                 //Percentatge guanys pel jugador en el pot 2
                 double percentatgeGuanys2 = 100 * percentatgeGuanys / percentatgeTotal;
                 int premi = (int) ((pot2 * percentatgeGuanys2 / 100) + jugadors.get(i).getApostaTotalRonda());
-                jugadors.get(i).setFitxesActuals(premi);
+                jugadors.get(i).setFitxesActuals(jugadors.get(i).getFitxesActuals() + premi);
                 System.out.println("El " + jugadors.get(i).getAlias() + " guanya: " + premi);
             }
         }
