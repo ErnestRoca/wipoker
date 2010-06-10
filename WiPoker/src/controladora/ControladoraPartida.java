@@ -65,12 +65,8 @@ public class ControladoraPartida {
         int boto = 0;
         int numJugadorsActius = partida.getJugadors().size();
         while (numJugadorsActius > 1) {
-            System.out.println("Tamany array jugadors: " + partida.getJugadors().size());
-
-
             iniciarRonda(boto);
             determinarJugadorsEliminats();
-            System.out.println("Tamany array jugadors: " + partida.getJugadors().size());
             //Avança Boto
             if (boto == partida.getJugadors().size()) {
                 boto = 0;
