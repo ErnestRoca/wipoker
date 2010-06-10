@@ -74,7 +74,6 @@ public class BuscarSala extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
-        setVisible(true);
     }
 
     //Mètode per introduir una imatge de fons.
