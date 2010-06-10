@@ -109,6 +109,16 @@ public class GuiTaulell {
     private JLabel jlNumFitxes08;
     private JLabel jlNumFitxes09;
     //
+    private JLabel jlTotalFitxes01;
+    private JLabel jlTotalFitxes03;
+    private JLabel jlTotalFitxes02;
+    private JLabel jlTotalFitxes04;
+    private JLabel jlTotalFitxes05;
+    private JLabel jlTotalFitxes06;
+    private JLabel jlTotalFitxes07;
+    private JLabel jlTotalFitxes08;
+    private JLabel jlTotalFitxes09;
+    //
     private JSlider jSldrEntradaFitxes;
     private JButton jbRise;
     private JButton jbCallCheck;
@@ -165,6 +175,8 @@ public class GuiTaulell {
         jFrame.setLayout(null);
     }
 
+
+
     //Mètode per introduir una imatge de fons.
     public class JPanelGlobal extends javax.swing.JPanel {
 
@@ -215,7 +227,7 @@ public class GuiTaulell {
         final int x1 = 620;
         final int y1 = 0;
         final int w1 = 107;
-        final int h1 = 213;
+        final int h1 = 220;
         jPanelJugador01.setBounds(x1, y1, w1, h1);
         jPanelJugador01.setLayout(null);
         panellsJugadors.add(jPanelJugador01);
@@ -238,8 +250,8 @@ public class GuiTaulell {
         jPanelJugador03.setLayout(null);
         final int x3 = 750;
         final int y3 = 300;
-        final int w3 = 200;
-        final int h3 = 200;
+        final int w3 = 250;
+        final int h3 = 250;
         jPanelJugador03.setBounds(x3, y3, w3, h3);
         jPanelJugador03.setLayout(null);
         panellsJugadors.add(jPanelJugador03);
@@ -251,7 +263,7 @@ public class GuiTaulell {
         final int x4 = 620;
         final int y4 = 350;
         final int w4 = w1;
-        final int h4 = 250;
+        final int h4 = 270;
         jPanelJugador04.setBounds(x4, y4, w4, h4);
         jPanelJugador04.setLayout(null);
         panellsJugadors.add(jPanelJugador04);
@@ -263,7 +275,7 @@ public class GuiTaulell {
         final int x5 = 460;
         final int y5 = 350;
         final int w5 = w1;
-        final int h5 = 250;
+        final int h5 = 280;
         jPanelJugador05.setBounds(x5, y5, w5, h5);
         jPanelJugador05.setLayout(null);
         panellsJugadors.add(jPanelJugador05);
@@ -275,7 +287,7 @@ public class GuiTaulell {
         final int x6 = 310;
         final int y6 = 350;
         final int w6 = w1;
-        final int h6 = 250;
+        final int h6 = 280;
         jPanelJugador06.setBounds(x6, y6, w6, h6);
         jPanelJugador06.setLayout(null);
         panellsJugadors.add(jPanelJugador06);
@@ -287,7 +299,7 @@ public class GuiTaulell {
         final int x7 = 60;
         final int y7 = 300;
         final int w7 = 200;
-        final int h7 = h1;
+        final int h7 = 280;
         jPanelJugador07.setBounds(x7, y7, w7, h7);
         jPanelJugador07.setLayout(null);
         panellsJugadors.add(jPanelJugador07);
@@ -299,7 +311,7 @@ public class GuiTaulell {
         final int x8 = 80;
         final int y8 = 50;
         final int w8 = 200;
-        final int h8 = h1;
+        final int h8 = 280;
         jPanelJugador08.setBounds(x8, y8, w8, h8);
         jPanelJugador08.setLayout(null);
         panellsJugadors.add(jPanelJugador08);
@@ -311,7 +323,7 @@ public class GuiTaulell {
         final int x9 = 310;
         final int y9 = 0;
         final int w9 = w1;
-        final int h9 = h1;
+        final int h9 = 220;
         jPanelJugador09.setBounds(x9, y9, w9, h9);
         jPanelJugador09.setLayout(null);
         panellsJugadors.add(jPanelJugador09);
@@ -486,6 +498,12 @@ public class GuiTaulell {
         jPanelJugador01.add(jlNom01);
         nomsJugadors.add(jlNom01);
 
+        jlTotalFitxes01 = new JLabel();
+        jlTotalFitxes01.setText("1000 f.");
+        jlTotalFitxes01.setForeground(Color.WHITE);
+        jlTotalFitxes01.setBounds(29, 120, 100, 13);
+        jPanelJugador01.add(jlTotalFitxes01);
+
         jlNumFitxes01 = new JLabel();
         jlNumFitxes01.setText("1000 f.");
         jlNumFitxes01.setForeground(Color.WHITE);
@@ -524,6 +542,7 @@ public class GuiTaulell {
         jlNom02 = new JLabel();
         jlNom02.setText("Jugador02");
         jlNom02.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        jlNom02.setForeground(Color.WHITE);
         final int x3 = x1 + 20;
         final int y3 = h1;
         final int w3 = 100;
@@ -531,6 +550,12 @@ public class GuiTaulell {
         jlNom02.setBounds(x3, y3, w3, h3);
         jPanelJugador02.add(jlNom02);
         nomsJugadors.add(jlNom02);
+
+        jlTotalFitxes02 = new JLabel();
+        jlTotalFitxes02.setText("1000 f.");
+        jlTotalFitxes02.setForeground(Color.WHITE);
+        jlTotalFitxes02.setBounds(130, 115, 100, 13);
+        jPanelJugador02.add(jlTotalFitxes02);
 
         jlNumFitxes02 = new JLabel();
         jlNumFitxes02.setText("1000 f.");
@@ -570,6 +595,7 @@ public class GuiTaulell {
         jlNom03 = new JLabel();
         jlNom03.setText("Jugador03");
         jlNom03.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
+        jlNom03.setForeground(Color.WHITE);
         final int x3 = x1 + 20;
         final int y3 = y1 + h1;
         final int w3 = 100;
@@ -577,6 +603,12 @@ public class GuiTaulell {
         jlNom03.setBounds(x3, y3, w3, h3);
         jPanelJugador03.add(jlNom03);
         nomsJugadors.add(jlNom03);
+
+        jlTotalFitxes03 = new JLabel();
+        jlTotalFitxes03.setText("1000 f.");
+        jlTotalFitxes03.setForeground(Color.WHITE);
+        jlTotalFitxes03.setBounds(130, 200, 100, 13);
+        jPanelJugador03.add(jlTotalFitxes03);
 
         jlNumFitxes03 = new JLabel();
         jlNumFitxes03.setText("1000 f.");
@@ -615,6 +647,7 @@ public class GuiTaulell {
 
         jlNom04 = new JLabel();
         jlNom04.setText("Jugador04");
+        jlNom04.setForeground(Color.white);
         jlNom04.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
         final int x3 = x2 + 20;
         final int y3 = y2 + h2;
@@ -623,6 +656,12 @@ public class GuiTaulell {
         jlNom04.setBounds(x3, y3, w3, h3);
         jPanelJugador04.add(jlNom04);
         nomsJugadors.add(jlNom04);
+
+        jlTotalFitxes04 = new JLabel();
+        jlTotalFitxes04.setText("1000 f.");
+        jlTotalFitxes04.setForeground(Color.WHITE);
+        jlTotalFitxes04.setBounds(x3 + 13, y3 + 13, 100, 13);
+        jPanelJugador04.add(jlTotalFitxes04);
 
         jlNumFitxes04 = new JLabel();
         jlNumFitxes04.setText("1000 f.");
@@ -661,6 +700,7 @@ public class GuiTaulell {
 
         jlNom05 = new JLabel();
         jlNom05.setText("Jugador05");
+        jlNom05.setForeground(Color.white);
         jlNom05.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
         final int x3 = x2 + 20;
         final int y3 = y2 + h2;
@@ -669,6 +709,12 @@ public class GuiTaulell {
         jlNom05.setBounds(x3, y3, w3, h3);
         jPanelJugador05.add(jlNom05);
         nomsJugadors.add(jlNom05);
+
+        jlTotalFitxes05 = new JLabel();
+        jlTotalFitxes05.setText("1000 f.");
+        jlTotalFitxes05.setForeground(Color.WHITE);
+        jlTotalFitxes05.setBounds(x3 + 11, y3 + 14, 100, 13);
+        jPanelJugador05.add(jlTotalFitxes05);
 
         jlNumFitxes05 = new JLabel();
         jlNumFitxes05.setText("1000 f.");
@@ -707,6 +753,7 @@ public class GuiTaulell {
 
         jlNom06 = new JLabel();
         jlNom06.setText("Jugador06");
+        jlNom06.setForeground(Color.white);
         jlNom06.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
         final int x3 = x2 + 20;
         final int y3 = y2 + h2;
@@ -715,6 +762,12 @@ public class GuiTaulell {
         jlNom06.setBounds(x3, y3, w3, h3);
         jPanelJugador06.add(jlNom06);
         nomsJugadors.add(jlNom06);
+
+        jlTotalFitxes06 = new JLabel();
+        jlTotalFitxes06.setText("1000 f.");
+        jlTotalFitxes06.setForeground(Color.WHITE);
+        jlTotalFitxes06.setBounds(x3 + 11, y3 + 14, 100, 13);
+        jPanelJugador06.add(jlTotalFitxes06);
 
         jlNumFitxes06 = new JLabel();
         jlNumFitxes06.setText("1000 f.");
@@ -753,6 +806,7 @@ public class GuiTaulell {
 
         jlNom07 = new JLabel();
         jlNom07.setText("Jugador07");
+        jlNom07.setForeground(Color.white);
         jlNom07.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
         final int x3 = 20;
         final int y3 = y2 + h2;
@@ -761,6 +815,12 @@ public class GuiTaulell {
         jlNom07.setBounds(x3, y3, w3, h3);
         jPanelJugador07.add(jlNom07);
         nomsJugadors.add(jlNom07);
+
+        jlTotalFitxes07 = new JLabel();
+        jlTotalFitxes07.setText("1000 f.");
+        jlTotalFitxes07.setForeground(Color.WHITE);
+        jlTotalFitxes07.setBounds(x3 + 11, y3 + 14, 100, 13);
+        jPanelJugador07.add(jlTotalFitxes07);
 
         jlNumFitxes07 = new JLabel();
         jlNumFitxes07.setText("1000 f.");
@@ -800,7 +860,7 @@ public class GuiTaulell {
         jlNom08 = new JLabel();
         jlNom08.setText("Jugador08");
         jlNom08.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
-        jlNom08.setForeground(Color.GRAY);
+        jlNom08.setForeground(Color.white);
         final int x3 = x2 + 20;
         final int y3 = y2 + h2;
         final int w3 = 100;
@@ -808,6 +868,12 @@ public class GuiTaulell {
         jlNom08.setBounds(x3, y3, w3, h3);
         jPanelJugador08.add(jlNom08);
         nomsJugadors.add(jlNom08);
+
+        jlTotalFitxes08 = new JLabel();
+        jlTotalFitxes08.setText("1000 f.");
+        jlTotalFitxes08.setForeground(Color.WHITE);
+        jlTotalFitxes08.setBounds(x3 + 11, y3 + 14, 100, 13);
+        jPanelJugador08.add(jlTotalFitxes08);
 
         jlNumFitxes08 = new JLabel();
         jlNumFitxes08.setText("1000 f.");
@@ -854,6 +920,12 @@ public class GuiTaulell {
         jlNom09.setBounds(x3, y3, w3, h3);
         jPanelJugador09.add(jlNom09);
         nomsJugadors.add(jlNom09);
+
+        jlTotalFitxes09 = new JLabel();
+        jlTotalFitxes09.setText("1000 f.");
+        jlTotalFitxes09.setForeground(Color.WHITE);
+        jlTotalFitxes09.setBounds(x3 + 11, y3 + 14, 100, 13);
+        jPanelJugador09.add(jlTotalFitxes09);
 
         jlNumFitxes09 = new JLabel();
         jlNumFitxes09.setText("1000 f.");
@@ -1532,6 +1604,80 @@ public class GuiTaulell {
     public void setJlPotTotal2(JLabel jlPotTotal2) {
         this.jlPotTotal2 = jlPotTotal2;
     }
+
+    public JLabel getJlTotalFitxes01() {
+        return jlTotalFitxes01;
+    }
+
+    public void setJlTotalFitxes01(JLabel jlTotalFitxes01) {
+        this.jlTotalFitxes01 = jlTotalFitxes01;
+    }
+
+    public JLabel getJlTotalFitxes02() {
+        return jlTotalFitxes02;
+    }
+
+    public void setJlTotalFitxes02(JLabel jlTotalFitxes02) {
+        this.jlTotalFitxes02 = jlTotalFitxes02;
+    }
+
+    public JLabel getJlTotalFitxes03() {
+        return jlTotalFitxes03;
+    }
+
+    public void setJlTotalFitxes03(JLabel jlTotalFitxes03) {
+        this.jlTotalFitxes03 = jlTotalFitxes03;
+    }
+
+    public JLabel getJlTotalFitxes04() {
+        return jlTotalFitxes04;
+    }
+
+    public void setJlTotalFitxes04(JLabel jlTotalFitxes04) {
+        this.jlTotalFitxes04 = jlTotalFitxes04;
+    }
+
+    public JLabel getJlTotalFitxes05() {
+        return jlTotalFitxes05;
+    }
+
+    public void setJlTotalFitxes05(JLabel jlTotalFitxes05) {
+        this.jlTotalFitxes05 = jlTotalFitxes05;
+    }
+
+    public JLabel getJlTotalFitxes06() {
+        return jlTotalFitxes06;
+    }
+
+    public void setJlTotalFitxes06(JLabel jlTotalFitxes06) {
+        this.jlTotalFitxes06 = jlTotalFitxes06;
+    }
+
+    public JLabel getJlTotalFitxes07() {
+        return jlTotalFitxes07;
+    }
+
+    public void setJlTotalFitxes07(JLabel jlTotalFitxes07) {
+        this.jlTotalFitxes07 = jlTotalFitxes07;
+    }
+
+    public JLabel getJlTotalFitxes08() {
+        return jlTotalFitxes08;
+    }
+
+    public void setJlTotalFitxes08(JLabel jlTotalFitxes08) {
+        this.jlTotalFitxes08 = jlTotalFitxes08;
+    }
+
+    public JLabel getJlTotalFitxes09() {
+        return jlTotalFitxes09;
+    }
+
+    public void setJlTotalFitxes09(JLabel jlTotalFitxes09) {
+        this.jlTotalFitxes09 = jlTotalFitxes09;
+    }
+
+
 
 
 
