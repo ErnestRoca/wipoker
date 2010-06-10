@@ -26,6 +26,7 @@ public class Jugador {
     private final byte posicioTaula;
     private Ma maActual;
     private Aposta aposta;
+    private int apostaTotalRonda = 0;
     private boolean haFetFold = false;
     private boolean haFetAllin = false;
     private boolean eliminat = false;
@@ -149,6 +150,14 @@ public class Jugador {
 
     public void setAposta(Aposta aposta) {
         this.aposta = aposta;
+    }
+
+    public int getApostaTotalRonda() {
+        return apostaTotalRonda;
+    }
+
+    public void setApostaTotalRonda(int apostaTotalRonda) {
+        this.apostaTotalRonda = apostaTotalRonda;
     }
 
     public boolean isHaFetFold() {
