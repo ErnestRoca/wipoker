@@ -207,6 +207,9 @@ public class GuiLoginJabberPartida {
                                 public void run() {
                                     BuscarSala buscarSala = new BuscarSala(gui, jFrame, true);
                                     buscarSala.setVisible(true);
+                                    if (buscarSala.func) {
+                                        gui.getCjabber().setSala(buscarSala.room);
+                                    }
                                 }
                             };
                             t.start();
@@ -214,6 +217,7 @@ public class GuiLoginJabberPartida {
                             gui.setLogin(false);
                             Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        jFrame.dispose();
                     } else if (gui.isLogin()) {
                         Thread t = new Thread() {
 
@@ -226,6 +230,7 @@ public class GuiLoginJabberPartida {
                         t.start();
 
                     }
+                    jFrame.dispose();
                 } else {
                     JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                 }
