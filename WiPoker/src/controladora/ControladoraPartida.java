@@ -52,7 +52,7 @@ public class ControladoraPartida {
     public void jugar() throws InterruptedException {
         System.out.println("---------********NOVA PARTIDA******---------");
         gui.ocultarPanellsJugadors();
-        gui.gestionarFitxes(partida.getJugadors());
+        gui.gestionarFitxes();
         gui.mostrarAvatars(partida.getJugadors());
         Collections.sort(partida.getJugadors(), new Comparator() {
 
@@ -163,10 +163,11 @@ public class ControladoraPartida {
                 jugador.setHaFetAllin(false);
             }
             //jugador.getAposta().setQuantitat(0.0);
+            jugador.setApostaTotalRonda(0);
         }
         gui.ocultarCartesComunitaries();
         gui.mostrarMissatge(jugadorsGuanyadors.toString(), "Ha/n guanyat la ronda");
-        gui.gestionarFitxes(partida.getJugadors());
+        gui.gestionarFitxes();
     }
 
     public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
@@ -201,6 +202,7 @@ public class ControladoraPartida {
                 posicioSmallBlind = i;
                 trobat = true;
                 gui.gestionarPot();
+                gui.gestionarFitxes();
             }
         }
         //Si no toba la Small Blind, del primer jugador al boto
@@ -214,6 +216,7 @@ public class ControladoraPartida {
                     posicioSmallBlind = i;
                     trobat = true;
                     gui.gestionarPot();
+                    gui.gestionarFitxes();
                 }
             }
         }
@@ -227,6 +230,7 @@ public class ControladoraPartida {
                 bigBlind = i;
                 trobat = true;
                 gui.gestionarPot();
+                gui.gestionarFitxes();
             }
         }
         if (!trobat) {
@@ -238,6 +242,7 @@ public class ControladoraPartida {
                     bigBlind = i;
                     trobat = true;
                     gui.gestionarPot();
+                    gui.gestionarFitxes();
                 }
             }
         }
@@ -286,7 +291,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
-                            gui.gestionarFitxes(partida.getJugadors());
+                            gui.gestionarFitxes();
                         } else if (countFase == 0) {
                             gui.setTornActual(partida.getJugadors().get(i).getTorn());
                             gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
@@ -303,7 +308,7 @@ public class ControladoraPartida {
                                     gui.getTornActual().run();
                                 }
                                 gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
-                                gui.gestionarFitxes(partida.getJugadors());
+                                gui.gestionarFitxes();
                             }
                         }
                     }
@@ -327,7 +332,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                             }
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
-                            gui.gestionarFitxes(partida.getJugadors());
+                            gui.gestionarFitxes();
                         } else if (countFase == 0) {
                             gui.setTornActual(partida.getJugadors().get(i).getTorn());
                             gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
@@ -344,7 +349,7 @@ public class ControladoraPartida {
                                     gui.getTornActual().run();
                                 }
                                 gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
-                                gui.gestionarFitxes(partida.getJugadors());
+                                gui.gestionarFitxes();
                             }
                         }
                     }
