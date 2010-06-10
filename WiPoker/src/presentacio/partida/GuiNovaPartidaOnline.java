@@ -33,6 +33,8 @@ import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import presentacio.GuiTaulell;
 import presentacio.dades.GuiMenuDades;
+import presentacio.jabber.BuscarSala;
+import sun.awt.windows.ThemeReader;
 
 /**
  *
@@ -212,10 +214,22 @@ public class GuiNovaPartidaOnline {
                             jid.setName(jtfNom.getText());
                             jid.setServer("conf.jabberes.org");
                             jid.setNick(jtfAlias.getText());
-                            gui.getCjabber().setRoom(jid);
-                            gui.getCjabber().setMuc(Connexio.crearSala(jid, gui.getCjabber().getConnexio()));
+                            //gui.getCjabber().setRoom(jid);
+                            Thread t = new Thread() {
+
+                                @Override
+                                public void run() {
+                                    BuscarSala sala = new BuscarSala(jFrame, true);
+                                    if (sala.func) {
+                                        gui.getCjabber().setSala(sala.room);
+                                    }
+                                }
+                            };
+                            t.start();
+                           
+                            gui.getCjabber().setSala(jid);
                             gui.getCjabber().prepararEscoltadorsSala();
-                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());                            
+                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             taulell = new GuiTaulell(gui);
@@ -229,12 +243,6 @@ public class GuiNovaPartidaOnline {
                         JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (jrbUnir.isSelected()) {
-                    try {
-                        MultiUserChat.getRoomInfo(gui.getCjabber().getConnexio(), gui.getCjabber().getJid().getName());
-                    } catch (XMPPException ex) {
-                        Logger.getLogger(GuiNovaPartidaOnline.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
                 }
             }
         });
