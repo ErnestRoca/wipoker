@@ -100,7 +100,7 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
-        if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() > 0) {
+        if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
             jugador.setHaFetAllin(true);
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
@@ -119,21 +119,20 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferBlind(Jugador jugador, Fase fase, int dinersApostats) {
-        if (jugador.getFitxesActuals() < dinersApostats && jugador.getFitxesActuals() > 0) {
+        if (jugador.getFitxesActuals() < dinersApostats && jugador.getFitxesActuals() >= 0) {
             jugador.setHaFetAllin(true);
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
         } else {
             apostar(jugador, dinersApostats, fase);
             fase.setApostaMinima((dinersApostats));
-            jugador.setApostaTotalRonda(dinersApostats);
             System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
         }
 
     }
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
-        if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() > 0) {
+        if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
             jugador.setHaFetAllin(true);
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
