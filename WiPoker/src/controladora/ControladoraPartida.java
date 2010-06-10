@@ -638,53 +638,44 @@ public class ControladoraPartida {
     }
 
     public ArrayList<Jugador> determinarGuanyador() {
-        for (Jugador j : partida.getJugadors()) {
-            System.out.println("EL " + j.getAlias() + " te: ");
-            System.out.println(j.getMaActual().getCartes());
-        }
         ArrayList<Jugador> posiblesGuanyadors = new ArrayList<Jugador>();
-        int comb = 0;
-        for (int i = 0; i < partida.getJugadors().size(); i++) {
-            if (partida.getJugadors().get(i).getMaActual().getCombinacio() > comb && !partida.getJugadors().get(i).isHaFetFold()) {
-                comb = partida.getJugadors().get(i).getMaActual().getCombinacio();
-            }
-        }
-        for (Jugador j : partida.getJugadors()) {
-            if (j.getMaActual().getCombinacio() == comb && !j.isHaFetFold()) {
-                posiblesGuanyadors.add(j);
-            }
-        }
-        comb = 0;
-        if (posiblesGuanyadors.size() > 1) {
-            ArrayList<Jugador> jug = new ArrayList<Jugador>();
-            for (int i = 0; i < posiblesGuanyadors.size(); i++) {
-                if (posiblesGuanyadors.get(i).getMaActual().getValorMesAlt() > comb) {
-                    comb = posiblesGuanyadors.get(i).getMaActual().getValorMesAlt();
-                }
-            }
-            for (Jugador j : posiblesGuanyadors) {
-                if (j.getMaActual().getValorMesAlt() != comb) { //Calcula els jugadors perdedors
-                    jug.add(j);
-                }
-            }
-            posiblesGuanyadors.removeAll(jug);//Eliminem els jugadors perdedors.
-            jug.clear();
-            if (posiblesGuanyadors.size() > 1) {
-                comb = 0;
-                for (int i = 0; i < posiblesGuanyadors.size(); i++) {
-                    if (posiblesGuanyadors.get(i).getMaActual().getValorDesempat() > comb) {
-                        comb = posiblesGuanyadors.get(i).getMaActual().getValorDesempat();
+        int combinacio = 0;
+        int valorMesAlt = 0;
+        int valorDesempat = 0;
+        for (int i = 0; i < partida.getJugadors().size();i++) {
+            //Si el jugado no esta eliminat o no ha fet fold
+            if (!partida.getJugadors().get(i).isEliminat() && !partida.getJugadors().get(i).isHaFetFold()) {
+                //Si el seu valor de combinacio es mes alt que lactual
+                if (partida.getJugadors().get(i).getMaActual().getCombinacio() > combinacio) {
+                    //guarda: combinacio, valor mes alt i valor desepat
+                    combinacio = partida.getJugadors().get(i).getMaActual().getCombinacio();
+                    valorMesAlt = partida.getJugadors().get(i).getMaActual().getValorMesAlt();
+                    valorDesempat = partida.getJugadors().get(i).getMaActual().getValorDesempat();
+                    //si la seva combinacio es igual a l'actual
+                } else if (partida.getJugadors().get(i).getMaActual().getCombinacio() == combinacio) {
+                    //Mira si te un valor mes alt
+                    if (partida.getJugadors().get(i).getMaActual().getValorMesAlt() > valorMesAlt) {
+                        //si te un valor mes alt guarda el valor mes alt i el valor de desempat
+                         valorMesAlt = partida.getJugadors().get(i).getMaActual().getValorMesAlt();
+                         valorDesempat = partida.getJugadors().get(i).getMaActual().getValorDesempat();
+                    //Si te un valor mes alt igual
+                    } else if (partida.getJugadors().get(i).getMaActual().getValorMesAlt() == valorMesAlt) {
+                        //Mira si te un valor de desempat mes alt
+                        if (partida.getJugadors().get(i).getMaActual().getValorDesempat() > valorDesempat) {
+                            //Si el te guarda el nou valor de desempat
+                            valorDesempat = partida.getJugadors().get(i).getMaActual().getValorDesempat();
+                        }
                     }
                 }
-                for (Jugador j : posiblesGuanyadors) {
-                    if (j.getMaActual().getValorDesempat() != comb) {
-                        jug.add(j);
-                    }
-                }
-                posiblesGuanyadors.removeAll(jug);
             }
         }
-//        System.out.println("Guanyador: " + posiblesGuanyadors.get(0));
+        for (int i = 0; i < partida.getJugadors().size();i++) {
+            if (partida.getJugadors().get(i).getMaActual().getCombinacio() == combinacio
+                    && partida.getJugadors().get(i).getMaActual().getValorMesAlt() == valorMesAlt
+                    && partida.getJugadors().get(i).getMaActual().getValorDesempat() == valorDesempat) {
+                posiblesGuanyadors.add(partida.getJugadors().get(i));
+            }
+        }
         return posiblesGuanyadors;
     }
 
