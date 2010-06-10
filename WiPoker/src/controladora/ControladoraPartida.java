@@ -194,6 +194,7 @@ public class ControladoraPartida {
                 trobat = true;
             }
         }
+        //Si no toba la Small Blind, del primer jugador al boto
         if (!trobat) {
             for (int i = 0; i < boto && !trobat; i++) {
                 if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
@@ -204,6 +205,7 @@ public class ControladoraPartida {
                 }
             }
         }
+        //Busca la Big Blind igual que la Small Blind
         trobat = false;
         for (int i = posicioSmallBlind; i < partida.getJugadors().size() && !trobat; i++) {
             if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
@@ -212,7 +214,6 @@ public class ControladoraPartida {
                 trobat = true;
             }
         }
-
         if (!trobat) {
             for (int i = 0; i < posicioSmallBlind && !trobat; i++) {
                 if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
@@ -222,9 +223,12 @@ public class ControladoraPartida {
                 }
             }
         }
+        //Reparteix cartes privades
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
         gui.setCartesPrivades();
+        //determina la combinacio al Pre-Flop
         determinarCombinacioPreFlop();
+        //Fer Apostes
         eventsFase(fase, boto);
     }
 
