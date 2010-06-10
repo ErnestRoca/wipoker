@@ -220,6 +220,10 @@ public class ControladoraGui {
         }
     }
 
+    public void gestionarPot() {
+        taulell.getJlPotTotal2().setText("" + faseActual.getRonda().getPot());
+    }
+
     //Posa les cartes comunitaries damunt la taula.
     public void mostrarCartesComunitaries(ArrayList<Carta> publiques) {
         if (Fase.getNumFase() == 1) {

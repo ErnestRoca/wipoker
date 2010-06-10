@@ -117,7 +117,7 @@ public class ControladoraPartida {
 
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 0);
             if (i == 0) {
-                novaFase.setApostaMinima(10);
+                novaFase.setApostaMinima(0);
             }
 
             System.out.println(novaFase.toString());
@@ -173,7 +173,7 @@ public class ControladoraPartida {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
         if (Fase.getNumFase() == 1) {
-            eventsPreFlop(novaFase.getApostaMinima(), novaFase, boto);
+            eventsPreFlop(0, novaFase, boto);
         } else if (Fase.getNumFase() == 2) {
             eventsFlop(novaFase, boto);
         } else if (Fase.getNumFase() == 3) {
@@ -195,9 +195,12 @@ public class ControladoraPartida {
         for (int i = boto; i < partida.getJugadors().size() && !trobat; i++) {
             if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
                 //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                //controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                //controlJoc.ferCall(partida.getJugadors().get(i), fase, apostaMin);
+                controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 10);
                 posicioSmallBlind = i;
                 trobat = true;
+                gui.gestionarPot();
             }
         }
         //Si no toba la Small Blind, del primer jugador al boto
@@ -205,9 +208,12 @@ public class ControladoraPartida {
             for (int i = 0; i < boto && !trobat; i++) {
                 if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
                     //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                    controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                    //controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                    //controlJoc.ferCall(partida.getJugadors().get(i), fase, apostaMin);
+                    controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 10);
                     posicioSmallBlind = i;
                     trobat = true;
+                    gui.gestionarPot();
                 }
             }
         }
@@ -216,21 +222,26 @@ public class ControladoraPartida {
         for (int i = posicioSmallBlind; i < partida.getJugadors().size() && !trobat; i++) {
             if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
                 //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin * 2);
+                //controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin * 2);
+                controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 20);
                 bigBlind = i;
                 trobat = true;
+                gui.gestionarPot();
             }
         }
         if (!trobat) {
             for (int i = 0; i < posicioSmallBlind && !trobat; i++) {
                 if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
                     //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                    controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin * 2);
+                    //controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin * 2);
+                    controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 20);
                     bigBlind = i;
                     trobat = true;
+                    gui.gestionarPot();
                 }
             }
         }
+
         //Reparteix cartes privades
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
         gui.setCartesPrivades();
@@ -269,6 +280,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().resume();
                                 Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
+                                gui.gestionarPot();
                                 gui.getTornActual().run();
                             } else {
                                 gui.getTornActual().run();
@@ -286,6 +298,7 @@ public class ControladoraPartida {
                                     Thread.sleep(2500);
                                     bot.jugadaBot(controlIA, fase, countFase);
                                     gui.getTornActual().run();
+                                    gui.gestionarPot();
                                 } else {
                                     gui.getTornActual().run();
                                 }
@@ -309,6 +322,7 @@ public class ControladoraPartida {
                                 Thread.sleep(2500);
                                 bot.jugadaBot(controlIA, fase, countFase);
                                 gui.getTornActual().run();
+                                gui.gestionarPot();
                             } else {
                                 gui.getTornActual().run();
                             }
@@ -325,6 +339,7 @@ public class ControladoraPartida {
                                     Thread.sleep(2500);
                                     bot.jugadaBot(controlIA, fase, countFase);
                                     gui.getTornActual().run();
+                                    gui.gestionarPot();
                                 } else {
                                     gui.getTornActual().run();
                                 }
