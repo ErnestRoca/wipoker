@@ -6,6 +6,7 @@ package presentacio.jabber;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraJabber;
+import controladora.ControladoraPartidaOnline;
 import controladora.jabber.Connexio;
 import controladora.jabber.GestioUsuaris;
 import java.awt.Color;
@@ -168,7 +169,7 @@ public class GuiLoginJabber {
                             System.out.println(gui.getCjabber() == null);
                             gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
                             //GestioUsuaris.connectar(gui.getCjabber().getConnexio());
-                            gui.getCjabber().prepararEscoltadorsConnexio();
+                            gui.getCjabber().prepararEscoltadorsConnexio();                            
                             GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
                             gui.setLogin(true);
                             JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");

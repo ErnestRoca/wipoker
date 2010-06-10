@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -203,8 +204,7 @@ public class GuiNovaPartidaOnline {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (jrbOnline.isSelected()) {
-                    if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty()
-                            && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
+                    if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
                         try {
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
@@ -215,16 +215,13 @@ public class GuiNovaPartidaOnline {
                             gui.getCjabber().setRoom(jid);
                             gui.getCjabber().setMuc(Connexio.crearSala(jid, gui.getCjabber().getConnexio()));
                             gui.getCjabber().prepararEscoltadorsSala();
-                            Connexio.unirseSala(gui.getCjabber().getMuc(), jid);
-                            cpo.afegirJugador(new Jugador(jtfAlias.getText(),Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
-                                                        
+                            Connexio.unirseSala(gui.getCjabber().getMuc(), gui.getCjabber().getJid());
+                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             taulell = new GuiTaulell(gui);
                             jFrame.dispose();
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
-                            
-                            
                         } catch (NumberFormatException exception) {
                             JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                         }
@@ -237,7 +234,7 @@ public class GuiNovaPartidaOnline {
                     } catch (XMPPException ex) {
                         Logger.getLogger(GuiNovaPartidaOnline.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                 }
             }
         });
