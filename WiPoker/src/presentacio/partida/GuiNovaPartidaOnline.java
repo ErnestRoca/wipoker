@@ -215,7 +215,7 @@ public class GuiNovaPartidaOnline {
                             gui.getCjabber().setRoom(jid);
                             gui.getCjabber().setMuc(Connexio.crearSala(jid, gui.getCjabber().getConnexio()));
                             gui.getCjabber().prepararEscoltadorsSala();
-                            Connexio.unirseSala(gui.getCjabber().getMuc(), gui.getCjabber().getJid());
+                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());                            
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             taulell = new GuiTaulell(gui);
