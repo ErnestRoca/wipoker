@@ -87,6 +87,7 @@ public class ControladoraJoc {
     public void apostar(Jugador jugador, int quantitat, Fase fase) {
         double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
         jugador.setFitxesActuals((int) ((int) (jugador.getFitxesActuals() - quantitat) + quantitatAnterior));
+        jugador.setApostaTotalRonda((int) ((jugador.getApostaTotalRonda() + quantitat) - quantitatAnterior));
         Aposta aposta = new Aposta(jugador, quantitat);
         jugador.setAposta(aposta);
         fase.getApostes().add(aposta);
@@ -118,9 +119,17 @@ public class ControladoraJoc {
     }
 
     public synchronized void ferBlind(Jugador jugador, Fase fase, int dinersApostats) {
-        apostar(jugador, dinersApostats, fase);
-        fase.setApostaMinima((dinersApostats));
-        System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
+        if (jugador.getFitxesActuals() < dinersApostats && jugador.getFitxesActuals() > 0) {
+            jugador.setHaFetAllin(true);
+            apostar(jugador, jugador.getFitxesActuals(), fase);
+            System.out.println(jugador.getAlias() + "Fa Allin");
+        } else {
+            apostar(jugador, dinersApostats, fase);
+            fase.setApostaMinima((dinersApostats));
+            jugador.setApostaTotalRonda(dinersApostats);
+            System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
+        }
+
     }
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
@@ -137,25 +146,28 @@ public class ControladoraJoc {
     }
 
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
+        for (int i = 0; i < jugadors.size(); i++) {
+            System.out.println(jugadors.get(i).getAlias() + ", fitxes actuals: " + jugadors.get(i).getFitxesActuals());
+        }
         if (jugadors.size() == 1) {
             jugadors.get(0).setFitxesActuals((jugadors.get(0).getFitxesActuals() + pot));
         } else if (jugadors.size() > 1) {
             //Pot2: po1 - fitxes apostades pels jugadors guanyadors
             int pot2 = pot;
             for (int i = 0; i < jugadors.size(); i++) {
-                pot2 -= jugadors.get(i).getAposta().getQuantitat();
+                pot2 -= jugadors.get(i).getApostaTotalRonda();
             }
             //Percentatge Total apostat pels jugadors guanyadors respecte el pot1
             int percentatgeTotal = 0;
             for (int i = 0; i < jugadors.size(); i++) {
-                percentatgeTotal += jugadors.get(i).getAposta().getQuantitat() * pot / 100;
+                percentatgeTotal += jugadors.get(i).getApostaTotalRonda() * pot / 100;
             }
             for (int i = 0; i < jugadors.size(); i++) {
                 //Percentatge apostat pel jugador en el pot 1
-                double percentatgeGuanys = jugadors.get(i).getAposta().getQuantitat() * pot / 100;
+                double percentatgeGuanys = jugadors.get(i).getApostaTotalRonda() * pot / 100;
                 //Percentatge guanys pel jugador en el pot 2
                 double percentatgeGuanys2 = 100 * percentatgeGuanys / percentatgeTotal;
-                int premi = (int) ((pot2 * percentatgeGuanys2 / 100) + jugadors.get(i).getAposta().getQuantitat());
+                int premi = (int) ((pot2 * percentatgeGuanys2 / 100) + jugadors.get(i).getApostaTotalRonda());
                 jugadors.get(i).setFitxesActuals(premi);
                 System.out.println("El " + jugadors.get(i).getAlias() + " guanya: " + premi);
             }
