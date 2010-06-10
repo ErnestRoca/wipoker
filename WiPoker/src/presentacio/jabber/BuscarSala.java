@@ -28,7 +28,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import presentacio.GuiTaulell;
-import presentacio.GuiTaulell;
 
 /**
  *
@@ -64,7 +63,7 @@ public class BuscarSala extends javax.swing.JDialog {
         crearJFrame();
         crearJPanels();
         crearControls();
-        iniciarJFrame();
+        //iniciarJFrame();
     }
 
     private void crearJFrame() {
@@ -231,6 +230,7 @@ public class BuscarSala extends javax.swing.JDialog {
     }
 
     /** Crea l'objecte controlador del cas d'ús. */
+    @Deprecated
     private void iniciarJFrame() {
         setVisible(true);
     }
