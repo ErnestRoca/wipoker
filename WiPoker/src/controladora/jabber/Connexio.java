@@ -44,6 +44,8 @@ public class Connexio {
         try {
             System.out.println(jid.toString());
             muc.join(jid.getNick());
+            
+            //muc.join(jid.getNick());
         } catch (XMPPException ex) {
             Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error afegint jugador");

@@ -73,12 +73,13 @@ public class ControladoraJabber {
     public void prepararEscoltadorsConnexio() {
         connexio.addConnectionListener(listeners);
         connexio.addConnectionListener(listeners);
-        connexio.addPacketListener(listeners, new PacketTypeFilter(Message.class));
-        
+        connexio.addPacketListener(listeners, new PacketTypeFilter(Message.class));    
     }
 
     public void prepararEscoltadorsSala() {
         muc.addParticipantListener(listeners);
         muc.addUserStatusListener(listeners);
+        muc.addParticipantStatusListener(listeners);
+
     }
 }

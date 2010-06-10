@@ -11,7 +11,10 @@ import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
+import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smackx.muc.InvitationListener;
+import org.jivesoftware.smackx.muc.InvitationRejectionListener;
 import org.jivesoftware.smackx.muc.ParticipantStatusListener;
 import org.jivesoftware.smackx.muc.UserStatusListener;
 
@@ -20,7 +23,8 @@ import org.jivesoftware.smackx.muc.UserStatusListener;
  * @author wida45787385
  */
 public class Listeners implements ConnectionListener,  PacketListener, 
-        ParticipantStatusListener, UserStatusListener {
+        ParticipantStatusListener, UserStatusListener, InvitationListener
+         {
 
     //connectionlistener: escucha la conexion para detectar caidas
 
@@ -186,5 +190,11 @@ public class Listeners implements ConnectionListener,  PacketListener,
     public void nicknameChanged(String arg0) {
         
     }
+
+    public void invitationReceived(XMPPConnection arg0, String arg1, String arg2, String arg3, String arg4, Message arg5) {
+        
+    }
+
+    //invitation listeneer
 
 }
