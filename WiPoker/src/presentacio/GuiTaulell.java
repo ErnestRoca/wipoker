@@ -66,6 +66,8 @@ public class GuiTaulell {
     private JLabel jlCarta05;
     //
     private JLabel jlNomCroupier;
+    private JLabel jlPotTotal;
+    private JLabel jlPotTotal2;
     private JLabel jlNom01;
     private JLabel jlNom02;
     private JLabel jlNom03;
@@ -122,6 +124,8 @@ public class GuiTaulell {
     //
     private ControladoraGui gui;
     private JLabel jlSortidaJSlider;
+
+
 
     /** Constructor. */
     public GuiTaulell() {
@@ -879,6 +883,24 @@ public class GuiTaulell {
         final int h1 = 100;
         jlCroupier.setBounds(x1, y1, w1, h1);
         jPanelCrupier.add(jlCroupier);
+
+        jlPotTotal = new JLabel();
+        jlPotTotal.setHorizontalAlignment(SwingConstants.CENTER);
+        jlPotTotal.setText("Pot:");
+        jlPotTotal.setBackground(Color.BLACK);
+        jlPotTotal.setForeground(Color.white);
+        jlPotTotal.setOpaque(true);
+        jlPotTotal.setBounds(23, 130, 60, 20);
+        jPanelCrupier.add(jlPotTotal);
+
+        jlPotTotal2 = new JLabel();
+        jlPotTotal2.setHorizontalAlignment(SwingConstants.CENTER);
+        jlPotTotal2.setText("0");
+        jlPotTotal2.setBackground(Color.BLACK);
+        jlPotTotal2.setForeground(Color.white);
+        jlPotTotal2.setOpaque(true);
+        jlPotTotal2.setBounds(23, 150, 60, 20);
+        jPanelCrupier.add(jlPotTotal2);
     }
 
     private void crearControlsJPanelBotons() {
@@ -1502,6 +1524,16 @@ public class GuiTaulell {
     public void setNumFitxesJugadors(ArrayList<JLabel> numFitxesJugadors) {
         this.numFitxesJugadors = numFitxesJugadors;
     }
+
+    public JLabel getJlPotTotal2() {
+        return jlPotTotal2;
+    }
+
+    public void setJlPotTotal2(JLabel jlPotTotal2) {
+        this.jlPotTotal2 = jlPotTotal2;
+    }
+
+
 
     /**
      * Inicia el cas d'ús des del SO.
