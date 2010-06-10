@@ -64,7 +64,12 @@ public class ControladoraPartida {
             }
         });
         int boto = 0;
-        int numJugadorsActius = partida.getJugadors().size();
+        int numJugadorsActius = 0;
+        for (int i = 0; i < partida.getJugadors().size();i++) {
+            if (!partida.getJugadors().get(i).isEliminat()) {
+                numJugadorsActius++;
+            }
+        }
         while (numJugadorsActius > 1) {
             iniciarRonda(boto);
             determinarJugadorsEliminats();
@@ -112,7 +117,7 @@ public class ControladoraPartida {
 
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 0);
             if (i == 0) {
-                novaFase.setApostaMinima(20);
+                novaFase.setApostaMinima(10);
             }
 
             System.out.println(novaFase.toString());
@@ -190,7 +195,7 @@ public class ControladoraPartida {
         for (int i = boto; i < partida.getJugadors().size() && !trobat; i++) {
             if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
                 //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
+                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
                 posicioSmallBlind = i;
                 trobat = true;
             }
@@ -200,7 +205,7 @@ public class ControladoraPartida {
             for (int i = 0; i < boto && !trobat; i++) {
                 if (!partida.getJugadors().get(i).isEliminat() && i != boto) {
                     //controlJoc.apostar(partida.getJugadors().get(1), (apostaMin / 2), fase);        //Cega Petita
-                    controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin / 2);
+                    controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
                     posicioSmallBlind = i;
                     trobat = true;
                 }
@@ -211,7 +216,7 @@ public class ControladoraPartida {
         for (int i = posicioSmallBlind; i < partida.getJugadors().size() && !trobat; i++) {
             if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
                 //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin * 2);
                 bigBlind = i;
                 trobat = true;
             }
@@ -220,7 +225,7 @@ public class ControladoraPartida {
             for (int i = 0; i < posicioSmallBlind && !trobat; i++) {
                 if (!partida.getJugadors().get(i).isEliminat() && i != boto && posicioSmallBlind != i) {
                     //controlJoc.apostar(partida.getJugadors().get(0), apostaMin, fase);  //Cega Gran
-                    controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin);
+                    controlJoc.ferBlind(partida.getJugadors().get(i), fase, apostaMin * 2);
                     bigBlind = i;
                     trobat = true;
                 }
@@ -358,6 +363,7 @@ public class ControladoraPartida {
             }
         }
 
+        System.out.println("Pot del " +fase.getNomFase() + ": " + fase.getRonda().getPot());
     }
 
     public void eventsFlop(Fase fase, int boto) throws InterruptedException {
