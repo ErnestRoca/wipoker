@@ -53,6 +53,7 @@ public class GuiTaulell {
     private JPanel jPanelJugador09;
     private JPanel jPanelCrupier;
     private JPanel jPanelMissatges;
+    private JPanel jPanelOutput;
     //
     private JTextArea jtaMissatge;
     private JLabel jlMissatge2;
@@ -135,8 +136,6 @@ public class GuiTaulell {
     private ControladoraGui gui;
     private JLabel jlSortidaJSlider;
 
-
-
     /** Constructor. */
     public GuiTaulell() {
         iniciarComponents(); // Automissatge per crear els components de la UI
@@ -174,8 +173,6 @@ public class GuiTaulell {
         jFrame.setResizable(false);
         jFrame.setLayout(null);
     }
-
-
 
     //Mètode per introduir una imatge de fons.
     public class JPanelGlobal extends javax.swing.JPanel {
@@ -356,6 +353,14 @@ public class GuiTaulell {
         //jPanelMissatges.setVisible(false);
         jPanelGlobal.add(jPanelMissatges);
 
+        jPanelOutput = new JPanel();
+        jPanelOutput.setOpaque(true);
+        jPanelOutput.setLayout(null);
+        jPanelOutput.setBackground(Color.BLACK);
+        jPanelOutput.setBounds(390, 250, 220, 70);
+        jPanelOutput.setLayout(null);
+        //jPanelMissatges.setVisible(false);
+        jPanelGlobal.add(jPanelOutput);
     }
 
     private void crearControls() {
@@ -374,6 +379,7 @@ public class GuiTaulell {
         crearControlsJPanelCrupier();
         crearControlsJPanelBotons();
         crearControlsJPanelMissatges();
+        crearControlsJPanelOutput();
     }
 
     private void crearControlsJMenuBar() {
@@ -468,6 +474,7 @@ public class GuiTaulell {
 
     private void crearControlsJPanelFitxes01() {
         jlAvatar01 = new JLabel();
+        jlAvatar01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatar.png")));
         jlAvatar01.setOpaque(false);
         final int x1 = 0;
         final int y1 = 0;
@@ -986,7 +993,7 @@ public class GuiTaulell {
         jSldrEntradaFitxes = new JSlider();
         jSldrEntradaFitxes.setForeground(Color.red);
         jSldrEntradaFitxes.setOpaque(false);
-        jSldrEntradaFitxes.setMajorTickSpacing(20);
+        jSldrEntradaFitxes.setMajorTickSpacing(10);
         jSldrEntradaFitxes.setMinorTickSpacing(5);
         jSldrEntradaFitxes.setPaintTicks(true);
         final int sv = 2;
@@ -1047,17 +1054,21 @@ public class GuiTaulell {
         jtaMissatge = new JTextArea();
         jtaMissatge.setEditable(false);
         jtaMissatge.setRows(3);
-        jtaMissatge.setText("ggggggg\nf\nn");
+        jtaMissatge.setLineWrap(true);
+        jtaMissatge.setText("gggggggggggggggggggggggggg");
         jtaMissatge.setBackground(Color.BLACK);
         jtaMissatge.setForeground(Color.WHITE);
         jtaMissatge.setBounds(5, 5, 210, 45);
         jPanelMissatges.add(jtaMissatge);
 
         jlMissatge2 = new JLabel();
-        jlMissatge2.setText("aaaaaa\n jaaaaaaa\naaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaa");
+        jlMissatge2.setText("aaa");
         jlMissatge2.setForeground(Color.WHITE);
         jlMissatge2.setBounds(5, 50, 210, 13);
         jPanelMissatges.add(jlMissatge2);
+    }
+
+    private void crearControlsJPanelOutput() {
     }
 
     private void crearEscoltadors() {
@@ -1066,7 +1077,7 @@ public class GuiTaulell {
 
             @Override
             public void stateChanged(ChangeEvent e) {
-                jlSortidaJSlider.setText(""+jSldrEntradaFitxes.getValue());
+                jlSortidaJSlider.setText("" + jSldrEntradaFitxes.getValue());
             }
         });
 
@@ -1555,8 +1566,6 @@ public class GuiTaulell {
         this.jlSortidaJSlider = jlSortidaJSlider;
     }
 
-    
-
     public ArrayList<JLabel> getAvatars() {
         return avatars;
     }
@@ -1676,10 +1685,6 @@ public class GuiTaulell {
     public void setJlTotalFitxes09(JLabel jlTotalFitxes09) {
         this.jlTotalFitxes09 = jlTotalFitxes09;
     }
-
-
-
-
 
     /**
      * Inicia el cas d'ús des del SO.
