@@ -121,4 +121,8 @@ public class ControladoraJabber {
             }
         }
     }
+
+    public void afegirJugadoraSala(JID jid) {
+
+    }
 }
