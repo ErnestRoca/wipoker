@@ -210,6 +210,7 @@ public class GuiNovaPartidaOnline {
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
+                            gui.getCjabber().prepararEscoltadorsSala();
                             taulell = new GuiTaulell(gui);
                             jFrame.dispose();
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
