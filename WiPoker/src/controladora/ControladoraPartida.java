@@ -127,7 +127,7 @@ public class ControladoraPartida {
             }
 
             System.out.println(novaFase.toString());
-            gui.actualitzarLog("***NOVA RONDA***");
+            gui.actualitzarLog(novaFase.toString());
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);

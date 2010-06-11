@@ -189,31 +189,31 @@ public class ControladoraGui {
             //taulell.getNumFitxesJugadors().get(i).setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
             if (jugadors.get(i).getPosicioTaula() == 0) {
                 taulell.getJlTotalFitxes01().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes01().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes01().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 1) {
                 taulell.getJlTotalFitxes02().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes02().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes02().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 2) {
                 taulell.getJlTotalFitxes03().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes03().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes03().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 3) {
                 taulell.getJlTotalFitxes04().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes04().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes04().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 4) {
                 taulell.getJlTotalFitxes05().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes05().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes05().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 5) {
                 taulell.getJlTotalFitxes06().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes06().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes06().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 6) {
                 taulell.getJlTotalFitxes07().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes07().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes07().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 7) {
                 taulell.getJlTotalFitxes08().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes08().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes08().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             } else if (jugadors.get(i).getPosicioTaula() == 8) {
                 taulell.getJlTotalFitxes09().setText(Integer.toString(jugadors.get(i).getFitxesActuals()) + " f.");
-                taulell.getJlNumFitxes09().setText(jugadors.get(i).getApostaTotalRonda() + " f.");
+                taulell.getJlNumFitxes09().setText("aposta: " + jugadors.get(i).getApostaTotalRonda());
             }
 
             if (jugadors.get(i).getFitxesActuals() <= ((25 * jugadors.get(0).getFitxesInicials()) / 100)) {
