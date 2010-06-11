@@ -12,7 +12,11 @@ import domini.Ma;
  *
  * @author wida45787385
  */
-public class ControladoraPartidaOnline extends ControladoraPartida {    
+public class ControladoraPartidaOnline extends ControladoraPartida {
+
+    public ControladoraPartidaOnline(ControladoraGui gui) {
+        super(gui);
+    }
 
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui) {
         super(maxJugadors, gui);       
