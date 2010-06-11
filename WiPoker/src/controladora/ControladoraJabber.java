@@ -111,8 +111,7 @@ public class ControladoraJabber {
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
             muc.changeSubject("Sala dedicada al juego WiPPoker");
         } catch (Exception ex) {
-        }
-        prepararEscoltadorsSala();
+        }        
 
         if (!muc.isJoined()) {
             try {
