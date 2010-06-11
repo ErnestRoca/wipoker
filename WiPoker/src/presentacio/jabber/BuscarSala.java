@@ -148,6 +148,7 @@ public class BuscarSala extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    
                     carregar_sala();
                     if (room.getNick() != null && room.getNick().length() == 0) {
                         jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
@@ -168,8 +169,9 @@ public class BuscarSala extends javax.swing.JDialog {
                         return;
                     }
                     func = true;
-                    guiNovaPartidaOnline = new GuiNovaPartidaOnline(gui);
+                    
                     dispose();
+                    guiNovaPartidaOnline = new GuiNovaPartidaOnline(gui);
                     guiNovaPartidaOnline.getjFrame().setLocation(guiNovaPartidaOnline.getjFrame().getLocation());
                     guiNovaPartidaOnline.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
