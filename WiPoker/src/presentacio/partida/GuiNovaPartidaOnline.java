@@ -132,6 +132,8 @@ public class GuiNovaPartidaOnline {
 
         jtfNom = new JTextField(20);
         jtfNom.setBounds(170, 198, 120, 24);
+        jtfNom.setEditable(false);
+        jtfNom.setText(gui.getCjabber().getJid().getName());
         jpFons.add(jtfNom);
 
         jlMaxJ = new JLabel();
@@ -165,6 +167,8 @@ public class GuiNovaPartidaOnline {
 
         jtfAlias = new JTextField(20);
         jtfAlias.setBounds(170, 390, 120, 24);
+        jtfAlias.setEditable(false);
+        jtfAlias.setText(gui.getCjabber().getJid().getNick());
         jpFons.add(jtfAlias);
 
 
