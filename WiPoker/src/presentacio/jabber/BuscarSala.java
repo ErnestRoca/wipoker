@@ -29,13 +29,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
-import presentacio.GuiTaulell;
 import presentacio.partida.GuiNovaPartidaOnline;
 
 /**
  *
  * @author wida53312560
  */
+@Deprecated
 public class BuscarSala extends javax.swing.JDialog {
 
     private ControladoraGui gui;
@@ -171,9 +171,9 @@ public class BuscarSala extends javax.swing.JDialog {
                     func = true;
                     
                     dispose();
-                    guiNovaPartidaOnline = new GuiNovaPartidaOnline(gui);
-                    guiNovaPartidaOnline.getjFrame().setLocation(guiNovaPartidaOnline.getjFrame().getLocation());
-                    guiNovaPartidaOnline.getjFrame().setVisible(true);
+                    guiNovaPartidaOnline = new GuiNovaPartidaOnline(gui, null, func);
+                    guiNovaPartidaOnline.setLocation(guiNovaPartidaOnline.getLocation());
+                    guiNovaPartidaOnline.setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(BuscarSala.class.getName()).log(Level.SEVERE, null, ex);
                 }
