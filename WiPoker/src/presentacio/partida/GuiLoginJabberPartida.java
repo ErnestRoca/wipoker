@@ -137,7 +137,7 @@ public class GuiLoginJabberPartida {
         jlServidor.setForeground(Color.red);
         jpFons.add(jlServidor);
 
-        jtfServidor = new JTextField();
+        jtfServidor = new JTextField("jabberes.org");
         jtfServidor.setBounds(170, 280, 120, 24);
         jpFons.add(jtfServidor);
 
