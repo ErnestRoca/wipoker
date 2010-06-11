@@ -206,19 +206,7 @@ public class GuiNovaPartidaOnline {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
                         try {
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
-                            gui.setCp(cpo);
-                           
-                            /*Thread t = new Thread() {
-
-                            @Override
-                            public void run() {
-                            BuscarSala sala = new BuscarSala(gui, jFrame, true);
-                            if (sala.func) {
-                            gui.getCjabber().setSala(sala.room);
-                            }
-                            }
-                            };
-                            t.start();*/
+                            gui.setCp(cpo);                           
                             gui.getCjabber().setSala(gui.getCjabber().getJid());                            
                             gui.getCjabber().prepararEscoltadorsConnexio();
                             gui.getCjabber().prepararEscoltadorsSala();
@@ -236,6 +224,21 @@ public class GuiNovaPartidaOnline {
                         JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (jrbUnir.isSelected()) {
+                    if (!jtfNom.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
+                         ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
+                            gui.setCp(cpo);
+                            gui.getCjabber().setSala(gui.getCjabber().getJid());
+                            gui.getCjabber().prepararEscoltadorsConnexio();
+                            gui.getCjabber().prepararEscoltadorsSala();
+                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
+                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
+                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
+                            taulell = new GuiTaulell(gui);
+                            jFrame.dispose();
+                            taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                            taulell.getjFrame().setVisible(true);
+
+                    }
                 }
             }
         });
