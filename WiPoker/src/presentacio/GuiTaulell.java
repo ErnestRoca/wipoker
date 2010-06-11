@@ -56,6 +56,7 @@ public class GuiTaulell {
     private JPanel jPanelOutput;
     //
     private JTextArea jtaMissatge;
+    private JTextArea jtLog;
     private JLabel jlMissatge2;
     private JLabel jlCarta01Usuari;
     private JLabel jlCarta02Usuari;
@@ -135,6 +136,7 @@ public class GuiTaulell {
     //
     private ControladoraGui gui;
     private JLabel jlSortidaJSlider;
+
 
     /** Constructor. */
     public GuiTaulell() {
@@ -354,13 +356,19 @@ public class GuiTaulell {
         jPanelGlobal.add(jPanelMissatges);
 
         jPanelOutput = new JPanel();
-        jPanelOutput.setOpaque(true);
+        jPanelOutput.setOpaque(false);
         jPanelOutput.setLayout(null);
-        jPanelOutput.setBackground(Color.BLACK);
-        jPanelOutput.setBounds(390, 250, 220, 70);
+        //jPanelOutput.setBackground(Color.GRAY);
+        jPanelOutput.setBounds(774, 556, 238, 167);
         jPanelOutput.setLayout(null);
         //jPanelMissatges.setVisible(false);
         jPanelGlobal.add(jPanelOutput);
+
+        jtLog = new JTextArea();
+        jtLog.setBounds(0, 0, 238, 167);
+        jtLog.setAutoscrolls(true);
+        jtLog.setLineWrap(true);
+        jPanelOutput.add(jtLog);
     }
 
     private void crearControls() {
@@ -1685,6 +1693,15 @@ public class GuiTaulell {
     public void setJlTotalFitxes09(JLabel jlTotalFitxes09) {
         this.jlTotalFitxes09 = jlTotalFitxes09;
     }
+
+    public JTextArea getJtLog() {
+        return jtLog;
+    }
+
+    public void setJtLog(JTextArea jtLog) {
+        this.jtLog = jtLog;
+    }
+
 
     /**
      * Inicia el cas d'ús des del SO.
