@@ -222,7 +222,7 @@ public class GuiNovaPartidaOnline {
                     }
                 } else if (jrbUnir.isSelected()) {
                     if (!jtfNom.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
-                        ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
+                        ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
                         gui.setCp(cpo);
                         System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                         cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
