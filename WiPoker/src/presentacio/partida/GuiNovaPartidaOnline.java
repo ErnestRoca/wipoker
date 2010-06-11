@@ -206,10 +206,7 @@ public class GuiNovaPartidaOnline {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
                         try {
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
-                            gui.setCp(cpo);                           
-                            gui.getCjabber().setSala(gui.getCjabber().getJid());                            
-                            gui.getCjabber().prepararEscoltadorsConnexio();
-                            gui.getCjabber().prepararEscoltadorsSala();
+                            gui.setCp(cpo);
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
@@ -225,19 +222,15 @@ public class GuiNovaPartidaOnline {
                     }
                 } else if (jrbUnir.isSelected()) {
                     if (!jtfNom.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
-                         ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
-                            gui.setCp(cpo);
-                            gui.getCjabber().setSala(gui.getCjabber().getJid());
-                            gui.getCjabber().prepararEscoltadorsConnexio();
-                            gui.getCjabber().prepararEscoltadorsSala();
-                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
-                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
-                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
-                            taulell = new GuiTaulell(gui);
-                            jFrame.dispose();
-                            taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                            taulell.getjFrame().setVisible(true);
-
+                        ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
+                        gui.setCp(cpo);
+                        System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
+                        cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
+                        System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
+                        taulell = new GuiTaulell(gui);
+                        jFrame.dispose();
+                        taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                        taulell.getjFrame().setVisible(true);
                     }
                 }
             }
