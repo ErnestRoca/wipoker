@@ -16,6 +16,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import presentacio.GuiTaulell;
+import presentacio.partida.GuiNovaPartidaOnline;
 
 /**
  *
@@ -140,35 +143,38 @@ public class BuscarSala extends javax.swing.JDialog {
     private void crearEscoltadors() {
 
         jbEntrar.addActionListener(new ActionListener() {
-            private GuiTaulell taulell;
+            private GuiNovaPartidaOnline guiNovaPartidaOnline;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                carregar_sala();
-                if (room.getNick() != null && room.getNick().length() == 0) {
-                    jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
-                    return;
-                }
-                if (room.getName() != null && room.getName().length() == 0) {
-                    jlLlista.setSelectedIndex(1);
+                try {
                     carregar_sala();
-                    if (jlLlista.getSelectedIndex() == 0) {
-                        String jop = JOptionPane.showInputDialog(this,
-                                "Nom de la nova taula?");
-                        if (jop instanceof String) {
-                            room.setName(jop);
-                        }
-                    } else {
-                        room.setName(jlLlista.getSelectedValue().toString());
+                    if (room.getNick() != null && room.getNick().length() == 0) {
+                        jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
+                        return;
                     }
-                    refrescar_sala();
-                    return;
+                    if (room.getName() != null && room.getName().length() == 0) {
+                        jlLlista.setSelectedIndex(1);
+                        carregar_sala();
+                        if (jlLlista.getSelectedIndex() == 0) {
+                            String jop = JOptionPane.showInputDialog(this, "Nom de la nova taula?");
+                            if (jop instanceof String) {
+                                room.setName(jop);
+                            }
+                        } else {
+                            room.setName(jlLlista.getSelectedValue().toString());
+                        }
+                        refrescar_sala();
+                        return;
+                    }
+                    func = true;
+                    guiNovaPartidaOnline = new GuiNovaPartidaOnline(gui);
+                    dispose();
+                    guiNovaPartidaOnline.getjFrame().setLocation(guiNovaPartidaOnline.getjFrame().getLocation());
+                    guiNovaPartidaOnline.getjFrame().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(BuscarSala.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                func = true;
-                taulell = new GuiTaulell(gui);
-                dispose();
-                taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                taulell.getjFrame().setVisible(true);
             }
         });
 
