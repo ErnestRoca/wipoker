@@ -83,7 +83,7 @@ public class ControladoraJabber {
     }
 
     public void prepararEscoltadorsSala() {
-        muc.addParticipantListener(listeners);
+        //muc.addParticipantListener(listeners);
         muc.addUserStatusListener(listeners);
         muc.addParticipantStatusListener(listeners);
         if (muc != null) {
@@ -109,7 +109,7 @@ public class ControladoraJabber {
         }
         room = r;
         muc = new MultiUserChat(connexio, r.getJID());
-
+        prepararEscoltadorsSala();
         Collection<HostedRoom> sales = MultiUserChat.getHostedRooms(connexio, r.getServer());
         boolean existeix = false;
         for (HostedRoom o : sales) {
@@ -119,7 +119,7 @@ public class ControladoraJabber {
         }
         try {
             if (!existeix) {
-                prepararEscoltadorsSala();
+                
                 muc.create(r.getNick());
                 muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
                 muc.changeSubject("Sala dedicada al juego WiPPoker");
