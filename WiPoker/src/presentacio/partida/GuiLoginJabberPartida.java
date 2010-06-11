@@ -209,7 +209,11 @@ public class GuiLoginJabberPartida {
                                     BuscarSala buscarSala = new BuscarSala(gui, jFrame, true);
                                     buscarSala.setVisible(true);
                                     if (buscarSala.func) {
-                                        gui.getCjabber().setSala(buscarSala.room);
+                                        try {
+                                            gui.getCjabber().setSala(buscarSala.room);
+                                        } catch (XMPPException ex) {
+                                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                     }
                                 }
                             };
