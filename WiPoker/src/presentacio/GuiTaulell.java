@@ -19,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
@@ -368,7 +369,13 @@ public class GuiTaulell {
         jtLog.setBounds(0, 0, 238, 167);
         jtLog.setAutoscrolls(true);
         jtLog.setLineWrap(true);
-        jPanelOutput.add(jtLog);
+
+
+        JScrollPane jScrollPaneFrase = new JScrollPane();
+        jScrollPaneFrase.setViewportView(jtLog);
+
+        
+        jPanelOutput.add(jScrollPaneFrase);
     }
 
     private void crearControls() {
