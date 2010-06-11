@@ -6,16 +6,12 @@ package presentacio.partida;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraPartidaOnline;
-import controladora.jabber.Connexio;
-import controladora.jabber.JID;
 import domini.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -29,12 +25,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smackx.muc.MultiUserChat;
 import presentacio.GuiTaulell;
 import presentacio.dades.GuiMenuDades;
 import presentacio.jabber.BuscarSala;
-import sun.awt.windows.ThemeReader;
 
 /**
  *
@@ -214,24 +207,20 @@ public class GuiNovaPartidaOnline {
                         try {
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
-                            JID jid = new JID();
-                            jid.setName(jtfNom.getText());
-                            jid.setServer("conf.jabberes.org");
-                            jid.setNick(jtfAlias.getText());
-                            //gui.getCjabber().setRoom(jid);
-                            Thread t = new Thread() {
-
-                                @Override
-                                public void run() {
-                                    BuscarSala sala = new BuscarSala(gui, jFrame, true);
-                                    if (sala.func) {
-                                        gui.getCjabber().setSala(sala.room);
-                                    }
-                                }
-                            };
-                            t.start();
                            
-                            gui.getCjabber().setSala(jid);
+                            /*Thread t = new Thread() {
+
+                            @Override
+                            public void run() {
+                            BuscarSala sala = new BuscarSala(gui, jFrame, true);
+                            if (sala.func) {
+                            gui.getCjabber().setSala(sala.room);
+                            }
+                            }
+                            };
+                            t.start();*/
+                            gui.getCjabber().setSala(gui.getCjabber().getJid());                            
+                            gui.getCjabber().prepararEscoltadorsConnexio();
                             gui.getCjabber().prepararEscoltadorsSala();
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
