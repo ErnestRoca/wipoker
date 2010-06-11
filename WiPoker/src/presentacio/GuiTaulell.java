@@ -3,6 +3,7 @@ package presentacio;
 import controladora.ControladoraGui;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -58,6 +59,7 @@ public class GuiTaulell {
     //
     private JTextArea jtaMissatge;
     private JTextArea jtLog;
+    private JScrollPane jScrollPaneFrase;
     private JLabel jlMissatge2;
     private JLabel jlCarta01Usuari;
     private JLabel jlCarta02Usuari;
@@ -137,7 +139,6 @@ public class GuiTaulell {
     //
     private ControladoraGui gui;
     private JLabel jlSortidaJSlider;
-
 
     /** Constructor. */
     public GuiTaulell() {
@@ -362,20 +363,24 @@ public class GuiTaulell {
         //jPanelOutput.setBackground(Color.GRAY);
         jPanelOutput.setBounds(774, 556, 238, 167);
         jPanelOutput.setLayout(null);
-        //jPanelMissatges.setVisible(false);
+        jPanelOutput.setVisible(true);
         jPanelGlobal.add(jPanelOutput);
 
         jtLog = new JTextArea();
-        jtLog.setBounds(0, 0, 238, 167);
-        jtLog.setAutoscrolls(true);
+        jtLog.setWrapStyleWord(true);
         jtLog.setLineWrap(true);
-
-
-        JScrollPane jScrollPaneFrase = new JScrollPane();
+        //jtLog.setPreferredSize(new Dimension(10,10));
+        jScrollPaneFrase = new JScrollPane(jtLog);
+        //jScrollPaneFrase.setPreferredSize(new Dimension(10,10));
         jScrollPaneFrase.setViewportView(jtLog);
+        jtLog.setBounds(0, 0, 238, 167);
+        jPanelOutput.add(jScrollPaneFrase);
+
 
         
-        jPanelOutput.add(jScrollPaneFrase);
+
+
+        
     }
 
     private void crearControls() {
@@ -1708,7 +1713,6 @@ public class GuiTaulell {
     public void setJtLog(JTextArea jtLog) {
         this.jtLog = jtLog;
     }
-
 
     /**
      * Inicia el cas d'ús des del SO.
