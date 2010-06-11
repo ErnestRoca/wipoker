@@ -98,7 +98,7 @@ public class ControladoraJabber {
     }
 
     public void setSala(JID r) {
-        
+
         if (muc != null) {
             connexio.removePacketListener(listeners);
             muc.leave();
@@ -112,7 +112,6 @@ public class ControladoraJabber {
             muc.changeSubject("Sala dedicada al juego WiPPoker");
         } catch (Exception ex) {
         }
-        prepararEscoltadorsConnexio();
         prepararEscoltadorsSala();
 
         if (!muc.isJoined()) {
@@ -123,5 +122,4 @@ public class ControladoraJabber {
             }
         }
     }
-
 }
