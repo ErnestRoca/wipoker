@@ -51,6 +51,7 @@ public class ControladoraPartida {
 
     public void jugar() throws InterruptedException {
         System.out.println("---------********NOVA PARTIDA******---------");
+        ControladoraGui.actualitzarLog("********NOVA PARTIDA******");
         gui.ocultarPanellsJugadors();
         gui.gestionarFitxes();
         gui.mostrarAvatars(partida.getJugadors());
@@ -111,6 +112,7 @@ public class ControladoraPartida {
         baralla = controlJoc.crearBaralla();
         controlJoc.barallar(baralla);
         System.out.println("\n\n\n\n\n********************NOVA RONDA****************************");
+        ControladoraGui.actualitzarLog("***NOVA RONDA***");
         //Inicia Fase
         for (int i = 0; i < 4; i++) {
             gui.getFaseActual().setApostaMinima(0);
@@ -121,6 +123,7 @@ public class ControladoraPartida {
             }
 
             System.out.println(novaFase.toString());
+            ControladoraGui.actualitzarLog("***NOVA RONDA***");
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
@@ -145,7 +148,7 @@ public class ControladoraPartida {
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
 
-        System.out.println("POT RONDA: " + novaRonda.getPot());
+        
         controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
         novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
 
@@ -489,6 +492,7 @@ public class ControladoraPartida {
                     && !partida.getJugadors().get(i).isEliminat() && !partida.getJugadors().get(i).isHaFetFold()) {
                 posiblesGuanyadors.add(partida.getJugadors().get(i));
                 System.out.println("Guanyador " + i + ": " +partida.getJugadors().get(i).getAlias());
+                ControladoraGui.actualitzarLog("Guanyador " + i + ": " +partida.getJugadors().get(i).getAlias());
             }
         }
 
@@ -504,6 +508,7 @@ public class ControladoraPartida {
                 System.out.println(" ELIMINAR!!!");
                 j.setEliminat(true);
                 gui.gestionarJugadorEliminat(j);
+                ControladoraGui.actualitzarLog("Eliminant: " + j.getAlias());
             } else {
                 System.out.println(" SALVAR!!!");
             }
