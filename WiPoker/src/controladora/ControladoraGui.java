@@ -30,6 +30,7 @@ public class ControladoraGui {
     /** Pseudoatribut per implementar visibilitat d'atribut. */
     private GuiTaulell taulell;
     private ControladoraJabber cjabber;
+    private static String logs = "";
 
     public ControladoraGui() {
         cjabber = new ControladoraJabber();
@@ -390,6 +391,13 @@ public class ControladoraGui {
             doCall();
         }
     }
+
+    public static void actualitzarLog(String text) {
+        logs += "\n" + text;
+        //Jt.setText(logs);
+    }
+
+
 
 
 }
