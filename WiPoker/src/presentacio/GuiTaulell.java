@@ -366,14 +366,12 @@ public class GuiTaulell {
         jPanelOutput.setVisible(true);
         jPanelGlobal.add(jPanelOutput);
 
-        jtLog = new JTextArea();
+        jtLog = new JTextArea(30,30);
         jtLog.setWrapStyleWord(true);
         jtLog.setLineWrap(true);
-        //jtLog.setPreferredSize(new Dimension(10,10));
+        jtLog.setAutoscrolls(true);
         jScrollPaneFrase = new JScrollPane(jtLog);
-        //jScrollPaneFrase.setPreferredSize(new Dimension(10,10));
-        jScrollPaneFrase.setViewportView(jtLog);
-        jtLog.setBounds(0, 0, 238, 167);
+        jScrollPaneFrase.setBounds(0, 0, 238, 167);
         jPanelOutput.add(jScrollPaneFrase);
 
 
