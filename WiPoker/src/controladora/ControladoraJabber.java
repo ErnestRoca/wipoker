@@ -24,6 +24,7 @@ import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.Form;
+import org.jivesoftware.smackx.muc.HostedRoom;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import presentacio.jabber.BuscarSala;
 
@@ -108,19 +109,21 @@ public class ControladoraJabber {
         }
         room = r;
         muc = new MultiUserChat(connexio, r.getJID());
-        Collection sales = MultiUserChat.getHostedRooms(connexio, r.getServer());
+
+        Collection<HostedRoom> sales = MultiUserChat.getHostedRooms(connexio, r.getServer());
         boolean existeix = false;
-        for (Object o: sales) {
-            MultiUserChat m = (MultiUserChat) o;
-            if (m.getRoom().equals(r.getName()))  {
+        for (HostedRoom o : sales) {
+            if (o.getName().equals(r.getName())) {
                 existeix = true;
             }
         }
         try {
             if (!existeix) {
-            muc.create(r.getNick());
-            muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
-            muc.changeSubject("Sala dedicada al juego WiPPoker");
+                prepararEscoltadorsSala();
+                muc.create(r.getNick());
+                muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
+                muc.changeSubject("Sala dedicada al juego WiPPoker");
+
             } else {
                 afegirJugadoraSala(r);
             }
