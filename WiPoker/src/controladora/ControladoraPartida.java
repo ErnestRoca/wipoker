@@ -29,7 +29,7 @@ public class ControladoraPartida {
     public Partida partida;
     public ControladoraCartes controlCartes = new ControladoraCartes();
     public ControladoraIA controlIA;
-    public ControladoraJoc controlJoc = new ControladoraJoc();
+    public ControladoraJoc controlJoc = new ControladoraJoc(this);
     public ControladoraGui gui;
     private int smallBlind = 0;
     private int bigBlind = 0;
@@ -55,7 +55,7 @@ public class ControladoraPartida {
 
     public void jugar() throws InterruptedException {
         System.out.println("---------********NOVA PARTIDA******---------");
-        ControladoraGui.actualitzarLog("********NOVA PARTIDA******");
+        gui.actualitzarLog("********NOVA PARTIDA******");
         gui.ocultarPanellsJugadors();
         gui.gestionarFitxes();
         gui.mostrarAvatars(partida.getJugadors());
@@ -116,7 +116,7 @@ public class ControladoraPartida {
         baralla = controlJoc.crearBaralla();
         controlJoc.barallar(baralla);
         System.out.println("\n\n\n\n\n********************NOVA RONDA****************************");
-        ControladoraGui.actualitzarLog("***NOVA RONDA***");
+        gui.actualitzarLog("***NOVA RONDA***");
         //Inicia Fase
         for (int i = 0; i < 4; i++) {
             gui.getFaseActual().setApostaMinima(0);
@@ -127,7 +127,7 @@ public class ControladoraPartida {
             }
 
             System.out.println(novaFase.toString());
-            ControladoraGui.actualitzarLog("***NOVA RONDA***");
+            gui.actualitzarLog("***NOVA RONDA***");
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
@@ -490,7 +490,7 @@ public class ControladoraPartida {
             if (partida.getJugadors().get(i).getMaActual().getCombinacio() == combinacio && partida.getJugadors().get(i).getMaActual().getValorMesAlt() == valorMesAlt && partida.getJugadors().get(i).getMaActual().getValorDesempat() == valorDesempat && !partida.getJugadors().get(i).isEliminat() && !partida.getJugadors().get(i).isHaFetFold()) {
                 posiblesGuanyadors.add(partida.getJugadors().get(i));
                 System.out.println("Guanyador " + i + ": " + partida.getJugadors().get(i).getAlias());
-                ControladoraGui.actualitzarLog("Guanyador " + i + ": " +partida.getJugadors().get(i).getAlias());
+                gui.actualitzarLog("Guanyador " + i + ": " +partida.getJugadors().get(i).getAlias());
             }
         }
 
@@ -506,7 +506,7 @@ public class ControladoraPartida {
                 System.out.println(" ELIMINAR!!!");
                 j.setEliminat(true);
                 gui.gestionarJugadorEliminat(j);
-                ControladoraGui.actualitzarLog("Eliminant: " + j.getAlias());
+                gui.actualitzarLog("Eliminant: " + j.getAlias());
             } else {
                 System.out.println(" SALVAR!!!");
             }
