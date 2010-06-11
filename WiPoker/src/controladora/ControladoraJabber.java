@@ -13,8 +13,11 @@ import controladora.jabber.Listeners;
 import controladora.jabber.Trafic;
 import domini.Ronda;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.swing.JFrame;
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.filter.AndFilter;
 import org.jivesoftware.smack.filter.FromContainsFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
@@ -97,7 +100,7 @@ public class ControladoraJabber {
         }
     }
 
-    public void setSala(JID r) {
+    public void setSala(JID r) throws XMPPException {
 
         if (muc != null) {
             connexio.removePacketListener(listeners);
@@ -105,24 +108,35 @@ public class ControladoraJabber {
         }
         room = r;
         muc = new MultiUserChat(connexio, r.getJID());
-
+        Collection sales = MultiUserChat.getHostedRooms(connexio, r.getServer());
+        boolean existeix = false;
+        for (Object o: sales) {
+            MultiUserChat m = (MultiUserChat) o;
+            if (m.getRoom().equals(r.getName()))  {
+                existeix = true;
+            }
+        }
         try {
+            if (!existeix) {
             muc.create(r.getNick());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
             muc.changeSubject("Sala dedicada al juego WiPPoker");
-        } catch (Exception ex) {
-        }        
-
-        if (!muc.isJoined()) {
-            try {
-                muc.join(r.getNick());
-            } catch (Exception ex) {
-                muc = null;
+            } else {
+                afegirJugadoraSala(r);
             }
+        } catch (Exception ex) {
         }
+
     }
 
     public void afegirJugadoraSala(JID jid) {
 
+        if (!muc.isJoined()) {
+            try {
+                muc.join(jid.getNick());
+            } catch (Exception ex) {
+                muc = null;
+            }
+        }
     }
 }
