@@ -366,7 +366,8 @@ public class GuiTaulell {
         jPanelOutput.setVisible(true);
         jPanelGlobal.add(jPanelOutput);
 
-        jtLog = new JTextArea(30,30);
+        jtLog = new JTextArea(10,30);
+        jtLog.setEditable(false);
         jtLog.setWrapStyleWord(true);
         jtLog.setLineWrap(true);
         jtLog.setAutoscrolls(true);
@@ -1711,6 +1712,16 @@ public class GuiTaulell {
     public void setJtLog(JTextArea jtLog) {
         this.jtLog = jtLog;
     }
+
+    public JScrollPane getjScrollPaneFrase() {
+        return jScrollPaneFrase;
+    }
+
+    public void setjScrollPaneFrase(JScrollPane jScrollPaneFrase) {
+        this.jScrollPaneFrase = jScrollPaneFrase;
+    }
+
+
 
     /**
      * Inicia el cas d'ús des del SO.
