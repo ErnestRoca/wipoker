@@ -195,9 +195,7 @@ public class GuiLoginJabberPartida {
                 if (!jtfServidor.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfPassword.getText().isEmpty()) {
                     if (!gui.isLogin()) {
                         try {
-                            gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                            gui.getCjabber().getConnexio().addConnectionListener(gui.getCjabber().getListeners());
-                            gui.getCjabber().getConnexio().addConnectionListener(gui.getCjabber().getListeners());
+                            gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));                            
                             GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
                             gui.setLogin(true);
                             gui.getCjabber().prepararEscoltadorsConnexio();
