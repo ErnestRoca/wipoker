@@ -97,7 +97,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
         crearJFrame();
         crearJPanels();
         crearControls();
-        crearEscoltadors();
+        //crearEscoltadors();
     }
 
     private void crearJFrame() {
