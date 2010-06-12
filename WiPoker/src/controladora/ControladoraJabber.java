@@ -54,6 +54,7 @@ public class ControladoraJabber {
 
     public void setConnexio(XMPPConnection connexio) {
         this.connexio = connexio;
+        prepararEscoltadorsConnexio();
     }
 
     public JID getJid() {
