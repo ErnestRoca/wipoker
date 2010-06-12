@@ -196,23 +196,23 @@ public class GuiLoginJabberPartida {
             public void actionPerformed(ActionEvent event) {
                 if (!jtfServidor.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfPassword.getText().isEmpty()) {
                     if (!gui.isLogin()) {
+
                         try {
-                            try {
-                                gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
-                                GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
-                                gui.setLogin(true);
-                                JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
-                            } catch (XMPPException ex) {
-                                gui.setLogin(false);
-                                Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                            GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
+                            gui.setLogin(true);
+                            JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
                             guiNovaPartidaOline2 = new GuiNovaPartidaOnline2(gui, jFrame, true);
                             guiNovaPartidaOline2.setLocation(jFrame.getLocation());
                             jFrame.dispose();
                             guiNovaPartidaOline2.setVisible(true);
-                        } catch (InterruptedException ex) {
+                        } catch (XMPPException ex) {
+                            gui.setLogin(false);
                             Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException e) {
+
                         }
+
                     } else if (gui.isLogin()) {
                         try {
                             guiNovaPartidaOline2 = new GuiNovaPartidaOnline2(gui, jFrame, true);
