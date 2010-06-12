@@ -34,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
+import org.jivesoftware.smack.XMPPException;
 import presentacio.GuiTaulell;
 import presentacio.dades.GuiMenuDades;
 
@@ -255,13 +256,18 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                //carregar_sala();
+                carregar_sala();
                 if (jrbOnline.isSelected()) {
-                    if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
+                    if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
                         try {
                             if (room.getNick() != null && room.getNick().length() == 0) {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                                 return;
+                            }
+                            try {
+                                gui.getCjabber().setSala(room);
+                            } catch (XMPPException ex) {
+                                Logger.getLogger(GuiNovaPartidaOnline2.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
