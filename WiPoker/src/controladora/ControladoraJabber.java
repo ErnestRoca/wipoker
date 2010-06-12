@@ -4,18 +4,13 @@
  */
 package controladora;
 
-import controladora.jabber.Connexio;
-import controladora.jabber.GestioUsuaris;
 
 import controladora.jabber.JID;
 
 import controladora.jabber.Listeners;
 import controladora.jabber.Trafic;
-import domini.Ronda;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import javax.swing.JFrame;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.filter.AndFilter;
@@ -26,7 +21,6 @@ import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.HostedRoom;
 import org.jivesoftware.smackx.muc.MultiUserChat;
-import presentacio.jabber.BuscarSala;
 
 /**
  *

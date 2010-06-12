@@ -246,13 +246,14 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
     }
 
     private void crearEscoltadors() {
-
+    
         jbCrearUnir.addActionListener(new ActionListener() {
-
+        
             private GuiTaulell taulell;
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 carregar_sala();
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
