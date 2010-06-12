@@ -198,7 +198,7 @@ public class GuiLoginJabberPartida {
                             gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));                            
                             GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
                             gui.setLogin(true);
-                            gui.getCjabber().prepararEscoltadorsConnexio();
+                            
                             JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
                             Thread t = new Thread() {
 

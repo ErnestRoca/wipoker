@@ -74,18 +74,16 @@ public class ControladoraJabber {
     public Listeners getListeners() {
         return listeners;
     }
-
+   
     public void prepararEscoltadorsConnexio() {
         System.out.println("prepararEscoltadorsConnexio");
-        connexio.addConnectionListener(listeners);        
+        connexio.addConnectionListener(listeners);
         connexio.addPacketListener(listeners, new PacketTypeFilter(Message.class));
     }
 
     public void prepararEscoltadorsSala() {
         System.out.println("prepararEscoltadorsSala");
-        muc.addParticipantListener(listeners);
-        muc.addUserStatusListener(listeners);
-        muc.addParticipantStatusListener(listeners);
+
         if (muc != null) {
             try {
                 muc.addUserStatusListener(listeners);
@@ -102,11 +100,12 @@ public class ControladoraJabber {
     }
 
     public void setSala(JID r) throws XMPPException {
-
+        /*
         if (muc != null) {
-            connexio.removePacketListener(listeners);
-            muc.leave();
+        connexio.removePacketListener(listeners);
+        muc.leave();
         }
+         */
         room = r;
         muc = new MultiUserChat(connexio, r.getJID());
         prepararEscoltadorsSala();
@@ -119,7 +118,7 @@ public class ControladoraJabber {
         }
         try {
             if (!existeix) {
-                
+
                 muc.create(r.getNick());
                 muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
                 muc.changeSubject("Sala dedicada al juego WiPPoker");
@@ -129,7 +128,6 @@ public class ControladoraJabber {
             }
         } catch (Exception ex) {
         }
-
     }
 
     public void afegirJugadoraSala(JID jid) {

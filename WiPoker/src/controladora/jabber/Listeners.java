@@ -22,9 +22,8 @@ import org.jivesoftware.smackx.muc.UserStatusListener;
  *
  * @author wida45787385
  */
-public class Listeners implements ConnectionListener,  PacketListener, 
-        ParticipantStatusListener, UserStatusListener, InvitationListener
-         {
+public class Listeners implements  ConnectionListener,  PacketListener,
+        ParticipantStatusListener, UserStatusListener {
 
     //connectionlistener: escucha la conexion para detectar caidas
 
