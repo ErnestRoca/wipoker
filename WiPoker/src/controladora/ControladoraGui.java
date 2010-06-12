@@ -8,12 +8,16 @@ import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import presentacio.GuiTaulell;
 import presentacio.partida.GuiLoginJabberPartida;
 
@@ -396,9 +400,13 @@ public class ControladoraGui {
         logs += "\n" + text;
         //Jt.setText(logs);
         taulell.getJtLog().setText(logs);
+        downScroll(taulell.getJtLog());
     }
 
-
-
-
+    public void downScroll(JTextArea jTlog) {
+        Dimension tamanhoTextArea = jTlog.getSize();
+        Point p = new Point(0,tamanhoTextArea.height);
+        JScrollPane scroll = taulell.getjScrollPaneFrase();
+        scroll.getViewport().setViewPosition(p);
+    }
 }
