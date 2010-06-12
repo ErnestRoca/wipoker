@@ -94,7 +94,7 @@ public class ControladoraJoc {
         Aposta aposta = new Aposta(jugador, quantitat);
         jugador.setAposta(aposta);
         fase.getApostes().add(aposta);
-        fase.getRonda().setPot((fase.getRonda().getPot()) + quantitat);
+        fase.getRonda().setPot((int) ((fase.getRonda().getPot()) + quantitat - quantitatAnterior));
     }
 
     public synchronized void ferFold(Jugador jugador, Fase fase) {
@@ -106,15 +106,19 @@ public class ControladoraJoc {
     public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
         if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
             jugador.setHaFetAllin(true);
+            System.out.println("Pot avanç: " + fase.getRonda().getPot());
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
         } else {
+            System.out.println("Pot avanç: " + fase.getRonda().getPot());
             int aposta = (int) (apostaMinima);
             apostar(jugador, aposta, fase);
             fase.setApostaMinima(apostaMinima);
             System.out.println(jugador.getAlias() + " fa CALL");
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Call.");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
         }
     }
 
@@ -127,11 +131,14 @@ public class ControladoraJoc {
 
     public synchronized void ferBlind(Jugador jugador, Fase fase, int dinersApostats) {
         if (jugador.getFitxesActuals() < dinersApostats && jugador.getFitxesActuals() >= 0) {
+            System.out.println("Pot avanç: " + fase.getRonda().getPot());
             jugador.setHaFetAllin(true);
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
         } else {
+            System.out.println("Pot avanç: " + fase.getRonda().getPot());
             double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
             jugador.setFitxesActuals((int) ((int) (jugador.getFitxesActuals() - dinersApostats) + quantitatAnterior));
             jugador.setApostaTotalRonda((int) ((jugador.getApostaTotalRonda() + dinersApostats) - quantitatAnterior));
@@ -142,25 +149,40 @@ public class ControladoraJoc {
             fase.setApostaMinima(dinersApostats);
             System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Blind.");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
         }
     }
 
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
+            System.out.println("RISE 1");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
             jugador.setHaFetAllin(true);
             apostar(jugador, jugador.getFitxesActuals(), fase);
             System.out.println(jugador.getAlias() + "Fa Allin");
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
         } else if (jugador.getFitxesActuals() < (apostaMinima + dinersApostats)) {
+
+            System.out.println("RISE 2");
+            System.out.println("Pot avanç: " + fase.getRonda().getPot());
             jugador.setHaFetAllin(true);
             apostar(jugador, jugador.getFitxesActuals(), fase);
+
+            fase.setApostaMinima(dinersApostats);
+
             System.out.println(jugador.getAlias() + "Fa Allin");
+
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
         } else {
+            System.out.println("RISE 3");
+            System.out.println("Pot avanç: " + fase.getRonda().getPot());
             apostar(jugador, (apostaMinima + dinersApostats), fase);
             fase.setApostaMinima(apostaMinima + dinersApostats);
             System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Rise, puja: " + dinersApostats + ".");
+            System.out.println("Pot despres: " + fase.getRonda().getPot());
         }
 
     }
