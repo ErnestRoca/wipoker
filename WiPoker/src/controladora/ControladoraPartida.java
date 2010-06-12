@@ -116,7 +116,7 @@ public class ControladoraPartida {
         baralla = controlJoc.crearBaralla();
         controlJoc.barallar(baralla);
         System.out.println("\n\n\n\n\n********************NOVA RONDA****************************");
-        gui.actualitzarLog("*******NOVA RONDA*******");
+        gui.actualitzarLog("\n\n*******NOVA RONDA*******");
         //Inicia Fase
         for (int i = 0; i < 4; i++) {
             gui.getFaseActual().setApostaMinima(0);
@@ -127,7 +127,7 @@ public class ControladoraPartida {
             }
 
             System.out.println(novaFase.toString());
-            gui.actualitzarLog("--" + novaFase.toString() + "--");
+            gui.actualitzarLog("\n--" + novaFase.toString() + "--");
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
