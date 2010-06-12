@@ -35,7 +35,6 @@ import presentacio.jabber.BuscarSala;
 public class ControladoraJabber {
 
     private XMPPConnection connexio;
-    private Ronda ronda = new Ronda();
     private MultiUserChat muc;
     private JID room;
     private Listeners listeners;
@@ -45,7 +44,6 @@ public class ControladoraJabber {
         listeners = new Listeners();
         trafic = new Trafic();
         room = new JID();
-
     }
 
     public XMPPConnection getConnexio() {
@@ -78,13 +76,14 @@ public class ControladoraJabber {
     }
 
     public void prepararEscoltadorsConnexio() {
-        connexio.addConnectionListener(listeners);
-        
+        System.out.println("prepararEscoltadorsConnexio");
+        connexio.addConnectionListener(listeners);        
         connexio.addPacketListener(listeners, new PacketTypeFilter(Message.class));
     }
 
     public void prepararEscoltadorsSala() {
-        //muc.addParticipantListener(listeners);
+        System.out.println("prepararEscoltadorsSala");
+        muc.addParticipantListener(listeners);
         muc.addUserStatusListener(listeners);
         muc.addParticipantStatusListener(listeners);
         if (muc != null) {
