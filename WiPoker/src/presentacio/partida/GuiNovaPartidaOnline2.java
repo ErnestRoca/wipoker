@@ -80,7 +80,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
     public GuiNovaPartidaOnline2() throws InterruptedException {
         gui = new ControladoraGui();
         iniciarComponents();
-        crearEscoltadors();
+        
         //gui.comprovarLogin(this);
     }
 
@@ -88,7 +88,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
         super(owner, "Partida Online", modal);
         this.gui = gui;
         iniciarComponents();
-        crearEscoltadors();
+        
     }
 
     /** Crea objectes crear els components de la UI. */
@@ -96,6 +96,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
         crearJFrame();
         crearJPanels();
         crearControls();
+        crearEscoltadors();
     }
 
     private void crearJFrame() {
@@ -241,12 +242,12 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
         jlBarra.setForeground(Color.white);
         jlBarra.setBounds(2, 578, 340, 30);
         jPanelGlobal.add(jlBarra);
-
+        crearEscoltadors();
         setVisible(true);
     }
 
     private void crearEscoltadors() {
-    
+        System.out.println("creant");
         jbCrearUnir.addActionListener(new ActionListener() {
         
             private GuiTaulell taulell;
@@ -254,7 +255,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                carregar_sala();
+                //carregar_sala();
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         try {
