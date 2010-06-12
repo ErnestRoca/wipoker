@@ -190,50 +190,39 @@ public class GuiLoginJabberPartida {
 
         jbLogin.addActionListener(new ActionListener() {
 
+            private GuiNovaPartidaOnline2 guiNovaPartidaOline2;
+
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (!jtfServidor.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfPassword.getText().isEmpty()) {
                     if (!gui.isLogin()) {
                         try {
-                            gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));                            
-                            GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
-                            gui.setLogin(true);
-                            
-                            JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
-                            Thread t = new Thread() {
-
-                                @Override
-                                public void run() {
-                                    BuscarSala buscarSala = new BuscarSala(gui, jFrame, true);
-                                    buscarSala.setVisible(true);
-                                    if (buscarSala.func) {
-                                        try {
-                                            gui.getCjabber().setSala(buscarSala.room);
-                                        } catch (XMPPException ex) {
-                                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-                                    }
-                                }
-                            };
-                            t.start();
-                        } catch (XMPPException ex) {
-                            gui.setLogin(false);
+                            try {
+                                gui.getCjabber().setConnexio(Connexio.crearConnexio(jtfServidor.getText()));
+                                GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
+                                gui.setLogin(true);
+                                JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
+                            } catch (XMPPException ex) {
+                                gui.setLogin(false);
+                                Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            guiNovaPartidaOline2 = new GuiNovaPartidaOnline2(gui, jFrame, true);
+                            guiNovaPartidaOline2.setLocation(jFrame.getLocation());
+                            jFrame.dispose();
+                            guiNovaPartidaOline2.setVisible(true);
+                        } catch (InterruptedException ex) {
                             Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        jFrame.dispose();
                     } else if (gui.isLogin()) {
-                        Thread t = new Thread() {
-
-                            @Override
-                            public void run() {
-                                BuscarSala buscarSala = new BuscarSala(gui, jFrame, true);
-                                //buscarSala.setVisible(false);
-                            }
-                        };
-                        t.start();
-
+                        try {
+                            guiNovaPartidaOline2 = new GuiNovaPartidaOnline2(gui, jFrame, true);
+                            guiNovaPartidaOline2.setLocation(jFrame.getLocation());
+                            jFrame.dispose();
+                            guiNovaPartidaOline2.setVisible(true);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                    jFrame.dispose();
                 } else {
                     JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                 }
