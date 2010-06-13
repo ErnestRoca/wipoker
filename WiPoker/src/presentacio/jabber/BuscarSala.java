@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
-import presentacio.partida.GuiNovaPartidaOnline2;
+import presentacio.partida.GuiNovaPartidaOnline;
 
 /**
  *
@@ -143,7 +143,7 @@ public class BuscarSala extends javax.swing.JDialog {
     private void crearEscoltadors() {
 
         jbEntrar.addActionListener(new ActionListener() {
-            private GuiNovaPartidaOnline2 guiNovaPartidaOnline;
+            private GuiNovaPartidaOnline guiNovaPartidaOnline;
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -171,7 +171,7 @@ public class BuscarSala extends javax.swing.JDialog {
                     func = true;
                     
                     dispose();
-                    guiNovaPartidaOnline = new GuiNovaPartidaOnline2(gui, null, func);
+                    guiNovaPartidaOnline = new GuiNovaPartidaOnline(gui, null, func);
                     guiNovaPartidaOnline.setLocation(guiNovaPartidaOnline.getLocation());
                     guiNovaPartidaOnline.setVisible(true);
                 } catch (InterruptedException ex) {
