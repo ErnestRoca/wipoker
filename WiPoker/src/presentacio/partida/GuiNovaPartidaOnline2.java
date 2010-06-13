@@ -245,7 +245,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
         jPanelGlobal.add(jlBarra);
         crearEscoltadors();
         setVisible(true);
-        
+
     }
 
     private void crearEscoltadors() {
@@ -257,28 +257,21 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                
                 if (jrbOnline.isSelected()) {
-                    carregar_sala();  
+                    carregar_sala();
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         try {
                             if (room.getNick() != null && room.getNick().length() == 0) {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                                 return;
-                            }                                                      
-                            try {
-                                gui.getCjabber().setSala(room);
-                            } catch (XMPPException ex) {
-                                Logger.getLogger(GuiNovaPartidaOnline2.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            gui.getCjabber().setSala(room);
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
-                            
-                            taulell = new GuiTaulell(gui);
                             dispose();
-                            setVisible(false);
+                            taulell = new GuiTaulell(gui);
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
                         } catch (NumberFormatException exception) {
@@ -421,7 +414,8 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
     }
 
     private void carregar_sala() {
-        room.setJID(jcbServidors.getModel().getSelectedItem().toString());
+        room.setName(jtfNom.getText());
+        room.setServer(jcbServidors.getModel().getSelectedItem().toString());
         room.setNick(jtfAlias.getText());
     }
 
