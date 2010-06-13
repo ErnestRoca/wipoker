@@ -10,6 +10,7 @@ import controladora.jabber.Listeners;
 import controladora.jabber.Trafic;
 
 import java.util.Collection;
+import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.filter.AndFilter;
@@ -79,6 +80,7 @@ public class ControladoraJabber {
 
         if (muc != null) {
             try {
+
                 muc.addUserStatusListener(listeners);
                 muc.addParticipantStatusListener(listeners);
 
@@ -108,20 +110,9 @@ public class ControladoraJabber {
             muc.create(r.getNick());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
             muc.changeSubject("Sala dedicada al juego WiPPoker");
-            afegirJugadoraSala(r);
+            muc.join(room.getName());
 
         } catch (Exception ex) {
-        }
-    }
-
-    public void afegirJugadoraSala(JID jid) {
-
-        if (!muc.isJoined()) {
-            try {
-                muc.join(jid.getNick());
-            } catch (Exception ex) {
-                muc = null;
-            }
         }
     }
 }
