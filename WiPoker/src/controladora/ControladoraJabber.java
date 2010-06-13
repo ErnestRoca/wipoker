@@ -4,7 +4,6 @@
  */
 package controladora;
 
-
 import controladora.jabber.JID;
 
 import controladora.jabber.Listeners;
@@ -68,7 +67,7 @@ public class ControladoraJabber {
     public Listeners getListeners() {
         return listeners;
     }
-   
+
     public void prepararEscoltadorsConnexio() {
         System.out.println("prepararEscoltadorsConnexio");
         connexio.addConnectionListener(listeners);
@@ -101,27 +100,16 @@ public class ControladoraJabber {
         }
          */
         room = r;
+        
         muc = new MultiUserChat(connexio, r.getJID());
         prepararEscoltadorsSala();
-        Collection<HostedRoom> sales = MultiUserChat.getHostedRooms(connexio, r.getServer());
-        boolean existeix = false;
-        for (HostedRoom o : sales) {
-            if (o.getName().equals(r.getName())) {
-                existeix = true;
-            }
-        }
+
         try {
-            System.out.println(existeix);
-            if (!existeix) {
+            muc.create(r.getNick());
+            muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
+            muc.changeSubject("Sala dedicada al juego WiPPoker");
+            afegirJugadoraSala(r);
 
-                muc.create(r.getNick());
-                muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
-                muc.changeSubject("Sala dedicada al juego WiPPoker");
-                afegirJugadoraSala(r);
-
-            } else {
-                afegirJugadoraSala(r);
-            }
         } catch (Exception ex) {
         }
     }

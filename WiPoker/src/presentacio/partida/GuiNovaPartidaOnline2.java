@@ -245,6 +245,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
         jPanelGlobal.add(jlBarra);
         crearEscoltadors();
         setVisible(true);
+        
     }
 
     private void crearEscoltadors() {
@@ -264,9 +265,9 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                                 return;
                             }
-                            room.setName(jtfNom.getText());
+                            /*room.setName(jtfNom.getText());
                             room.setServer((String) (jcbServidors.getSelectedItem()));
-                            room.setNick(jtfAlias.getText());
+                            room.setNick(jtfAlias.getText());*/
                             try {
                                 gui.getCjabber().setSala(room);
                             } catch (XMPPException ex) {
