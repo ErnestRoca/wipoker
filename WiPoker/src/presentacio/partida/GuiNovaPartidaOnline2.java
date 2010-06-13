@@ -281,10 +281,12 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                         JOptionPane.showConfirmDialog(getContentPane(), "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (jrbUnir.isSelected()) {
+                    carregar_sala();
                     if (room.getNick() != null && room.getNick().length() == 0) {
                         jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                         return;
-                    }                      
+                    }
+                    
                     gui.getCjabber().setSala(room);                    
                     ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
                     gui.setCp(cpo);
