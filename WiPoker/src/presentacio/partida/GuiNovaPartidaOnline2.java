@@ -81,7 +81,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
     public GuiNovaPartidaOnline2() throws InterruptedException {
         gui = new ControladoraGui();
         iniciarComponents();
-        
+
         //gui.comprovarLogin(this);
     }
 
@@ -89,7 +89,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
         super(owner, "Partida Online", modal);
         this.gui = gui;
         iniciarComponents();
-        
+
     }
 
     /** Crea objectes crear els components de la UI. */
@@ -250,20 +250,23 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
     private void crearEscoltadors() {
         System.out.println("creant");
         jbCrearUnir.addActionListener(new ActionListener() {
-        
+
             private GuiTaulell taulell;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 carregar_sala();
                 if (jrbOnline.isSelected()) {
-                    if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
+                    if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         try {
                             if (room.getNick() != null && room.getNick().length() == 0) {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                                 return;
                             }
+                            room.setName(jtfNom.getText());
+                            room.setServer((String) (jcbServidors.getSelectedItem()));
+                            room.setNick(jtfAlias.getText());
                             try {
                                 gui.getCjabber().setSala(room);
                             } catch (XMPPException ex) {
@@ -288,6 +291,14 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                     if (room.getNick() != null && room.getNick().length() == 0) {
                         jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                         return;
+                    }
+                    room.setName(jtfNom.getText());
+                    room.setServer((String) (jcbServidors.getSelectedItem()));
+                    room.setNick(jtfAlias.getText());
+                    try {
+                        gui.getCjabber().setSala(room);
+                    } catch (XMPPException ex) {
+                        Logger.getLogger(GuiNovaPartidaOnline2.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
                     gui.setCp(cpo);

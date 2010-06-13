@@ -111,11 +111,13 @@ public class ControladoraJabber {
             }
         }
         try {
+            System.out.println(existeix);
             if (!existeix) {
 
                 muc.create(r.getNick());
                 muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
                 muc.changeSubject("Sala dedicada al juego WiPPoker");
+                afegirJugadoraSala(r);
 
             } else {
                 afegirJugadoraSala(r);
