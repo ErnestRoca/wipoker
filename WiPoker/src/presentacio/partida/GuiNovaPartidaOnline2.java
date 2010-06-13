@@ -284,15 +284,8 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                     if (room.getNick() != null && room.getNick().length() == 0) {
                         jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                         return;
-                    }
-                    room.setName(jtfNom.getText());
-                    room.setServer((String) (jcbServidors.getSelectedItem()));
-                    room.setNick(jtfAlias.getText());
-                    /*try {
-                    //gui.getCjabber().setSala(room);
-                    } catch (XMPPException ex) {
-                    Logger.getLogger(GuiNovaPartidaOnline2.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
+                    }                      
+                    gui.getCjabber().setSala(room);                    
                     ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
                     gui.setCp(cpo);
                     System.out.println(gui.getCjabber().getMuc().getOccupantsCount());

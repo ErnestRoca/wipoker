@@ -94,21 +94,20 @@ public class ControladoraJabber {
         }
     }
 
-    public void setSala(JID r) {        
+    public void setSala(JID r) {
         if (muc != null) {
-        connexio.removePacketListener(listeners);
-        muc.leave();
-        }         
+            connexio.removePacketListener(listeners);
+            muc.leave();
+        }
         room = r;
         muc = new MultiUserChat(connexio, r.getJID());
         prepararEscoltadorsSala();
 
         try {
-            muc.create(room.getName());
+            muc.create(room.getNick());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
             muc.changeSubject("Sala dedicada al juego WiPPoker");
-            muc.join(room.getName());
-
+            muc.join(room.getNick());
         } catch (Exception ex) {
         }
     }
