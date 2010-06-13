@@ -8,6 +8,7 @@ import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
+import domini.Partida;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -408,5 +409,19 @@ public class ControladoraGui {
         Point p = new Point(0,tamanhoTextArea.height);
         JScrollPane scroll = taulell.getjScrollPaneFrase();
         scroll.getViewport().setViewPosition(p);
+    }
+
+    public void gestionarButtons() {
+        for (int i = 0; i < taulell.getJLButtons().size();i++) {
+            if (i == cp.getDealer()) {
+                taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+            } else if (i == cp.getBigBlind()) {
+                taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/bigblind.png")));
+            } else if (i == cp.getSmallBlind()) {
+                taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/smallblind.png")));
+            } else {
+                taulell.getJLButtons().get(i).setVisible(false);
+            }
+        }
     }
 }
