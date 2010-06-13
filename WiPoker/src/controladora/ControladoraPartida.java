@@ -33,6 +33,7 @@ public class ControladoraPartida {
     public ControladoraGui gui;
     private int smallBlind = 0;
     private int bigBlind = 0;
+    private int dealer = 0;
 
     public ControladoraPartida(ControladoraGui gui) {
         this.gui = gui;
@@ -87,6 +88,7 @@ public class ControladoraPartida {
                         if (!partida.getJugadors().get(i).isEliminat()) {
                             boto = i;
                             botoTrobat = true;
+                            dealer = i;
                         }
                     }
                 }
@@ -96,6 +98,7 @@ public class ControladoraPartida {
                     if (!partida.getJugadors().get(i).isEliminat()) {
                         boto = i;
                         botoTrobat = true;
+                        dealer = i;
                     }
                 }
             }
@@ -207,6 +210,7 @@ public class ControladoraPartida {
                 //controlJoc.ferCall(partida.getJugadors().get(i), fase, apostaMin);
                 controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 10);
                 posicioSmallBlind = i;
+                smallBlind = i;
                 trobat = true;
                 gui.gestionarPot();
                 gui.gestionarFitxes();
@@ -221,6 +225,7 @@ public class ControladoraPartida {
                     //controlJoc.ferCall(partida.getJugadors().get(i), fase, apostaMin);
                     controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 10);
                     posicioSmallBlind = i;
+                    smallBlind = i;
                     trobat = true;
                     gui.gestionarPot();
                     gui.gestionarFitxes();
@@ -253,7 +258,7 @@ public class ControladoraPartida {
                 }
             }
         }
-
+        gui.gestionarButtons();
         //Reparteix cartes privades
         controlJoc.repartirCartesPrivades(partida.getJugadors(), baralla);
         gui.setCartesPrivades();
@@ -513,4 +518,18 @@ public class ControladoraPartida {
         }
         System.out.println("");
     }
+
+    public int getBigBlind() {
+        return bigBlind;
+    }
+
+    public int getSmallBlind() {
+        return smallBlind;
+    }
+
+    public int getDealer() {
+        return dealer;
+    }
+
+
 }

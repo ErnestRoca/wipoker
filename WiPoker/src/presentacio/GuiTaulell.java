@@ -70,6 +70,16 @@ public class GuiTaulell {
     private JLabel jlCarta04;
     private JLabel jlCarta05;
     //
+    private JLabel jLButton01;
+    private JLabel jLButton02;
+    private JLabel jLButton03;
+    private JLabel jLButton04;
+    private JLabel jLButton05;
+    private JLabel jLButton06;
+    private JLabel jLButton07;
+    private JLabel jLButton08;
+    private JLabel jLButton09;
+    //
     private JLabel jlNomCroupier;
     private JLabel jlPotTotal;
     private JLabel jlPotTotal2;
@@ -366,7 +376,7 @@ public class GuiTaulell {
         jPanelOutput.setVisible(true);
         jPanelGlobal.add(jPanelOutput);
 
-        jtLog = new JTextArea(10,30);
+        jtLog = new JTextArea(10, 30);
         jtLog.setEditable(false);
         jtLog.setWrapStyleWord(true);
         jtLog.setLineWrap(true);
@@ -375,11 +385,78 @@ public class GuiTaulell {
         jScrollPaneFrase.setBounds(0, 0, 238, 167);
         jPanelOutput.add(jScrollPaneFrase);
 
+        jLButton01 = new JLabel();
+        jLButton01.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton01.setOpaque(false);
+        jLButton01.setLayout(null);
+        jLButton01.setBounds(585, 35, 236, 166);
+        jLButton01.setLayout(null);
+        jPanelGlobal.add(jLButton01);
 
-        
+        jLButton02 = new JLabel();
+        jLButton02.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton02.setOpaque(false);
+        jLButton02.setLayout(null);
+        jLButton02.setBounds(880, 120, 236, 166);
+        jLButton02.setLayout(null);
+        jPanelGlobal.add(jLButton02);
 
+        jLButton03 = new JLabel();
+        jLButton03.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton03.setOpaque(false);
+        jLButton03.setLayout(null);
+        jLButton03.setBounds(810, 350, 236, 166);
+        jLButton03.setLayout(null);
+        jPanelGlobal.add(jLButton03);
 
-        
+        jLButton04 = new JLabel();
+        jLButton04.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton04.setOpaque(false);
+        jLButton04.setLayout(null);
+        jLButton04.setBounds(620, 390, 236, 166);
+        jLButton04.setLayout(null);
+        jPanelGlobal.add(jLButton04);
+
+        jLButton05 = new JLabel();
+        jLButton05.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton05.setOpaque(false);
+        jLButton05.setLayout(null);
+        jLButton05.setBounds(450, 396, 236, 166);
+        jLButton05.setLayout(null);
+        jPanelGlobal.add(jLButton05);
+
+        jLButton06 = new JLabel();
+        jLButton06.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton06.setOpaque(false);
+        jLButton06.setLayout(null);
+        jLButton06.setBounds(300, 396, 236, 166);
+        jLButton06.setLayout(null);
+        jPanelGlobal.add(jLButton06);
+
+        jLButton07 = new JLabel();
+        jLButton07.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton07.setOpaque(false);
+        jLButton07.setLayout(null);
+        jLButton07.setBounds(150, 340, 236, 166);
+        jLButton07.setLayout(null);
+        jPanelGlobal.add(jLButton07);
+
+        jLButton08 = new JLabel();
+        jLButton08.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton08.setOpaque(false);
+        jLButton08.setLayout(null);
+        jLButton08.setBounds(180, 70, 236, 166);
+        jLButton08.setLayout(null);
+        jPanelGlobal.add(jLButton08);
+
+        jLButton09 = new JLabel();
+        jLButton09.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+        jLButton09.setOpaque(false);
+        jLButton09.setLayout(null);
+        jLButton09.setBounds(400, 35, 236, 166);
+        jLButton09.setLayout(null);
+        jPanelGlobal.add(jLButton09);
+
     }
 
     private void crearControls() {
@@ -1721,7 +1798,19 @@ public class GuiTaulell {
         this.jScrollPaneFrase = jScrollPaneFrase;
     }
 
-
+    public ArrayList<JLabel> getJLButtons() {
+        ArrayList<JLabel> buttons = new ArrayList<JLabel>();
+        buttons.add(jLButton01);
+        buttons.add(jLButton02);
+        buttons.add(jLButton03);
+        buttons.add(jLButton04);
+        buttons.add(jLButton05);
+        buttons.add(jLButton06);
+        buttons.add(jLButton07);
+        buttons.add(jLButton08);
+        buttons.add(jLButton09);
+        return buttons;
+    }
 
     /**
      * Inicia el cas d'ús des del SO.
