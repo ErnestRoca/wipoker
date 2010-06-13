@@ -279,6 +279,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             taulell = new GuiTaulell(gui);
                             dispose();
+                            setVisible(false);
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
                         } catch (NumberFormatException exception) {
@@ -295,11 +296,11 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                     room.setName(jtfNom.getText());
                     room.setServer((String) (jcbServidors.getSelectedItem()));
                     room.setNick(jtfAlias.getText());
-                    try {
-                        gui.getCjabber().setSala(room);
+                    /*try {
+                    //gui.getCjabber().setSala(room);
                     } catch (XMPPException ex) {
-                        Logger.getLogger(GuiNovaPartidaOnline2.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    Logger.getLogger(GuiNovaPartidaOnline2.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
                     ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
                     gui.setCp(cpo);
                     System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
@@ -307,6 +308,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                     System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                     taulell = new GuiTaulell(gui);
                     dispose();
+                    setVisible(false);
                     taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                     taulell.getjFrame().setVisible(true);
 
