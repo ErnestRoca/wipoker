@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import org.jivesoftware.smack.XMPPException;
 import presentacio.GuiMenu;
+import presentacio.GuiTaulell;
 import presentacio.jabber.BuscarSala;
 import presentacio.jabber.GuiLoginJabber;
 
@@ -190,7 +191,8 @@ public class GuiLoginJabberPartida {
 
         jbLogin.addActionListener(new ActionListener() {
 
-            private GuiNovaPartidaOnline2 guiNovaPartidaOline2;
+            private GuiNovaPartidaOnline partidaOnline;
+            private GuiTaulell taulell;
 
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -201,18 +203,41 @@ public class GuiLoginJabberPartida {
                             GestioUsuaris.ferLogin(gui.getCjabber().getConnexio(), jtfNom.getText(), jtfPassword.getText());
                             gui.setLogin(true);
                             JOptionPane.showMessageDialog(jFrame, "Conectat i logat correctament");
+
                             jFrame.dispose();
-                            try {
-                                guiNovaPartidaOline2 = new GuiNovaPartidaOnline2(gui, jFrame, true);
-                                guiNovaPartidaOline2.setLocation(jFrame.getLocation());
-                                guiNovaPartidaOline2.setVisible(true);
-                            } catch (InterruptedException ex) {
-                                Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                            partidaOnline = new GuiNovaPartidaOnline(gui, jFrame, true);
+                            if (partidaOnline.func) {
+                                gui.getCjabber().setSala(partidaOnline.room);
                             }
+                            partidaOnline.dispose();
+                            System.out.println(gui.getCjabber().getMuc().getNickname());
+                            taulell = new GuiTaulell(gui);
+                            taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                            taulell.getjFrame().setVisible(true);
+
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (XMPPException ex) {
                             gui.setLogin(false);
                             Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        jFrame.dispose();
+                    } else if (gui.isLogin()) {
+                        try {
+                            jFrame.dispose();
+                            partidaOnline = new GuiNovaPartidaOnline(gui, jFrame, true);
+                            if (partidaOnline.func) {
+                                gui.getCjabber().setSala(partidaOnline.room);
+                            }
+                            partidaOnline.dispose();
+                            System.out.println(gui.getCjabber().getMuc().getNickname());
+                            taulell = new GuiTaulell(gui);
+                            taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                            taulell.getjFrame().setVisible(true);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                     }
                 } else {
                     JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
