@@ -6,106 +6,132 @@ package presentacio.partida;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraPartidaOnline;
+import controladora.jabber.JID;
 import domini.Jugador;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import presentacio.GuiTaulell;
-import presentacio.dades.GuiMenuDades;
-import presentacio.jabber.BuscarSala;
 
 /**
  *
  * @author ula
  */
-public class GuiNovaPartidaOnline {
+public class GuiNovaPartidaOnline extends javax.swing.JDialog {
 
-    protected JFrame jFrame;
-    private JPanel jpFons;
-    private JLabel jlTitol;
-    private JLabel jlImatgeFons;
-    private JButton jbUnirsePartida;
-    private JButton jbContraMaquina;
-    private JButton jbCrearPartida;
-    private JButton jbTornar;
     private ControladoraGui gui;
+    //
+    private final static String[] servidors = {"conf.jabberes.org",
+        "muc.jabber.upc.es", "conferencia.jabber-hispano.org",
+        "conference.seunet.org", "conference.jabber.org"};
+    public JID room = new JID();
+    public boolean func = false;
+    //
+    private JLabel jlTitol;
+    //
     private JLabel jlNom;
     private JTextField jtfNom;
+    //
     private JLabel jlMaxJ;
     private JTextField jtfMAxJ;
+    //
     private JLabel jlFInicials;
     private JTextField jtfFInicials;
-    private JButton jbCrear;
+    //
+    private JLabel jlAlias;
+    private JTextField jtfAlias;
+    private JButton jbTornar;
+    private JButton jbCrearUnir;
+    private JButton jbRefresca;
+    //
     private ButtonGroup bp;
     private JRadioButton jrbOnline;
     private JRadioButton jrbUnir;
+    //
     private JLabel jlBarra;
-    private JLabel jlAlias;
-    private JTextField jtfAlias;
+    private JPanelGlobal jPanelGlobal;
+    private JComboBox jcbServidors;
 
-    //constructor de pruebas
-    public GuiNovaPartidaOnline() throws InterruptedException {
-        gui = new ControladoraGui();
-        iniciarComponents();
-        //gui.comprovarLogin(this);
-    }
-
-    public GuiNovaPartidaOnline(ControladoraGui gui) throws InterruptedException {
+    public GuiNovaPartidaOnline(ControladoraGui gui, Frame owner, boolean modal) throws InterruptedException {
+        super(owner, "Partida Online", modal);
         this.gui = gui;
         iniciarComponents();
+        crearEscoltadors();
+        setVisible(true);
     }
 
-    public void iniciarComponents() throws InterruptedException {
-        jFrame = new JFrame();
-        jFrame.setSize(new Dimension(338, 629));
-        //jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle("Partida Online");
-        jFrame.setLayout(null);
-        jFrame.setBackground(Color.WHITE);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setResizable(false);
+    /** Crea objectes crear els components de la UI. */
+    private void iniciarComponents() {
+        crearJFrame();
+        crearJPanels();
+        crearControls();
+    }
 
-        jpFons = new JPanel();
-        jpFons.setLayout(null);
-        jpFons.setOpaque(false);
-        jpFons.setBounds(0, 0, 340, 950);
-        jFrame.add(jpFons);
+    private void crearJFrame() {
+        final int w = 338;
+        final int h = 629;
+        setSize(w, h);
+        setTitle("Partida Online");
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setLayout(null);
+    }
 
+    //Mètode per introduir una imatge de fons.
+    public class JPanelGlobal extends javax.swing.JPanel {
+
+        @Override
+        public void paintComponent(Graphics g) {
+            ImageIcon imatgeFons = new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg"));
+            g.drawImage(imatgeFons.getImage(), 0, 104, 333, 499, null);
+            setOpaque(true);
+        }
+    }
+
+    private void crearJPanels() {
+        jPanelGlobal = new JPanelGlobal();
+        jPanelGlobal.setLayout(null);
+        jPanelGlobal.setBounds(0, 0, 338, 629);
+        getContentPane().add(jPanelGlobal);
+    }
+
+    private void crearControls() {
         jlTitol = new JLabel();
         jlTitol.setBounds(0, 0, 340, 104);
-        jlTitol.setLayout(null);
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
-        jpFons.add(jlTitol);
-
-        jlImatgeFons = new JLabel();
-        jlImatgeFons.setBounds(0, 104, 340, 499);
-        jlImatgeFons.setLayout(null);
-        jlImatgeFons.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/Wipokerbackground.jpg")));
-        jlImatgeFons.setOpaque(false);
-
+        jPanelGlobal.add(jlTitol);
 
         jrbOnline = new JRadioButton("Crear partida Online");
+        jrbOnline.setFocusPainted(false);
+        jrbOnline.setOpaque(false);
         jrbOnline.setBounds(11, 123, 154, 20);
         jrbOnline.setSelected(true);
         jrbOnline.setBackground(Color.BLACK);
         jrbOnline.setForeground(Color.red);
 
         jrbUnir = new JRadioButton("Unir-se a partida");
+        jrbUnir.setFocusPainted(false);
+        jrbUnir.setOpaque(false);
         jrbUnir.setBounds(177, 123, 144, 20);
         jrbUnir.setBackground(Color.BLACK);
         jrbUnir.setForeground(Color.red);
@@ -113,68 +139,83 @@ public class GuiNovaPartidaOnline {
         bp = new ButtonGroup();
         bp.add(jrbOnline);
         bp.add(jrbUnir);
-        jpFons.add(jrbOnline);
-        jpFons.add(jrbUnir);
+        jPanelGlobal.add(jrbOnline);
+        jPanelGlobal.add(jrbUnir);
+
+        jcbServidors = new JComboBox();
+        jcbServidors.setModel(new javax.swing.DefaultComboBoxModel(servidors));
+        final int x1 = 30;
+        final int y1 = 165;
+        final int w1 = 265;
+        final int h1 = 27;
+        jcbServidors.setBounds(x1, y1, w1, h1);
+        jPanelGlobal.add(jcbServidors);
 
         jlNom = new JLabel();
-        jlNom.setBounds(80, 140, 340, 144);
+        jlNom.setBounds(80, 220, 340, 24);
         jlNom.setText("Nom Partida ");
         jlNom.setForeground(Color.red);
         jlNom.setLayout(null);
-        jpFons.add(jlNom);
+        jPanelGlobal.add(jlNom);
 
-        jtfNom = new JTextField(20);
-        jtfNom.setBounds(170, 198, 120, 24);
-        jtfNom.setEditable(false);
-        jtfNom.setText(gui.getCjabber().getJid().getName());
-        jpFons.add(jtfNom);
+        jtfNom = new JTextField("WiPoker_Taula1");
+        jtfNom.setBounds(170, 220, 120, 24);
+        jPanelGlobal.add(jtfNom);
 
         jlMaxJ = new JLabel();
-        jlMaxJ.setBounds(58, 240, 340, 104);
+        jlMaxJ.setBounds(58, 280, 340, 24);
         jlMaxJ.setText("Maxim Jugadors ");
         jlMaxJ.setForeground(Color.red);
         jlMaxJ.setLayout(null);
-        jpFons.add(jlMaxJ);
+        jPanelGlobal.add(jlMaxJ);
 
         jtfMAxJ = new JTextField(20);
         jtfMAxJ.setBounds(170, 280, 120, 24);
-        jpFons.add(jtfMAxJ);
+        jPanelGlobal.add(jtfMAxJ);
 
         jlFInicials = new JLabel();
-        jlFInicials.setBounds(74, 300, 340, 104);
+        jlFInicials.setBounds(74, 340, 340, 24);
         jlFInicials.setText("Fitxes Inicials ");
         jlFInicials.setForeground(Color.red);
         jlFInicials.setLayout(null);
-        jpFons.add(jlFInicials);
+        jPanelGlobal.add(jlFInicials);
 
         jtfFInicials = new JTextField(20);
         jtfFInicials.setBounds(170, 340, 120, 24);
-        jpFons.add(jtfFInicials);
+        jPanelGlobal.add(jtfFInicials);
 
         jlAlias = new JLabel();
         jlAlias.setBounds(74, 390, 340, 24);
         jlAlias.setText("Alias jugador ");
         jlAlias.setForeground(Color.red);
         jlAlias.setLayout(null);
-        jpFons.add(jlAlias);
+        jPanelGlobal.add(jlAlias);
 
         jtfAlias = new JTextField(20);
         jtfAlias.setBounds(170, 390, 120, 24);
-        jtfAlias.setEditable(false);
-        jtfAlias.setText(gui.getCjabber().getJid().getNick());
-        jpFons.add(jtfAlias);
+        jPanelGlobal.add(jtfAlias);
 
+        jbRefresca = new JButton("Refresca");
+        jbRefresca.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbRefresca.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
+        jbRefresca.setLayout(null);
+        jbRefresca.setBounds(35, 450, 120, 24);
+        jbRefresca.setIconTextGap(-260);
+        jbRefresca.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbRefresca.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbRefresca.setHorizontalTextPosition(SwingConstants.CENTER);
+        jPanelGlobal.add(jbRefresca);
 
-        jbCrear = new JButton("CREAR");
-        jbCrear.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        jbCrear.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
-        jbCrear.setLayout(null);
-        jbCrear.setBounds(100, 450, 120, 24);
-        jbCrear.setIconTextGap(-260);
-        jbCrear.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
-        jbCrear.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
-        jbCrear.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbCrear);
+        jbCrearUnir = new JButton("CREAR");
+        jbCrearUnir.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbCrearUnir.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
+        jbCrearUnir.setLayout(null);
+        jbCrearUnir.setBounds(175, 450, 120, 24);
+        jbCrearUnir.setIconTextGap(-260);
+        jbCrearUnir.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbCrearUnir.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbCrearUnir.setHorizontalTextPosition(SwingConstants.CENTER);
+        jPanelGlobal.add(jbCrearUnir);
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
@@ -185,55 +226,131 @@ public class GuiNovaPartidaOnline {
         jbTornar.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
-        jpFons.add(jbTornar);
+        jPanelGlobal.add(jbTornar);
 
         jlBarra = new JLabel("Menú Principal/Jugar/Partida Online");
         jlBarra.setForeground(Color.white);
         jlBarra.setBounds(2, 578, 340, 30);
-        jpFons.add(jlBarra);
+        jPanelGlobal.add(jlBarra);
+    }
 
-        jpFons.add(jlImatgeFons);
-        jFrame.setVisible(true);
+    private void crearEscoltadors() {
 
-
-        jbCrear.addActionListener(new ActionListener() {
+        jbCrearUnir.addActionListener(new ActionListener() {
 
             private GuiTaulell taulell;
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                carregar_sala();
                 if (jrbOnline.isSelected()) {
-                    if (!jtfMAxJ.getText().isEmpty() && !jtfNom.getText().isEmpty() && !jtfFInicials.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
+                    if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         try {
+                            if (room.getNick() != null && room.getNick().length() == 0) {
+                                jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
+                                return;
+                            }
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
-                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
-                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
-                            gui.getCjabber().prepararEscoltadorsSala();
-                            taulell = new GuiTaulell(gui);
-                            jFrame.dispose();
-                            taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                            taulell.getjFrame().setVisible(true);
+                            if (room.getName() != null && room.getName().length() == 0) {
+                                carregar_sala();
+                                if (jtfNom.getText().isEmpty()) {
+                                    String jop = JOptionPane.showInputDialog(getContentPane(), "Nom de la nova taula?");
+                                    if (jop instanceof String) {
+                                        room.setName(jop);
+                                        jtfNom.setText(jop);
+                                    }
+                                } else {
+                                    room.setName(jtfNom.getText());
+                                }
+                                refrescar_sala();
+                                return;
+                            }
+
+                            func = true;
+                            dispose();
+
                         } catch (NumberFormatException exception) {
-                            JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showConfirmDialog(getContentPane(), "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showConfirmDialog(jFrame, "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showConfirmDialog(getContentPane(), "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
+
                 } else if (jrbUnir.isSelected()) {
-                    if (!jtfNom.getText().isEmpty() && !jtfAlias.getText().isEmpty()) {
-                        ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
-                        gui.setCp(cpo);
-                        System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
-                        cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
-                        System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
-                        taulell = new GuiTaulell(gui);
-                        jFrame.dispose();
-                        taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                        taulell.getjFrame().setVisible(true);
+                    if (room.getNick() != null && room.getNick().length() == 0) {
+                        jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
+                        return;
                     }
+                    ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
+                    gui.setCp(cpo);
+                    cpo.afegirJugador(new Jugador(jtfAlias.getText(), cpo.taula.getPlaces(), 1, "avatar"));
+                    if (room.getName() != null && room.getName().length() == 0) {
+                        carregar_sala();
+                        if (jtfNom.getText().isEmpty()) {
+                            String jop = JOptionPane.showInputDialog(getContentPane(), "Nom de la nova taula?");
+                            if (jop instanceof String) {
+                                room.setName(jop);
+                                jtfNom.setText(jop);
+                            }
+                        } else {
+                            room.setName(jtfNom.getText());
+                        }
+                        refrescar_sala();
+                        return;
+                    }
+
+                    func = true;
+                    dispose();
                 }
+            }
+        });
+
+        jbRefresca.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carregar_sala();
+                refrescar_sala();
+            }
+        });
+
+        jtfNom.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                carregar_sala();
+                /*
+                 * room.setName(lista.getSelectedValue().toString().substring(0,
+                 * lista.getSelectedValue().toString().indexOf(" ")));
+                 */
+                if (jtfNom.getText().isEmpty()) {
+                    String jop = JOptionPane.showInputDialog(getContentPane(), "Nom de la nova taula?");
+                    if (jop instanceof String) {
+                        room.setName(jop);
+                        jtfNom.setText(jop);
+                    }
+                } else {
+                    room.setName(jtfNom.getText());
+                }
+                refrescar_sala();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
             }
         });
 
@@ -244,9 +361,9 @@ public class GuiNovaPartidaOnline {
             @Override
             public void actionPerformed(ActionEvent event) {
                 try {
-                    jFrame.dispose();
+                    dispose();
                     menu = new GuiLoginJabberPartida(gui);
-                    menu.getjFrame().setLocation(jFrame.getLocation());
+                    menu.getjFrame().setLocation(getLocation());
                     menu.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
@@ -258,12 +375,11 @@ public class GuiNovaPartidaOnline {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                jtfNom.setEnabled(true);
                 jtfMAxJ.setEnabled(true);
                 jtfMAxJ.setBackground(Color.WHITE);
                 jtfFInicials.setEnabled(true);
                 jtfFInicials.setBackground(Color.WHITE);
-                jbCrear.setText("CREAR");
+                jbCrearUnir.setText("CREAR");
             }
         });
 
@@ -271,87 +387,45 @@ public class GuiNovaPartidaOnline {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                jtfNom.setEnabled(true);
                 jtfMAxJ.setEnabled(false);
                 jtfMAxJ.setBackground(Color.DARK_GRAY);
                 jtfFInicials.setEnabled(false);
                 jtfFInicials.setBackground(Color.DARK_GRAY);
-                jbCrear.setText("UNIR-SE");
+                jbCrearUnir.setText("UNIR-SE");
             }
         });
     }
-    /*
-    public void actionPerformed(ActionEvent actionEvent) {
-    System.out.println("hola");
-    Object source = actionEvent.getSource();
-    if (source == jrbOnline) {
-    jtfNom.setEnabled(true);
-    jtfMAxJ.setEnabled(true);
-    jtfFInicials.setEnabled(true);
-    jbCrear.setText("CREAR");
-    } else if (source == jrbUnir) {
-    jtfNom.setEnabled(true);
-    jtfMAxJ.setEnabled(false);
-    jtfFInicials.setEnabled(false);
-    jbCrear.setText("UNIR-SE");
-    }
-    }
-     */
 
-    public JFrame getjFrame() {
-        return jFrame;
+    private void carregar_sala() {
+        room.setJID(jcbServidors.getModel().getSelectedItem().toString());
+        room.setNick(jtfAlias.getText());
     }
 
-    public JButton getJbContraMaquina() {
-        return jbContraMaquina;
+    private void refrescar_sala() {
+        jcbServidors.getModel().setSelectedItem(room.getJID());
     }
 
-    public void setJbContraMaquina(JButton jbContraMaquina) {
-        this.jbContraMaquina = jbContraMaquina;
+    public boolean isFunc() {
+        return func;
     }
 
-    public JButton getJbCrearPartida() {
-        return jbCrearPartida;
+    public void setFunc(boolean func) {
+        this.func = func;
     }
 
-    public void setJbCrearPartida(JButton jbCrearPartida) {
-        this.jbCrearPartida = jbCrearPartida;
-    }
-
-    public JButton getJbTornar() {
-        return jbTornar;
-    }
-
-    public void setJbTornar(JButton jbTornar) {
-        this.jbTornar = jbTornar;
-    }
-
-    public JButton getJbUnirsePartida() {
-        return jbUnirsePartida;
-    }
-
-    public void setJbUnirsePartida(JButton jbUnirsePartida) {
-        this.jbUnirsePartida = jbUnirsePartida;
-    }
-
-    public ControladoraGui getControladoraGui() {
+    public ControladoraGui getGui() {
         return gui;
     }
 
-    public void setControladoraGui(ControladoraGui gui) {
+    public void setGui(ControladoraGui gui) {
         this.gui = gui;
     }
 
-    public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+    public JID getRoom() {
+        return room;
+    }
 
-            public void run() {
-                try {
-                    new GuiNovaPartidaOnline();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(GuiMenuDades.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+    public void setRoom(JID room) {
+        this.room = room;
     }
 }
