@@ -257,17 +257,15 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                carregar_sala();
+                
                 if (jrbOnline.isSelected()) {
+                    carregar_sala();  
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         try {
                             if (room.getNick() != null && room.getNick().length() == 0) {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                                 return;
-                            }
-                            /*room.setName(jtfNom.getText());
-                            room.setServer((String) (jcbServidors.getSelectedItem()));
-                            room.setNick(jtfAlias.getText());*/
+                            }                                                      
                             try {
                                 gui.getCjabber().setSala(room);
                             } catch (XMPPException ex) {
@@ -277,7 +275,7 @@ public class GuiNovaPartidaOnline2 extends javax.swing.JDialog {
                             gui.setCp(cpo);
                             System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
-                            System.out.println(gui.getCjabber().getMuc().getOccupantsCount());
+                            
                             taulell = new GuiTaulell(gui);
                             dispose();
                             setVisible(false);
