@@ -1,6 +1,6 @@
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * GuiAfegirJugador.java
  */
 package presentacio.dades;
 
@@ -16,12 +16,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 /**
+ * Gui que serveix per afegir un jugador a la base de dases d'estadístiques.
+ * Modela una GuiAfegirJugador en el domini suggerit pels requeriments funcionals.
  *
  * @author wida47716705
  */
@@ -46,18 +49,28 @@ public class GuiAfegirJugador {
     private ControladoraGui gui;
     private GuiMenuDades menu;
 
-    
-
+    /**
+     * 
+     * Constructor d'instàncies de la classe.<br>
+     *
+     * pre: Cap.<br>
+     * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
+     * 
+     */
     public GuiAfegirJugador() throws InterruptedException {
         iniciarComponents();
     }
 
+    /**
+     * Constructor d'instàncies de la classe.<br>
+     * pre: Les indicades als paràmetres<br>
+     * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
+     * @param gui
+     */
     public GuiAfegirJugador(ControladoraGui gui) throws InterruptedException {
         this.gui = gui;
         iniciarComponents();
     }
-
-
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -167,8 +180,20 @@ public class GuiAfegirJugador {
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
 
+
+        jbAfegir.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(jFrame, "Jugador afegit satisfactoriament");
+
+            }
+        });
+
+
         jbTornar.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent event) {
                 try {
                     jFrame.setVisible(false);
@@ -182,6 +207,10 @@ public class GuiAfegirJugador {
         });
     }
 
+    /**
+     * getter JFrame
+     * @return JFrame: El jFrame de la gui
+     */
     public JFrame getjFrame() {
         return jFrame;
     }
@@ -189,6 +218,7 @@ public class GuiAfegirJugador {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 try {
                     new GuiAfegirJugador();
