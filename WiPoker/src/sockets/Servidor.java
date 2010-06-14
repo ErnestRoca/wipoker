@@ -8,6 +8,7 @@ import controladora.ControladoraCartes;
 import controladora.ControladoraGui;
 import controladora.ControladoraIA;
 import controladora.ControladoraJoc;
+import controladora.ControladoraPartidaOnline;
 import controladora.Torn;
 import domini.Aposta;
 import domini.Baralla;
@@ -34,14 +35,22 @@ public class Servidor {
     private int dealer = 0;
     private Taula taula;
     private ControladoraGui gui;
-    public Baralla baralla;
     public ControladoraCartes controlCartes = new ControladoraCartes();
     public ControladoraIA controlIA;
     public ControladoraJoc controlJoc;
     private int smallBlind = 0;
     private int bigBlind = 0;
+    private Baralla baralla;
+    private ControladoraPartidaOnline cpo;
 
-    public Servidor(final int port) {
+    public Servidor(final int port, int maxJugadors, int fitxesInicials, ControladoraGui gui) {
+        this.gui = gui;
+        controlJoc = new ControladoraJoc(gui.getCp());
+        controlCartes = new ControladoraCartes();
+        controlIA = new ControladoraIA(gui.getCp().partida, controlCartes, gui.getCp());
+        taula = new Taula(maxJugadors, controlJoc.crearBaralla());
+        cpo = new ControladoraPartidaOnline(maxJugadors, gui);
+        cpo.afegirJugador(new Jugador("andres", fitxesInicials, 1, "avatar"));
         new Runnable() {
 
             public void run() {
@@ -51,7 +60,7 @@ public class Servidor {
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                controlJoc = new ControladoraJoc(gui.getCp());
+                
             }
         };
         
