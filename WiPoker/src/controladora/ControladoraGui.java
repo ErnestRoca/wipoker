@@ -171,9 +171,11 @@ public class ControladoraGui {
     //Posa les imatges dels jugadors a la taula juntament amb els seus diners i nom.
     public void mostrarAvatars(ArrayList<Jugador> jugadors) {
         for (int i = 0; i < jugadors.size(); i++) {
-            taulell.getAvatars().get(i).setIcon(jugadors.get(i).getAvatar());
-            taulell.getPanellsJugadors().get(i).setVisible(true);
-            taulell.getNomsJugadors().get(i).setText(jugadors.get(i).getAlias());
+            if (!cp.partida.getJugadors().get(i).isEliminat()) {
+                taulell.getAvatars().get(i).setIcon(jugadors.get(i).getAvatar());
+                taulell.getPanellsJugadors().get(i).setVisible(true);
+                taulell.getNomsJugadors().get(i).setText(jugadors.get(i).getAlias());
+            }
         }
 
     }
@@ -270,17 +272,15 @@ public class ControladoraGui {
         taulell.getJlCarta05().setVisible(false);
     }
 
-    //Posa les cartes comunitaries damunt la taula.
     public void setAvatarJugadorActiu(Jugador jugador) {
-        if (jugador instanceof Bot) {
+        if (jugador instanceof Bot && !jugador.isHaFetFold()) {
             taulell.getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/botActiu.png")));
         }
 
     }
 
-    //Posa les cartes comunitaries damunt la taula.
     public void setAvatarJugadorInActiu(Jugador jugador) {
-        if (jugador instanceof Bot) {
+        if (jugador instanceof Bot && !jugador.isHaFetFold()) {
             taulell.getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/bot.png")));
         }
 
@@ -308,51 +308,61 @@ public class ControladoraGui {
     }
 
     public void gestionarJugadorEliminat(Jugador jugador) {
+        taulell.getJLButtons().get(jugador.getPosicioTaula()).setVisible(false);
         if (jugador.getPosicioTaula() == 0) {
             taulell.getJlFitxes01().setVisible(false);
             taulell.getJlAvatar01().setVisible(false);
             taulell.getJlNom01().setVisible(false);
             taulell.getJlNumFitxes01().setVisible(false);
+            taulell.getJlTotalFitxes01().setVisible(false);
         } else if (jugador.getPosicioTaula() == 1) {
             taulell.getJlFitxes02().setVisible(false);
             taulell.getJlAvatar02().setVisible(false);
             taulell.getJlNom02().setVisible(false);
             taulell.getJlNumFitxes02().setVisible(false);
+            taulell.getJlTotalFitxes02().setVisible(false);
         } else if (jugador.getPosicioTaula() == 2) {
             taulell.getJlFitxes03().setVisible(false);
             taulell.getJlAvatar03().setVisible(false);
             taulell.getJlNom03().setVisible(false);
             taulell.getJlNumFitxes03().setVisible(false);
+            taulell.getJlTotalFitxes03().setVisible(false);
         } else if (jugador.getPosicioTaula() == 3) {
             taulell.getJlFitxes04().setVisible(false);
             taulell.getJlAvatar04().setVisible(false);
             taulell.getJlNom04().setVisible(false);
             taulell.getJlNumFitxes04().setVisible(false);
+            taulell.getJlTotalFitxes04().setVisible(false);
         } else if (jugador.getPosicioTaula() == 4) {
             taulell.getJlFitxes05().setVisible(false);
             taulell.getJlAvatar05().setVisible(false);
             taulell.getJlNom05().setVisible(false);
             taulell.getJlNumFitxes05().setVisible(false);
+            taulell.getJlTotalFitxes05().setVisible(false);
         } else if (jugador.getPosicioTaula() == 5) {
             taulell.getJlFitxes06().setVisible(false);
             taulell.getJlAvatar06().setVisible(false);
             taulell.getJlNom06().setVisible(false);
             taulell.getJlNumFitxes06().setVisible(false);
+            taulell.getJlTotalFitxes06().setVisible(false);
         } else if (jugador.getPosicioTaula() == 6) {
             taulell.getJlFitxes07().setVisible(false);
             taulell.getJlAvatar07().setVisible(false);
             taulell.getJlNom07().setVisible(false);
             taulell.getJlNumFitxes07().setVisible(false);
+            taulell.getJlTotalFitxes07().setVisible(false);
         } else if (jugador.getPosicioTaula() == 7) {
             taulell.getJlFitxes08().setVisible(false);
             taulell.getJlAvatar08().setVisible(false);
             taulell.getJlNom08().setVisible(false);
             taulell.getJlNumFitxes08().setVisible(false);
+            taulell.getJlTotalFitxes08().setVisible(false);
         } else if (jugador.getPosicioTaula() == 8) {
             taulell.getJlFitxes09().setVisible(false);
             taulell.getJlAvatar09().setVisible(false);
             taulell.getJlNom09().setVisible(false);
             taulell.getJlNumFitxes09().setVisible(false);
+            taulell.getJlTotalFitxes09().setVisible(false);
         }
     }
 
@@ -369,12 +379,12 @@ public class ControladoraGui {
             taulell.getjSldrEntradaFitxes().setMaximum(tornActual.getJugadorTorn().getFitxesActuals());
             if (getTornActual().getJugadorTorn().getAposta() != null) {
                 if (tornActual.getJugadorTorn().getAposta().getQuantitat() < faseActual.getApostaMinima()) {//Fem que el boto call sigui call
-                    taulell.getJbCallCheck().setText("Call");
+                    taulell.getJbCallCheck().setText("Call: ");
                 } else if (tornActual.getJugadorTorn().getAposta().getQuantitat() == faseActual.getApostaMinima()) {//Fem que el boto call sigui check
-                    taulell.getJbCallCheck().setText("Check");
+                    taulell.getJbCallCheck().setText("Check: ");
                 }
             } else {
-                taulell.getJbCallCheck().setText("Call");
+                taulell.getJbCallCheck().setText("Call: ");
             }
         } else {
             taulell.getjSldrEntradaFitxes().setEnabled(false);
@@ -406,7 +416,7 @@ public class ControladoraGui {
 
     public void downScroll(JTextArea jTlog) {
         Dimension tamanhoTextArea = jTlog.getSize();
-        Point p = new Point(0,tamanhoTextArea.height);
+        Point p = new Point(0, tamanhoTextArea.height);
         JScrollPane scroll = taulell.getjScrollPaneFrase();
         scroll.getViewport().setViewPosition(p);
     }

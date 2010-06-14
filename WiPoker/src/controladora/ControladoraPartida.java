@@ -122,6 +122,7 @@ public class ControladoraPartida {
         gui.actualitzarLog("\n\n*******NOVA RONDA*******");
         //Inicia Fase
         for (int i = 0; i < 4; i++) {
+            gui.mostrarAvatars(partida.getJugadors());
             gui.getFaseActual().setApostaMinima(0);
 
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 0);
