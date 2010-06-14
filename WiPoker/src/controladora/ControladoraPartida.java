@@ -1,7 +1,8 @@
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * ControladoraPartida.java
  */
+
 package controladora;
 
 import domini.Aposta;
@@ -121,8 +122,8 @@ public class ControladoraPartida {
         System.out.println("\n\n\n\n\n********************NOVA RONDA****************************");
         gui.actualitzarLog("\n\n*******NOVA RONDA*******");
         //Inicia Fase
+        gui.mostrarAvatars(partida.getJugadors());
         for (int i = 0; i < 4; i++) {
-            gui.mostrarAvatars(partida.getJugadors());
             gui.getFaseActual().setApostaMinima(0);
 
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 0);
@@ -156,7 +157,7 @@ public class ControladoraPartida {
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
 
-        
+
         controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
         novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
 
@@ -301,7 +302,7 @@ public class ControladoraPartida {
                             gui.gestionarPot();
                             gui.getTornActual().run();
                         } else {
-                            
+
                             gui.getTornActual().run();
                         }
                         gui.actualitzaBotons();
@@ -345,7 +346,7 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                             gui.gestionarPot();
                         } else {
-                            
+
                             gui.getTornActual().run();
                         }
                         gui.actualitzaBotons();
@@ -364,7 +365,7 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                                 gui.gestionarPot();
                             } else {
-                                
+
                                 gui.getTornActual().run();
                             }
                             gui.actualitzaBotons();
@@ -503,7 +504,7 @@ public class ControladoraPartida {
             if (partida.getJugadors().get(i).getMaActual().getCombinacio() == combinacio && partida.getJugadors().get(i).getMaActual().getValorMesAlt() == valorMesAlt && partida.getJugadors().get(i).getMaActual().getValorDesempat() == valorDesempat && !partida.getJugadors().get(i).isEliminat() && !partida.getJugadors().get(i).isHaFetFold()) {
                 posiblesGuanyadors.add(partida.getJugadors().get(i));
                 System.out.println("Guanyador " + i + ": " + partida.getJugadors().get(i).getAlias());
-                gui.actualitzarLog("Guanyador " + i + ": " +partida.getJugadors().get(i).getAlias());
+                gui.actualitzarLog("Guanyador " + i + ": " + partida.getJugadors().get(i).getAlias());
             }
         }
 
@@ -538,6 +539,4 @@ public class ControladoraPartida {
     public int getDealer() {
         return dealer;
     }
-
-
 }
