@@ -252,6 +252,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                             }
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
+                            gui.getCjabber().setSala(room);
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             if (room.getName() != null && room.getName().length() == 0) {
                                 carregar_sala();
@@ -397,7 +398,9 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
     }
 
     private void carregar_sala() {
-        room.setJID(jcbServidors.getModel().getSelectedItem().toString());
+        room.setServer(jcbServidors.getModel().getSelectedItem().toString());
+        room.setName(jtfNom.getText());
+        //room.setJID(jcbServidors.getModel().getSelectedItem().toString());
         room.setNick(jtfAlias.getText());
     }
 
