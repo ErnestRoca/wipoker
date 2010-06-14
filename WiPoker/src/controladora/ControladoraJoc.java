@@ -6,11 +6,13 @@ package controladora;
 
 import domini.Aposta;
 import domini.Baralla;
+import domini.Bot;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -108,6 +110,12 @@ public class ControladoraJoc {
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Fold.");
         } else {
             //
+        }
+        if (jugador instanceof Bot) {
+            System.out.println("pomapoma");
+            cp.gui.getTaulell().getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/botDesactivat.png")));
+        } else {
+            cp.gui.getTaulell().getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatarDesactivat.png")));
         }
     }
 

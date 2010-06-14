@@ -95,7 +95,7 @@ public class GuiNovaPartidaOffline {
         jpFons.add(jlAlias);
 
         jtfAlias = new JTextField(20);
-        jtfAlias.setText("JugadorNoInteligent");
+        jtfAlias.setText("JugadorLocal");
         jtfAlias.setBounds(170, 170, 120, 24);
         jpFons.add(jtfAlias);
 
