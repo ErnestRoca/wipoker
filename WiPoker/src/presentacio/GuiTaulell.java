@@ -1,6 +1,8 @@
 package presentacio;
 
 import controladora.ControladoraGui;
+import controladora.ControladoraPartidaLocal;
+import controladora.ControladoraPartidaOnline;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -162,7 +164,16 @@ public class GuiTaulell {
             iniciarComponents(); // Automissatge per crear els components de la UI
             crearEscoltadors();
             gui.setTaulell(this);
-            gui.iniciarPartida();
+            if (gui.getCp() instanceof ControladoraPartidaOnline) {
+                if (gui.getCp().taulaIsFull()) {
+                    gui.iniciarPartida();
+                    System.out.println("prova");
+                }
+
+            } else if (gui.getCp() instanceof ControladoraPartidaLocal) {
+                gui.iniciarPartida();
+            }
+            
         } catch (InterruptedException ex) {
             Logger.getLogger(GuiTaulell.class.getName()).log(Level.SEVERE, null, ex);
         }
