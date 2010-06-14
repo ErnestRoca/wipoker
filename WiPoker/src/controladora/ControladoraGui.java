@@ -412,14 +412,23 @@ public class ControladoraGui {
     }
 
     public void gestionarButtons() {
+         System.out.println("dealer: " + cp.getDealer() + ", sb: " + cp.getSmallBlind() + ", bb: " + cp.getBigBlind());
         for (int i = 0; i < taulell.getJLButtons().size();i++) {
+           
             if (i == cp.getDealer()) {
+                System.out.println(i + " es el dealer");
                 taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
+                taulell.getJLButtons().get(i).setVisible(true);
             } else if (i == cp.getBigBlind()) {
+                System.out.println(i + " es el bb");
                 taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/bigblind.png")));
+                taulell.getJLButtons().get(i).setVisible(true);
             } else if (i == cp.getSmallBlind()) {
+                System.out.println(i + " es el sb");
                 taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/smallblind.png")));
+                taulell.getJLButtons().get(i).setVisible(true);
             } else {
+                System.out.println(i + " no es res");
                 taulell.getJLButtons().get(i).setVisible(false);
             }
         }
