@@ -263,7 +263,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                             carregar_sala();
                             refrescar_sala();
                             func = true;
-                            gui.getCjabber().setSala(room);
+                            
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()),
                                     gui);
                             gui.setCp(cpo);

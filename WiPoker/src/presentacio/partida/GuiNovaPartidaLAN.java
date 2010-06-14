@@ -86,7 +86,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
         final int w = 338;
         final int h = 629;
         setSize(w, h);
-        setTitle("Partida Online");
+        setTitle("Partida lan");
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -215,7 +215,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jPanelGlobal.add(jbTornar);
 
-        jlBarra = new JLabel("Menú Principal/Jugar/Partida Online");
+        jlBarra = new JLabel("Menú Principal/Jugar/Partida LAN");
         jlBarra.setForeground(Color.white);
         jlBarra.setBounds(2, 578, 340, 30);
         jPanelGlobal.add(jlBarra);
@@ -240,6 +240,8 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                         taulell.getjFrame().setLocation(getLocation());
                         taulell.getjFrame().setVisible(true);
                     }
+                } else {
+
                 }
             }
         });
@@ -252,8 +254,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
             public void actionPerformed(ActionEvent event) {
                 try {
                     dispose();
-                    menu =
-                            new GuiLoginJabberPartida(gui);
+                    menu = new GuiLoginJabberPartida(gui);
                     menu.getjFrame().setLocation(getLocation());
                     menu.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {

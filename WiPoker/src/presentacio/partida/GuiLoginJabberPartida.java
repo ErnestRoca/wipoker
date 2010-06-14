@@ -56,6 +56,7 @@ public class GuiLoginJabberPartida {
     private JLabel jlOffline;
     private JPanel jpBarra;
     private JPanel jpBarra2;
+    private JButton jbLAN;
 
     public GuiLoginJabberPartida() throws InterruptedException {
         iniciarComponents();
@@ -142,7 +143,20 @@ public class GuiLoginJabberPartida {
         jtfServidor.setBounds(170, 280, 120, 24);
         jpFons.add(jtfServidor);
 
+
         final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+
+        jbLAN = new JButton("LAN");
+        jbLAN.setMnemonic('A');
+        jbLAN.setCursor(cursor);
+        jbLAN.setFont(new Font(Font.SERIF, Font.BOLD, 16));
+        jbLAN.setBorder(new ButtonBorder(Color.black, Color.darkGray, Color.lightGray, Color.lightGray));
+        jbLAN.setIconTextGap(-260);
+        jbLAN.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
+        jbLAN.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
+        jbLAN.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbLAN.setBounds(100, 400, 120, 24);
+        jpFons.add(jbLAN);
 
         jbLogin = new JButton("LOGIN");
         jbLogin.setMnemonic('L');
@@ -153,7 +167,7 @@ public class GuiLoginJabberPartida {
         jbLogin.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto1.gif")));
         jbLogin.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbLogin.setHorizontalTextPosition(SwingConstants.CENTER);
-        jbLogin.setBounds(100, 400, 120, 24);
+        jbLogin.setBounds(100, 350, 120, 24);
         jpFons.add(jbLogin);
 
         jbOffline = new JButton("OFFLINE");
@@ -210,7 +224,6 @@ public class GuiLoginJabberPartida {
                                 gui.getCjabber().setSala(partidaOnline.room);
                             }
                             partidaOnline.dispose();
-                            System.out.println(gui.getCjabber().getMuc().getNickname());
                             taulell = new GuiTaulell(gui);
                             taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
                             taulell.getjFrame().setVisible(true);
@@ -246,6 +259,23 @@ public class GuiLoginJabberPartida {
             }
         });
 
+        jbLAN.addActionListener(new ActionListener() {
+
+            private GuiNovaPartidaLAN partidaLAN;
+
+            public void actionPerformed(ActionEvent e) {
+                 jFrame.dispose();
+                try {
+                    partidaLAN = new GuiNovaPartidaLAN(gui, jFrame, true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GuiLoginJabberPartida.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+                partidaLAN.setLocation(jFrame.getLocation());
+                partidaLAN.dispose();
+
+            }
+        });
         jbOffline.addActionListener(new ActionListener() {
 
             private GuiNovaPartidaOffline novaPartidaOffline;
