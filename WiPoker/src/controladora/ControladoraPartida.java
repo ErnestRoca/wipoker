@@ -301,8 +301,10 @@ public class ControladoraPartida {
                             gui.gestionarPot();
                             gui.getTornActual().run();
                         } else {
+                            
                             gui.getTornActual().run();
                         }
+                        gui.actualitzaBotons();
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
                         gui.gestionarFitxes();
                     } else if (countFase == 0) {
@@ -320,6 +322,7 @@ public class ControladoraPartida {
                             } else {
                                 gui.getTornActual().run();
                             }
+                            gui.actualitzaBotons();
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
                             gui.gestionarFitxes();
                         }
@@ -342,8 +345,10 @@ public class ControladoraPartida {
                             gui.getTornActual().run();
                             gui.gestionarPot();
                         } else {
+                            
                             gui.getTornActual().run();
                         }
+                        gui.actualitzaBotons();
                         gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
                         gui.gestionarFitxes();
                     } else if (countFase == 0) {
@@ -359,8 +364,10 @@ public class ControladoraPartida {
                                 gui.getTornActual().run();
                                 gui.gestionarPot();
                             } else {
+                                
                                 gui.getTornActual().run();
                             }
+                            gui.actualitzaBotons();
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
                             gui.gestionarFitxes();
                         }
