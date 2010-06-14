@@ -236,6 +236,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                         Servidor servidor = new Servidor(Integer.parseInt(jtfPort.getText()),
                                 Integer.parseInt(jtfMAxJ.getText()), Integer.parseInt(jtfMAxJ.getText()), gui);
                         ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
+                        cpo.afegirJugador(new Jugador("andres", 1000, 1, "avatar"));
                         gui.setCp(cpo);
                         dispose();
                         taulell = new GuiTaulell(gui);
