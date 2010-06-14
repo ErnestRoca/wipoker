@@ -19,6 +19,12 @@ public class SortirListener implements WindowListener, ActionListener {
 
     private GuiMenu menu;
 
+    /**
+     * Constructor d'instàncies de la classe.<br>
+     * pre: Les indicades als paràmetres<br>
+     * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
+     * @param menu
+     */
     public SortirListener(GuiMenu menu) {
         this.menu = menu;
     }
