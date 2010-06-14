@@ -199,7 +199,7 @@ public class ControladoraJoc {
                 System.out.println("Pot despres: " + fase.getRonda().getPot());
                 jugador.setHaFetAllin(true);
                 apostar(jugador, jugador.getFitxesActuals(), fase);
-                fase.setApostaMinima(dinersApostats);
+                //fase.setApostaMinima(dinersApostats);
                 System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
                 System.out.println("Pot despres: " + fase.getRonda().getPot());
@@ -208,7 +208,7 @@ public class ControladoraJoc {
                 System.out.println("Pot avanç: " + fase.getRonda().getPot());
                 jugador.setHaFetAllin(true);
                 apostar(jugador, jugador.getFitxesActuals(), fase);
-                fase.setApostaMinima(dinersApostats);
+                //fase.setApostaMinima(dinersApostats);
                 System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
                 System.out.println("Pot despres: " + fase.getRonda().getPot());
