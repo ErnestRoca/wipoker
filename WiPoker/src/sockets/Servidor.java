@@ -41,14 +41,20 @@ public class Servidor {
     private int smallBlind = 0;
     private int bigBlind = 0;
 
-    public Servidor(int port) {
-        try {
-            socket = new ServerSocket(port);
-            socket.accept();
-        } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        controlJoc = new ControladoraJoc(gui.getCp());
+    public Servidor(final int port) {
+        new Runnable() {
+
+            public void run() {
+                try {
+                    socket = new ServerSocket(port);
+                    socket.accept();
+                } catch (IOException ex) {
+                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                controlJoc = new ControladoraJoc(gui.getCp());
+            }
+        };
+        
     }
 
     public void jugar() throws InterruptedException {
