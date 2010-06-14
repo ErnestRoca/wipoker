@@ -7,6 +7,7 @@ package controladora;
 
 import domini.Jugador;
 import domini.Ma;
+import sockets.Servidor;
 
 /**
  *
@@ -14,13 +15,15 @@ import domini.Ma;
  */
 public class ControladoraPartidaOnline extends ControladoraPartida {
 
+
     public ControladoraPartidaOnline(ControladoraGui gui) {
         super(gui);
     }
 
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui) {
-        super(maxJugadors, gui);       
-    }    
+        super(maxJugadors, gui);  
+        
+    }
 
     public void afegirJugador(Jugador nouJugador) {
         if (!taulaIsFull()) {
@@ -29,6 +32,8 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
             super.taula.setCadiresOcupades((super.taula.getCadiresOcupades() + 1));
         }
     }
+
+
 }
 
  
