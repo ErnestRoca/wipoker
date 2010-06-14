@@ -185,7 +185,9 @@ public class GuiAfegirJugador {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(jFrame, "Jugador afegit satisfactoriament");
+                if (true) {
+                    JOptionPane.showMessageDialog(jFrame, "Jugador afegit satisfactoriament");
+                }
 
             }
         });
