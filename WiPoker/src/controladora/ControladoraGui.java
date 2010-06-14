@@ -384,7 +384,7 @@ public class ControladoraGui {
                     taulell.getJbCallCheck().setText("Check: ");
                 }
             } else {
-                taulell.getJbCallCheck().setText("Call: " + (faseActual.getApostaMinima()));
+                taulell.getJbCallCheck().setText("Call2: " + (faseActual.getApostaMinima()));
             }
         } else {
             taulell.getjSldrEntradaFitxes().setEnabled(false);
