@@ -232,7 +232,9 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
 
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
-                        Servidor servidor = new Servidor(Integer.parseInt(jtfPort.getText()));
+                        gui.setCp(new ControladoraPartidaOnline(gui));
+                        Servidor servidor = new Servidor(Integer.parseInt(jtfPort.getText()),
+                                Integer.parseInt(jtfMAxJ.getText()), Integer.parseInt(jtfMAxJ.getText()), gui);
                         ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
                         gui.setCp(cpo);
                         dispose();
