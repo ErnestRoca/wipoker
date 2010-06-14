@@ -242,21 +242,14 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         try {
                             carregar_sala();
                             if (room.getNick() != null && room.getNick().length() == 0) {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
-                                return;
-                            }                            
-                            gui.getCjabber().setSala(room);
-                            ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
-                            gui.setCp(cpo);
-                            cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
-                            if (room.getName() != null && room.getName().length() == 0) {
-                                //carregar_sala();
+                            } else if (room.getName() != null && room.getName().length() == 0) {
                                 if (jtfNom.getText().isEmpty()) {
                                     String jop = JOptionPane.showInputDialog(getContentPane(), "Nom de la nova taula?");
                                     if (jop instanceof String) {
@@ -266,11 +259,14 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                                 } else {
                                     room.setName(jtfNom.getText());
                                 }
-                                refrescar_sala();
-                                return;
                             }
-
+                            carregar_sala();
+                            refrescar_sala();
                             func = true;
+                            gui.getCjabber().setSala(room);
+                            ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
+                            gui.setCp(cpo);
+                            //cpo.afegirJugador(new Jugador(jtfAlias.getText(), cpo.taula.getPlaces(), 1, "avatar"));
                             dispose();
 
                         } catch (NumberFormatException exception) {
@@ -279,12 +275,11 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                     } else {
                         JOptionPane.showConfirmDialog(getContentPane(), "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
-
                 } else if (jrbUnir.isSelected()) {
                     if (room.getNick() != null && room.getNick().length() == 0) {
                         jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
-                        return;
                     }
+
                     ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
                     gui.setCp(cpo);
                     cpo.afegirJugador(new Jugador(jtfAlias.getText(), cpo.taula.getPlaces(), 1, "avatar"));
@@ -300,9 +295,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                             room.setName(jtfNom.getText());
                         }
                         refrescar_sala();
-                        return;
                     }
-
                     func = true;
                     dispose();
                 }
@@ -315,6 +308,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
             public void actionPerformed(ActionEvent e) {
                 carregar_sala();
                 refrescar_sala();
+
             }
         });
 
@@ -333,9 +327,11 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                         room.setName(jop);
                         jtfNom.setText(jop);
                     }
+
                 } else {
                     room.setName(jtfNom.getText());
                 }
+
                 refrescar_sala();
             }
 
@@ -364,7 +360,8 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
             public void actionPerformed(ActionEvent event) {
                 try {
                     dispose();
-                    menu = new GuiLoginJabberPartida(gui);
+                    menu =
+                            new GuiLoginJabberPartida(gui);
                     menu.getjFrame().setLocation(getLocation());
                     menu.getjFrame().setVisible(true);
                 } catch (InterruptedException ex) {
@@ -399,9 +396,11 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
     }
 
     private void carregar_sala() {
-        room.setServer(jcbServidors.getModel().getSelectedItem().toString());
-        room.setName(jtfNom.getText());    
-        room.setNick(jtfAlias.getText());
+        String cad = jtfNom.getText() + "@" + jcbServidors.getSelectedItem().toString() + "/" + jtfAlias.getText();
+        /*room.setServer(jcbServidors.getModel().getSelectedItem().toString());
+        room.setName(jtfNom.getText());
+        room.setNick(jtfAlias.getText());*/
+        room.setJID(cad);
     }
 
     private void refrescar_sala() {
