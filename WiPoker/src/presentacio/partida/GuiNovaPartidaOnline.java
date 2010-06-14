@@ -264,9 +264,10 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                             refrescar_sala();
                             func = true;
                             gui.getCjabber().setSala(room);
-                            ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
+                            ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()),
+                                    gui);
                             gui.setCp(cpo);
-                            //cpo.afegirJugador(new Jugador(jtfAlias.getText(), cpo.taula.getPlaces(), 1, "avatar"));
+                            cpo.afegirJugador(new Jugador(jtfAlias.getText(),6, 1, "avatar"));
                             dispose();
 
                         } catch (NumberFormatException exception) {
@@ -281,8 +282,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                     }
 
                     ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
-                    gui.setCp(cpo);
-                    cpo.afegirJugador(new Jugador(jtfAlias.getText(), cpo.taula.getPlaces(), 1, "avatar"));
+                    gui.setCp(cpo);                    
                     if (room.getName() != null && room.getName().length() == 0) {
                         carregar_sala();
                         if (jtfNom.getText().isEmpty()) {
@@ -298,6 +298,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                     }
                     func = true;
                     dispose();
+                    cpo.afegirJugador(new Jugador(jtfAlias.getText(), cpo.taula.getPlaces(), 1, "avatar"));
                 }
             }
         });
@@ -397,10 +398,10 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
 
     private void carregar_sala() {
         String cad = jtfNom.getText() + "@" + jcbServidors.getSelectedItem().toString() + "/" + jtfAlias.getText();
-        /*room.setServer(jcbServidors.getModel().getSelectedItem().toString());
+        room.setServer(jcbServidors.getModel().getSelectedItem().toString());
         room.setName(jtfNom.getText());
-        room.setNick(jtfAlias.getText());*/
-        room.setJID(cad);
+        room.setNick(jtfAlias.getText());
+        //room.setJID(cad);
     }
 
     private void refrescar_sala() {
