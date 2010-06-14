@@ -8,7 +8,11 @@ import javax.swing.JOptionPane;
 
 /**
  *
+ * Clase que implementa els listeners per sortir de l'aplicació.<br>
+ * 
  * @author wida53312560
+ * @version 0.35x
+ * 
  */
 @Deprecated
 public class SortirListener implements WindowListener, ActionListener {
