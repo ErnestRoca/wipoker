@@ -96,6 +96,8 @@ public class ControladoraJabber {
 
     public void setSala(JID r) {
         if (muc != null) {
+            muc.removeParticipantStatusListener(listeners);
+            muc.removeUserStatusListener(listeners);            
             connexio.removePacketListener(listeners);
             muc.leave();
         }

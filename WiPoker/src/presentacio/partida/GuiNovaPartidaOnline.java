@@ -249,13 +249,13 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                             if (room.getNick() != null && room.getNick().length() == 0) {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                                 return;
-                            }
+                            }                            
+                            gui.getCjabber().setSala(room);
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
                             gui.setCp(cpo);
-                            gui.getCjabber().setSala(room);
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), 1, "avatar"));
                             if (room.getName() != null && room.getName().length() == 0) {
-                                carregar_sala();
+                                //carregar_sala();
                                 if (jtfNom.getText().isEmpty()) {
                                     String jop = JOptionPane.showInputDialog(getContentPane(), "Nom de la nova taula?");
                                     if (jop instanceof String) {
@@ -399,13 +399,12 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
 
     private void carregar_sala() {
         room.setServer(jcbServidors.getModel().getSelectedItem().toString());
-        room.setName(jtfNom.getText());
-        //room.setJID(jcbServidors.getModel().getSelectedItem().toString());
+        room.setName(jtfNom.getText());    
         room.setNick(jtfAlias.getText());
     }
 
     private void refrescar_sala() {
-        jcbServidors.getModel().setSelectedItem(room.getJID());
+        jcbServidors.getModel().setSelectedItem(room.getServer());
     }
 
     public boolean isFunc() {
