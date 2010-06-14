@@ -242,10 +242,11 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                carregar_sala();
+                
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         try {
+                            carregar_sala();
                             if (room.getNick() != null && room.getNick().length() == 0) {
                                 jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                                 return;
