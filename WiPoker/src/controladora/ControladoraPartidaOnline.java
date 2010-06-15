@@ -6,7 +6,6 @@
 package controladora;
 
 import domini.Aposta;
-import domini.Baralla;
 import domini.Carta;
 import domini.Fase;
 import domini.Jugador;
@@ -40,9 +39,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
     public ControladoraPartidaOnline(ControladoraGui gui) {
         super(gui);
         this.gui = gui;
-        controlJoc = new ControladoraJoc(gui.getCp());
-        controlCartes = new ControladoraCartes();
-        controlIA = new ControladoraIA(gui.getCp().partida, controlCartes, gui.getCp());        
+              
     }
 
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui, String ip, final int port) {
