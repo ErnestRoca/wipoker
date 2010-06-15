@@ -270,6 +270,7 @@ public class ControladoraGui {
 
     public void gestionarJugadorEliminat(Jugador jugador) {
         taulell.getPanellsJugadors().get(jugador.getPosicioTaula()).setVisible(false);
+        taulell.getJLButtons().get(jugador.getPosicioTaula()).setVisible(false);
         /*if (jugador.getPosicioTaula() == 0) {
             taulell.getJlFitxes01().setVisible(false);
             taulell.getJlAvatar01().setVisible(false);
