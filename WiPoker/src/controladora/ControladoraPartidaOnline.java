@@ -22,27 +22,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sockets.Servidor;
 
-
 /**
  *
  * @author wida45787385
  */
 public class ControladoraPartidaOnline extends ControladoraPartida {
 
-    private ServerSocket socket;
-    private Socket socketEnlace;
     private int dealer = 0;
     private int smallBlind = 0;
     private int bigBlind = 0;
-
+    private Servidor servidor;
 
     public ControladoraPartidaOnline(ControladoraGui gui) {
         super(gui);
         this.gui = gui;
-              
+
     }
 
-    public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui, String ip, final int port) {
+    public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui, final String ip, final int port, final Jugador jugador) {
         super(maxJugadors, gui);
         this.gui = gui;
         controlJoc = new ControladoraJoc(gui.getCp());
@@ -53,12 +50,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         new Runnable() {
 
             public void run() {
-                try {
-                    socket = new ServerSocket(port);
-                    socketEnlace = socket.accept();
-                } catch (IOException ex) {
-                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                servidor = new Servidor(ip, port, jugador);
             }
         };
     }
