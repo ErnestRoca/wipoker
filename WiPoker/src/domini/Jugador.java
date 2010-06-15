@@ -9,9 +9,14 @@ import javax.swing.ImageIcon;
 
 /**
  *
+ * Descripció de la classe concreta Jugador.<br>
+ * Modela un jugador en el domini suggerit pels requeriments funcionals
+ * 
  * @author Andrés
  */
 public class Jugador {
+
+    // Atributs, variables membre o camps: Modelen les dades que la classe i les seves instàncies han de saber o conèixer en tot moment
 
     private final String dni;
     private final String nomComplet;
@@ -32,6 +37,12 @@ public class Jugador {
     private Torn torn;
     private ImageIcon avatar;
 
+    /**
+     * Constructor d'instàncies de la classe.<br>
+     * pre: Les indicades als paràmetres<br>
+     * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
+     * @param eoid El valor assignat a l'identificador extern de l'objecte
+     */
     public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula, String nomAvatar) {
         this.dni = dni;
         this.nomComplet = nomComplet;
@@ -48,6 +59,12 @@ public class Jugador {
         }
     }
 
+    /**
+     * Constructor d'instàncies de la classe.<br>
+     * pre: Les indicades als paràmetres<br>
+     * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
+     * @param eoid El valor assignat a l'identificador extern de l'objecte
+     */
     public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula, String avatar) {
         this(dni, nomComplet, alias, edat, telefon, posicioTaula, avatar);
         this.partidesGuanyades = (short) partidesGuanyades;
@@ -189,7 +206,7 @@ public class Jugador {
 
     /**
      * Retorna el valor de l'atribut haFetAllin.
-     * @return imatge associada a la pesa
+     * @return true, si el jugador ha fet all-in
      */
     public boolean HaFetAllin() {
         return haFetAllin;
@@ -201,7 +218,7 @@ public class Jugador {
 
     /**
      * Retorna el valor de l'atribut haFetFold.
-     * @return imatge associada a la pesa
+     * @return true, si el jugador ha fet fold
      */
     public boolean isHaFetFold() {
         return haFetFold;
@@ -212,8 +229,8 @@ public class Jugador {
     }
 
     /**
-     * Retorna el valor de l'atribut imatge.
-     * @return imatge associada a la pesa
+     * Retorna el valor de l'atribut maActual.
+     * @return la ma de cartes del jugador
      */
     public Ma getMaActual() {
         return maActual;
@@ -224,20 +241,20 @@ public class Jugador {
     }
 
     /**
-     * Retorna el valor de l'atribut imatge.
-     * @return imatge associada a la pesa
+     * Retorna el valor de l'atribut partidesGuanyades.
+     * @return la quantitde opartides guanyades
      */
     public short getPartidesGuanyades() {
         return partidesGuanyades;
     }
 
-    public void setPartidesGuanyades(short partidesGuanyades) {
-        this.partidesGuanyades = partidesGuanyades;
+    public void setPartidesGuanyades(int partidesGuanyades) {
+        this.partidesGuanyades = (short) partidesGuanyades;
     }
 
     /**
-     * Retorna el valor de l'atribut imatge.
-     * @return imatge associada a la pesa
+     * Retorna el valor de l'atribut puntuacio.
+     * @return la puntiacio del jugador
      */
     public int getPuntuacio() {
         return puntuacio;
@@ -248,8 +265,8 @@ public class Jugador {
     }
 
     /**
-     * Retorna el valor de l'atribut imatge.
-     * @return imatge associada a la pesa
+     * Retorna el valor de l'atribut telefon.
+     * @return el telefon del jugador
      */
     public String getTelefon() {
         return telefon;
@@ -260,8 +277,8 @@ public class Jugador {
     }
 
     /**
-     * Retorna el valor de l'atribut imatge.
-     * @return imatge associada a la pesa
+     * Retorna el valor de l'atribut torn.
+     * @return el torn en el que es trova el jugador
      */
     public Torn getTorn() {
         return torn;
@@ -275,8 +292,8 @@ public class Jugador {
         this.alias = alias;
     }
 
-    public void setEdat(byte edat) {
-        this.edat = edat;
+    public void setEdat(int edat) {
+        this.edat = (byte) edat;
     }
 
     @Override
