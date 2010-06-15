@@ -169,7 +169,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
 
         jlPort = new JLabel();
         jlPort.setBounds(74, 390, 340, 24);
-        jlPort.setText("pORT ");
+        jlPort.setText("Port ");
         jlPort.setForeground(Color.red);
         jlPort.setLayout(null);
         jPanelGlobal.add(jlPort);
@@ -228,20 +228,16 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
 
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
-
-                        Runnable runnable = new Runnable() {
-
-                            public void run() {
-                                ControladoraPartidaOnline cpo =
-                                        new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
-                                        jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
-                                gui.setCp(cpo);
-                            }
-                        };
+                        ControladoraPartidaOnline cpo =
+                                new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
+                                jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
+                        gui.setCp(cpo);
                         dispose();
                         taulell = new GuiTaulell(gui);
                         taulell.getjFrame().setLocation(getLocation());
                         taulell.getjFrame().setVisible(true);
+                        Servidor s = gui.getCpo().crearServidor(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
+                        gui.getCpo().setServidor(s);
                     }
                 } else if (jrbUnir.isSelected()) {
                     if (!jtfPort.getText().isEmpty() && !jtfIP.getText().isEmpty()) {

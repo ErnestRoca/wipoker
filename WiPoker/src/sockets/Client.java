@@ -31,20 +31,26 @@ public class Client {
     private Socket socket;
     private Jugador jugadorClient;
 
-    public Client(String ip, int port, Jugador jugador) {
-        try {
-            this.jugadorClient = jugador;
-            socket = new Socket(ip, port);
-            InputStream fluxeSocketEntrada = socket.getInputStream();
-            OutputStream fluxeSocketSortida = socket.getOutputStream();
-            fluxeEntrada = new ObjectInputStream(new DataInputStream(fluxeSocketEntrada));
-            fluxeSortida = new ObjectOutputStream(new DataOutputStream(fluxeSocketSortida));
+    public Client(final String ip, final int port, final Jugador jugador) {
 
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        Runnable runnable = new Runnable() {
+
+            public void run() {
+                try {
+                    jugadorClient = jugador;
+                    socket = new Socket(ip, port);
+                    InputStream fluxeSocketEntrada = socket.getInputStream();
+                    OutputStream fluxeSocketSortida = socket.getOutputStream();
+                    fluxeEntrada = new ObjectInputStream(new DataInputStream(fluxeSocketEntrada));
+                    fluxeSortida = new ObjectOutputStream(new DataOutputStream(fluxeSocketSortida));
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };        
     }
 
     public void apostar(int diners) throws IOException {
@@ -54,6 +60,4 @@ public class Client {
     public void rebreCarta(Carta carta) {
         jugadorClient.getMaActual().getCartes().add(carta);
     }
-
-    
 }

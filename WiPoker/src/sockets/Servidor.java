@@ -22,13 +22,38 @@ public class Servidor {
     private Client client;
 
     public Servidor(final String ip, final int port, final Jugador jugador) {
-        try {
-            socketServidor = new ServerSocket(port);
-            socketClient = socketServidor.accept();
-            client = new Client(ip, port, jugador);
+        try {            
+            socketServidor = new ServerSocket(port);                        
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally {
+            escoltar();
+            System.out.println("hola");
+            afegirseClient(ip, port, jugador);
+        }
+        
+    }
+
+    public void escoltar() {
+        
+        Thread t = new Thread() {            
+
+            @Override
+            public void run() {
+                try {
+                    socketClient = socketServidor.accept();
+                } catch (IOException ex) {
+                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        t.start();
+        
+    }
+
+    public void afegirseClient(final String ip, final int port, final Jugador jugador) {
+        client = new Client(ip, port, jugador);
     }
 
     public Client getClient() {
