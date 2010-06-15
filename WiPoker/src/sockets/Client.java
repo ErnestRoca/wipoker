@@ -31,36 +31,36 @@ public class Client {
     private Socket socket;
     private Jugador jugadorClient;
 
-    public Client(final String ip, final int port, final Jugador jugador) {
+    public Client(final String ip, final int port, final Jugador jugador) {        
+        
+            jugadorClient = jugador;
+            Thread t = new Thread() {
 
-
-        Runnable runnable = new Runnable() {
-
-            public void run() {
-                try {
-                    jugadorClient = jugador;
-                    socket = new Socket(ip, port);
-                    InputStream fluxeSocketEntrada = socket.getInputStream();
-                    OutputStream fluxeSocketSortida = socket.getOutputStream();
-                    fluxeEntrada = new ObjectInputStream(new DataInputStream(fluxeSocketEntrada));
-                    fluxeSortida = new ObjectOutputStream(new DataOutputStream(fluxeSocketSortida));
-                } catch (UnknownHostException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                @Override
+                public void run() {
+                    try {
+                        socket = new Socket(ip, port);
+                        InputStream fluxeSocketEntrada = socket.getInputStream();
+                        OutputStream fluxeSocketSortida = socket.getOutputStream();
+                        fluxeEntrada = new ObjectInputStream(new DataInputStream(fluxeSocketEntrada));
+                        fluxeSortida = new ObjectOutputStream(new DataOutputStream(fluxeSocketSortida));
+                        System.out.println(fluxeEntrada == null);
+                    } catch (UnknownHostException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-            }
-        };
+            };
+            t.start();
+    }
+
+    public void afegirse() {
         try {
-            afegirse();
+            fluxeSortida.writeObject(jugadorClient);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void afegirse() throws IOException {
-        fluxeSortida.writeObject(jugadorClient);
-
     }
 
     public void apostar(int diners) throws IOException {
