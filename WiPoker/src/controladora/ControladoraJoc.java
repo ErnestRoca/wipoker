@@ -25,7 +25,10 @@ public class ControladoraJoc {
     public ControladoraJoc(ControladoraPartida cp) {
         this.cp = cp;
     }
-
+/**
+ *
+ * @return una Baralla
+ */
     public Baralla crearBaralla() {
         ArrayList<Carta> cartes = new ArrayList<Carta>();
         for (byte i = 2; i <= 14; i++) {
@@ -44,7 +47,12 @@ public class ControladoraJoc {
         b.setCartes(cartes);
         return b;
     }
-
+/**
+ *
+ * @param jugadors
+ * @param baralla
+ * @return les cartes privades repartides
+ */
     public ArrayList<Carta> repartirCartesPrivades(ArrayList<Jugador> jugadors, Baralla baralla) {
         ArrayList<Carta> privades = new ArrayList<Carta>();
         for (int i = 0; i <= 1; i++) {
@@ -62,7 +70,13 @@ public class ControladoraJoc {
         }
         return privades;
     }
-
+/**
+ *
+ * @param jugadors
+ * @param baralla
+ * @param numCartes
+ * @return les cartes aixecades
+ */
     public ArrayList<Carta> aixecarCartes(ArrayList<Jugador> jugadors, Baralla baralla, int numCartes) {
         ArrayList<Carta> publiques = new ArrayList<Carta>();
         for (int i = 0; i < numCartes; i++) {
@@ -79,16 +93,28 @@ public class ControladoraJoc {
 
         return publiques;
     }
-
+/**
+ *
+ * @param baralla
+ */
     public void cremarCartes(Baralla baralla) {
         //baralla.getCartes().remove(baralla.getCartes().size() - 1);
         baralla.setCartesActuals((baralla.getCartesActuals() - 1));
     }
-
+/**
+ *
+ * @param baralla
+ */
     public void barallar(Baralla baralla) {
         Collections.shuffle(baralla.getCartes());
     }
 
+    /**
+     *
+     * @param jugador
+     * @param quantitat
+     * @param fase
+     */
     public void apostar(Jugador jugador, int quantitat, Fase fase) {
         if (cp instanceof ControladoraPartidaLocal) {
             double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
@@ -102,7 +128,11 @@ public class ControladoraJoc {
             //
         }
     }
-
+/**
+ *
+ * @param jugador
+ * @param fase
+ */
     public synchronized void ferFold(Jugador jugador, Fase fase) {
         if (cp instanceof ControladoraPartidaLocal) {
             jugador.setHaFetFold(true);
@@ -118,7 +148,12 @@ public class ControladoraJoc {
             cp.gui.getTaulell().getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatarDesactivat.png")));
         }
     }
-
+/**
+ *
+ * @param jugador
+ * @param fase
+ * @param apostaMinima
+ */
     public synchronized void ferCall(Jugador jugador, Fase fase, int apostaMinima) {
         if (cp instanceof ControladoraPartidaLocal) {
             //si no te prou fitxes
@@ -147,7 +182,12 @@ public class ControladoraJoc {
             }
         }
     }
-
+/**
+ *
+ * @param jugador
+ * @param fase
+ * @param apostaMinima
+ */
     public synchronized void ferCheck(Jugador jugador, Fase fase, int apostaMinima) {
         if (cp instanceof ControladoraPartidaLocal) {
             //no fa res. Ho hem fet volent
@@ -158,7 +198,12 @@ public class ControladoraJoc {
             //
         }
     }
-
+/**
+ *
+ * @param jugador
+ * @param fase
+ * @param dinersApostats
+ */
     public synchronized void ferBlind(Jugador jugador, Fase fase, int dinersApostats) {
         if (cp instanceof ControladoraPartidaLocal) {
             if (jugador.getFitxesActuals() < dinersApostats && jugador.getFitxesActuals() >= 0) {
@@ -191,7 +236,13 @@ public class ControladoraJoc {
             }
         }
     }
-
+/**
+ *
+ * @param jugador
+ * @param fase
+ * @param apostaMinima
+ * @param dinersApostats
+ */
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         if (cp instanceof ControladoraPartidaLocal) {
             if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
@@ -232,7 +283,11 @@ public class ControladoraJoc {
             }
         }
     }
-
+/**
+ * 
+ * @param jugadors
+ * @param pot
+ */
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
         for (int i = 0; i < jugadors.size(); i++) {
             System.out.println(jugadors.get(i).getAlias() + ", fitxes actuals: " + jugadors.get(i).getFitxesActuals());
