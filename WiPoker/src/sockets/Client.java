@@ -50,7 +50,17 @@ public class Client {
                     Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        };        
+        };
+        try {
+            afegirse();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void afegirse() throws IOException {
+        fluxeSortida.writeObject(jugadorClient);
+
     }
 
     public void apostar(int diners) throws IOException {

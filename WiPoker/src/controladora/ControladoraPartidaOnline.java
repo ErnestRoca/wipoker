@@ -60,6 +60,11 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         }
     }
 
+    public void afegirJugadorOnline() {
+        Jugador j = servidor.afegirJugadorRemot();
+        partida.getJugadors().add(j);
+    }
+
     @Override
     public void jugar() throws InterruptedException {
         System.out.println("---------********NOVA PARTIDA******---------");
