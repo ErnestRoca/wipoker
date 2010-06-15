@@ -132,6 +132,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         }
     }
 
+    @Override
     public void iniciarRonda(int boto) throws InterruptedException {
         //Crea ronda
         Ronda novaRonda = new Ronda(0);
@@ -174,6 +175,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         }
     }
 
+    @Override
     public void gestionarFase(Fase novaFase, int boto) throws InterruptedException {
         //Clase fase te dos static: array string nom fases i byte amb el numero de fase
         //Passem al constructor l'string de l'index de la fase
@@ -188,6 +190,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         }
     }
 
+    @Override
     public void eventsPreFlop(int apostaMin, Fase fase, int boto) throws InterruptedException {
         for (Jugador j : gui.getCp().partida.getJugadors()) {
             j.setTorn(new Torn(j));
@@ -260,6 +263,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         eventsFase(fase, boto);
     }
 
+    @Override
     public void eventsFase(Fase fase, int boto) throws InterruptedException {
         boolean fi = false;
         //num vegades que fa la mateixa fase (igualant les apostes)
@@ -350,6 +354,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         System.out.println("Pot del " + fase.getNomFase() + ": " + fase.getRonda().getPot());
     }
 
+    @Override
     public void eventsFlop(Fase fase, int boto) throws InterruptedException {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(gui.getCp().partida.getJugadors(), baralla, 3);
@@ -362,6 +367,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         eventsFase(fase, boto);
     }
 
+    @Override
     public void eventsTurn(Fase fase, int boto) throws InterruptedException {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(gui.getCp().partida.getJugadors(), baralla, 1);
@@ -374,6 +380,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         eventsFase(fase, boto);
     }
 
+    @Override
     public void eventsRiver(Fase fase, int boto) throws InterruptedException {
         controlJoc.cremarCartes(baralla);
         ArrayList<Carta> publiques = controlJoc.aixecarCartes(gui.getCp().partida.getJugadors(), baralla, 1);
@@ -390,6 +397,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         }
     }
 
+    @Override
     public void determinarCombinacio() {
         for (Jugador j : gui.getCp().partida.getJugadors()) {
             if (controlCartes.esEscalaReial(j)) {
@@ -406,6 +414,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         }
     }
 
+    @Override
     public void determinarCombinacioPreFlop() {
         for (Jugador j : gui.getCp().partida.getJugadors()) {
             if (controlCartes.esParella(j)) {
@@ -414,6 +423,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         }
     }
 
+    @Override
     public ArrayList<Jugador> determinarGuanyador() {
         ArrayList<Jugador> posiblesGuanyadors = new ArrayList<Jugador>();
         int combinacio = 0;
@@ -461,6 +471,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         return posiblesGuanyadors;
     }
 
+    @Override
     public void determinarJugadorsEliminats() {
         System.out.println("ELIMINANT JUGADORS...");
         System.out.println("Hi han " + gui.getCp().partida.getJugadors().size() + " jugadors");
@@ -478,19 +489,20 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         System.out.println("");
     }
 
+    @Override
     public int getBigBlind() {
         return bigBlind;
     }
 
+    @Override
     public int getSmallBlind() {
         return smallBlind;
     }
 
+    @Override
     public int getDealer() {
         return dealer;
     }
-}
-
 }
 
  
