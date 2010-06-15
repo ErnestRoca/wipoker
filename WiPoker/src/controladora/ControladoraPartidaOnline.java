@@ -11,15 +11,9 @@ import domini.Fase;
 import domini.Jugador;
 import domini.Ma;
 import domini.Ronda;
-import domini.Taula;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sockets.Servidor;
 
 /**
@@ -36,23 +30,12 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
     public ControladoraPartidaOnline(ControladoraGui gui) {
         super(gui);
         this.gui = gui;
-
     }
 
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui, final String ip, final int port, final Jugador jugador) {
         super(maxJugadors, gui);
         this.gui = gui;
-        controlJoc = new ControladoraJoc(gui.getCp());
-        controlCartes = new ControladoraCartes();
-        controlIA = new ControladoraIA(gui.getCp().partida, controlCartes, gui.getCp());
-        taula = new Taula(maxJugadors, controlJoc.crearBaralla());
-
-        new Runnable() {
-
-            public void run() {
-                servidor = new Servidor(ip, port, jugador);
-            }
-        };
+        servidor = new Servidor(ip, port, jugador);
     }
 
     public void afegirJugador(Jugador nouJugador) {
