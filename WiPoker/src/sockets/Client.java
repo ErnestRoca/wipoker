@@ -39,6 +39,7 @@ public class Client {
             OutputStream fluxeSocketSortida = socket.getOutputStream();
             fluxeEntrada = new ObjectInputStream(new DataInputStream(fluxeSocketEntrada));
             fluxeSortida = new ObjectOutputStream(new DataOutputStream(fluxeSocketSortida));
+
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
