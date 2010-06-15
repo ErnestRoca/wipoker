@@ -5,7 +5,6 @@ import controladora.ControladoraPartidaLocal;
 import controladora.ControladoraPartidaOnline;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -1064,7 +1063,7 @@ public class GuiTaulell {
         jlCroupier.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/croupier.png")));
         jlCroupier.setOpaque(false);
         final int x1 = 0;
-        final int y1 = 0;
+        final int y1 = 20;
         final int w1 = 100;
         final int h1 = 100;
         jlCroupier.setBounds(x1, y1, w1, h1);
