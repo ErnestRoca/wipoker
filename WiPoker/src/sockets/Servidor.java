@@ -15,20 +15,22 @@ import java.util.logging.Logger;
  *
  * @author wida45787385
  */
-
 public class Servidor {
 
     private ServerSocket socketServidor;
     private Socket socketClient;
     private Client client;
 
-    public Servidor(String ip, int port, Jugador jugador)  {
+    public Servidor(final String ip, final int port, final Jugador jugador) {
+        super();
         try {
             socketServidor = new ServerSocket(port);
             socketClient = socketServidor.accept();
             client = new Client(ip, port, jugador);
+
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
+} 
+    

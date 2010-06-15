@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import presentacio.GuiTaulell;
 import sockets.Client;
+import sockets.Servidor;
 
 /**
  *
@@ -227,12 +228,9 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
 
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
-                        gui.setCp(new ControladoraPartidaOnline(gui));
-                        
                         ControladoraPartidaOnline cpo =
                                 new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
                                 jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
-                        
                         gui.setCp(cpo);
                         dispose();
                         taulell = new GuiTaulell(gui);
@@ -240,9 +238,9 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                         taulell.getjFrame().setVisible(true);
                     }
                 } else if (jrbUnir.isSelected()) {
-                    if (!jtfPort.getText().isEmpty() &&!jtfIP.getText().isEmpty()) {
-                        Jugador jugador = new Jugador("priva",Integer.parseInt(jtfFInicials.getText()), 2, "avatar");
-                        Client client = new Client(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), jugador);                                               
+                    if (!jtfPort.getText().isEmpty() && !jtfIP.getText().isEmpty()) {
+                        Jugador jugador = new Jugador("priva", Integer.parseInt(jtfFInicials.getText()), 2, "avatar");
+                        Client client = new Client(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), jugador);
                         dispose();
                         taulell = new GuiTaulell(gui);
                         taulell.getjFrame().setLocation(getLocation());
