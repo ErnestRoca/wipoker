@@ -5,7 +5,11 @@
 package sockets;
 
 import domini.Jugador;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -20,17 +24,19 @@ public class Servidor {
     private ServerSocket socketServidor;
     private Socket socketClient;
     private Client client;
+    private ObjectInputStream fluxeEntrada;
+    private ObjectOutputStream fluxeSortida;
 
     public Servidor(final String ip, final int port, final Jugador jugador) {
         try {            
-            socketServidor = new ServerSocket(port);                        
+            socketServidor = new ServerSocket(port);            
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally {
             escoltar();
             System.out.println("hola");
-            afegirseClient(ip, port, jugador);
+            afegirseUnMateix(ip, port, jugador);
         }
         
     }
@@ -43,6 +49,8 @@ public class Servidor {
             public void run() {
                 try {
                     socketClient = socketServidor.accept();
+                    fluxeEntrada = new ObjectInputStream(new DataInputStream(socketClient.getInputStream()));
+                    fluxeSortida = new ObjectOutputStream(new DataOutputStream(socketClient.getOutputStream()));
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -52,8 +60,20 @@ public class Servidor {
         
     }
 
-    public void afegirseClient(final String ip, final int port, final Jugador jugador) {
-        client = new Client(ip, port, jugador);
+    public void afegirseUnMateix(final String ip, final int port, final Jugador jugador) {
+        client = new Client(ip, port, jugador);        
+    }
+
+    public Jugador afegirJugadorRemot() {
+        Jugador j = null;
+        try {
+            j = (Jugador) fluxeEntrada.readObject();
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return j;
     }
 
     public Client getClient() {
