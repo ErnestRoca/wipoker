@@ -17,7 +17,12 @@ import java.util.Comparator;
 public class ControladoraCartes {
 
     private byte colorFinal;
-
+/**
+ *
+ * @param jugador
+ * @return esFull
+ * Algoritme es basa en cercar la condicio d'escala color en uns limits determiants
+ */
     public boolean esEscalaReial(Jugador jugador) {
         boolean esEscalaReial = false;
         boolean escalaColor = esEscalaColor(jugador);
@@ -42,7 +47,13 @@ public class ControladoraCartes {
         }
         return esEscalaReial;
     }
-
+/**
+ *
+ * @param jugador
+ * @return esFull
+ * Algoritme es basa en cercar la condicio d'escala i a mes que siguin del mateix color. Si es compleix
+ * Es processen les duplicades i es comprova si les cartes de la mateixa escala son del mateix color
+ */
     public boolean esEscalaColor(Jugador jugador) {
         boolean esEscalaColor = false;
 
@@ -234,7 +245,12 @@ public class ControladoraCartes {
         }
         return esEscalaColor;
     }
-
+/**
+ *
+ * @param jugador
+ * @return esFull
+ * Algoritme es basa en cercar 4 cartes iguals
+ */
     public boolean esPoker(Jugador jugador) {
         boolean esPoker = false;
         byte valorPoker = 0;
@@ -273,7 +289,13 @@ public class ControladoraCartes {
         }
         return esPoker;
     }
-
+/**
+ *
+ * @param jugador
+ * @return esFull
+ * Algoritme es basa en cercar la condicio de trio i a mes recorrer les cartes en busca d'una parella
+ * que no tingui el valor del trio.
+ */
     public boolean esFull(Jugador jugador) {
 
         ArrayList<Integer> valors = new ArrayList<Integer>();
@@ -334,7 +356,13 @@ public class ControladoraCartes {
 
 
     }
-
+/**
+ *
+ * @param jugador
+ * @return sonMateixColor
+ * Algoritme esBasa en cercar si les cartes son del mateix color, buscant les que siguin del mateix
+ * color i les que no
+ */
     public boolean sonMateixColor(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         Collections.sort(cartes, new Comparator() {
@@ -393,7 +421,14 @@ public class ControladoraCartes {
 
         return mateixColor;
     }
-
+/**
+ *
+ * @param jugador
+ * @return esEscala
+ * algoritme es basa en la cerca de les 3 possibles escales en una ma de maxim 7 cartes
+ * Eliminant les cartes duplicades es comproven els valors de les cartes per veure si son consecutives
+ * En cas d'haver-hi mes d'una escala, ens quedem amb la de valor mes alt
+ */
     public boolean esEscala(Jugador jugador) {
         boolean esEscala = false;
         boolean esEscala1 = false;
@@ -498,7 +533,13 @@ public class ControladoraCartes {
         }
         return esEscala;
     }
-
+/**
+ *
+ * @param jugador
+ * @return esTrio
+ * Algoritme es basa en buscar els dos possibles trios en una ma de maxim 7 cartes
+ * si hi ha 2 trios ens quedem amb el de valor mes alt
+ */
     public boolean esTrio(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         int numCartes1 = 1;
@@ -557,7 +598,14 @@ public class ControladoraCartes {
         }
         return (esTrio1 || esTrio2);
     }
-
+/**
+ *
+ * @param jugador
+ * @return si es dobleParella
+ * Algoritme es basa en la busqueda de les 3 posibles parelles en una ma de maxim 7 cartes
+ * guardant el valor de cadascuna de les parelles trobades. En cas d'haver-hi dues parelles iguals
+ * retornara true. Si haguessin 3 parelles s'agafen les dues de valor mes alt
+ */
     public boolean esDobleParella(Jugador jugador) {
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
         int valorParella1 = -1;
@@ -615,7 +663,13 @@ public class ControladoraCartes {
 
         return dobleParella;
     }
-
+/**
+ *
+ * @param jugador
+ * @return si es parella
+ * Algoritme es basa en comprovar el valor d'una carta amb la seguent per mirar si tenen el mateix
+ * valor. En cas que es trobi mes d'una coincidencia es comprova el valor mes alt
+ */
     public boolean esParella(Jugador jugador) {
         int iguals = 0;
         ArrayList<Carta> cartes = jugador.getMaActual().getCartes();
