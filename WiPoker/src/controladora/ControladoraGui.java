@@ -269,8 +269,8 @@ public class ControladoraGui {
     }
 
     public void gestionarJugadorEliminat(Jugador jugador) {
-        taulell.getJLButtons().get(jugador.getPosicioTaula()).setVisible(false);
-        if (jugador.getPosicioTaula() == 0) {
+        taulell.getPanellsJugadors().get(jugador.getPosicioTaula()).setVisible(false);
+        /*if (jugador.getPosicioTaula() == 0) {
             taulell.getJlFitxes01().setVisible(false);
             taulell.getJlAvatar01().setVisible(false);
             taulell.getJlNom01().setVisible(false);
@@ -324,7 +324,7 @@ public class ControladoraGui {
             taulell.getJlNom09().setVisible(false);
             taulell.getJlNumFitxes09().setVisible(false);
             taulell.getJlTotalFitxes09().setVisible(false);
-        }
+        }*/
     }
 
     //Canvi del nom del boto call a check, i ocultar el boto check per posar-hi un input
