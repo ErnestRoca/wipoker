@@ -209,6 +209,7 @@ public class ControladoraPartida {
     }
 
     public void eventsPreFlop(int apostaMin, Fase fase, int boto) throws InterruptedException {
+        //creem un torn per a cada jugador
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
         }
@@ -224,6 +225,7 @@ public class ControladoraPartida {
                 posicioSmallBlind = i;
                 smallBlind = i;
                 trobat = true;
+                //actualitzem la gui
                 gui.gestionarPot();
                 gui.gestionarFitxes();
             }
@@ -239,6 +241,7 @@ public class ControladoraPartida {
                     posicioSmallBlind = i;
                     smallBlind = i;
                     trobat = true;
+                    //actualitzem la gui
                     gui.gestionarPot();
                     gui.gestionarFitxes();
                 }
