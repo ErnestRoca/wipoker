@@ -6,7 +6,6 @@ package presentacio.partida;
 
 import controladora.ControladoraGui;
 import controladora.ControladoraPartidaOnline;
-import controladora.jabber.JID;
 import domini.Jugador;
 import java.awt.Color;
 import java.awt.Font;
@@ -14,9 +13,6 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -25,13 +21,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 import presentacio.GuiTaulell;
-import sockets.Servidor;
+import sockets.Client;
 
 /**
  *
@@ -233,9 +228,10 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
                         gui.setCp(new ControladoraPartidaOnline(gui));
-                        Servidor servidor = new Servidor(Integer.parseInt(jtfPort.getText()),
-                                Integer.parseInt(jtfMAxJ.getText()), Integer.parseInt(jtfMAxJ.getText()), gui);
-                        ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui);
+                        
+                        ControladoraPartidaOnline cpo =
+                                new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
+                                jtfIP.getText(), Integer.parseInt(jtfPort.getText()));
                         cpo.afegirJugador(new Jugador("andres", 1000, 1, "avatar"));
                         gui.setCp(cpo);
                         dispose();
@@ -243,8 +239,15 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                         taulell.getjFrame().setLocation(getLocation());
                         taulell.getjFrame().setVisible(true);
                     }
-                } else {
-
+                } else if (jrbUnir.isSelected()) {
+                    if (!jtfPort.getText().isEmpty() &&!jtfIP.getText().isEmpty()) {
+                        Jugador jugador = new Jugador("priva",Integer.parseInt(jtfFInicials.getText()), 2, "avatar");
+                        Client client = new Client(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), jugador);                                               
+                        dispose();
+                        taulell = new GuiTaulell(gui);
+                        taulell.getjFrame().setLocation(getLocation());
+                        taulell.getjFrame().setVisible(true);
+                    }
                 }
             }
         });
