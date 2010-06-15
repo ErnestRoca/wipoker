@@ -228,10 +228,16 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
 
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
-                        ControladoraPartidaOnline cpo =
-                                new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
-                                jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
-                        gui.setCp(cpo);
+
+                        Runnable runnable = new Runnable() {
+
+                            public void run() {
+                                ControladoraPartidaOnline cpo =
+                                        new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
+                                        jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
+                                gui.setCp(cpo);
+                            }
+                        };
                         dispose();
                         taulell = new GuiTaulell(gui);
                         taulell.getjFrame().setLocation(getLocation());

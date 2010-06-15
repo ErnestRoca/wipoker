@@ -34,19 +34,8 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
 
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui, final String ip, final int port, final Jugador jugador) {
         super(maxJugadors, gui);
-        System.out.println("hola");
-        Runnable runnable = new Runnable() {
-            private Servidor servidor;
-
-            public void run() {
-                this.servidor = new Servidor(ip, port, jugador);
-                System.out.println(servidor.getSocketClient().isConnected());
-            }
-        };
-        runnable.run();
-        System.out.println("servidor creat");
+        servidor = new Servidor(ip, port, jugador);
         System.out.println(servidor.getSocketClient().isConnected());
-
     }
 
     public void afegirJugador(Jugador nouJugador) {
