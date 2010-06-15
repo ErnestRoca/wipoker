@@ -96,6 +96,7 @@ public class GuiEditarJugador {
 
         jtfNom = new JTextField(20);
         jtfNom.setBounds(170, 140, 120, 24);
+        jtfNom.setEditable(false);
         jpFons.add(jtfNom);
 
         jlAlies = new JLabel();
@@ -129,6 +130,7 @@ public class GuiEditarJugador {
 
         jtfDNI = new JTextField(20);
         jtfDNI.setBounds(170, 350, 120, 24);
+        jtfDNI.setEditable(false);
         jpFons.add(jtfDNI);
 
         jlTelefon = new JLabel();
@@ -174,10 +176,12 @@ public class GuiEditarJugador {
                     jtfNom.setText(gui.getJugadorLocal().getNomComplet());
                     jtfDNI.setText(gui.getJugadorLocal().getDni());
                     gui.getJugadorLocal().setAlias(jtfAlies2.getText());
-                    gui.getJugadorLocal().setEdat((byte) ( Integer.parseInt(jtfEdat.getText())));
+                    gui.getJugadorLocal().setEdat(Integer.parseInt(jtfEdat.getText()));
                     gui.getJugadorLocal().setTelefon(jtfTelefon.getText());
+                    JOptionPane.showMessageDialog(jFrame, "Jugador editat satisfactoriament");
+
                 } else {
-                    JOptionPane.showInputDialog("jugador no creat");
+                    JOptionPane.showMessageDialog(jFrame, "Jugador no creat");
                 }
 
             }
