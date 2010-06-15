@@ -6,7 +6,7 @@ package domini;
 import java.util.ArrayList;
 
 /**
- * Descripció de la classe concreta Persona.<br>
+ * Descripció de la classe concreta Baralla.<br>
  * Modela una Baralla en el domini suggerit pels requeriments funcionals
  * 
  * @author ernest
