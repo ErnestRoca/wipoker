@@ -265,7 +265,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                             func = true;
                             
                             ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()),
-                                    gui, "", 0);
+                                    gui, "", 0, null);
                             gui.setCp(cpo);
                             cpo.afegirJugador(new Jugador(jtfAlias.getText(),6, 1, "avatar"));
                             dispose();
