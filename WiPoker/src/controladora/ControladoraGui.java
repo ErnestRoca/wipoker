@@ -346,7 +346,7 @@ public class ControladoraGui {
                     taulell.getJbCallCheck().setText("Check: ");
                 }
             } else {
-                taulell.getJbCallCheck().setText("Call2: " + (faseActual.getApostaMinima()));
+                taulell.getJbCallCheck().setText("Call: " + (faseActual.getApostaMinima()));
             }
         } else {
             taulell.getjSldrEntradaFitxes().setEnabled(false);
@@ -387,7 +387,11 @@ public class ControladoraGui {
         System.out.println("dealer: " + cp.getDealer() + ", sb: " + cp.getSmallBlind() + ", bb: " + cp.getBigBlind());
         for (int i = 0; i < taulell.getJLButtons().size(); i++) {
 
-            if (i == cp.getDealer()) {
+            if (i == cp.getDealer() && i == cp.getBigBlind()) {
+                System.out.println(i + " es el dealer");
+                taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealerbigblind.png")));
+                taulell.getJLButtons().get(i).setVisible(true);
+            } else if (i == cp.getDealer()) {
                 System.out.println(i + " es el dealer");
                 taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
                 taulell.getJLButtons().get(i).setVisible(true);
