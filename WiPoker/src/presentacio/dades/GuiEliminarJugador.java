@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -39,7 +40,6 @@ public class GuiEliminarJugador {
     private JButton jbEliminar;
     private JTextArea jlText;
     private JButton jbTornar;
-
     private GuiMenuDades menu;
     private ControladoraGui gui;
 
@@ -51,8 +51,6 @@ public class GuiEliminarJugador {
         this.gui = gui;
         iniciarComponents();
     }
-
-
 
     public void iniciarComponents() throws InterruptedException {
         jFrame = new JFrame();
@@ -137,6 +135,31 @@ public class GuiEliminarJugador {
         jbTornar.setRolloverIcon(new ImageIcon(getClass().getResource("/serveis/imatges/boto2.gif")));
         jbTornar.setHorizontalTextPosition(SwingConstants.CENTER);
         jpFons.add(jbTornar);
+
+        jbBuscar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (gui.getJugadorLocal() != null) {
+                    if (gui.getJugadorLocal().getAlias().equals(jtfAlies.getText())) {
+                        JOptionPane.showMessageDialog(jFrame, "Jugador existeix. Clica Esborrar per procedir");
+                    } else {
+                        JOptionPane.showMessageDialog(jFrame, "Aquest Jugador no existeix. Introdueix alies correcte");
+                    }
+                }
+            }
+        });
+
+        jbEliminar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (gui.getJugadorLocal() != null) {
+                gui.setJugadorLocal(null);
+                JOptionPane.showMessageDialog(jFrame, "Jugador eliminat satisfactoriament");
+                } else {
+                    JOptionPane.showMessageDialog(jFrame, "Jugador no eliminat");
+                }
+            }
+        });
 
         jbTornar.addActionListener(new ActionListener() {
 
