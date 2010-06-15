@@ -29,14 +29,15 @@ import presentacio.partida.GuiLoginJabberPartida;
 public class ControladoraGui {
 
     private boolean login;
-    private ControladoraPartida cp;
-    private ControladoraPartidaOnline cpo;
+    private String logs = "";
     private Torn tornActual = new Torn();
     private Fase faseActual = new Fase();
     /** Pseudoatribut per implementar visibilitat d'atribut. */
+    private ControladoraPartida cp;
+    private ControladoraPartidaOnline cpo;
+    private Jugador jugadorLocal;
     private GuiTaulell taulell;
     private ControladoraJabber cjabber;
-    private String logs = "";
 
     public ControladoraGui() {
         cjabber = new ControladoraJabber();
@@ -50,61 +51,6 @@ public class ControladoraGui {
             cpo = (ControladoraPartidaOnline) cp;
         }
         cjabber = new ControladoraJabber();
-    }
-
-    public GuiTaulell getTaulell() {
-        return taulell;
-    }
-
-    public ControladoraPartida getCp() {
-        return cp;
-    }
-
-    public void setCp(ControladoraPartida cp) {
-        this.cp = cp;
-        if (cp instanceof ControladoraPartidaOnline) {
-            cpo = (ControladoraPartidaOnline) cp;
-        }
-    }
-
-    public ControladoraPartidaOnline getCpo() {
-        return cpo;
-    }
-
-    public void setCpo(ControladoraPartidaOnline cpo) {
-        this.cpo = cpo;
-    }
-
-    public ControladoraJabber getCjabber() {
-        return cjabber;
-    }
-
-    public void setLogin(boolean login) {
-        this.login = login;
-    }
-
-    public boolean isLogin() {
-        return login;
-    }
-
-    public Fase getFaseActual() {
-        return faseActual;
-    }
-
-    public void setFaseActual(Fase faseActual) {
-        this.faseActual = faseActual;
-    }
-
-    public void setTaulell(GuiTaulell t) {
-        this.taulell = t;
-    }
-
-    public Torn getTornActual() {
-        return tornActual;
-    }
-
-    public void setTornActual(Torn tornActual) {
-        this.tornActual = tornActual;
     }
 
     @Deprecated
@@ -457,5 +403,77 @@ public class ControladoraGui {
                 taulell.getJLButtons().get(i).setVisible(false);
             }
         }
+    }
+
+    public ControladoraJabber getCjabber() {
+        return cjabber;
+    }
+
+    public void setCjabber(ControladoraJabber cjabber) {
+        this.cjabber = cjabber;
+    }
+
+    public ControladoraPartida getCp() {
+        return cp;
+    }
+
+    public void setCp(ControladoraPartida cp) {
+        this.cp = cp;
+    }
+
+    public ControladoraPartidaOnline getCpo() {
+        return cpo;
+    }
+
+    public void setCpo(ControladoraPartidaOnline cpo) {
+        this.cpo = cpo;
+    }
+
+    public Fase getFaseActual() {
+        return faseActual;
+    }
+
+    public void setFaseActual(Fase faseActual) {
+        this.faseActual = faseActual;
+    }
+
+    public Jugador getJugadorLocal() {
+        return jugadorLocal;
+    }
+
+    public void setJugadorLocal(Jugador jugadorLocal) {
+        this.jugadorLocal = jugadorLocal;
+    }
+
+    public boolean isLogin() {
+        return login;
+    }
+
+    public void setLogin(boolean login) {
+        this.login = login;
+    }
+
+    public String getLogs() {
+        return logs;
+    }
+
+    public void setLogs(String logs) {
+        this.logs = logs;
+    }
+
+    public GuiTaulell getTaulell() {
+        return taulell;
+    }
+
+    public void setTaulell(GuiTaulell taulell) {
+        this.taulell = taulell;
+    }
+
+    public Torn getTornActual() {
+        return tornActual;
+    }
+
+    public void setTornActual(Torn tornActual) {
+        this.tornActual = tornActual;
     }
 }
