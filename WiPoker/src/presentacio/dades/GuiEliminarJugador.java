@@ -153,8 +153,10 @@ public class GuiEliminarJugador {
 
             public void actionPerformed(ActionEvent e) {
                 if (gui.getJugadorLocal() != null) {
-                gui.setJugadorLocal(null);
-                JOptionPane.showMessageDialog(jFrame, "Jugador eliminat satisfactoriament");
+                    if (gui.getJugadorLocal().getAlias().equals(jtfAlies.getText())) {
+                        gui.setJugadorLocal(null);
+                        JOptionPane.showMessageDialog(jFrame, "Jugador eliminat satisfactoriament");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(jFrame, "Jugador no eliminat");
                 }
