@@ -5,9 +5,11 @@
 package presentacio.dades;
 
 import controladora.ControladoraGui;
+import domini.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -38,7 +40,7 @@ public class GuiAfegirJugador {
     private JLabel jlAlies;
     private JLabel jlEdat;
     private JTextField jtfNom;
-    private JTextField jtfAlies2;
+    private JTextField jtfAlies;
     private JTextField jtfEdat;
     private JLabel jlDNI;
     private JTextField jtfDNI;
@@ -118,9 +120,9 @@ public class GuiAfegirJugador {
         jlAlies.setLayout(null);
         jpFons.add(jlAlies);
 
-        jtfAlies2 = new JTextField(20);
-        jtfAlies2.setBounds(170, 210, 120, 24);
-        jpFons.add(jtfAlies2);
+        jtfAlies = new JTextField(20);
+        jtfAlies.setBounds(170, 210, 120, 24);
+        jpFons.add(jtfAlies);
 
         jlEdat = new JLabel();
         jlEdat.setBounds(115, 240, 340, 104);
@@ -185,10 +187,13 @@ public class GuiAfegirJugador {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (true) {
+                try {
+                    gui.setJugadorLocal(new Jugador(jtfDNI.getText(), jtfNom.getText(), jtfAlies.getText(), Integer.parseInt(jtfEdat.getText()), jtfTelefon.getText(), 0, "avatar"));
                     JOptionPane.showMessageDialog(jFrame, "Jugador afegit satisfactoriament");
-                }
+                } catch (NumberFormatException numberFormatException) {
 
+                } catch (HeadlessException headlessException) {
+                }
             }
         });
 
