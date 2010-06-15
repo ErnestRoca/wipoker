@@ -8,7 +8,7 @@ package domini;
 import controladora.ControladoraIA;
 
 /**
- * Descripció de la classe concreta Persona.<br>
+ * Descripció de la classe concreta Bot.<br>
  * Modela un Bot(jugador automàtic) en el domini suggerit pels requeriments funcionals
  *
  * @author ula

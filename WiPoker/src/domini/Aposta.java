@@ -8,7 +8,7 @@ package domini;
 import java.io.Serializable;
 
 /**
- * Descripció de la classe concreta Persona.<br>
+ * Descripció de la classe concreta Aposta.<br>
  * Modela una Aposta en el domini suggerit pels requeriments funcionals
  * 
  * @author Andrés
