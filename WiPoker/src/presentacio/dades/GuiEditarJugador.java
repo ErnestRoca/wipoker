@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -165,6 +166,22 @@ public class GuiEditarJugador {
 
         jpFons.add(jlImatgeFons);
         jFrame.setVisible(true);
+
+        jbEditar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (gui.getJugadorLocal() != null) {
+                    jtfNom.setText(gui.getJugadorLocal().getNomComplet());
+                    jtfDNI.setText(gui.getJugadorLocal().getDni());
+                    gui.getJugadorLocal().setAlias(jtfAlies2.getText());
+                    gui.getJugadorLocal().setEdat((byte) ( Integer.parseInt(jtfEdat.getText())));
+                    gui.getJugadorLocal().setTelefon(jtfTelefon.getText());
+                } else {
+                    JOptionPane.showInputDialog("jugador no creat");
+                }
+
+            }
+        });
 
         jbTornar.addActionListener(new ActionListener() {
 
