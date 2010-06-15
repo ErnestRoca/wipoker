@@ -22,12 +22,10 @@ public class Servidor {
     private Client client;
 
     public Servidor(final String ip, final int port, final Jugador jugador) {
-        
         try {
             socketServidor = new ServerSocket(port);
             socketClient = socketServidor.accept();
             client = new Client(ip, port, jugador);
-
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,7 +54,5 @@ public class Servidor {
     public void setSocketServidor(ServerSocket socketServidor) {
         this.socketServidor = socketServidor;
     }
-
-    
 } 
     
