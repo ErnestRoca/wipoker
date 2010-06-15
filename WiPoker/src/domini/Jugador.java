@@ -15,8 +15,8 @@ public class Jugador {
 
     private final String dni;
     private final String nomComplet;
-    private final String alias;
-    private final byte edat;
+    private String alias;
+    private byte edat;
     private short partidesGuanyades;
     private int puntuacio;
     private String telefon;
@@ -269,6 +269,14 @@ public class Jugador {
 
     public void setTorn(Torn torn) {
         this.torn = torn;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public void setEdat(byte edat) {
+        this.edat = edat;
     }
 
     @Override
