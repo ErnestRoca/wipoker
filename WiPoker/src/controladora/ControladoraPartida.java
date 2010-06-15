@@ -49,7 +49,10 @@ public class ControladoraPartida {
         partida.setJugadors(new ArrayList<Jugador>(maxJugadors));
         controlIA = new ControladoraIA(partida, controlCartes, this);
     }
-
+/**
+ *
+ * @return si queden places lliures
+ */
     public boolean taulaIsFull() {
         boolean completa = taula.getPlaces() - taula.getCadiresOcupades() == 0;
         return completa;
@@ -77,10 +80,12 @@ public class ControladoraPartida {
                 numJugadorsActius++;
             }
         }
+        //mentre quedin jugadors per seguir la partida
         while (numJugadorsActius > 1) {
             iniciarRonda(boto);
+            //treiem els jugadors eliminats
             determinarJugadorsEliminats();
-            //Avança Boto
+            //Avança Boto o el reiniciem si estem a l'ultim jugador
             if (boto == partida.getJugadors().size()) {
                 boto = 0;
                 if (partida.getJugadors().get(boto).isEliminat() == true) {
@@ -128,6 +133,7 @@ public class ControladoraPartida {
 
             Fase novaFase = new Fase(Fase.getNomFases()[Fase.getNumFase()], novaRonda, 0);
             if (i == 0) {
+                //possem a 0 l'aposta minima si estem a la primera fase (preflop)
                 novaFase.setApostaMinima(0);
             }
 
@@ -136,6 +142,7 @@ public class ControladoraPartida {
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
             gestionarFase(novaFase, boto);
+            //reiniciem i/o assignem les apostes dels jugadors
             for (Jugador j : partida.getJugadors()) {
                 if (j.getAposta() != null) {
                     j.getAposta().setQuantitat(0);
@@ -144,6 +151,7 @@ public class ControladoraPartida {
                 }
             }
             int numJugadorsFold = 0;
+            //controlem els jugadors que han abandoant la ronda(fold)
             for (Jugador j : partida.getJugadors()) {
                 if (j.isHaFetFold()) {
                     numJugadorsFold++;
@@ -154,17 +162,18 @@ public class ControladoraPartida {
             }
 
         }
+        //comprovem les combinacions de tots els jugadors i repartim fitxes
         determinarCombinacio();
         ArrayList<Jugador> jugadorsGuanyadors = determinarGuanyador();
 
 
         controlJoc.repartirPremi(jugadorsGuanyadors, novaRonda.getPot());
         novaRonda.setJugadorGuanyadorRonda((jugadorsGuanyadors));
-
+        //reiniciem fases
         Fase.setNumFase(0);
         //determinarJugadorsEliminats();
         novaRonda.getFases().clear();
-
+        //reiniciem variables de control de la partida de tots els jugadors
         for (Jugador jugador : partida.getJugadors()) {
             jugador.getMaActual().getCartes().clear();
             if (jugador.isHaFetFold()) {
@@ -177,6 +186,7 @@ public class ControladoraPartida {
             //jugador.getAposta().setQuantitat(0.0);
             jugador.setApostaTotalRonda(0);
         }
+        //actualitzem la gui
         gui.ocultarCartesComunitaries();
         gui.mostrarMissatge(jugadorsGuanyadors.toString(), "Ha/n guanyat la ronda");
         gui.gestionarFitxes();

@@ -50,7 +50,7 @@ public class ControladoraCartes {
 /**
  *
  * @param jugador
- * @return esFull
+ * @return esEscalaColor
  * Algoritme es basa en cercar la condicio d'escala i a mes que siguin del mateix color. Si es compleix
  * Es processen les duplicades i es comprova si les cartes de la mateixa escala son del mateix color
  */
@@ -248,7 +248,7 @@ public class ControladoraCartes {
 /**
  *
  * @param jugador
- * @return esFull
+ * @return esPoker
  * Algoritme es basa en cercar 4 cartes iguals
  */
     public boolean esPoker(Jugador jugador) {
