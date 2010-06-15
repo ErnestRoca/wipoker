@@ -171,7 +171,7 @@ public class ControladoraPartida {
                 jugador.setHaFetFold(false);
 
 
-            } else if (jugador.isAllin()) {
+            } else if (jugador.HaFetAllin()) {
                 jugador.setHaFetAllin(false);
             }
             //jugador.getAposta().setQuantitat(0.0);
@@ -278,7 +278,7 @@ public class ControladoraPartida {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
-                if (j.isHaFetFold() || j.isEliminat() || j.isAllin()) {
+                if (j.isHaFetFold() || j.isEliminat() || j.HaFetAllin()) {
                     numFold++;
                 }
             }
@@ -289,7 +289,7 @@ public class ControladoraPartida {
 
             for (int i = bigBlind + 1; i < partida.getJugadors().size(); i++) {
                 //Si no es la primera vegada que el jugador aposta en la fase
-                if (!partida.getJugadors().get(i).isHaFetFold() && !partida.getJugadors().get(i).isAllin() && !partida.getJugadors().get(i).isEliminat()) {
+                if (!partida.getJugadors().get(i).isHaFetFold() && !partida.getJugadors().get(i).HaFetAllin() && !partida.getJugadors().get(i).isEliminat()) {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
@@ -312,7 +312,7 @@ public class ControladoraPartida {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
                         gui.actualitzaBotons();
-                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().isAllin() && !partida.getJugadors().get(i).isEliminat()) {
+                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().HaFetAllin() && !partida.getJugadors().get(i).isEliminat()) {
                             if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                                 Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                                 gui.getTornActual().resume();
@@ -333,7 +333,7 @@ public class ControladoraPartida {
 
             for (int i = 0; i < bigBlind + 1; i++) {
                 //Si no es la primera vegada que el jugador aposta en la fase
-                if (!partida.getJugadors().get(i).isHaFetFold() && !partida.getJugadors().get(i).isAllin() && !partida.getJugadors().get(i).isEliminat()) {
+                if (!partida.getJugadors().get(i).isHaFetFold() && !partida.getJugadors().get(i).HaFetAllin() && !partida.getJugadors().get(i).isEliminat()) {
                     if (countFase > 0 && partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
@@ -356,7 +356,7 @@ public class ControladoraPartida {
                         gui.setTornActual(partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
                         gui.actualitzaBotons();
-                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().isAllin() && !partida.getJugadors().get(i).isEliminat()) {
+                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().HaFetAllin() && !partida.getJugadors().get(i).isEliminat()) {
                             if (gui.getTornActual().getJugadorTorn() instanceof Bot) {
                                 Bot bot = (Bot) gui.getTornActual().getJugadorTorn();
                                 gui.getTornActual().resume();
@@ -380,7 +380,7 @@ public class ControladoraPartida {
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (!partida.getJugadors().get(i).isHaFetFold() &&
-                        !partida.getJugadors().get(i).isAllin() &&
+                        !partida.getJugadors().get(i).HaFetAllin() &&
                         !partida.getJugadors().get(i).isEliminat()) {
                     System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat() + " " + partida.getJugadors().get(i).getAlias() + ", aposta total: " + partida.getJugadors().get(i).getApostaTotalRonda());
                     if (!(fase.getApostaMinima() == partida.getJugadors().get(i).getAposta().getQuantitat())) {
