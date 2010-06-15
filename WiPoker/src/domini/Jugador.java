@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 public class Jugador {
 
     // Atributs, variables membre o camps: Modelen les dades que la classe i les seves instàncies han de saber o conèixer en tot moment
-
+    
     private final String dni;
     private final String nomComplet;
     private String alias;
@@ -41,7 +41,14 @@ public class Jugador {
      * Constructor d'instàncies de la classe.<br>
      * pre: Les indicades als paràmetres<br>
      * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
-     * @param eoid El valor assignat a l'identificador extern de l'objecte
+     * 
+     * @param dni
+     * @param nomComplet
+     * @param alias
+     * @param edat
+     * @param telefon
+     * @param posicioTaula
+     * @param nomAvatar
      */
     public Jugador(String dni, String nomComplet, String alias, int edat, String telefon, int posicioTaula, String nomAvatar) {
         this.dni = dni;
@@ -63,7 +70,17 @@ public class Jugador {
      * Constructor d'instàncies de la classe.<br>
      * pre: Les indicades als paràmetres<br>
      * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
-     * @param eoid El valor assignat a l'identificador extern de l'objecte
+     *
+     * @param dni
+     * @param nomComplet
+     * @param alias
+     * @param edat
+     * @param partidesGuanyades
+     * @param puntuacio
+     * @param telefon
+     * @param fitxesInicials
+     * @param posicioTaula
+     * @param avatar
      */
     public Jugador(String dni, String nomComplet, String alias, int edat, int partidesGuanyades, int puntuacio, String telefon, int fitxesInicials, int posicioTaula, String avatar) {
         this(dni, nomComplet, alias, edat, telefon, posicioTaula, avatar);
@@ -75,6 +92,16 @@ public class Jugador {
         this.torn = new Torn(this);
     }
 
+    /**
+     * Constructor d'instàncies de la classe.<br>
+     * pre: Les indicades als paràmetres<br>
+     * post: S'ha creat una instància de la classe actual i s'han assignat els valors dels paràmetres als atributs<br>
+     * 
+     * @param alias
+     * @param fitxesInicials
+     * @param posicioTaula
+     * @param nomAvatar
+     */
     public Jugador(String alias, int fitxesInicials, int posicioTaula, String nomAvatar) {
         this.dni = "00000000A";
         this.nomComplet = alias;
@@ -296,6 +323,13 @@ public class Jugador {
         this.edat = (byte) edat;
     }
 
+    /**
+     * Compara la instància actual amb una referència a una altra instància per determinar-ne la seva "igualtat".<br>
+     * pre: Les indicades als paràmetres<br>
+     * post: Les indicades al return<br>
+     * @param obj Una referència a una instància Object
+     * @return true si considerem ambdós instàncies "iguals" (mateix objecte a nivell del domini)
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
