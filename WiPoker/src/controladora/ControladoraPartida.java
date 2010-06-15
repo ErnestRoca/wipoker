@@ -278,7 +278,7 @@ public class ControladoraPartida {
             //Mira si hi tothom menys un han fet fold
             int numFold = 0;
             for (Jugador j : partida.getJugadors()) {
-                if (j.isHaFetFold()) {
+                if (j.isHaFetFold() || j.isEliminat() || j.isAllin()) {
                     numFold++;
                 }
             }

@@ -35,7 +35,7 @@ public class ControladoraIA {
         //PRE-FLOP
         if (Fase.getNumFase() == 1) {
             //SI no es la primera vegada que aposta a la fase
-            if (numVegadesFase > 1) {
+            if (numVegadesFase > 0) {
                 //Si el jugador te menys fitxes que l'aposta actual
                 if (apostaMinima - ultimAposta > jugador.getFitxesActuals()) {
                     cp.controlJoc.ferRaise(jugador, fase, apostaMinima, jugador.getFitxesActuals());
@@ -139,7 +139,7 @@ public class ControladoraIA {
                 }
             }
         } else if (Fase.getNumFase() > 1) {
-            if (numVegadesFase > 1) {
+            if (numVegadesFase > 0) {
                 //Si el jugador te menys fitxes que l'aposta actual
                 if (apostaMinima - ultimAposta > jugador.getFitxesActuals()) {
                     cp.controlJoc.ferRaise(jugador, fase, apostaMinima, jugador.getFitxesActuals());
