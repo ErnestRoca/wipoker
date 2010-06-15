@@ -19,49 +19,36 @@ import java.util.logging.Logger;
  *
  * @author wida45787385
  */
-public class Servidor {
+public class Servidor extends Thread {
 
     private ServerSocket socketServidor;
     private Socket socketClient;
     private Client client;
     private ObjectInputStream fluxeEntrada;
     private ObjectOutputStream fluxeSortida;
+    private String ip;
+    private int port;
+    private Jugador jugador;
 
     public Servidor(final String ip, final int port, final Jugador jugador) {
-        try {            
-            socketServidor = new ServerSocket(port);            
+        this.ip = ip;
+        this.port = port;
+        this.jugador =jugador;
+    }
+
+    
+    @Override
+    public void run() {
+        try {
+            socketServidor = new ServerSocket(port);
+            socketClient = socketServidor.accept();
+            fluxeEntrada = new ObjectInputStream(new DataInputStream(socketClient.getInputStream()));
+            fluxeSortida = new ObjectOutputStream(new DataOutputStream(socketClient.getOutputStream()));
+            client = new Client(ip, port, jugador);
+            System.out.println("hola");           
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        finally {
-            escoltar();
-            System.out.println("hola");
-            afegirseUnMateix(ip, port, jugador);
-        }
-        
-    }
-
-    public void escoltar() {
-        
-        Thread t = new Thread() {            
-
-            @Override
-            public void run() {
-                try {
-                    socketClient = socketServidor.accept();
-                    fluxeEntrada = new ObjectInputStream(new DataInputStream(socketClient.getInputStream()));
-                    fluxeSortida = new ObjectOutputStream(new DataOutputStream(socketClient.getOutputStream()));
-                } catch (IOException ex) {
-                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        };
-        t.start();
-        
-    }
-
-    public void afegirseUnMateix(final String ip, final int port, final Jugador jugador) {
-        client = new Client(ip, port, jugador);        
     }
 
     public Jugador afegirJugadorRemot() {

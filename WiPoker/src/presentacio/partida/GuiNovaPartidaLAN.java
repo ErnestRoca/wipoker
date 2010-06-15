@@ -232,12 +232,14 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                                 new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
                                 jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
                         gui.setCp(cpo);
+                        gui.setCpo(cpo);
+                        gui.getCpo().setServidor(new Servidor(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar"))));
+                        gui.getCpo().getServidor().start();
                         dispose();
                         taulell = new GuiTaulell(gui);
                         taulell.getjFrame().setLocation(getLocation());
                         taulell.getjFrame().setVisible(true);
-                        Servidor s = gui.getCpo().crearServidor(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
-                        gui.getCpo().setServidor(s);
+                        
                     }
                 } else if (jrbUnir.isSelected()) {
                     if (!jtfPort.getText().isEmpty() && !jtfIP.getText().isEmpty()) {

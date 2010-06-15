@@ -39,11 +39,6 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         super(maxJugadors, gui);
     }
 
-    public Servidor crearServidor(final String ip, final int port, final Jugador jugador) {
-        servidor = new Servidor(ip, port, jugador);
-        return servidor;
-    }
-
     public Servidor getServidor() {
         return servidor;
     }
