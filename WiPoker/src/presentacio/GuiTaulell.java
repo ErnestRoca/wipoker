@@ -1054,14 +1054,14 @@ public class GuiTaulell {
     }
 
     private void crearControlsJPanelCrupier() {
-        jlNomCroupier = new JLabel("Crooupiera");
+        jlNomCroupier = new JLabel("Crooupier");
         jlNomCroupier.setFont(new Font(Font.DIALOG, Font.BOLD, 12));
         jlNomCroupier.setForeground(Color.WHITE);
         jlNomCroupier.setBounds(20, 100, 100, 13);
         jPanelCrupier.add(jlNomCroupier);
 
         jlCroupier = new JLabel();
-        jlCroupier.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/jugadora_poker.png")));
+        jlCroupier.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/croupier.png")));
         jlCroupier.setOpaque(false);
         final int x1 = 0;
         final int y1 = 0;
