@@ -30,6 +30,7 @@ public class ControladoraGui {
 
     private boolean login;
     private ControladoraPartida cp;
+    private ControladoraPartidaOnline cpo;
     private Torn tornActual = new Torn();
     private Fase faseActual = new Fase();
     /** Pseudoatribut per implementar visibilitat d'atribut. */
@@ -45,6 +46,9 @@ public class ControladoraGui {
         login = false;
         faseActual = new Fase();
         this.cp = cp;
+        if (cp instanceof ControladoraPartidaOnline) {
+            cpo = (ControladoraPartidaOnline) cp;
+        }
         cjabber = new ControladoraJabber();
     }
 
@@ -58,6 +62,14 @@ public class ControladoraGui {
 
     public void setCp(ControladoraPartida cp) {
         this.cp = cp;
+    }
+
+    public ControladoraPartidaOnline getCpo() {
+        return cpo;
+    }
+
+    public void setCpo(ControladoraPartidaOnline cpo) {
+        this.cpo = cpo;
     }
 
     public ControladoraJabber getCjabber() {
@@ -422,9 +434,9 @@ public class ControladoraGui {
     }
 
     public void gestionarButtons() {
-         System.out.println("dealer: " + cp.getDealer() + ", sb: " + cp.getSmallBlind() + ", bb: " + cp.getBigBlind());
-        for (int i = 0; i < taulell.getJLButtons().size();i++) {
-           
+        System.out.println("dealer: " + cp.getDealer() + ", sb: " + cp.getSmallBlind() + ", bb: " + cp.getBigBlind());
+        for (int i = 0; i < taulell.getJLButtons().size(); i++) {
+
             if (i == cp.getDealer()) {
                 System.out.println(i + " es el dealer");
                 taulell.getJLButtons().get(i).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/dealer.png")));
