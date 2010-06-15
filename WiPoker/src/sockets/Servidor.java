@@ -22,7 +22,7 @@ public class Servidor {
     private Client client;
 
     public Servidor(final String ip, final int port, final Jugador jugador) {
-        super();
+        
         try {
             socketServidor = new ServerSocket(port);
             socketClient = socketServidor.accept();
@@ -32,5 +32,31 @@ public class Servidor {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Socket getSocketClient() {
+        return socketClient;
+    }
+
+    public void setSocketClient(Socket socketClient) {
+        this.socketClient = socketClient;
+    }
+
+    public ServerSocket getSocketServidor() {
+        return socketServidor;
+    }
+
+    public void setSocketServidor(ServerSocket socketServidor) {
+        this.socketServidor = socketServidor;
+    }
+
+    
 } 
     
