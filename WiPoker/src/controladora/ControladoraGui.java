@@ -62,6 +62,9 @@ public class ControladoraGui {
 
     public void setCp(ControladoraPartida cp) {
         this.cp = cp;
+        if (cp instanceof ControladoraPartidaOnline) {
+            cpo = (ControladoraPartidaOnline) cp;
+        }
     }
 
     public ControladoraPartidaOnline getCpo() {
