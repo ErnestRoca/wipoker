@@ -11,9 +11,12 @@ import domini.Fase;
 import domini.Jugador;
 import domini.Ma;
 import domini.Ronda;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sockets.Servidor;
 
 /**
@@ -34,10 +37,21 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
 
     public ControladoraPartidaOnline(int maxJugadors, ControladoraGui gui, final String ip, final int port, final Jugador jugador) {
         super(maxJugadors, gui);
-        servidor = new Servidor(ip, port, jugador);
-        System.out.println(servidor.getSocketClient().isConnected());
     }
 
+    public Servidor crearServidor(final String ip, final int port, final Jugador jugador) {
+        servidor = new Servidor(ip, port, jugador);
+        return servidor;
+    }
+
+    public Servidor getServidor() {
+        return servidor;
+    }
+
+    public void setServidor(Servidor servidor) {
+        this.servidor = servidor;
+    }
+    
     public void afegirJugador(Jugador nouJugador) {
         if (!taulaIsFull()) {
             nouJugador.setMaActual(new Ma());
@@ -302,9 +316,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
             //Mira SI algun jugador (que no a fet fold) a apostat diferent
             boolean hanApostatDiferent = false;
             for (int i = 0; i < gui.getCp().partida.getJugadors().size(); i++) {
-                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold()
-                        && !gui.getCp().partida.getJugadors().get(i).isAllin()
-                        && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
+                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold() && !gui.getCp().partida.getJugadors().get(i).isAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
                     if (!(fase.getApostaMinima() == gui.getCp().partida.getJugadors().get(i).getAposta().getQuantitat())) {
                         hanApostatDiferent = true;
                     }
@@ -403,8 +415,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
         int valorDesempat = 0;
         for (int i = 0; i < gui.getCp().partida.getJugadors().size(); i++) {
             //Si el jugado no esta eliminat o no ha fet fold
-            if (!gui.getCp().partida.getJugadors().get(i).isEliminat()
-                    && !gui.getCp().partida.getJugadors().get(i).isHaFetFold()) {
+            if (!gui.getCp().partida.getJugadors().get(i).isEliminat() && !gui.getCp().partida.getJugadors().get(i).isHaFetFold()) {
                 //Si el seu valor de combinacio es mes alt que lactual
                 if (gui.getCp().partida.getJugadors().get(i).getMaActual().getCombinacio() > combinacio) {
                     //guarda: combinacio, valor mes alt i valor desepat
@@ -430,10 +441,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
             }
         }
         for (int i = 0; i < gui.getCp().partida.getJugadors().size(); i++) {
-            if (gui.getCp().partida.getJugadors().get(i).getMaActual().getCombinacio() == combinacio
-                    && gui.getCp().partida.getJugadors().get(i).getMaActual().getValorMesAlt() == valorMesAlt
-                    && gui.getCp().partida.getJugadors().get(i).getMaActual().getValorDesempat() == valorDesempat
-                    && !gui.getCp().partida.getJugadors().get(i).isEliminat() && !gui.getCp().partida.getJugadors().get(i).isHaFetFold()) {
+            if (gui.getCp().partida.getJugadors().get(i).getMaActual().getCombinacio() == combinacio && gui.getCp().partida.getJugadors().get(i).getMaActual().getValorMesAlt() == valorMesAlt && gui.getCp().partida.getJugadors().get(i).getMaActual().getValorDesempat() == valorDesempat && !gui.getCp().partida.getJugadors().get(i).isEliminat() && !gui.getCp().partida.getJugadors().get(i).isHaFetFold()) {
                 posiblesGuanyadors.add(gui.getCp().partida.getJugadors().get(i));
                 System.out.println("Guanyador " + i + ": " + gui.getCp().partida.getJugadors().get(i).getAlias());
                 gui.actualitzarLog("Guanyador " + i + ": " + gui.getCp().partida.getJugadors().get(i).getAlias());
