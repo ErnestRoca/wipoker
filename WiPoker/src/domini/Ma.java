@@ -1,22 +1,46 @@
+
+/**
+ * Ma.java
+ */
+
+// Per assignar la classe actual a la capa domini
 package domini;
 
+// Per implementar associacions i navegabilitats
 import java.util.ArrayList;
 
 /**
- *
+ * Descripció de la classe concreta Carta.<br>
+ * Modela un Bot(jugador automàtic) en el domini suggerit pels requeriments funcionals
+ * 
  * @author ernest
  */
 public class Ma {
 
-    private ArrayList<Carta> Cartes = new ArrayList<Carta>();
-    private Fase fase;
+    // Atributs, variables membre o camps: Modelen les dades que la classe i les seves instàncies han de saber o conèixer en tot moment
+    
     private byte combinacio;
     private byte valorMesAlt = 0;
     private byte valorDesempat = 0;
 
+    // Pseudoatributs per establir i mantenir connexions permanents entre la instància actual i altres instàncies
+    
+    private ArrayList<Carta> Cartes = new ArrayList<Carta>();
+    private Fase fase;
+
+    /**
+     * Constructor d'instàncies de la classe.<br>
+     * pre: Les indicades als paràmetres<br>
+     * post: S'ha creat una instància de la classe actual i s'han assignat els valors
+     * dels paràmetres als atributs<br>
+     * 
+     */
     public Ma() {
     }
-
+    /**
+     * 
+     * @param Cartes
+     */
     public Ma(ArrayList<Carta> Cartes) {
         this.Cartes = Cartes;
     }
