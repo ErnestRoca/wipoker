@@ -235,7 +235,7 @@ public class Jugador {
      * Retorna el valor de l'atribut haFetAllin.
      * @return true, si el jugador ha fet all-in
      */
-    public boolean HaFetAllin() {
+    public boolean haFetAllin() {
         return haFetAllin;
     }
 

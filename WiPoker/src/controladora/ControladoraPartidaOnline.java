@@ -269,7 +269,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
 
             for (int i = bigBlind + 1; i < gui.getCp().partida.getJugadors().size(); i++) {
                 //Si no es la primera vegada que el jugador aposta en la fase
-                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold() && !gui.getCp().partida.getJugadors().get(i).HaFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
+                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold() && !gui.getCp().partida.getJugadors().get(i).haFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
                     if (countFase > 0 && gui.getCp().partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(gui.getCp().partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
@@ -281,7 +281,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
                         gui.setTornActual(gui.getCp().partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
                         gui.actualitzaBotons();
-                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().HaFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
+                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().haFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
                             gui.getTornActual().run();
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
                             gui.gestionarFitxes();
@@ -292,7 +292,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
 
             for (int i = 0; i < bigBlind + 1; i++) {
                 //Si no es la primera vegada que el jugador aposta en la fase
-                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold() && !gui.getCp().partida.getJugadors().get(i).HaFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
+                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold() && !gui.getCp().partida.getJugadors().get(i).haFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
                     if (countFase > 0 && gui.getCp().partida.getJugadors().get(i).getAposta().getQuantitat() != fase.getApostaMinima()) {
                         gui.setTornActual(gui.getCp().partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
@@ -304,7 +304,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
                         gui.setTornActual(gui.getCp().partida.getJugadors().get(i).getTorn());
                         gui.setAvatarJugadorActiu(gui.getTornActual().getJugadorTorn());
                         gui.actualitzaBotons();
-                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().HaFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
+                        if (!gui.getTornActual().getJugadorTorn().isHaFetFold() && !gui.getTornActual().getJugadorTorn().haFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
                             gui.getTornActual().run();
                             gui.setAvatarJugadorInActiu(gui.getTornActual().getJugadorTorn());
                             gui.gestionarFitxes();
@@ -316,7 +316,7 @@ public class ControladoraPartidaOnline extends ControladoraPartida {
             //Mira SI algun jugador (que no a fet fold) a apostat diferent
             boolean hanApostatDiferent = false;
             for (int i = 0; i < gui.getCp().partida.getJugadors().size(); i++) {
-                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold() && !gui.getCp().partida.getJugadors().get(i).HaFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
+                if (!gui.getCp().partida.getJugadors().get(i).isHaFetFold() && !gui.getCp().partida.getJugadors().get(i).haFetAllin() && !gui.getCp().partida.getJugadors().get(i).isEliminat()) {
                     if (!(fase.getApostaMinima() == gui.getCp().partida.getJugadors().get(i).getAposta().getQuantitat())) {
                         hanApostatDiferent = true;
                     }
