@@ -243,7 +243,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                             taulell.getjFrame().setVisible(true);
 
                         } else {
-                            JOptionPane.showConfirmDialog(getContentPane(), "No pots introduir text en numero de jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showConfirmDialog(getContentPane(), "Ha d'haver-hi entre 2 i 9 jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                         }
                     } else if (jrbUnir.isSelected()) {
                         if (!jtfPort.getText().isEmpty() && !jtfIP.getText().isEmpty()) {
