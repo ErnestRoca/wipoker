@@ -227,14 +227,14 @@ public class ControladoraPartida {
 
         if (partida.getJugadors().size() == 2) {
             for (int i = 0; i < partida.getJugadors().size(); i++) {
-                if (i != boto) {
+                if (i != boto && !partida.getJugadors().get(i).isEliminat()) {
                     smallBlind = i;
                     controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 10);
                     gui.gestionarFitxes();
                 }
             }
             for (int i = 0; i < partida.getJugadors().size(); i++) {
-                if (i == boto) {
+                if (i == boto && !partida.getJugadors().get(i).isEliminat()) {
                     bigBlind = i;
                     controlJoc.ferRaise(partida.getJugadors().get(i), fase, apostaMin, 20);
                     gui.gestionarFitxes();
