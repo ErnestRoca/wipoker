@@ -245,6 +245,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
                     if (!jtfPort.getText().isEmpty() && !jtfIP.getText().isEmpty()) {
                         Jugador jugador = new Jugador("priva", Integer.parseInt(jtfFInicials.getText()), 2, "avatar");
                         Client client = new Client(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), jugador);
+                        client.start();
                         dispose();
                         taulell = new GuiTaulell(gui);
                         taulell.getjFrame().setLocation(getLocation());
