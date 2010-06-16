@@ -114,7 +114,7 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
         jlTitol.setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/WiPokerLogo2.gif")));
         jPanelGlobal.add(jlTitol);
 
-        jrbOnline = new JRadioButton("Crear partida Online");
+        jrbOnline = new JRadioButton("Crear partida LAN");
         jrbOnline.setFocusPainted(false);
         jrbOnline.setOpaque(false);
         jrbOnline.setBounds(11, 123, 154, 20);
