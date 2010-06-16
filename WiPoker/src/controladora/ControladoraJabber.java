@@ -10,6 +10,8 @@ import controladora.jabber.Listeners;
 import controladora.jabber.Trafic;
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
@@ -95,14 +97,15 @@ public class ControladoraJabber {
 
     public void setSala(JID r) {
         room = r;
-        muc = new MultiUserChat(connexio, r.getJID());        
+        muc = new MultiUserChat(connexio, r.getJID());
         prepararEscoltadorsSala();
         try {
             muc.create(room.getNick());
             muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
             muc.changeSubject("Sala dedicada al juego WiPPoker");
-            muc.join(room.getNick());            
-        } catch (Exception ex) {
+            muc.join(room.getNick());
+        } catch (XMPPException ex) {
+            Logger.getLogger(ControladoraJabber.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
