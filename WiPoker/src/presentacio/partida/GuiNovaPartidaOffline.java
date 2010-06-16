@@ -162,17 +162,21 @@ public class GuiNovaPartidaOffline {
             public void actionPerformed(ActionEvent e) {
                 if (!jtfFInicials.getText().isEmpty() && (!jtfAlias.getText().isEmpty()) && (!jtfFNumJugadors.getText().isEmpty())) {
                     try {
-                        jFrame.dispose();
-                        gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), Integer.parseInt(jtfFNumJugadors.getText())));
-                        taulell = new GuiTaulell(gui);
-                        taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
-                        new Runnable() {
+                        if (Integer.parseInt(jtfFNumJugadors.getText()) <= 9) {
+                            jFrame.dispose();
+                            gui.setCp(new ControladoraPartidaLocal(gui, jtfAlias.getText(), Integer.parseInt(jtfFInicials.getText()), Integer.parseInt(jtfFNumJugadors.getText())));
+                            taulell = new GuiTaulell(gui);
+                            taulell.getjFrame().setLocation(taulell.getjFrame().getLocation());
+                            new Runnable() {
 
-                            @Override
-                            public void run() {
-                                taulell.getjFrame().setVisible(true);
-                            }
-                        };
+                                @Override
+                                public void run() {
+                                    taulell.getjFrame().setVisible(true);
+                                }
+                            };
+                        } else {
+                            JOptionPane.showConfirmDialog(jFrame, "No pot haver-hi mes de 9 jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                        }
                     } catch (NumberFormatException exception) {
                         JOptionPane.showConfirmDialog(jFrame, "No pots introduir text en numero de jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }

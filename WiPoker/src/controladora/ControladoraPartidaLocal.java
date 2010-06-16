@@ -6,7 +6,8 @@ package controladora;
 
 import domini.Bot;
 import domini.Jugador;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -20,14 +21,18 @@ public class ControladoraPartidaLocal extends ControladoraPartida {
 
     public ControladoraPartidaLocal(ControladoraGui gui, String alias, int fitxesInicials, int numJugadors) {
         super(numJugadors, gui);
-        Arrays.sort(nomBots);
+        ArrayList<String> noms = new ArrayList<String>();
+        for (String s: nomBots) {
+            noms.add(s);
+        }
+        Collections.shuffle(noms);
         if (gui.getJugadorLocal() == null) {
             super.partida.getJugadors().add(new Jugador(alias, fitxesInicials, 0, "avatar"));
         } else {
             super.partida.getJugadors().add(gui.getJugadorLocal());
         }
         for (int i = 1; i < numJugadors; i++) {
-            super.partida.getJugadors().add(new Bot(nomBots[i], fitxesInicials, i));
+            super.partida.getJugadors().add(new Bot(noms.get(i), fitxesInicials, i));
         }
     }
 }
