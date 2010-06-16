@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -228,28 +229,36 @@ public class GuiNovaPartidaLAN extends javax.swing.JDialog {
 
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
-                        ControladoraPartidaOnline cpo =
-                                new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
-                                jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
-                        gui.setCp(cpo);
-                        gui.setCpo(cpo);
-                        gui.getCpo().setServidor(new Servidor(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar"))));
-                        gui.getCpo().getServidor().start();
-                        dispose();
-                        taulell = new GuiTaulell(gui);
-                        taulell.getjFrame().setLocation(getLocation());
-                        taulell.getjFrame().setVisible(true);
-                        
-                    }
-                } else if (jrbUnir.isSelected()) {
-                    if (!jtfPort.getText().isEmpty() && !jtfIP.getText().isEmpty()) {
-                        Jugador jugador = new Jugador("priva", Integer.parseInt(jtfFInicials.getText()), 2, "avatar");
-                        Client client = new Client(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), jugador);
-                        client.start();
-                        dispose();
-                        taulell = new GuiTaulell(gui);
-                        taulell.getjFrame().setLocation(getLocation());
-                        taulell.getjFrame().setVisible(true);
+                        if (Integer.parseInt(jtfMAxJ.getText()) > 1 && Integer.parseInt(jtfMAxJ.getText()) <= 9) {
+                            ControladoraPartidaOnline cpo =
+                                    new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()), gui,
+                                    jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar")));
+                            gui.setCp(cpo);
+                            gui.setCpo(cpo);
+                            gui.getCpo().setServidor(new Servidor(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), (new Jugador("andres", 1000, 1, "avatar"))));
+                            gui.getCpo().getServidor().start();
+                            dispose();
+                            taulell = new GuiTaulell(gui);
+                            taulell.getjFrame().setLocation(getLocation());
+                            taulell.getjFrame().setVisible(true);
+
+                        } else {
+                            JOptionPane.showConfirmDialog(getContentPane(), "No pots introduir text en numero de jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else if (jrbUnir.isSelected()) {
+                        if (!jtfPort.getText().isEmpty() && !jtfIP.getText().isEmpty()) {
+                            if (Integer.parseInt(jtfMAxJ.getText()) > 1 && Integer.parseInt(jtfMAxJ.getText()) <= 9) {
+                                Jugador jugador = new Jugador("priva", Integer.parseInt(jtfFInicials.getText()), 2, "avatar");
+                                Client client = new Client(jtfIP.getText(), Integer.parseInt(jtfPort.getText()), jugador);
+                                client.start();
+                                dispose();
+                                taulell = new GuiTaulell(gui);
+                                taulell.getjFrame().setLocation(getLocation());
+                                taulell.getjFrame().setVisible(true);
+                            } else {
+                                JOptionPane.showConfirmDialog(getContentPane(), "Ha d'haver-hi entre 2 i 9 jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
                     }
                 }
             }
