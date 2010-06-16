@@ -23,30 +23,19 @@ import java.util.logging.Logger;
  *
  * @author wida45787385
  */
-public class Client {
+public class Client extends Thread {
 
     private ObjectInputStream fluxeEntrada;
     private ObjectOutputStream fluxeSortida;
     private Socket socket;
     private Jugador jugadorClient;
+    private int port;
+    private String ip;
 
     public Client(final String ip, final int port, final Jugador jugador) {
-
-        jugadorClient = jugador;
-
-        try {
-            socket = new Socket(ip, port);
-            InputStream fluxeSocketEntrada = socket.getInputStream();
-            OutputStream fluxeSocketSortida = socket.getOutputStream();
-            fluxeEntrada = new ObjectInputStream(new DataInputStream(fluxeSocketEntrada));
-            fluxeSortida = new ObjectOutputStream(new DataOutputStream(fluxeSocketSortida));
-            System.out.println(fluxeEntrada == null);
-            
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.ip = ip;
+        this.port = port;
+        this.jugadorClient = jugador;
     }
 
     public void afegirse() {
@@ -63,5 +52,23 @@ public class Client {
 
     public void rebreCarta(Carta carta) {
         jugadorClient.getMaActual().getCartes().add(carta);
+    }
+
+    @Override
+    public void run() {
+
+        try {
+            socket = new Socket(ip, port);
+            InputStream fluxeSocketEntrada = socket.getInputStream();
+            OutputStream fluxeSocketSortida = socket.getOutputStream();
+            fluxeEntrada = new ObjectInputStream(new DataInputStream(fluxeSocketEntrada));
+            fluxeSortida = new ObjectOutputStream(new DataOutputStream(fluxeSocketSortida));
+            System.out.println(fluxeEntrada == null);
+
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
