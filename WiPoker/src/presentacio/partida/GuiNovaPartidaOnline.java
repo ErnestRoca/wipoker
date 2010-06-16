@@ -245,44 +245,50 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
 
                 if (jrbOnline.isSelected()) {
                     if (!jtfMAxJ.getText().isEmpty() && !jtfFInicials.getText().isEmpty()) {
-                        try {
-                            carregar_sala();
-                            if (room.getNick() != null && room.getNick().length() == 0) {
-                                jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
-                            } else if (room.getName() != null && room.getName().length() == 0) {
-                                if (jtfNom.getText().isEmpty()) {
-                                    String jop = JOptionPane.showInputDialog(getContentPane(), "Nom de la nova taula?");
-                                    if (jop instanceof String) {
-                                        room.setName(jop);
-                                        jtfNom.setText(jop);
+                        if (Integer.parseInt(jtfMAxJ.getText()) > 1 && Integer.parseInt(jtfMAxJ.getText()) <= 9) {
+                            try {
+                                carregar_sala();
+                                if (room.getNick() != null && room.getNick().length() == 0) {
+                                    jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
+                                } else if (room.getName() != null && room.getName().length() == 0) {
+                                    if (jtfNom.getText().isEmpty()) {
+                                        String jop = JOptionPane.showInputDialog(getContentPane(), "Nom de la nova taula?");
+                                        if (jop instanceof String) {
+                                            room.setName(jop);
+                                            jtfNom.setText(jop);
+                                        }
+                                    } else {
+                                        room.setName(jtfNom.getText());
                                     }
-                                } else {
-                                    room.setName(jtfNom.getText());
                                 }
-                            }
-                            carregar_sala();
-                            refrescar_sala();
-                            func = true;
-                            
-                            ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()),
-                                    gui, "", 0, null);
-                            gui.setCp(cpo);
-                            cpo.afegirJugador(new Jugador(jtfAlias.getText(),6, 1, "avatar"));
-                            dispose();
+                                carregar_sala();
+                                refrescar_sala();
+                                func = true;
 
-                        } catch (NumberFormatException exception) {
-                            JOptionPane.showConfirmDialog(getContentPane(), "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                                ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(Integer.parseInt(jtfMAxJ.getText()),
+                                        gui, "", 0, null);
+                                gui.setCp(cpo);
+                                cpo.afegirJugador(new Jugador(jtfAlias.getText(), 6, 1, "avatar"));
+                                dispose();
+
+                            } catch (NumberFormatException exception) {
+                                JOptionPane.showConfirmDialog(getContentPane(), "No pots introduir text en un lloc de dades numèriques", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showConfirmDialog(getContentPane(), "Ha da'haver-hi entre 2 i 9 jugadors", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                         }
+
                     } else {
                         JOptionPane.showConfirmDialog(getContentPane(), "Introdueix valors vàlids", null, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                     }
+
                 } else if (jrbUnir.isSelected()) {
                     if (room.getNick() != null && room.getNick().length() == 0) {
                         jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                     }
 
                     ControladoraPartidaOnline cpo = new ControladoraPartidaOnline(gui);
-                    gui.setCp(cpo);                    
+                    gui.setCp(cpo);
                     if (room.getName() != null && room.getName().length() == 0) {
                         carregar_sala();
                         if (jtfNom.getText().isEmpty()) {
