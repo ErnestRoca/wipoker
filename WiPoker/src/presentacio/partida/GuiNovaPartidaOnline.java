@@ -238,8 +238,6 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
 
         jbCrearUnir.addActionListener(new ActionListener() {
 
-            private GuiTaulell taulell;
-
             @Override
             public void actionPerformed(ActionEvent e) {
 
