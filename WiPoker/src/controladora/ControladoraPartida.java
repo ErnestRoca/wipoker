@@ -59,7 +59,6 @@ public class ControladoraPartida {
     }
 
     public void jugar() throws InterruptedException {
-        System.out.println("---------********NOVA PARTIDA******---------");
         gui.actualitzarLog("*********NOVA PARTIDA*********");
         gui.ocultarPanellsJugadors();
         gui.gestionarFitxes();
@@ -130,7 +129,6 @@ public class ControladoraPartida {
         partida.getRondes().add(novaRonda);
         baralla = controlJoc.crearBaralla();
         controlJoc.barallar(baralla);
-        System.out.println("\n\n\n\n\n********************NOVA RONDA****************************");
         gui.actualitzarLog("\n\n*******NOVA RONDA*******");
         //Inicia Fase
         gui.mostrarAvatars(partida.getJugadors());
@@ -143,7 +141,6 @@ public class ControladoraPartida {
                 novaFase.setApostaMinima(0);
             }
 
-            System.out.println(novaFase.toString());
             gui.actualitzarLog("\n--" + novaFase.toString() + "--");
             this.gui.setFaseActual(novaFase);
             novaRonda.getFases().add(novaFase);
@@ -427,7 +424,7 @@ public class ControladoraPartida {
                 if (!partida.getJugadors().get(i).isHaFetFold()
                         && !partida.getJugadors().get(i).haFetAllin()
                         && !partida.getJugadors().get(i).isEliminat()) {
-                    System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat() + " " + partida.getJugadors().get(i).getAlias() + ", aposta total: " + partida.getJugadors().get(i).getApostaTotalRonda());
+
                     if (!(fase.getApostaMinima() == partida.getJugadors().get(i).getAposta().getQuantitat())) {
                         hanApostatDiferent = true;
                     }
@@ -446,7 +443,6 @@ public class ControladoraPartida {
             }
         }
 
-        System.out.println("Pot del " + fase.getNomFase() + ": " + fase.getRonda().getPot());
     }
 
     public void eventsFlop(Fase fase, int boto) throws InterruptedException {
@@ -483,10 +479,6 @@ public class ControladoraPartida {
             j.setTorn(new Torn(j));
         }
         eventsFase(fase, boto);
-        for (Jugador j : partida.getJugadors()) {
-            System.out.println("El " + j.getAlias());
-            System.out.println(j.getMaActual());
-        }
     }
 
     public void determinarCombinacio() {
@@ -548,7 +540,6 @@ public class ControladoraPartida {
         for (int i = 0; i < partida.getJugadors().size(); i++) {
             if (partida.getJugadors().get(i).getMaActual().getCombinacio() == combinacio && partida.getJugadors().get(i).getMaActual().getValorMesAlt() == valorMesAlt && partida.getJugadors().get(i).getMaActual().getValorDesempat() == valorDesempat && !partida.getJugadors().get(i).isEliminat() && !partida.getJugadors().get(i).isHaFetFold()) {
                 posiblesGuanyadors.add(partida.getJugadors().get(i));
-                System.out.println("Guanyador " + i + ": " + partida.getJugadors().get(i).getAlias());
                 gui.actualitzarLog("Guanyador " + i + ": " + partida.getJugadors().get(i).getAlias());
             }
         }
@@ -557,20 +548,13 @@ public class ControladoraPartida {
     }
 
     public void determinarJugadorsEliminats() {
-        System.out.println("ELIMINANT JUGADORS...");
-        System.out.println("Hi han " + partida.getJugadors().size() + " jugadors");
         for (Jugador j : partida.getJugadors()) {
-            System.out.print("comprovant el jugador " + j.getAlias() + " amb " + j.getFitxesActuals());
             if (j.getFitxesActuals() <= 0) {
-                System.out.println(" ELIMINAR!!!");
                 j.setEliminat(true);
                 gui.gestionarJugadorEliminat(j);
                 gui.actualitzarLog("Eliminant: " + j.getAlias());
-            } else {
-                System.out.println(" SALVAR!!!");
             }
         }
-        System.out.println("");
     }
 
     public int getBigBlind() {

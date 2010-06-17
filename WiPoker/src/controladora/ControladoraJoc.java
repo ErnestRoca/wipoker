@@ -136,13 +136,11 @@ public class ControladoraJoc {
     public synchronized void ferFold(Jugador jugador, Fase fase) {
         if (cp instanceof ControladoraPartidaLocal) {
             jugador.setHaFetFold(true);
-            System.out.println(jugador.getAlias() + " fa FOLD");
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Fold.");
         } else {
             //
         }
         if (jugador instanceof Bot) {
-            System.out.println("pomapoma");
             cp.gui.getTaulell().getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/botDesactivat.png")));
         } else {
             cp.gui.getTaulell().getAvatars().get(jugador.getPosicioTaula()).setIcon(new ImageIcon(getClass().getResource("/serveis/imatges/avatarDesactivat.png")));
@@ -159,19 +157,13 @@ public class ControladoraJoc {
             //si no te prou fitxes
             if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
                 jugador.setHaFetAllin(true);
-                System.out.println("Pot avanç: " + fase.getRonda().getPot());
                 apostar(jugador, jugador.getFitxesActuals(), fase);
-                System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
             } else {
-                System.out.println("Pot avanç: " + fase.getRonda().getPot());
                 int aposta = (int) (apostaMinima);
                 apostar(jugador, aposta, fase);
                 fase.setApostaMinima(apostaMinima);
-                System.out.println(jugador.getAlias() + " fa CALL");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Call.");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
             }
         } else {
             // si no te prou fitxes
@@ -192,7 +184,6 @@ public class ControladoraJoc {
         if (cp instanceof ControladoraPartidaLocal) {
             //no fa res. Ho hem fet volent
             fase.setApostaMinima(apostaMinima);
-            System.out.println(jugador.getAlias() + " fa CHECK");
             cp.gui.actualitzarLog(jugador.getAlias() + " fa Check.");
         } else {
             //
@@ -207,14 +198,10 @@ public class ControladoraJoc {
     public synchronized void ferBlind(Jugador jugador, Fase fase, int dinersApostats) {
         if (cp instanceof ControladoraPartidaLocal) {
             if (jugador.getFitxesActuals() < dinersApostats && jugador.getFitxesActuals() >= 0) {
-                System.out.println("Pot avanç: " + fase.getRonda().getPot());
                 jugador.setHaFetAllin(true);
                 apostar(jugador, jugador.getFitxesActuals(), fase);
-                System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
             } else {
-                System.out.println("Pot avanç: " + fase.getRonda().getPot());
                 double quantitatAnterior = jugador.getAposta() != null ? jugador.getAposta().getQuantitat() : 0;
                 jugador.setFitxesActuals((int) ((int) (jugador.getFitxesActuals() - dinersApostats) + quantitatAnterior));
                 jugador.setApostaTotalRonda((int) ((jugador.getApostaTotalRonda() + dinersApostats) - quantitatAnterior));
@@ -223,9 +210,7 @@ public class ControladoraJoc {
                 fase.getApostes().add(aposta);
                 fase.getRonda().setPot((fase.getRonda().getPot()) + dinersApostats);
                 fase.setApostaMinima(dinersApostats);
-                System.out.println(jugador.getAlias() + " fa BLIND, puja: " + dinersApostats);
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Blind.");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
             }
         } else {
             //si no te prou fitxes
@@ -246,37 +231,25 @@ public class ControladoraJoc {
     public synchronized void ferRaise(Jugador jugador, Fase fase, int apostaMinima, int dinersApostats) {
         if (cp instanceof ControladoraPartidaLocal) {
             if (jugador.getFitxesActuals() < apostaMinima && jugador.getFitxesActuals() >= 0) {
-                System.out.println("RISE 1");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
                 jugador.setHaFetAllin(true);
                 apostar(jugador, jugador.getFitxesActuals(), fase);
                 if (dinersApostats > apostaMinima) {
                     fase.setApostaMinima(apostaMinima + dinersApostats);
                 }
                 //fase.setApostaMinima(dinersApostats);
-                System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
             } else if (jugador.getFitxesActuals() < (apostaMinima + dinersApostats)) {
-                System.out.println("RISE 2");
-                System.out.println("Pot avanç: " + fase.getRonda().getPot());
                 jugador.setHaFetAllin(true);
                 apostar(jugador, jugador.getFitxesActuals(), fase);
                 //fase.setApostaMinima(dinersApostats);
                 if (dinersApostats > apostaMinima) {
                     fase.setApostaMinima(apostaMinima + dinersApostats);
                 }
-                System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
             } else {
-                System.out.println("RISE 3");
-                System.out.println("Pot avanç: " + fase.getRonda().getPot());
                 apostar(jugador, (apostaMinima + dinersApostats), fase);
                 fase.setApostaMinima(apostaMinima + dinersApostats);
-                System.out.println(jugador.getAlias() + " fa RAISE, puja: " + dinersApostats);
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Rise, puja: " + dinersApostats + ".");
-                System.out.println("Pot despres: " + fase.getRonda().getPot());
             }
         } else {
             //si no te prou fitxes
@@ -295,9 +268,6 @@ public class ControladoraJoc {
  * @param pot
  */
     public void repartirPremi(ArrayList<Jugador> jugadors, int pot) {
-        for (int i = 0; i < jugadors.size(); i++) {
-            System.out.println(jugadors.get(i).getAlias() + ", fitxes actuals: " + jugadors.get(i).getFitxesActuals());
-        }
         if (jugadors.size() == 1) {
             jugadors.get(0).setFitxesActuals((jugadors.get(0).getFitxesActuals() + pot));
         } else if (jugadors.size() > 1) {
@@ -318,7 +288,6 @@ public class ControladoraJoc {
                 double percentatgeGuanys2 = 100 * percentatgeGuanys / percentatgeTotal;
                 int premi = (int) ((pot2 * percentatgeGuanys2 / 100) + jugadors.get(i).getApostaTotalRonda());
                 jugadors.get(i).setFitxesActuals(jugadors.get(i).getFitxesActuals() + premi);
-                System.out.println("El " + jugadors.get(i).getAlias() + " guanya: " + premi);
                 cp.gui.actualitzarLog("El " + jugadors.get(i).getAlias() + " guanya: " + premi + ".");
             }
         }
