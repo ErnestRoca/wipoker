@@ -104,14 +104,14 @@ public class GuiEliminarJugador {
 
         jlText = new JTextArea("Linia 1\nLinia 2\nLinia 3", 5, 10);
         jlText.setBounds(15, 195, 300, 296);
-        jlText.setText("Mont-ros, és un poble del municipi de la Torre de Cabdella, " +
-                "al Pallars Jussà; era el cap de l'antic municipi de Mont-ros abans del 1970. " +
-                "És un dels tres pobles de la Coma, juntament amb Paüls de Flamisell i Pobellà.");
+        /*jlText.setText("Mont-ros, és un poble del municipi de la Torre de Cabdella, " +
+        "al Pallars Jussà; era el cap de l'antic municipi de Mont-ros abans del 1970. " +
+        "És un dels tres pobles de la Coma, juntament amb Paüls de Flamisell i Pobellà.");*/
         jlText.setLayout(null);
         jlText.setLineWrap(true);
         JScrollPane jScrollPane = new JScrollPane(); // Per posar barres scroll
         jScrollPane.setViewportView(jlText);       // Assignar scrollbar al textarea
-        jpFons.add(jlText);
+        //jpFons.add(jlText);
 
 
         jbEliminar = new JButton("ELIMINAR");
