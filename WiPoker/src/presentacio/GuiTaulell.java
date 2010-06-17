@@ -226,7 +226,7 @@ public class GuiTaulell {
         final int xjPanelUsari = 420;
         final int yjPanelUsari = 610;
         final int wjPanelUsari = 148;
-        final int hjPanelUsari = 97;
+        final int hjPanelUsari = 130;
         jPanelUsuari.setBounds(xjPanelUsari, yjPanelUsari, wjPanelUsari, hjPanelUsari);
         jPanelUsuari.setLayout(null);
         jPanelGlobal.add(jPanelUsuari);
@@ -516,7 +516,7 @@ public class GuiTaulell {
     private void crearControlsJPanelUsuari() {
         jlCarta01Usuari = new JLabel();
         final int x1 = 0;
-        final int y1 = 0;
+        final int y1 = 10;
         final int w1 = 73;
         final int h1 = 97;
         jlCarta01Usuari.setBounds(x1, y1, w1, h1);
