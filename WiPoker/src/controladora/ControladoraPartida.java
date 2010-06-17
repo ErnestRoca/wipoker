@@ -96,22 +96,17 @@ public class ControladoraPartida {
                     }
                 }
             } else {
-                if (boto == partida.getJugadors().size() - 1) {
-                    boto = 0;
-                    if (partida.getJugadors().get(boto).isEliminat() == true) {
-                        boolean botoTrobat = false;
-                        for (int i = boto + 1; i < partida.getJugadors().size() && !botoTrobat; i++) {
-                            if (!partida.getJugadors().get(i).isEliminat()) {
-                                boto = i;
-                                botoTrobat = true;
-                                dealer = i;
-                            }
-                        }
+                boolean botoTrobat = false;
+                for (int i = boto; i < partida.getJugadors().size() && !botoTrobat; i++) {
+                    if (i != boto && !partida.getJugadors().get(i).isEliminat()) {
+                        boto = i;
+                        botoTrobat = true;
+                        dealer = i;
                     }
-                } else {
-                    boolean botoTrobat = false;
-                    for (int i = boto + 1; i < partida.getJugadors().size() && !botoTrobat; i++) {
-                        if (!partida.getJugadors().get(i).isEliminat()) {
+                }
+                if (!botoTrobat) {
+                    for (int i = 0; i < boto && !botoTrobat; i++) {
+                        if (i != boto && !partida.getJugadors().get(i).isEliminat()) {
                             boto = i;
                             botoTrobat = true;
                             dealer = i;
@@ -224,8 +219,14 @@ public class ControladoraPartida {
         for (Jugador j : partida.getJugadors()) {
             j.setTorn(new Torn(j));
         }
+        int jugadorsActius = 0;
+        for (int i = 0; i < partida.getJugadors().size();i++) {
+            if (!partida.getJugadors().get(i).isEliminat()) {
+                jugadorsActius++;
+            }
+        }
 
-        if (partida.getJugadors().size() == 2) {
+        if (jugadorsActius == 2) {
             for (int i = 0; i < partida.getJugadors().size(); i++) {
                 if (i != boto && !partida.getJugadors().get(i).isEliminat()) {
                     smallBlind = i;
@@ -423,9 +424,9 @@ public class ControladoraPartida {
             //Mira SI algun jugador (que no a fet fold) a apostat diferent
             boolean hanApostatDiferent = false;
             for (int i = 0; i < partida.getJugadors().size(); i++) {
-                if (!partida.getJugadors().get(i).isHaFetFold() &&
-                        !partida.getJugadors().get(i).haFetAllin() &&
-                        !partida.getJugadors().get(i).isEliminat()) {
+                if (!partida.getJugadors().get(i).isHaFetFold()
+                        && !partida.getJugadors().get(i).haFetAllin()
+                        && !partida.getJugadors().get(i).isEliminat()) {
                     System.out.println("aposta minima: " + fase.getApostaMinima() + ", aposta jugador: " + partida.getJugadors().get(i).getAposta().getQuantitat() + " " + partida.getJugadors().get(i).getAlias() + ", aposta total: " + partida.getJugadors().get(i).getApostaTotalRonda());
                     if (!(fase.getApostaMinima() == partida.getJugadors().get(i).getAposta().getQuantitat())) {
                         hanApostatDiferent = true;
