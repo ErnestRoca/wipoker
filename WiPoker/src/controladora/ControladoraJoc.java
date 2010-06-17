@@ -250,6 +250,9 @@ public class ControladoraJoc {
                 System.out.println("Pot despres: " + fase.getRonda().getPot());
                 jugador.setHaFetAllin(true);
                 apostar(jugador, jugador.getFitxesActuals(), fase);
+                if (dinersApostats > apostaMinima) {
+                    fase.setApostaMinima(apostaMinima + dinersApostats);
+                }
                 //fase.setApostaMinima(dinersApostats);
                 System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
@@ -260,6 +263,9 @@ public class ControladoraJoc {
                 jugador.setHaFetAllin(true);
                 apostar(jugador, jugador.getFitxesActuals(), fase);
                 //fase.setApostaMinima(dinersApostats);
+                if (dinersApostats > apostaMinima) {
+                    fase.setApostaMinima(apostaMinima + dinersApostats);
+                }
                 System.out.println(jugador.getAlias() + "Fa Allin");
                 cp.gui.actualitzarLog(jugador.getAlias() + " fa Allin.");
                 System.out.println("Pot despres: " + fase.getRonda().getPot());
