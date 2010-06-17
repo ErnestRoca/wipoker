@@ -409,7 +409,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
     }
 
     private void refrescar_sala() {
-        jcbServidors.getModel().setSelectedItem(room.getServer());
+        jcbServidors.getModel().setSelectedItem(room.getJID());
     }
 
     public boolean isFunc() {
