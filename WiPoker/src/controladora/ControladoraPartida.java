@@ -86,7 +86,7 @@ public class ControladoraPartida {
             //treiem els jugadors eliminats
             determinarJugadorsEliminats();
             //Avança Boto o el reiniciem si estem a l'ultim jugador
-            if (partida.getJugadors().size() == 2) {
+            if (numJugadorsActius == 2) {
                 boolean botoTrobat = false;
                 for (int i = 0; i < partida.getJugadors().size() && !botoTrobat; i++) {
                     if (i != boto && !partida.getJugadors().get(i).isEliminat()) {
@@ -96,7 +96,7 @@ public class ControladoraPartida {
                     }
                 }
             } else {
-                if (boto == partida.getJugadors().size()) {
+                if (boto == partida.getJugadors().size() - 1) {
                     boto = 0;
                     if (partida.getJugadors().get(boto).isEliminat() == true) {
                         boolean botoTrobat = false;
