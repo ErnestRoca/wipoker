@@ -37,13 +37,13 @@ public class GuiConsultarDades {
     private JLabel jlNom;
     private JLabel jlAlies;
     private JLabel jlEdat;
-    private JLabel jlPartides;
-    private JLabel jlPuntuacio;
+    private JLabel jlDni;
+    private JLabel jlTelefon;
     private JTextField jtfNom;
     private JTextField jtfAlies2;
     private JTextField jtfEdat;
-    private JTextField jtfPartides;
-    private JTextField jtfPuntuacio;
+    private JTextField jtfDni;
+    private JTextField jtfTelefon;
     private JButton jbTornar;
 
     private GuiMenuDades menu;
@@ -148,29 +148,29 @@ public class GuiConsultarDades {
         jtfEdat.setEditable(false);
         jpFons.add(jtfEdat);
 
-        jlPartides = new JLabel();
-        jlPartides.setBounds(26, 380, 340, 104);
-        jlPartides.setText("Partides guanyades ");
-        jlPartides.setForeground(Color.red);
-        jlPartides.setLayout(null);
-        jpFons.add(jlPartides);
+        jlDni = new JLabel();
+        jlDni.setBounds(115, 380, 340, 104);
+        jlDni.setText("DNI ");
+        jlDni.setForeground(Color.red);
+        jlDni.setLayout(null);
+        jpFons.add(jlDni);
 
-        jtfPartides = new JTextField(20);
-        jtfPartides.setBounds(170, 420, 120, 24);
-        jtfPartides.setEditable(false);
-        jpFons.add(jtfPartides);
+        jtfDni = new JTextField(20);
+        jtfDni.setBounds(170, 420, 120, 24);
+        jtfDni.setEditable(false);
+        jpFons.add(jtfDni);
 
-        jlPuntuacio = new JLabel();
-        jlPuntuacio.setBounds(85, 450, 340, 104);
-        jlPuntuacio.setText("Puntuacio ");
-        jlPuntuacio.setForeground(Color.red);
-        jlPuntuacio.setLayout(null);
-        jpFons.add(jlPuntuacio);
+        jlTelefon = new JLabel();
+        jlTelefon.setBounds(85, 450, 340, 104);
+        jlTelefon.setText("Teléfon ");
+        jlTelefon.setForeground(Color.red);
+        jlTelefon.setLayout(null);
+        jpFons.add(jlTelefon);
 
-        jtfPuntuacio = new JTextField(20);
-        jtfPuntuacio.setBounds(170, 490, 120, 24);
-        jtfPuntuacio.setEditable(false);
-        jpFons.add(jtfPuntuacio);
+        jtfTelefon = new JTextField(20);
+        jtfTelefon.setBounds(170, 490, 120, 24);
+        jtfTelefon.setEditable(false);
+        jpFons.add(jtfTelefon);
 
         jbTornar = new JButton("Tornar enrere");
         jbTornar.setFont(new Font(Font.SERIF, Font.BOLD, 16));
@@ -185,6 +185,20 @@ public class GuiConsultarDades {
 
         jpFons.add(jlImatgeFons);
 
+        jbBuscar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (gui.getJugadorLocal() != null) {
+                    if (jtfAlies.getText().equals(gui.getJugadorLocal().getAlias())) {
+                        jtfAlies2.setText(gui.getJugadorLocal().getAlias());
+                        jtfDni.setText(gui.getJugadorLocal().getDni());
+                        jtfNom.setText(gui.getJugadorLocal().getNomComplet());
+                        jtfTelefon.setText(gui.getJugadorLocal().getTelefon());
+                        jtfEdat.setText(gui.getJugadorLocal().getEdat()+"");
+                    }
+                }
+            }
+        });
 
         jbTornar.addActionListener(new ActionListener() {
 
