@@ -281,6 +281,8 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                     }
 
                 } else if (jrbUnir.isSelected()) {
+                    carregar_sala();
+                    refrescar_sala();
                     if (room.getNick() != null && room.getNick().length() == 0) {
                         jtfAlias.setText("usuari" + (new Random()).nextInt(1000));
                     }
@@ -299,6 +301,7 @@ public class GuiNovaPartidaOnline extends javax.swing.JDialog {
                             room.setName(jtfNom.getText());
                         }
                         refrescar_sala();
+                        gui.getCjabber().setSala(room);
                     }
                     func = true;
                     dispose();
