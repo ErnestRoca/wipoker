@@ -1,0 +1,1 @@
+El projecte pretén desenvolupar un joc de poker online amb múltiples jugadors a traves de la xarxa i de varies partides simultànies a la xarxa. Es valorarà la possible implementació d'un sistema d'administració de torneig.
